@@ -1,6 +1,7 @@
+#update_data.py
 import os
-from data_processing import process_data
-from data_aggregation import main as fetch_and_save_data
+from data.data_processing import process_data
+from data.data_aggregation import main as fetch_and_save_data
 
 def update_data():
     print("Starting update_data()...")  # Debugging
