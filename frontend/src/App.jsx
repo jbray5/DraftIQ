@@ -1,12 +1,13 @@
-import React, { useEffect, useReducer, useCallback } from 'react';
+import React, { useEffect, useReducer, useCallback, useRef, useState } from 'react';
 import './App.css';
 
 const TEAM_NAMES = [
-  'Wester', 'Spivey', 'D-Put', 'Walker', 'Will', 'Thom',
-  'JRay', 'Taylor', 'Mac', 'Cuda', 'CJ', 'Josh'
+  'Wester🏆', 'Spivey🏆🏆🏆', 'D-Put', 'Walker', 'Will', 'Thom🏆🏆',
+  'JRay🏆🏆🏆', 'Taylor', 'Mac', 'Cuda', 'CJ🏆', 'Josh'
 ];
 const ROSTER_SLOTS = ['QB', 'RB1', 'RB2', 'WR1', 'WR2', 'TE', 'FLEX', 'IDP', 'D/ST', 'K', 'Bench 1', 'Bench 2', 'Bench 3', 'Bench 4', 'Bench 5', 'Bench 6', 'Bench 7'];
-const STORAGE_KEY = 'ffd_draft_state_v4'; // bumped to invalidate old cache
+const STORAGE_KEY = 'ffd_draft_state_v4';
+const HEIGHT_KEY = 'ffd_board_height';
 
 // --- Helpers ---
 function buildEmptyTeams(names, slots) {
@@ -59,7 +60,6 @@ function normalizePlayer(raw, indexIfNeeded) {
   const position =
     raw?.position ?? raw?.Position_stats ?? raw?.Position ?? '';
 
-  // ✅ points: prefer API "points", fallback to PPR then base
   const pointsRaw = raw?.points ?? raw?.FantasyPointsPPR ?? raw?.FantasyPoints ?? null;
   const points =
     typeof pointsRaw === 'number'
@@ -72,7 +72,6 @@ function normalizePlayer(raw, indexIfNeeded) {
     typeof raw?.rank === 'number' ? raw.rank :
     (typeof indexIfNeeded === 'number' ? indexIfNeeded + 1 : null);
 
-  // adp: your API returns lowercase "adp"; keep fallbacks for safety
   const adp =
     (typeof raw?.adp === 'number' ? raw.adp : null) ??
     raw?.AverageDraftPositionPPR ??
@@ -81,7 +80,6 @@ function normalizePlayer(raw, indexIfNeeded) {
   return { playerId: String(playerId), name, team, position, points, rank, adp };
 }
 
-// --- Safe Composite Score Calculation ---
 function calculateDraftMetrics(players) {
   if (!Array.isArray(players)) return [];
 
@@ -154,7 +152,6 @@ function calculateDraftMetrics(players) {
   });
 }
 
-// --- History Reducer ---
 function historyReducer(state, action) {
   const { past, present, future } = state;
   const push = (next) => ({ past: [...past, present], present: next, future: [] });
@@ -177,6 +174,33 @@ export default function App() {
     past: [], present: null, future: []
   });
 
+  // --- Board height state with persistence ---
+  const [boardHeight, setBoardHeight] = useState(() => {
+    const saved = localStorage.getItem(HEIGHT_KEY);
+    return saved ? parseInt(saved, 10) : 300;
+  });
+  const isDraggingRef = useRef(false);
+
+  const startDrag = () => { isDraggingRef.current = true; };
+  const stopDrag = () => { isDraggingRef.current = false; };
+  const onDrag = (e) => {
+    if (!isDraggingRef.current) return;
+    setBoardHeight(prev => {
+      const newH = Math.max(150, prev + e.movementY);
+      localStorage.setItem(HEIGHT_KEY, newH);
+      return newH;
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener('mousemove', onDrag);
+    window.addEventListener('mouseup', stopDrag);
+    return () => {
+      window.removeEventListener('mousemove', onDrag);
+      window.removeEventListener('mouseup', stopDrag);
+    };
+  }, []);
+
   const draft = state?.present;
   const players = draft?.players ?? [];
   const teams = draft?.teams ?? {};
@@ -186,14 +210,12 @@ export default function App() {
     dispatch({ type: 'APPLY', payload: updater(draft) });
   }, [draft]);
 
-  // persist
   useEffect(() => {
     if (draft) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(draft));
     }
   }, [draft]);
 
-  // bootstrap
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
@@ -204,8 +226,7 @@ export default function App() {
         const sortedByADP = [...withMetrics].sort((a, b) => (a?.adp ?? 9999) - (b?.adp ?? 9999));
         dispatch({ type: 'INIT', payload: { players: sortedByADP, teams: migratedTeams } });
         return;
-      } catch (err) {
-        console.error("Error parsing saved draft state, resetting:", err);
+      } catch {
         localStorage.removeItem(STORAGE_KEY);
       }
     }
@@ -214,13 +235,11 @@ export default function App() {
       try {
         const res = await fetch('http://127.0.0.1:5001/api/get-ranked-players');
         const data = await res.json();
-        // console.log('sample row', data?.[0]); // handy when debugging fields
         let normalized = Array.isArray(data) ? data.map((row, i) => normalizePlayer(row, i)) : [];
         let withMetrics = calculateDraftMetrics(normalized);
         const sortedByADP = [...withMetrics].sort((a, b) => (a?.adp ?? 9999) - (b?.adp ?? 9999));
         dispatch({ type: 'INIT', payload: { players: sortedByADP, teams: buildEmptyTeams(TEAM_NAMES, ROSTER_SLOTS) } });
-      } catch (err) {
-        console.error('Failed to fetch initial rankings:', err);
+      } catch {
         dispatch({ type: 'INIT', payload: { players: [], teams: buildEmptyTeams(TEAM_NAMES, ROSTER_SLOTS) } });
       }
     })();
@@ -229,14 +248,12 @@ export default function App() {
   const handleRefresh = async () => {
     try {
       const res = await fetch('http://127.0.0.1:5001/api/get-ranked-players');
-    const data = await res.json();
+      const data = await res.json();
       let normalized = Array.isArray(data) ? data.map((row, i) => normalizePlayer(row, i)) : [];
       let withMetrics = calculateDraftMetrics(normalized);
       const sortedByADP = [...withMetrics].sort((a, b) => (a?.adp ?? 9999) - (b?.adp ?? 9999));
       apply(cur => ({ ...cur, players: sortedByADP }));
-    } catch (e) {
-      console.error('Refresh failed:', e);
-    }
+    } catch {}
   };
 
   const allowDrop = (e) => e.preventDefault();
@@ -285,16 +302,13 @@ export default function App() {
     });
   };
 
-  // --- define "my team" to avoid ReferenceError ---
-  const myTeamName = 'JRay'; // change if needed
+  const myTeamName = 'JRay';
   const myTeam = teams?.[myTeamName] ?? buildEmptyTeams([myTeamName], ROSTER_SLOTS)[myTeamName];
 
-  if (!draft) {
-    return <main className="p-6 text-zinc-100">Loading draft...</main>;
-  }
+  if (!draft) return <main className="p-6 text-zinc-100">Loading draft...</main>;
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-zinc-100">
+    <main className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col">
       {/* HEADER */}
       <header className="sticky top-0 z-10 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur">
         <div className="container mx-auto max-w-7xl px-4 py-4 flex items-center justify-between gap-2">
@@ -307,42 +321,51 @@ export default function App() {
         </div>
       </header>
 
-      {/* MAIN CONTENT */}
-      <div className="container mx-auto max-w-7xl px-4 py-6 space-y-6">
-        {/* TEAM BOARD */}
-        <section aria-label="Teams" className="overflow-x-auto">
-          <div className="flex flex-nowrap gap-4 min-w-max pb-2">
-            {TEAM_NAMES.map((team) => {
-              const teamSlots = teams?.[team] ?? {};
-              return (
-                <div key={team} className="w-64 shrink-0 rounded-2xl border border-zinc-800 bg-zinc-900/60 p-3">
-                  <div className="mb-2 text-center text-sm font-semibold tracking-wide">{team}</div>
-                  <ul className="space-y-2">
-                    {ROSTER_SLOTS.map((slot) => (
-                      <li
-                        key={slot}
-                        onDrop={(e) => handleDrop(e, team, slot)}
-                        onDragOver={allowDrop}
-                        className={`slot-card ${toPosClass(teamSlots?.[slot]?.position)}
-                          min-h-[44px] rounded-xl border border-zinc-800 bg-zinc-900
-                          px-2 py-2 text-sm grid grid-cols-[56px_1fr_auto] items-center gap-2
-                          hover:bg-zinc-800 transition`}
-                      >
-                        <span className="text-zinc-400 font-medium">{slot}</span>
-                        <span className="truncate">{teamSlots?.[slot]?.name ?? '—'}</span>
-                        {teamSlots?.[slot] && (
-                          <button onClick={() => removeFromSlot(team, slot)} className="text-red-500 text-xs">✕</button>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              );
-            })}
-          </div>
-        </section>
+      {/* TEAM BOARD */}
+      <section
+        aria-label="Teams"
+        style={{ height: boardHeight }}
+        className="overflow-x-auto overflow-y-auto"
+      >
+        <div className="flex flex-nowrap gap-4 min-w-max pb-2">
+          {TEAM_NAMES.map((team) => {
+            const teamSlots = teams?.[team] ?? {};
+            return (
+              <div key={team} className="w-64 shrink-0 rounded-2xl border border-zinc-800 bg-zinc-900/60 p-3">
+                <div className="mb-2 text-center text-sm font-semibold tracking-wide">{team}</div>
+                <ul className="space-y-2">
+                  {ROSTER_SLOTS.map((slot) => (
+                    <li
+                      key={slot}
+                      onDrop={(e) => handleDrop(e, team, slot)}
+                      onDragOver={allowDrop}
+                      className={`slot-card ${toPosClass(teamSlots?.[slot]?.position)}
+                        min-h-[44px] rounded-xl border border-zinc-800 bg-zinc-900
+                        px-2 py-2 text-sm grid grid-cols-[56px_1fr_auto] items-center gap-2
+                        hover:bg-zinc-800 transition`}
+                    >
+                      <span className="text-zinc-400 font-medium">{slot}</span>
+                      <span className="truncate">{teamSlots?.[slot]?.name ?? '—'}</span>
+                      {teamSlots?.[slot] && (
+                        <button onClick={() => removeFromSlot(team, slot)} className="text-red-500 text-xs">✕</button>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
+      </section>
 
-        {/* MAIN GRID */}
+      {/* DRAG HANDLE */}
+      <div
+        onMouseDown={startDrag}
+        className="h-2 cursor-row-resize bg-zinc-700 hover:bg-zinc-600"
+      ></div>
+
+      {/* MAIN GRID */}
+      <div className="container mx-auto max-w-7xl px-4 py-6 space-y-6 flex-1 overflow-auto">
         <div className="grid grid-cols-12 gap-6">
           {/* YOUR TEAM */}
           <aside className="col-span-12 md:col-span-3 rounded-2xl border border-zinc-800 bg-zinc-900/60 p-4">
