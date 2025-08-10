@@ -1,8 +1,8 @@
 /* === Player Position Colors === */
-.player-card.pos-qb { border-left: 4px solid #FF4C4C; }   /* QB - Red */
-.player-card.pos-rb { border-left: 4px solid #002F6C; }   /* RB - Dark Blue */
-.player-card.pos-wr { border-left: 4px solid #2ECC71; }   /* WR - Green */
-.player-card.pos-te { border-left: 4px solid #7D7D7D; }   /* TE - Gray */
-.player-card.pos-k { border-left: 4px solid #FF69B4; }    /* K - Pink */
-.player-card.pos-dst { border-left: 4px solid #000000; }  /* D/ST - Black */
-.player-card.pos-idp { border-left: 4px solid #FFFFFF; }  /* IDP - White */
+.pos-qb { border-left: 4px solid #FF4C4C; }   /* QB - Red */
+.pos-rb { border-left: 4px solid #002F6C; }   /* RB - Dark Blue */
+.pos-wr { border-left: 4px solid #2ECC71; }   /* WR - Green */
+.pos-te { border-left: 4px solid #7D7D7D; }   /* TE - Gray */
+.pos-k  { border-left: 4px solid #FF69B4; }   /* K - Pink */
+.pos-dst { border-left: 4px solid #000000; }  /* D/ST - Black */
+.pos-idp { border-left: 4px solid #FFFFFF; }  /* IDP - White */
