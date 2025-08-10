@@ -238,12 +238,7 @@ export default function App() {
                 <p className="text-zinc-400">No players loaded.</p>
               ) : (
                 players.map((player) => (
-                  <article
-                    key={player.playerId}
-                    draggable
-                    onDragStart={(e) => handleDragStart(e, player.playerId)}
-                    className="cursor-move rounded-xl border border-zinc-800 bg-zinc-900 p-3 hover:bg-zinc-800 transition"
-                  >
+                  <article key={player.playerId} draggable onDragStart={(e) => handleDragStart(e, player.playerId)} className="cursor-move rounded-xl border border-zinc-800 bg-zinc-900 p-3 hover:bg-zinc-800 transition">
                     <h3 className="font-semibold leading-tight">
                       {player.rank ? `#${player.rank} ` : ''}{player.name}
                     </h3>
@@ -251,7 +246,10 @@ export default function App() {
                       {player.position}{player.team ? ` • ${player.team}` : ''}
                     </p>
                     <p className="mt-1 text-xs text-zinc-400">
-                      {player.points != null ? `Points: ${Number(player.points).toFixed(2)}` : 'Points: N/A'}
+                      Points: {player.points != null ? Number(player.points).toFixed(2) : 'N/A'}
+                    </p>
+                    <p className="mt-1 text-xs text-zinc-400">
+                      ADP: {player.adp != null ? player.adp : 'N/A'}
                     </p>
                   </article>
                 ))
