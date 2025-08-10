@@ -1,35 +1,160 @@
 import React, { useEffect, useReducer, useCallback } from 'react';
+import './App.css';
 
 const TEAM_NAMES = [
-  'Josh','Mac','D-Put','Jeff','Wester','J Ray',
-  'Taylor','Will','Spivey','CJ','Walk','Thom'
+  'Wester', 'Spivey', 'D-Put', 'Walker', 'Will', 'Thom',
+  'JRay', 'Taylor', 'Mac', 'Cuda', 'CJ', 'Josh'
 ];
-const ROSTER_SLOTS = ['QB','RB1','RB2','WR1','WR2','TE','FLEX','IDP','K','Bench'];
-const STORAGE_KEY = 'ffd_draft_state_v1';
+const ROSTER_SLOTS = ['QB', 'RB1', 'RB2', 'WR1', 'WR2', 'TE', 'FLEX', 'IDP', 'D/ST', 'K', 'Bench 1', 'Bench 2', 'Bench 3', 'Bench 4', 'Bench 5', 'Bench 6', 'Bench 7'];
+const STORAGE_KEY = 'ffd_draft_state_v4'; // bumped to invalidate old cache
 
-// Normalize rows from either the old merged CSV or the new Baker rankings
-function normalizePlayer(raw, indexIfNeeded) {
-  const playerId =
-    raw.playerId ?? raw.PlayerID ?? raw.player_id ?? String(Math.random());
-  const name =
-    raw.name ?? raw.Name_stats ?? raw.Name ?? 'Unknown';
-  const team =
-    raw.team ?? raw.Team_stats ?? raw.Team ?? '';
-  const position =
-    raw.position ?? raw.Position_stats ?? raw.Position ?? '';
-  const points =
-    (typeof raw.points === 'number' ? raw.points : null) ??
-    (typeof raw.Composite_Score === 'number' ? raw.Composite_Score : null) ??
-    raw.FantasyPointsHalfPPR ??
-    raw.FantasyPointsPPR ??
-    raw.FantasyPoints ?? null;
-  const rank =
-    typeof raw.rank === 'number' ? raw.rank :
-    (typeof indexIfNeeded === 'number' ? indexIfNeeded + 1 : null);
-  return { playerId: String(playerId), name, team, position, points, rank };
+// --- Helpers ---
+function buildEmptyTeams(names, slots) {
+  const t = {};
+  names.forEach(n => {
+    t[n] = {};
+    slots.forEach(s => (t[n][s] = null));
+  });
+  return t;
 }
 
-// --- History reducer for undo/redo ---
+function normalizeName(s = '') {
+  return s.toLowerCase().replace(/\s+/g, '');
+}
+
+function migrateTeams(savedTeams, names, slots) {
+  const empty = buildEmptyTeams(names, slots);
+  if (!savedTeams || typeof savedTeams !== 'object') return empty;
+
+  const nameIndex = Object.fromEntries(names.map(n => [normalizeName(n), n]));
+  Object.entries(savedTeams).forEach(([oldName, slotsObj]) => {
+    const target = nameIndex[normalizeName(oldName)];
+    if (target) {
+      empty[target] = { ...empty[target], ...slotsObj };
+    }
+  });
+
+  return empty;
+}
+
+function toPosClass(posRaw) {
+  const raw = (posRaw ?? '').toString().toLowerCase().replace(/[\/\s.-]/g, '');
+  if (raw.startsWith('rb')) return 'pos-rb';
+  if (raw.startsWith('wr')) return 'pos-wr';
+  if (raw === 'qb') return 'pos-qb';
+  if (raw === 'te') return 'pos-te';
+  if (raw === 'k' || raw === 'pk') return 'pos-k';
+  if (['dst','def','defense','d'].includes(raw)) return 'pos-dst';
+  if (['idp','lb','ilb','olb','edge','de','dt','dl','cb','s','ss','fs','db'].includes(raw)) return 'pos-idp';
+  return '';
+}
+
+function normalizePlayer(raw, indexIfNeeded) {
+  const playerId =
+    raw?.playerId ?? raw?.PlayerID ?? raw?.player_id ?? String(Math.random());
+  const name =
+    raw?.name ?? raw?.Name_stats ?? raw?.Name ?? 'Unknown';
+  const team =
+    raw?.team ?? raw?.Team_stats ?? raw?.Team ?? '';
+  const position =
+    raw?.position ?? raw?.Position_stats ?? raw?.Position ?? '';
+
+  // ✅ points: prefer API "points", fallback to PPR then base
+  const pointsRaw = raw?.points ?? raw?.FantasyPointsPPR ?? raw?.FantasyPoints ?? null;
+  const points =
+    typeof pointsRaw === 'number'
+      ? pointsRaw
+      : pointsRaw != null
+      ? Number(pointsRaw)
+      : null;
+
+  const rank =
+    typeof raw?.rank === 'number' ? raw.rank :
+    (typeof indexIfNeeded === 'number' ? indexIfNeeded + 1 : null);
+
+  // adp: your API returns lowercase "adp"; keep fallbacks for safety
+  const adp =
+    (typeof raw?.adp === 'number' ? raw.adp : null) ??
+    raw?.AverageDraftPositionPPR ??
+    raw?.AverageDraftPosition ?? null;
+
+  return { playerId: String(playerId), name, team, position, points, rank, adp };
+}
+
+// --- Safe Composite Score Calculation ---
+function calculateDraftMetrics(players) {
+  if (!Array.isArray(players)) return [];
+
+  const replacementRanks = { QB: 12, RB: 24, WR: 30, TE: 12, K: 12, DST: 12, IDP: 12 };
+
+  const byPos = players.reduce((acc, p) => {
+    const pos = (p?.position || '').toUpperCase();
+    if (!acc[pos]) acc[pos] = [];
+    acc[pos].push(p);
+    return acc;
+  }, {});
+
+  Object.values(byPos).forEach(list => {
+    list.sort((a, b) => (b?.points ?? 0) - (a?.points ?? 0));
+  });
+
+  const replacementPoints = {};
+  for (const pos in byPos) {
+    const idx = (replacementRanks[pos] ?? 12) - 1;
+    replacementPoints[pos] = byPos[pos][idx]?.points ?? 0;
+  }
+
+  const withMetrics = players.map(p => {
+    if (!p) return {};
+    const pos = (p.position || '').toUpperCase();
+    const posList = byPos[pos] || [];
+    const idx = posList.findIndex(x => x?.playerId === p.playerId);
+    const nextPoints = posList[idx + 1]?.points ?? p.points ?? 0;
+    const cliff = (p.points ?? 0) - nextPoints;
+    const vorp = (p.points ?? 0) - (replacementPoints[pos] ?? 0);
+    return { ...p, vorp, cliff };
+  });
+
+  const getRange = key => {
+    const vals = withMetrics
+      .map(p => p?.[key])
+      .filter(v => typeof v === 'number' && !isNaN(v));
+    if (vals.length === 0) return { min: 0, max: 0 };
+    return { min: Math.min(...vals), max: Math.max(...vals) };
+  };
+
+  const ranges = {
+    adp: getRange('adp'),
+    points: getRange('points'),
+    vorp: getRange('vorp'),
+    cliff: getRange('cliff'),
+  };
+
+  const normalize = (val, { min, max }, invert = false) => {
+    if (val == null || isNaN(val)) return 0;
+    if (max === min) return 0;
+    const norm = (val - min) / (max - min);
+    return invert ? 1 - norm : norm;
+  };
+
+  return withMetrics.map(p => {
+    if (!p) return {};
+    const adpNorm = normalize(p.adp, ranges.adp, true);
+    const pointsNorm = normalize(p.points, ranges.points);
+    const vorpNorm = normalize(p.vorp, ranges.vorp);
+    const cliffNorm = normalize(p.cliff, ranges.cliff);
+
+    const compositeScore =
+      adpNorm * 0.35 +
+      pointsNorm * 0.30 +
+      vorpNorm * 0.25 +
+      cliffNorm * 0.10;
+
+    return { ...p, compositeScore };
+  });
+}
+
+// --- History Reducer ---
 function historyReducer(state, action) {
   const { past, present, future } = state;
   const push = (next) => ({ past: [...past, present], present: next, future: [] });
@@ -39,18 +164,10 @@ function historyReducer(state, action) {
     case 'APPLY': return push(action.payload);
     case 'UNDO':
       if (!past.length) return state;
-      return {
-        past: past.slice(0, -1),
-        present: past[past.length - 1],
-        future: [present, ...future]
-      };
+      return { past: past.slice(0, -1), present: past[past.length - 1], future: [present, ...future] };
     case 'REDO':
       if (!future.length) return state;
-      return {
-        past: [...past, present],
-        present: future[0],
-        future: future.slice(1)
-      };
+      return { past: [...past, present], present: future[0], future: future.slice(1) };
     default: return state;
   }
 }
@@ -60,30 +177,36 @@ export default function App() {
     past: [], present: null, future: []
   });
 
-  const { present: draft } = state || {};
-  const { players = [], teams = {} } = draft || {};
+  const draft = state?.present;
+  const players = draft?.players ?? [];
+  const teams = draft?.teams ?? {};
 
-  // Apply change + save to localStorage
   const apply = useCallback((updater) => {
+    if (!draft) return;
     dispatch({ type: 'APPLY', payload: updater(draft) });
   }, [draft]);
 
-  // Autosave on change
+  // persist
   useEffect(() => {
     if (draft) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(draft));
     }
   }, [draft]);
 
-  // Load from localStorage or fetch
+  // bootstrap
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       try {
-        dispatch({ type: 'INIT', payload: JSON.parse(saved) });
+        const parsed = JSON.parse(saved);
+        let withMetrics = calculateDraftMetrics(parsed.players || []);
+        const migratedTeams = migrateTeams(parsed.teams, TEAM_NAMES, ROSTER_SLOTS);
+        const sortedByADP = [...withMetrics].sort((a, b) => (a?.adp ?? 9999) - (b?.adp ?? 9999));
+        dispatch({ type: 'INIT', payload: { players: sortedByADP, teams: migratedTeams } });
         return;
-      } catch {
-        // ignore parse errors
+      } catch (err) {
+        console.error("Error parsing saved draft state, resetting:", err);
+        localStorage.removeItem(STORAGE_KEY);
       }
     }
 
@@ -91,58 +214,46 @@ export default function App() {
       try {
         const res = await fetch('http://127.0.0.1:5001/api/get-ranked-players');
         const data = await res.json();
-        const normalized = Array.isArray(data)
-          ? data.map((row, i) => normalizePlayer(row, i))
-          : [];
-        const initialTeams = {};
-        TEAM_NAMES.forEach((name) => {
-          initialTeams[name] = {};
-          ROSTER_SLOTS.forEach((slot) => { initialTeams[name][slot] = null; });
-        });
-        dispatch({
-          type: 'INIT',
-          payload: { players: normalized, teams: initialTeams }
-        });
+        // console.log('sample row', data?.[0]); // handy when debugging fields
+        let normalized = Array.isArray(data) ? data.map((row, i) => normalizePlayer(row, i)) : [];
+        let withMetrics = calculateDraftMetrics(normalized);
+        const sortedByADP = [...withMetrics].sort((a, b) => (a?.adp ?? 9999) - (b?.adp ?? 9999));
+        dispatch({ type: 'INIT', payload: { players: sortedByADP, teams: buildEmptyTeams(TEAM_NAMES, ROSTER_SLOTS) } });
       } catch (err) {
         console.error('Failed to fetch initial rankings:', err);
-        // still initialize with empty state so app renders
-        const initialTeams = {};
-        TEAM_NAMES.forEach((name) => {
-          initialTeams[name] = {};
-          ROSTER_SLOTS.forEach((slot) => { initialTeams[name][slot] = null; });
-        });
-        dispatch({
-          type: 'INIT',
-          payload: { players: [], teams: initialTeams }
-        });
+        dispatch({ type: 'INIT', payload: { players: [], teams: buildEmptyTeams(TEAM_NAMES, ROSTER_SLOTS) } });
       }
     })();
   }, []);
 
-
   const handleRefresh = async () => {
-    const res = await fetch('http://127.0.0.1:5001/api/get-ranked-players');
+    try {
+      const res = await fetch('http://127.0.0.1:5001/api/get-ranked-players');
     const data = await res.json();
-    const normalized = Array.isArray(data) ? data.map((row, i) => normalizePlayer(row, i)) : [];
-    apply(cur => ({ ...cur, players: normalized }));
+      let normalized = Array.isArray(data) ? data.map((row, i) => normalizePlayer(row, i)) : [];
+      let withMetrics = calculateDraftMetrics(normalized);
+      const sortedByADP = [...withMetrics].sort((a, b) => (a?.adp ?? 9999) - (b?.adp ?? 9999));
+      apply(cur => ({ ...cur, players: sortedByADP }));
+    } catch (e) {
+      console.error('Refresh failed:', e);
+    }
   };
 
   const allowDrop = (e) => e.preventDefault();
-
-  const handleDragStart = (e, playerId) => {
-    e.dataTransfer.setData('playerId', String(playerId));
-  };
+  const handleDragStart = (e, playerId) => e.dataTransfer.setData('playerId', String(playerId));
 
   const handleDrop = (e, teamName, slot) => {
     const playerId = e.dataTransfer.getData('playerId');
     apply(cur => {
-      const player = cur.players.find(p => p.playerId === playerId);
+      if (!cur || !cur.players || !cur.teams) return cur;
+      const player = cur.players.find(p => p?.playerId === playerId);
       if (!player) return cur;
 
-      const prevPlayer = cur.teams[teamName][slot];
-      const nextPlayers = cur.players.filter(p => p.playerId !== playerId);
+      const teamSlots = cur.teams[teamName] ?? {};
+      const prevPlayer = teamSlots[slot];
+      const nextPlayers = cur.players.filter(p => p?.playerId !== playerId);
       if (prevPlayer) {
-        const insertAt = nextPlayers.findIndex(p => p.rank > prevPlayer.rank);
+        const insertAt = nextPlayers.findIndex(p => (p?.rank ?? Infinity) > (prevPlayer?.rank ?? Infinity));
         if (insertAt === -1) nextPlayers.push(prevPlayer);
         else nextPlayers.splice(insertAt, 0, prevPlayer);
       }
@@ -150,35 +261,44 @@ export default function App() {
       return {
         ...cur,
         players: nextPlayers,
-        teams: { ...cur.teams, [teamName]: { ...cur.teams[teamName], [slot]: player } }
+        teams: {
+          ...cur.teams,
+          [teamName]: { ...teamSlots, [slot]: { ...player, position: player.position } }
+        }
       };
     });
   };
 
   const removeFromSlot = (teamName, slot) => {
     apply(cur => {
-      const player = cur.teams[teamName][slot];
+      if (!cur || !cur.teams) return cur;
+      const teamSlots = cur.teams[teamName] ?? {};
+      const player = teamSlots[slot];
       if (!player) return cur;
-      const nextTeams = { ...cur.teams, [teamName]: { ...cur.teams[teamName], [slot]: null } };
-      const nextPlayers = [...cur.players];
-      const insertAt = nextPlayers.findIndex(p => p.rank > player.rank);
+
+      const nextTeams = { ...cur.teams, [teamName]: { ...teamSlots, [slot]: null } };
+      const nextPlayers = [...(cur.players ?? [])];
+      const insertAt = nextPlayers.findIndex(p => (p?.rank ?? Infinity) > (player?.rank ?? Infinity));
       if (insertAt === -1) nextPlayers.push(player);
       else nextPlayers.splice(insertAt, 0, player);
       return { ...cur, teams: nextTeams, players: nextPlayers };
     });
   };
 
+  // --- define "my team" to avoid ReferenceError ---
+  const myTeamName = 'JRay'; // change if needed
+  const myTeam = teams?.[myTeamName] ?? buildEmptyTeams([myTeamName], ROSTER_SLOTS)[myTeamName];
+
   if (!draft) {
     return <main className="p-6 text-zinc-100">Loading draft...</main>;
   }
 
-  const bestPick = players[0] || null;
-
   return (
     <main className="min-h-screen bg-zinc-950 text-zinc-100">
+      {/* HEADER */}
       <header className="sticky top-0 z-10 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur">
         <div className="container mx-auto max-w-7xl px-4 py-4 flex items-center justify-between gap-2">
-          <h1 className="text-lg sm:text-xl font-semibold">Fantasy Draft Board</h1>
+          <h1 className="text-lg sm:text-xl font-semibold">Derek Jeter&apos;s Taco Hole Fantasy Draft - 2025</h1>
           <div className="flex gap-2">
             <button onClick={() => dispatch({ type: 'UNDO' })} disabled={!state.past.length} className="px-3 py-2 bg-zinc-800 rounded-xl disabled:opacity-50">Undo</button>
             <button onClick={() => dispatch({ type: 'REDO' })} disabled={!state.future.length} className="px-3 py-2 bg-zinc-800 rounded-xl disabled:opacity-50">Redo</button>
@@ -187,31 +307,38 @@ export default function App() {
         </div>
       </header>
 
+      {/* MAIN CONTENT */}
       <div className="container mx-auto max-w-7xl px-4 py-6 space-y-6">
         {/* TEAM BOARD */}
         <section aria-label="Teams" className="overflow-x-auto">
           <div className="flex flex-nowrap gap-4 min-w-max pb-2">
-            {TEAM_NAMES.map((team) => (
-              <div key={team} className="w-64 shrink-0 rounded-2xl border border-zinc-800 bg-zinc-900/60 p-3">
-                <div className="mb-2 text-center text-sm font-semibold tracking-wide">{team}</div>
-                <ul className="space-y-2">
-                  {ROSTER_SLOTS.map((slot) => (
-                    <li
-                      key={slot}
-                      onDrop={(e) => handleDrop(e, team, slot)}
-                      onDragOver={allowDrop}
-                      className="min-h-[44px] rounded-xl border border-zinc-800 bg-zinc-900 px-2 py-2 text-sm grid grid-cols-[56px_1fr_auto] items-center gap-2 hover:bg-zinc-800 transition"
-                    >
-                      <span className="text-zinc-400 font-medium">{slot}</span>
-                      <span className="truncate">{teams[team][slot]?.name ?? '—'}</span>
-                      {teams[team][slot] && (
-                        <button onClick={() => removeFromSlot(team, slot)} className="text-red-500 text-xs">✕</button>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            {TEAM_NAMES.map((team) => {
+              const teamSlots = teams?.[team] ?? {};
+              return (
+                <div key={team} className="w-64 shrink-0 rounded-2xl border border-zinc-800 bg-zinc-900/60 p-3">
+                  <div className="mb-2 text-center text-sm font-semibold tracking-wide">{team}</div>
+                  <ul className="space-y-2">
+                    {ROSTER_SLOTS.map((slot) => (
+                      <li
+                        key={slot}
+                        onDrop={(e) => handleDrop(e, team, slot)}
+                        onDragOver={allowDrop}
+                        className={`slot-card ${toPosClass(teamSlots?.[slot]?.position)}
+                          min-h-[44px] rounded-xl border border-zinc-800 bg-zinc-900
+                          px-2 py-2 text-sm grid grid-cols-[56px_1fr_auto] items-center gap-2
+                          hover:bg-zinc-800 transition`}
+                      >
+                        <span className="text-zinc-400 font-medium">{slot}</span>
+                        <span className="truncate">{teamSlots?.[slot]?.name ?? '—'}</span>
+                        {teamSlots?.[slot] && (
+                          <button onClick={() => removeFromSlot(team, slot)} className="text-red-500 text-xs">✕</button>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
           </div>
         </section>
 
@@ -222,9 +349,10 @@ export default function App() {
             <h2 className="mb-3 text-lg font-semibold text-center">Your Team</h2>
             <ul className="space-y-2">
               {ROSTER_SLOTS.map((slot) => (
-                <li key={slot} className="rounded-xl bg-zinc-900 px-3 py-2 text-sm border border-zinc-800">
+                <li key={slot} className={`slot-card ${toPosClass(myTeam?.[slot]?.position)}
+                  rounded-xl bg-zinc-900 px-3 py-2 text-sm border border-zinc-800`}>
                   <span className="text-zinc-400 font-medium">{slot}:</span>{' '}
-                  <span className="truncate">{teams['J Ray'][slot]?.name ?? '—'}</span>
+                  <span className="truncate">{myTeam?.[slot]?.name ?? '—'}</span>
                 </li>
               ))}
             </ul>
@@ -238,19 +366,35 @@ export default function App() {
                 <p className="text-zinc-400">No players loaded.</p>
               ) : (
                 players.map((player) => (
-                  <article key={player.playerId} draggable onDragStart={(e) => handleDragStart(e, player.playerId)} className="cursor-move rounded-xl border border-zinc-800 bg-zinc-900 p-3 hover:bg-zinc-800 transition">
+                  <article
+                    key={player.playerId}
+                    draggable
+                    onDragStart={(e) => handleDragStart(e, player.playerId)}
+                    className={`player-card ${toPosClass(player.position)} cursor-move rounded-xl border border-zinc-800 bg-zinc-900 p-3 hover:bg-zinc-800 transition`}
+                  >
                     <h3 className="font-semibold leading-tight">
                       {player.rank ? `#${player.rank} ` : ''}{player.name}
                     </h3>
-                    <p className="text-xs text-zinc-300">
+                    <p className="text-xs text-zinc-300 mb-2">
                       {player.position}{player.team ? ` • ${player.team}` : ''}
                     </p>
-                    <p className="mt-1 text-xs text-zinc-400">
-                      Points: {player.points != null ? Number(player.points).toFixed(2) : 'N/A'}
-                    </p>
-                    <p className="mt-1 text-xs text-zinc-400">
-                      ADP: {player.adp != null ? player.adp : 'N/A'}
-                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-zinc-800 border border-zinc-700">
+                        Pts (PPR) {player.points != null ? Number(player.points).toFixed(2) : '—'}
+                      </span>
+                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-zinc-800 border border-zinc-700">
+                        ADP {player.adp != null ? player.adp : '—'}
+                      </span>
+                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-zinc-800 border border-zinc-700">
+                        VORP {player.vorp != null ? player.vorp.toFixed(1) : '—'}
+                      </span>
+                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-zinc-800 border border-zinc-700">
+                        Cliff {player.cliff != null ? player.cliff.toFixed(1) : '—'}
+                      </span>
+                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-800 border border-blue-600">
+                        Score {player.compositeScore != null ? player.compositeScore.toFixed(3) : '—'}
+                      </span>
+                    </div>
                   </article>
                 ))
               )}
@@ -260,14 +404,27 @@ export default function App() {
           {/* DRAFT SUGGESTIONS */}
           <aside className="col-span-12 md:col-span-3 rounded-2xl border border-zinc-800 bg-zinc-900/60 p-4">
             <h2 className="mb-3 text-lg font-semibold text-center">Draft Suggestions</h2>
-            {bestPick ? (
+            {players.length > 0 ? (
               <div className="space-y-2">
-                <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-3">
-                  <p className="font-semibold">Pick Next: {bestPick.name}</p>
-                  <p className="text-xs text-zinc-300">
-                    {bestPick.position}{bestPick.team ? ` • ${bestPick.team}` : ''}
-                  </p>
-                </div>
+                {[...players]
+                  .sort((a, b) => (b?.compositeScore ?? 0) - (a?.compositeScore ?? 0))
+                  .slice(0, 5)
+                  .map((p, i) => (
+                    <div
+                      key={p.playerId}
+                      className="rounded-xl border border-zinc-800 bg-zinc-900 p-3"
+                    >
+                      <p className="font-semibold">
+                        #{i + 1} {p.name}{' '}
+                        <span className="text-zinc-400 text-xs">
+                          ({p.compositeScore?.toFixed(3) ?? '—'})
+                        </span>
+                      </p>
+                      <p className="text-xs text-zinc-300">
+                        {p.position}{p.team ? ` • ${p.team}` : ''}
+                      </p>
+                    </div>
+                  ))}
               </div>
             ) : (
               <p className="text-zinc-400 text-sm">No suggestion available.</p>
