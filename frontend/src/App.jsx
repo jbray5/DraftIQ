@@ -3,6 +3,7 @@ import { TEAM_NAMES, ROSTER_SLOTS } from './constants';
 import useDraftData from './hooks/useDraftData';
 import useSearch from './hooks/useSearch';
 import useDragResize from './hooks/useDragResize';
+import useHeadshots from "./hooks/useHeadshots";
 
 import Header from './components/Header';
 import TeamBoard from './components/TeamBoard';
@@ -17,6 +18,7 @@ export default function App() {
   const { draft, apply, undo, redo, refresh, pastLength, futureLength } = useDraftData();
   const { query, setQuery, searchRef, listRef, filteredPlayers } = useSearch(draft?.players ?? []);
   const { boardHeight, startDrag } = useDragResize();
+  const { getHeadshot, isReady: headshotsReady } = useHeadshots(); // <— add
 
   if (!draft) return <main className="p-6 text-zinc-100">Loading draft...</main>;
 
@@ -50,37 +52,43 @@ export default function App() {
     });
   };
 
-  const myTeamName = 'JRay';
-  const myTeam = draft.teams?.[myTeamName] ?? {};
+    const myTeamName = "JRay";
+    const myTeam = draft.teams?.[myTeamName] ?? {};
 
-  return (
-    <main className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col">
-      <Header
-        query={query}
-        setQuery={setQuery}
-        searchRef={searchRef}
-        totalPlayers={draft.players.length}
-        shownPlayers={filteredPlayers.length}
-        undo={undo}
-        redo={redo}
-        pastLength={pastLength}
-        futureLength={futureLength}
-        refresh={refresh}
-      />
-      <TeamBoard
-        teams={draft.teams}
-        boardHeight={boardHeight}
-        startDrag={startDrag}
-        handleDrop={handleDrop}
-        removeFromSlot={removeFromSlot}
-      />
-      <div className="container mx-auto max-w-7xl px-4 py-6 space-y-6 flex-1 overflow-auto">
-        <div className="grid grid-cols-12 gap-6">
-          <YourTeam myTeam={myTeam} />
-          <PlayerGrid players={filteredPlayers} handleDragStart={handleDragStart} listRef={listRef} />
-          <Suggestions players={filteredPlayers} />
+    return (
+      <main className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col">
+        <Header
+          query={query}
+          setQuery={setQuery}
+          searchRef={searchRef}
+          totalPlayers={draft.players.length}
+          shownPlayers={filteredPlayers.length}
+          undo={undo}
+          redo={redo}
+          pastLength={pastLength}
+          futureLength={futureLength}
+          refresh={refresh}
+        />
+        <TeamBoard
+          teams={draft.teams}
+          boardHeight={boardHeight}
+          startDrag={startDrag}
+          handleDrop={handleDrop}
+          removeFromSlot={removeFromSlot}
+          getHeadshot={getHeadshot} // <— pass down
+        />
+        <div className="container mx-auto max-w-7xl px-4 py-6 space-y-6 flex-1 overflow-auto">
+          <div className="grid grid-cols-12 gap-6">
+            <YourTeam myTeam={myTeam} getHeadshot={getHeadshot} />
+            <PlayerGrid
+              players={filteredPlayers}
+              handleDragStart={handleDragStart}
+              listRef={listRef}
+              getHeadshot={getHeadshot}
+            />
+            <Suggestions players={filteredPlayers} getHeadshot={getHeadshot} />
+          </div>
         </div>
-      </div>
-    </main>
-  );
-}
+      </main>
+    );
+  }
