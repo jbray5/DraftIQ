@@ -84,6 +84,15 @@ export default function App() {
               players={filteredPlayers}
               handleDragStart={handleDragStart}
               listRef={listRef}
+              myTeamName={myTeamName}               // <-- now passed
+              myRoster={draft.teams[myTeamName]}    // <-- pass your roster object
+              board={draft.teams}                   // <-- pass the full draft board
+              meta={{
+                round: Math.ceil((draft.pickNumber ?? 1) / TEAM_NAMES.length), // adjust if you store this differently
+                pickNumber: draft.pickNumber ?? 1,
+                pickInRound: ((draft.pickNumber ?? 1) - 1) % TEAM_NAMES.length + 1,
+                teams: TEAM_NAMES.length
+              }}
               getHeadshot={getHeadshot}
             />
             <Suggestions players={filteredPlayers} getHeadshot={getHeadshot} />

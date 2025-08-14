@@ -1,6 +1,39 @@
+import { useState } from 'react';
 import { toPosClass } from '../utils/players';
 
-export default function PlayerGrid({ players, handleDragStart, listRef }) {
+async function askAiOpinion(payload) {
+  const res = await fetch('/api/ai/opinion', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+  if (!res.ok) throw new Error('AI error');
+  return await res.json();
+}
+
+export default function PlayerGrid({ players, handleDragStart, listRef, myTeamName, myRoster, board, meta }) {
+  const [opinions, setOpinions] = useState({});
+  const [loadingId, setLoadingId] = useState(null);
+
+  async function handleAskAI(player) {
+    console.log("Ask AI clicked for:", player.name, player.playerId, myTeamName);
+    setLoadingId(player.playerId);
+    try {
+      const { opinion } = await askAiOpinion({
+        player,
+        myTeamName,
+        myRoster,
+        board,
+        meta
+      });
+      setOpinions(prev => ({ ...prev, [player.playerId]: opinion }));
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoadingId(null);
+    }
+  }
+
   return (
     <section className="col-span-12 md:col-span-6 rounded-2xl border border-zinc-800 bg-zinc-900/60 p-4">
       <div className="mb-4 flex items-center justify-between">
@@ -12,6 +45,7 @@ export default function PlayerGrid({ players, handleDragStart, listRef }) {
           <p className="text-zinc-400">No players match your search.</p>
         ) : (
           players.map(player => {
+            const ai = opinions[player.playerId];
             return (
               <article
                 key={player.playerId}
@@ -33,7 +67,7 @@ export default function PlayerGrid({ players, handleDragStart, listRef }) {
                 <p className="text-xs text-zinc-300 mb-2">
                   {player.position}{player.team ? ` • ${player.team}` : ''}
                 </p>
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-1.5 mb-2">
                   <span className="text-[10px] px-2 py-0.5 rounded-full bg-zinc-800 border border-zinc-700">
                     Pts {player.points != null ? player.points.toFixed(2) : '—'}
                   </span>
@@ -50,6 +84,34 @@ export default function PlayerGrid({ players, handleDragStart, listRef }) {
                     Score {player.compositeScore != null ? player.compositeScore.toFixed(3) : '—'}
                   </span>
                 </div>
+
+                <button
+                  className="text-[10px] px-2 py-0.5 rounded-full bg-purple-800 border border-purple-600 hover:bg-purple-700 transition"
+                  onClick={() => handleAskAI(player)}
+                  disabled={loadingId === player.playerId}
+                >
+                  {loadingId === player.playerId ? 'Thinking…' : 'Ask AI'}
+                </button>
+
+                {ai && (
+                  <div className="mt-2 p-2 rounded-lg border border-zinc-700 bg-zinc-800 text-xs">
+                    <div className="flex justify-between font-semibold">
+                      <span>{ai.verdict}</span>
+                      <span>Fit {Math.round(ai.fitScore)}</span>
+                    </div>
+                    <p className="mt-1">{ai.rationale}</p>
+                    {ai.pros?.length > 0 && (
+                      <ul className="list-disc pl-4 mt-1 text-green-400">
+                        {ai.pros.map((p, i) => <li key={i}>{p}</li>)}
+                      </ul>
+                    )}
+                    {ai.cons?.length > 0 && (
+                      <ul className="list-disc pl-4 mt-1 text-red-400">
+                        {ai.cons.map((c, i) => <li key={i}>{c}</li>)}
+                      </ul>
+                    )}
+                  </div>
+                )}
               </article>
             );
           })
