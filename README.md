@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Fantasy Football Draft Tool
 This project contains a custom algorithm for fantasy football drafts, considering unique league settings and player metrics.
 
@@ -31,4 +30,4 @@ DraftIQ is an intelligent, customizable fantasy football draft tool built for pl
 
 🚀 Why DraftIQ?
 While others fumble with spreadsheets or basic cheat sheets, DraftIQ gives you intelligent insight, smooth UX, and custom control. Draft like a data scientist. Win like a champion.
->>>>>>> 33a357f2539cac8f941c3f87609d8c40b8dd8436
+
