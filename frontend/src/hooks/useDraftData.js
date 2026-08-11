@@ -36,18 +36,18 @@ export default function useDraftData() {
         const parsed = JSON.parse(saved);
         const withMetrics = calculateDraftMetrics(parsed.players || []);
         const migratedTeams = migrateTeams(parsed.teams, TEAM_NAMES, ROSTER_SLOTS);
-        const sortedByADP = [...withMetrics].sort((a, b) => (a?.adp ?? 9999) - (b?.adp ?? 9999));
+        const sortedByADP = [...withMetrics].sort((a, b) => (b?.compositeScore ?? -Infinity) - (a?.compositeScore ?? -Infinity));
         dispatch({ type: 'INIT', payload: { players: sortedByADP, teams: migratedTeams } });
         return;
       } catch { localStorage.removeItem(STORAGE_KEY); }
     }
     (async () => {
       try {
-        const res = await fetch('http://127.0.0.1:5001/api/get-ranked-players');
+        const res = await fetch('/api/board');
         const data = await res.json();
         const normalized = Array.isArray(data) ? data.map((row, i) => normalizePlayer(row, i)) : [];
         const withMetrics = calculateDraftMetrics(normalized);
-        const sortedByADP = [...withMetrics].sort((a, b) => (a?.adp ?? 9999) - (b?.adp ?? 9999));
+        const sortedByADP = [...withMetrics].sort((a, b) => (b?.compositeScore ?? -Infinity) - (a?.compositeScore ?? -Infinity));
         dispatch({ type: 'INIT', payload: { players: sortedByADP, teams: buildEmptyTeams(TEAM_NAMES, ROSTER_SLOTS) } });
       } catch {
         dispatch({ type: 'INIT', payload: { players: [], teams: buildEmptyTeams(TEAM_NAMES, ROSTER_SLOTS) } });
@@ -57,11 +57,11 @@ export default function useDraftData() {
 
   const refresh = async () => {
     try {
-      const res = await fetch('http://127.0.0.1:5001/api/get-ranked-players');
+      const res = await fetch('/api/board');
       const data = await res.json();
       const normalized = Array.isArray(data) ? data.map((row, i) => normalizePlayer(row, i)) : [];
       const withMetrics = calculateDraftMetrics(normalized);
-      const sortedByADP = [...withMetrics].sort((a, b) => (a?.adp ?? 9999) - (b?.adp ?? 9999));
+      const sortedByADP = [...withMetrics].sort((a, b) => (b?.compositeScore ?? -Infinity) - (a?.compositeScore ?? -Infinity));
       apply(cur => ({ ...cur, players: sortedByADP }));
     } catch {}
   };

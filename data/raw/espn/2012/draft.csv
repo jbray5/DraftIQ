@@ -1,0 +1,239 @@
+overall_pick,round_num,round_pick,team_id,team_name,owner,player_id,player_name,position,bid_amount,keeper
+1,1,1,4,Yellow Egg Roll,obigxbuddhao,8439,Aaron Rodgers,QB,0,False
+2,1,2,2,Team O'Dell,jmodell10,2330,Tom Brady,QB,0,False
+3,1,3,9,Danny Woodheads,crtaylor225,12497,Arian Foster,RB,0,False
+4,1,4,13,Shake Them Dreads,tcspivey8,11258,Chris Johnson,RB,0,False
+5,1,5,11,Peyton  Man-thing,Gtgilbert88,2580,Drew Brees,QB,0,False
+6,1,6,5,Team Wester,pwes58,10447,Calvin Johnson,WR,0,False
+7,1,7,1,Show ME Your TD's,cjhubauer,13994,Cam Newton,QB,0,False
+8,1,8,6,Team Thomas,zwthomas89,11289,Ray Rice,RB,0,False
+9,1,9,3,Team Munford,Henry Munford,12483,Matthew Stafford,QB,0,False
+10,1,10,14,Team O'Dell,hossboss31221,12514,LeSean McCoy,RB,0,False
+11,1,11,10,High Noon,jtmurphree,1428,Peyton Manning,QB,0,False
+12,1,12,7,Team Merrill,HHSBaller020,10452,Adrian Peterson,RB,0,False
+13,1,13,8,Team Ray,jbray5,9646,Maurice Jones-Drew,RB,0,False
+14,1,14,12,Rule #76,dcputman,11237,Matt Ryan,QB,0,False
+15,2,1,12,Rule #76,dcputman,11278,Matt Forte,RB,0,False
+16,2,2,8,Team Ray,jbray5,14875,Robert Griffin III,QB,0,False
+17,2,3,7,Team Merrill,HHSBaller020,2549,Michael Vick,QB,0,False
+18,2,4,10,High Noon,jtmurphree,14884,Trent Richardson,RB,0,False
+19,2,5,14,Team O'Dell,hossboss31221,5528,Larry Fitzgerald,WR,0,False
+20,2,6,3,Team Munford,Henry Munford,8442,Roddy White,WR,0,False
+21,2,7,6,Team Thomas,zwthomas89,11238,Darren McFadden,RB,0,False
+22,2,8,1,Show ME Your TD's,cjhubauer,4461,Andre Johnson,WR,0,False
+23,2,9,5,Team Wester,pwes58,5529,Philip Rivers,QB,0,False
+24,2,10,11,Peyton  Man-thing,Gtgilbert88,11307,Jamaal Charles,RB,0,False
+25,2,11,13,Shake Them Dreads,tcspivey8,5526,Eli Manning,QB,0,False
+26,2,12,9,Danny Woodheads,crtaylor225,13229,Rob Gronkowski,TE,0,False
+27,2,13,2,Team O'Dell,jmodell10,10456,Marshawn Lynch,RB,0,False
+28,2,14,4,Yellow Egg Roll,obigxbuddhao,5941,Wes Welker,WR,0,False
+29,3,1,4,Yellow Egg Roll,obigxbuddhao,5549,Steven Jackson,RB,0,False
+30,3,2,2,Team O'Dell,jmodell10,9638,Greg Jennings,WR,0,False
+31,3,3,9,Danny Woodheads,crtaylor225,13982,Julio Jones,WR,0,False
+32,3,4,13,Shake Them Dreads,tcspivey8,13983,A.J. Green,WR,0,False
+33,3,5,11,Peyton  Man-thing,Gtgilbert88,14005,DeMarco Murray,RB,0,False
+34,3,6,5,Team Wester,pwes58,9592,Vernon Davis,TE,0,False
+35,3,7,1,Show ME Your TD's,cjhubauer,5679,Michael Turner,RB,0,False
+36,3,8,6,Team Thomas,zwthomas89,13232,Jimmy Graham,TE,0,False
+37,3,9,3,Team Munford,Henry Munford,8479,Frank Gore,RB,0,False
+38,3,10,14,Team O'Dell,hossboss31221,12601,Mike Wallace,WR,0,False
+39,3,11,10,High Noon,jtmurphree,12586,Hakeem Nicks,WR,0,False
+40,3,12,7,Team Merrill,HHSBaller020,10195,Fred Jackson,,0,False
+41,3,13,8,Team Ray,jbray5,9588,Reggie Bush,RB,0,False
+42,3,14,12,Rule #76,dcputman,13553,Victor Cruz,WR,0,False
+43,4,1,12,Rule #76,dcputman,10693,Ahmad Bradshaw,RB,0,False
+44,4,2,8,Team Ray,jbray5,11270,Jordy Nelson,WR,0,False
+45,4,3,7,Team Merrill,HHSBaller020,2622,Steve Smith,WR,0,False
+46,4,4,10,High Noon,jtmurphree,9838,Marques Colston,WR,0,False
+47,4,5,14,Team O'Dell,hossboss31221,13204,Ryan Mathews,RB,0,False
+48,4,6,3,Team Munford,Henry Munford,5362,Antonio Gates,TE,0,False
+49,4,7,6,Team Thomas,zwthomas89,9705,Brandon Marshall,WR,0,False
+50,4,8,1,Show ME Your TD's,cjhubauer,13230,Aaron Hernandez,TE,0,False
+51,4,9,5,Team Wester,pwes58,14028,Stevan Ridley,RB,0,False
+52,4,10,11,Peyton  Man-thing,Gtgilbert88,13215,Dez Bryant,WR,0,False
+53,4,11,13,Shake Them Dreads,tcspivey8,4582,Brandon Lloyd,WR,0,False
+54,4,12,9,Danny Woodheads,crtaylor225,5536,Ben Roethlisberger,,0,False
+55,4,13,2,Team O'Dell,jmodell10,12569,Percy Harvin,,0,False
+56,4,14,4,Yellow Egg Roll,obigxbuddhao,10147,Miles Austin,WR,0,False
+57,5,1,4,Yellow Egg Roll,obigxbuddhao,11325,Jermichael Finley,TE,0,False
+58,5,2,2,Team O'Dell,jmodell10,12525,Beanie Wells,RB,0,False
+59,5,3,9,Danny Woodheads,crtaylor225,4481,Willis McGahee,RB,0,False
+60,5,4,13,Shake Them Dreads,tcspivey8,8544,Darren Sproles,RB,0,False
+61,5,5,11,Peyton  Man-thing,Gtgilbert88,4527,Jason Witten,TE,0,False
+62,5,6,5,Team Wester,pwes58,13216,Demaryius Thomas,WR,0,False
+63,5,7,1,Show ME Your TD's,cjhubauer,11754,BenJarvus Green-Ellis,RB,0,False
+64,5,8,6,Team Thomas,zwthomas89,9597,Jay Cutler,QB,0,False
+65,5,9,3,Team Munford,Henry Munford,9704,Stephen Gostkowski,K,0,False
+66,5,10,14,Team O'Dell,hossboss31221,5209,Tony Romo,QB,0,False
+67,5,11,10,High Noon,jtmurphree,11461,Peyton Hillis,,0,False
+68,5,12,7,Team Merrill,HHSBaller020,10467,Dwayne Bowe,WR,0,False
+69,5,13,8,Team Ray,jbray5,10455,Patrick Willis,LB,0,False
+70,5,14,12,Rule #76,dcputman,11283,DeSean Jackson,WR,0,False
+71,6,1,12,Rule #76,dcputman,1231,Tony Gonzalez,TE,0,False
+72,6,2,8,Team Ray,jbray5,8475,Vincent Jackson,WR,0,False
+73,6,3,7,Team Merrill,HHSBaller020,10471,Robert Meachem,,0,False
+74,6,4,10,High Noon,jtmurphree,-16033,Ravens D/ST,D/ST,0,False
+75,6,5,14,Team O'Dell,hossboss31221,14192,Roy Helu,RB,0,False
+76,6,6,3,Team Munford,Henry Munford,9613,DeAngelo Williams,RB,0,False
+77,6,7,6,Team Thomas,zwthomas89,13203,C.J. Spiller,RB,0,False
+78,6,8,1,Show ME Your TD's,cjhubauer,12500,Shonn Greene,RB,0,False
+79,6,9,5,Team Wester,pwes58,-16025,49ers D/ST,D/ST,0,False
+80,6,10,11,Peyton  Man-thing,Gtgilbert88,-16034,Texans D/ST,D/ST,0,False
+81,6,11,13,Shake Them Dreads,tcspivey8,11282,Fred Davis,,0,False
+82,6,12,9,Danny Woodheads,crtaylor225,11439,Pierre Garcon,WR,0,False
+83,6,13,2,Team O'Dell,jmodell10,-16003,Bears D/ST,D/ST,0,False
+84,6,14,4,Yellow Egg Roll,obigxbuddhao,11494,Kyle Arrington,,0,False
+85,7,1,4,Yellow Egg Roll,obigxbuddhao,-16023,Steelers D/ST,D/ST,0,False
+86,7,2,2,Team O'Dell,jmodell10,12549,Brandon Pettigrew,,0,False
+87,7,3,9,Danny Woodheads,crtaylor225,13981,Mark Ingram,RB,0,False
+88,7,4,13,Shake Them Dreads,tcspivey8,-16021,Eagles D/ST,D/ST,0,False
+89,7,5,11,Peyton  Man-thing,Gtgilbert88,11247,Jonathan Stewart,RB,0,False
+90,7,6,5,Team Wester,pwes58,14885,Doug Martin,RB,0,False
+91,7,7,1,Show ME Your TD's,cjhubauer,13271,Eric Decker,WR,0,False
+92,7,8,6,Team Thomas,zwthomas89,14032,Torrey Smith,WR,0,False
+93,7,9,3,Team Munford,Henry Munford,12579,Jeremy Maclin,WR,0,False
+94,7,10,14,Team O'Dell,hossboss31221,12537,Jared Cook,TE,0,False
+95,7,11,10,High Noon,jtmurphree,5531,Kellen Winslow,,0,False
+96,7,12,7,Team Merrill,HHSBaller020,14024,Greg Little,,0,False
+97,7,13,8,Team Ray,jbray5,11373,Jacob Tamme,TE,0,False
+98,7,14,12,Rule #76,dcputman,10544,Michael Bush,RB,0,False
+99,8,1,12,Rule #76,dcputman,-16009,Packers D/ST,D/ST,0,False
+100,8,2,8,Team Ray,jbray5,-16026,Seahawks D/ST,D/ST,0,False
+101,8,3,7,Team Merrill,HHSBaller020,2578,Reggie Wayne,WR,0,False
+102,8,4,10,High Noon,jtmurphree,9611,Santonio Holmes,,0,False
+103,8,5,14,Team O'Dell,hossboss31221,13200,Tim Tebow,QB,0,False
+104,8,6,3,Team Munford,Henry Munford,-16001,Falcons D/ST,D/ST,0,False
+105,8,7,6,Team Thomas,zwthomas89,14874,Andrew Luck,QB,0,False
+106,8,8,1,Show ME Your TD's,cjhubauer,9354,Robbie Gould,,0,False
+107,8,9,5,Team Wester,pwes58,9619,DeMeco Ryans,LB,0,False
+108,8,10,11,Peyton  Man-thing,Gtgilbert88,11458,Steve Johnson,WR,0,False
+109,8,11,13,Shake Them Dreads,tcspivey8,13213,LeGarrette Blount,,0,False
+110,8,12,9,Danny Woodheads,crtaylor225,12473,Josh Freeman,QB,0,False
+111,8,13,2,Team O'Dell,jmodell10,13934,Antonio Brown,,0,False
+112,8,14,4,Yellow Egg Roll,obigxbuddhao,13210,Ben Tate,,0,False
+113,9,1,4,Yellow Egg Roll,obigxbuddhao,6016,Malcom Floyd,WR,0,False
+114,9,2,2,Team O'Dell,jmodell10,12898,Isaac Redman,RB,0,False
+115,9,3,9,Danny Woodheads,crtaylor225,12454,James Laurinaitis,LB,0,False
+116,9,4,13,Shake Them Dreads,tcspivey8,12563,Michael Crabtree,WR,0,False
+117,9,5,11,Peyton  Man-thing,Gtgilbert88,9235,Rob Bironas,,0,False
+118,9,6,5,Team Wester,pwes58,11298,Kevin Smith,RB,0,False
+119,9,7,1,Show ME Your TD's,cjhubauer,-16014,Rams D/ST,,0,False
+120,9,8,6,Team Thomas,zwthomas89,12556,Kenny Britt,WR,0,False
+121,9,9,3,Team Munford,Henry Munford,10635,Desmond Bishop,,0,False
+122,9,10,14,Team O'Dell,hossboss31221,-16019,Giants D/ST,D/ST,0,False
+123,9,11,10,High Noon,jtmurphree,8644,Matt Cassel,,0,False
+124,9,12,7,Team Merrill,HHSBaller020,-16002,Bills D/ST,D/ST,0,False
+125,9,13,8,Team Ray,jbray5,12489,Donald Brown,RB,0,False
+126,9,14,12,Rule #76,dcputman,4512,Anquan Boldin,WR,0,False
+127,10,1,12,Rule #76,dcputman,5615,Matt Schaub,QB,0,False
+128,10,2,8,Team Ray,jbray5,11252,Joe Flacco,QB,0,False
+129,10,3,7,Team Merrill,HHSBaller020,9684,Owen Daniels,TE,0,False
+130,10,4,10,High Noon,jtmurphree,13252,Eric Berry,,0,False
+131,10,5,14,Team O'Dell,hossboss31221,14153,Denarius Moore,WR,0,False
+132,10,6,3,Team Munford,Henry Munford,9400,Lance Moore,WR,0,False
+133,10,7,6,Team Thomas,zwthomas89,-16008,Lions D/ST,,0,False
+134,10,8,1,Show ME Your TD's,cjhubauer,14074,Colin McCarthy,,0,False
+135,10,9,5,Team Wester,pwes58,14012,Andy Dalton,QB,0,False
+136,10,10,11,Peyton  Man-thing,Gtgilbert88,964,Ray Lewis,,0,False
+137,10,11,13,Shake Them Dreads,tcspivey8,13256,Jason Pierre-Paul,DE,0,False
+138,10,12,9,Danny Woodheads,crtaylor225,1716,David Akers,,0,False
+139,10,13,2,Team O'Dell,jmodell10,13211,Toby Gerhart,,0,False
+140,10,14,4,Yellow Egg Roll,obigxbuddhao,8416,Alex Smith,QB,0,False
+141,11,1,4,Yellow Egg Roll,obigxbuddhao,11543,Garrett Hartley,K,0,False
+142,11,2,2,Team O'Dell,jmodell10,14887,David Wilson,RB,0,False
+143,11,3,9,Danny Woodheads,crtaylor225,9307,Nate Washington,WR,0,False
+144,11,4,13,Shake Them Dreads,tcspivey8,10636,Mason Crosby,K,0,False
+145,11,5,11,Peyton  Man-thing,Gtgilbert88,12482,Mark Sanchez,,0,False
+146,11,6,5,Team Wester,pwes58,14907,Justin Blackmon,WR,0,False
+147,11,7,1,Show ME Your TD's,cjhubauer,14034,Titus Young,,0,False
+148,11,8,6,Team Thomas,zwthomas89,2148,Sebastian Janikowski,K,0,False
+149,11,9,3,Team Munford,Henry Munford,13197,Sam Bradford,QB,0,False
+150,11,10,14,Team O'Dell,hossboss31221,14017,Shane Vereen,RB,0,False
+151,11,11,10,High Noon,jtmurphree,8419,Cedric Benson,,0,False
+152,11,12,7,Team Merrill,HHSBaller020,9587,Mario Williams,,0,False
+153,11,13,8,Team Ray,jbray5,10488,Sidney Rice,WR,0,False
+154,11,14,12,Rule #76,dcputman,10475,Greg Olsen,TE,0,False
+155,12,1,12,Rule #76,dcputman,9620,D'Qwell Jackson,LB,0,False
+156,12,2,8,Team Ray,jbray5,14911,Rueben Randle,,0,False
+157,12,3,7,Team Merrill,HHSBaller020,8664,Ryan Fitzpatrick,QB,0,False
+158,12,4,10,High Noon,jtmurphree,12576,Brandon LaFell,WR,0,False
+159,12,5,14,Team O'Dell,hossboss31221,11256,Felix Jones,RB,0,False
+160,12,6,3,Team Munford,Henry Munford,12499,Mike Goodson,,0,False
+161,12,7,6,Team Thomas,zwthomas89,2564,Santana Moss,WR,0,False
+162,12,8,1,Show ME Your TD's,cjhubauer,13214,James Starks,,0,False
+163,12,9,5,Team Wester,pwes58,11122,Matt Prater,K,0,False
+164,12,10,11,Peyton  Man-thing,Gtgilbert88,14056,Daniel Thomas,RB,0,False
+165,12,11,13,Shake Them Dreads,tcspivey8,5651,Jared Allen,DE,0,False
+166,12,12,9,Danny Woodheads,crtaylor225,12570,Darrius Heyward-Bey,WR,0,False
+167,12,13,2,Team O'Dell,jmodell10,12724,Bernard Scott,,0,False
+168,12,14,4,Yellow Egg Roll,obigxbuddhao,11329,Mario Manningham,WR,0,False
+169,13,1,4,Yellow Egg Roll,obigxbuddhao,11658,Mike Tolbert,,0,False
+170,13,2,2,Team O'Dell,jmodell10,10713,Pierre Thomas,RB,0,False
+171,13,3,9,Danny Woodheads,crtaylor225,10519,Laurent Robinson,,0,False
+172,13,4,13,Shake Them Dreads,tcspivey8,-16010,Titans D/ST,,0,False
+173,13,5,11,Peyton  Man-thing,Gtgilbert88,4459,Carson Palmer,QB,0,False
+174,13,6,5,Team Wester,pwes58,10605,Brent Celek,TE,0,False
+175,13,7,1,Show ME Your TD's,cjhubauer,10522,James Jones,WR,0,False
+176,13,8,6,Team Thomas,zwthomas89,11257,Rashard Mendenhall,,0,False
+177,13,9,3,Team Munford,Henry Munford,14909,Kendall Wright,WR,0,False
+178,13,10,14,Team O'Dell,hossboss31221,13305,Daryl Washington,LB,0,False
+179,13,11,10,High Noon,jtmurphree,14322,Dan Bailey,K,0,False
+180,13,12,7,Team Merrill,HHSBaller020,14123,Alex Henery,K,0,False
+181,13,13,8,Team Ray,jbray5,4333,Matt Bryant,K,0,False
+182,13,14,12,Rule #76,dcputman,13206,Jonathan Dwyer,RB,0,False
+183,14,1,12,Rule #76,dcputman,2300,Neil Rackers,,0,False
+184,14,2,8,Team Ray,jbray5,8430,Derrick Johnson,LB,0,False
+185,14,3,7,Team Merrill,HHSBaller020,8524,Brandon Jacobs,,0,False
+186,14,4,10,High Noon,jtmurphree,13205,Jahvid Best,,0,False
+187,14,5,14,Team O'Dell,hossboss31221,13489,Mike Williams,WR,0,False
+188,14,6,3,Team Munford,Henry Munford,13228,Jermaine Gresham,TE,0,False
+189,14,7,6,Team Thomas,zwthomas89,8560,Trent Cole,,0,False
+190,14,8,1,Show ME Your TD's,cjhubauer,14021,Leonard Hankerson,,0,False
+191,14,9,5,Team Wester,pwes58,14900,Coby Fleener,TE,0,False
+192,14,10,11,Peyton  Man-thing,Gtgilbert88,4529,Nate Burleson,,0,False
+193,14,11,13,Shake Them Dreads,tcspivey8,1433,Randy Moss,,0,False
+194,14,12,9,Danny Woodheads,crtaylor225,-16020,Jets D/ST,D/ST,0,False
+195,14,13,2,Team O'Dell,jmodell10,11443,Matt Flynn,,0,False
+196,14,14,4,Yellow Egg Roll,obigxbuddhao,13986,Jon Baldwin,WR,0,False
+197,15,1,4,Yellow Egg Roll,obigxbuddhao,11264,Dustin Keller,TE,0,False
+198,15,2,2,Team O'Dell,jmodell10,13284,Sean Lee,,0,False
+199,15,3,9,Danny Woodheads,crtaylor225,14051,Ryan Williams,,0,False
+200,15,4,13,Shake Them Dreads,tcspivey8,11383,Tim Hightower,,0,False
+201,15,5,11,Peyton  Man-thing,Gtgilbert88,8417,Ronnie Brown,,0,False
+202,15,6,5,Team Wester,pwes58,14077,Delone Carter,RB,0,False
+203,15,7,1,Show ME Your TD's,cjhubauer,14878,Brandon Weeden,,0,False
+204,15,8,6,Team Thomas,zwthomas89,14891,Bernard Pierce,,0,False
+205,15,9,3,Team Munford,Henry Munford,14193,Jacquizz Rodgers,RB,0,False
+206,15,10,14,Team O'Dell,hossboss31221,13262,NaVorro Bowman,LB,0,False
+207,15,11,10,High Noon,jtmurphree,14914,Brian Quick,,0,False
+208,15,12,7,Team Merrill,HHSBaller020,14053,Randall Cobb,WR,0,False
+209,15,13,8,Team Ray,jbray5,11295,Martellus Bennett,TE,0,False
+210,15,14,12,Rule #76,dcputman,5558,Karlos Dansby,LB,0,False
+211,16,1,12,Rule #76,dcputman,1056,Terrell Owens,,0,False
+212,16,2,8,Team Ray,jbray5,14105,Evan Royster,,0,False
+213,16,3,7,Team Merrill,HHSBaller020,14888,Isaiah Pead,,0,False
+214,16,4,10,High Noon,jtmurphree,13272,Ed Dickson,,0,False
+215,16,5,14,Team O'Dell,hossboss31221,14027,Vincent Brown,WR,0,False
+216,16,6,3,Team Munford,Henry Munford,-16022,Cardinals D/ST,D/ST,0,False
+217,16,7,6,Team Thomas,zwthomas89,12561,Austin Collie,,0,False
+218,16,8,1,Show ME Your TD's,cjhubauer,9640,Bernard Pollard,,0,False
+219,16,9,5,Team Wester,pwes58,14908,Michael Floyd,WR,0,False
+220,16,10,11,Peyton  Man-thing,Gtgilbert88,9475,Ryan Grant,,0,False
+221,16,11,13,Shake Them Dreads,tcspivey8,14198,Dion Lewis,,0,False
+222,16,12,9,Danny Woodheads,crtaylor225,14159,Kendall Hunter,,0,False
+223,16,13,2,Team O'Dell,jmodell10,2139,Plaxico Burress,,0,False
+224,16,14,4,Yellow Egg Roll,obigxbuddhao,8488,Justin Tuck,,0,False
+225,17,1,4,Yellow Egg Roll,obigxbuddhao,-16017,Patriots D/ST,D/ST,0,False
+226,17,2,2,Team O'Dell,jmodell10,8461,Mike Nugent,,0,False
+227,17,3,9,Danny Woodheads,crtaylor225,11678,Davone Bess,WR,0,False
+228,17,4,13,Shake Them Dreads,tcspivey8,11331,Andre Caldwell,,0,False
+229,17,5,11,Peyton  Man-thing,Gtgilbert88,14167,Taiwan Jones,,0,False
+230,17,6,5,Team Wester,pwes58,11276,Eddie Royal,WR,0,False
+231,17,7,1,Show ME Your TD's,cjhubauer,8444,Heath Miller,TE,0,False
+232,17,8,6,Team Thomas,zwthomas89,10687,Jason Snelling,,0,False
+233,17,9,3,Team Munford,Henry Munford,5590,Nate Kaeding,,0,False
+234,17,10,14,Team O'Dell,hossboss31221,286,Jason Hanson,K,0,False
+235,17,11,10,High Noon,jtmurphree,4493,Charles Tillman,CB,0,False
+236,17,12,7,Team Merrill,HHSBaller020,13289,Tony Moeaki,TE,0,False
+237,17,13,8,Team Ray,jbray5,-16012,Chiefs D/ST,D/ST,0,False
+238,17,14,12,Rule #76,dcputman,13363,Jacoby Ford,,0,False

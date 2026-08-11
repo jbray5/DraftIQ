@@ -1,0 +1,209 @@
+team_id,team_name,player_id,player_name,position,pro_team,total_points,projected_total_points
+1,"Jim, Tannehill, Laundry ",3116593,Dalvin Cook,RB,MIN,315.8,257.43
+1,"Jim, Tannehill, Laundry ",4045163,Miles Sanders,RB,PHI,158.4,222.61
+1,"Jim, Tannehill, Laundry ",16799,Allen Robinson II,WR,CHI,212.9,181.23
+1,"Jim, Tannehill, Laundry ",2576925,Darren Waller,TE,LV,227.1,152.22
+1,"Jim, Tannehill, Laundry ",3122840,Deshaun Watson,QB,HOU,370.32,319.41
+1,"Jim, Tannehill, Laundry ",15818,Keenan Allen,WR,LAC,196.1,171.7
+1,"Jim, Tannehill, Laundry ",4048244,Alexander Mattison,RB,MIN,80.4,91.31
+1,"Jim, Tannehill, Laundry ",3119195,Chase Edmonds,RB,ARI,142.5,75.4
+1,"Jim, Tannehill, Laundry ",3056362,Darius Leonard,LB,IND,148.0,166.03
+1,"Jim, Tannehill, Laundry ",16790,Jarvis Landry,WR,CLE,151.96,171.49
+1,"Jim, Tannehill, Laundry ",2976316,Michael Thomas,WR,NO,63.9,245.93
+1,"Jim, Tannehill, Laundry ",3916148,Tony Pollard,RB,DAL,108.7,89.21
+1,"Jim, Tannehill, Laundry ",-16015,Dolphins D/ST,D/ST,MIA,105.0,85.04
+1,"Jim, Tannehill, Laundry ",-16018,Saints D/ST,D/ST,NO,122.0,113.05
+1,"Jim, Tannehill, Laundry ",3915823,Keke Coutee,WR,HOU,70.5,0.0
+1,"Jim, Tannehill, Laundry ",3932430,Jalen Guyton,WR,LAC,86.1,28.55
+1,"Jim, Tannehill, Laundry ",17427,Cairo Santos,K,CHI,138.0,97.33
+2,Lamar  The Merrier!,3916387,Lamar Jackson,QB,BAL,334.78,339.52
+2,Lamar  The Merrier!,13981,Mark Ingram II,RB,None,49.9,148.35
+2,Lamar  The Merrier!,4241389,CeeDee Lamb,WR,DAL,182.7,123.97
+2,Lamar  The Merrier!,2573401,Tyler Higbee,TE,LAR,107.2,130.65
+2,Lamar  The Merrier!,4035538,David Montgomery,RB,CHI,238.8,156.05
+2,Lamar  The Merrier!,5536,Ben Roethlisberger,QB,PIT,268.22,240.74
+2,Lamar  The Merrier!,16725,Sammy Watkins,WR,KC,71.9,136.23
+2,Lamar  The Merrier!,3051750,Zach Cunningham,LB,HOU,173.0,138.26
+2,Lamar  The Merrier!,4046692,Chase Claypool,WR,PIT,189.9,86.78
+2,Lamar  The Merrier!,2980453,Jamaal Williams,RB,GB,113.6,89.7
+2,Lamar  The Merrier!,3042910,Rashard Higgins,WR,CLE,105.4,29.53
+2,Lamar  The Merrier!,15860,Jordan Reed,TE,SF,61.1,42.09
+2,Lamar  The Merrier!,3051926,Gus Edwards,RB,BAL,126.7,49.89
+2,Lamar  The Merrier!,4040655,Darnell Mooney,WR,CHI,122.6,10.1
+2,Lamar  The Merrier!,3917232,Tyler Bass,K,BUF,152.0,120.49
+2,Lamar  The Merrier!,3055899,Harrison Butker,K,KC,133.0,142.27
+2,Lamar  The Merrier!,-16024,Chargers D/ST,D/ST,LAC,72.0,102.05
+3,Jim Ward's Ole Dick Necks,3042519,Aaron Jones,RB,GB,235.4,218.01
+3,Jim Ward's Ole Dick Necks,3139477,Patrick Mahomes,QB,KC,377.4,340.97
+3,Jim Ward's Ole Dick Necks,2576434,Melvin Gordon III,RB,DEN,184.4,176.13
+3,Jim Ward's Ole Dick Necks,3115364,Leonard Fournette,RB,TB,114.0,129.02
+3,Jim Ward's Ole Dick Necks,3924365,Hayden Hurst,TE,ATL,122.1,115.58
+3,Jim Ward's Ole Dick Necks,3051909,Daniel Carlson,K,LV,153.0,114.43
+3,Jim Ward's Ole Dick Necks,2976592,Sterling Shepard,WR,NYG,131.5,160.69
+3,Jim Ward's Ole Dick Necks,4212909,David Moore,WR,SEA,101.3,33.06
+3,Jim Ward's Ole Dick Necks,16813,Logan Thomas,TE,WSH,144.62,63.71
+3,Jim Ward's Ole Dick Necks,2573079,Carson Wentz,QB,IND,198.4,266.72
+3,Jim Ward's Ole Dick Necks,3050073,Foyesade Oluokun,LB,ATL,137.0,73.03
+3,Jim Ward's Ole Dick Necks,4035403,Denzel Mims,WR,NYJ,51.2,89.05
+3,Jim Ward's Ole Dick Necks,4035687,Michael Pittman Jr.,WR,IND,80.9,94.87
+3,Jim Ward's Ole Dick Necks,-16025,49ers D/ST,D/ST,SF,88.0,127.08
+3,Jim Ward's Ole Dick Necks,2971618,Nelson Agholor,WR,LV,161.6,39.94
+3,Jim Ward's Ole Dick Necks,-16002,Bills D/ST,D/ST,BUF,96.0,134.49
+3,Jim Ward's Ole Dick Necks,13295,Emmanuel Sanders,WR,NO,136.3,139.32
+4,Thunder Thighs,15847,Travis Kelce,TE,KC,260.26,219.35
+4,Thunder Thighs,2974858,Kenny Golladay,WR,DET,55.8,179.28
+4,Thunder Thighs,3115394,DJ Chark Jr.,WR,JAX,128.1,168.99
+4,Thunder Thighs,11237,Matt Ryan,QB,ATL,282.44,282.96
+4,Thunder Thighs,16731,Brandin Cooks,WR,HOU,195.5,132.8
+4,Thunder Thighs,3916945,Darius Slayton,WR,NYG,117.0,134.43
+4,Thunder Thighs,4036133,T.J. Hockenson,TE,DET,142.8,115.25
+4,Thunder Thighs,4039359,Darrell Henderson Jr.,RB,LAR,122.3,106.85
+4,Thunder Thighs,3071572,Keelan Cole Sr.,WR,JAX,128.9,18.9
+4,Thunder Thighs,3925347,Damien Harris,RB,NE,88.8,78.23
+4,Thunder Thighs,3116136,Justin Jackson,RB,LAC,58.8,97.35
+4,Thunder Thighs,4241479,Tua Tagovailoa,QB,MIA,136.46,180.14
+4,Thunder Thighs,3123052,Michael Badgley,K,LAC,111.0,116.11
+4,Thunder Thighs,4241463,Jerry Jeudy,WR,DEN,135.6,129.48
+4,Thunder Thighs,4035676,Zack Moss,RB,BUF,94.6,125.69
+4,Thunder Thighs,3929950,Tremaine Edmunds,LB,BUF,123.0,133.2
+4,Thunder Thighs,-16003,Bears D/ST,D/ST,CHI,82.0,111.04
+5,Russ Finna Cuck,3128720,Nick Chubb,RB,CLE,199.7,228.47
+5,Russ Finna Cuck,2977644,Todd Gurley II,RB,ATL,150.7,200.84
+5,Russ Finna Cuck,16460,Adam Thielen,WR,MIN,218.0,191.7
+5,Russ Finna Cuck,2577327,Tyler Lockett,WR,SEA,216.4,181.01
+5,Russ Finna Cuck,3043275,Austin Hooper,TE,CLE,93.5,105.66
+5,Russ Finna Cuck,14881,Russell Wilson,QB,SEA,360.78,294.26
+5,Russ Finna Cuck,13994,Cam Newton,QB,NE,259.98,259.13
+5,Russ Finna Cuck,-16027,Buccaneers D/ST,D/ST,TB,111.0,106.1
+5,Russ Finna Cuck,4052042,James Robinson,RB,JAX,226.9,95.05
+5,Russ Finna Cuck,2510863,Eric Kendricks,LB,MIN,113.0,130.46
+5,Russ Finna Cuck,15826,Giovani Bernard,RB,CIN,135.6,73.26
+5,Russ Finna Cuck,4360438,Brandon Aiyuk,WR,SF,157.5,102.82
+5,Russ Finna Cuck,3042778,Corey Davis,WR,TEN,159.9,101.17
+5,Russ Finna Cuck,3124679,Jason Sanders,K,MIA,169.0,110.86
+5,Russ Finna Cuck,-16026,Seahawks D/ST,D/ST,SEA,75.0,97.33
+5,Russ Finna Cuck,3116164,Mike Gesicki,TE,MIA,132.8,112.28
+5,Russ Finna Cuck,2977819,Joe Schobert,LB,JAX,162.0,137.73
+6,This Year Will  Be A Brees ,4242214,Clyde Edwards-Helaire,RB,KC,159.0,241.08
+6,This Year Will  Be A Brees ,3116406,Tyreek Hill,WR,KC,288.4,213.03
+6,This Year Will  Be A Brees ,3045147,James Conner,RB,PIT,149.1,178.22
+6,This Year Will  Be A Brees ,3120348,JuJu Smith-Schuster,WR,PIT,185.6,183.05
+6,This Year Will  Be A Brees ,13229,Rob Gronkowski,TE,TB,127.8,116.25
+6,This Year Will  Be A Brees ,2976212,Stefon Diggs,WR,BUF,266.1,158.19
+6,This Year Will  Be A Brees ,2576716,Jamison Crowder,WR,NYJ,143.52,152.46
+6,This Year Will  Be A Brees ,2978313,Shaq Thompson,LB,CAR,119.0,123.95
+6,This Year Will  Be A Brees ,16757,Derek Carr,QB,LV,273.12,237.41
+6,This Year Will  Be A Brees ,15349,Cole Beasley,WR,BUF,167.5,111.6
+6,This Year Will  Be A Brees ,2572861,J.D. McKissic,RB,WSH,154.4,57.59
+6,This Year Will  Be A Brees ,2473037,Jason Myers,K,SEA,140.0,120.66
+6,This Year Will  Be A Brees ,3051891,Jordan Wilkins,RB,IND,57.3,14.66
+6,This Year Will  Be A Brees ,3116187,Ja'Whaun Bentley,LB,NE,93.0,113.99
+6,This Year Will  Be A Brees ,4035072,Benny Snell Jr.,RB,PIT,77.9,79.36
+6,This Year Will  Be A Brees ,-16013,Raiders D/ST,D/ST,LV,9.0,70.56
+6,This Year Will  Be A Brees ,-16012,Chiefs D/ST,D/ST,KC,86.0,80.79
+8,SCLSU Mud Dogs,16800,Davante Adams,WR,GB,300.9,207.38
+8,SCLSU Mud Dogs,3040151,George Kittle,TE,SF,101.1,183.27
+8,SCLSU Mud Dogs,4242335,Jonathan Taylor,RB,IND,235.8,170.06
+8,SCLSU Mud Dogs,3912550,Ronald Jones II,RB,TB,172.3,142.84
+8,SCLSU Mud Dogs,3051439,Boston Scott,RB,PHI,84.1,108.81
+8,SCLSU Mud Dogs,-16014,Rams D/ST,D/ST,LAR,159.0,91.15
+8,SCLSU Mud Dogs,14985,Lavonte David,LB,TB,132.0,127.71
+8,SCLSU Mud Dogs,3049899,Younghoe Koo,K,ATL,167.0,124.78
+8,SCLSU Mud Dogs,14880,Kirk Cousins,QB,MIN,309.2,229.74
+8,SCLSU Mud Dogs,3045138,Mike Williams,WR,LAC,132.7,125.1
+8,SCLSU Mud Dogs,14876,Ryan Tannehill,QB,TEN,343.86,239.16
+8,SCLSU Mud Dogs,2976499,Amari Cooper,WR,DAL,193.8,185.44
+8,SCLSU Mud Dogs,3121023,Dallas Goedert,TE,PHI,93.4,100.13
+8,SCLSU Mud Dogs,3916430,Nyheim Hines,RB,IND,162.7,109.0
+8,SCLSU Mud Dogs,4241985,J.K. Dobbins,RB,BAL,159.5,121.09
+8,SCLSU Mud Dogs,4240021,Cam Akers,RB,LAR,96.3,159.74
+8,SCLSU Mud Dogs,14924,T.Y. Hilton,WR,IND,138.2,176.86
+8,SCLSU Mud Dogs,3046439,Hunter Henry,TE,LAC,116.3,120.36
+9,Tonie's Tigers,3051392,Ezekiel Elliott,RB,DAL,198.7,269.38
+9,Tonie's Tigers,3068267,Austin Ekeler,RB,LAC,139.3,207.05
+9,Tonie's Tigers,13982,Julio Jones,WR,ATL,120.6,208.94
+9,Tonie's Tigers,2977187,Cooper Kupp,WR,LAR,165.7,176.08
+9,Tonie's Tigers,4040761,Devin Singletary,RB,BUF,125.6,153.99
+9,Tonie's Tigers,2330,Tom Brady,QB,TB,337.92,290.31
+9,Tonie's Tigers,4360294,Antonio Gibson,RB,WSH,185.2,153.87
+9,Tonie's Tigers,14979,Bobby Wagner,LB,SEA,146.0,158.79
+9,Tonie's Tigers,-16011,Colts D/ST,D/ST,IND,141.0,123.81
+9,Tonie's Tigers,3046779,Jared Goff,QB,DET,240.98,243.54
+9,Tonie's Tigers,4239993,Tee Higgins,WR,CIN,164.1,72.38
+9,Tonie's Tigers,3139522,Travis Fulgham,WR,PHI,96.9,0.0
+9,Tonie's Tigers,16732,Eric Ebron,TE,PIT,113.8,95.59
+9,Tonie's Tigers,16339,Brandon McManus,K,DEN,131.0,120.68
+9,Tonie's Tigers,15072,Marvin Jones Jr.,WR,DET,190.8,165.05
+9,Tonie's Tigers,3045127,Wayne Gallman,RB,NYG,127.1,20.92
+9,Tonie's Tigers,15705,Josh Gordon,WR,SEA,0.0,44.53
+10,Maitland Tiburon,3043078,Derrick Henry,RB,TEN,323.6,241.33
+10,Maitland Tiburon,16737,Mike Evans,WR,TB,213.6,190.64
+10,Maitland Tiburon,2508176,David Johnson,RB,HOU,164.0,215.43
+10,Maitland Tiburon,15880,Robert Woods,WR,LAR,202.1,181.21
+10,Maitland Tiburon,3051876,Evan Engram,TE,NYG,112.5,135.0
+10,Maitland Tiburon,15920,Latavius Murray,RB,NO,124.7,119.32
+10,Maitland Tiburon,2574808,Robby Anderson,WR,CAR,176.6,140.15
+10,Maitland Tiburon,2577712,Alexander Johnson,LB,DEN,130.0,136.47
+10,Maitland Tiburon,-16028,Washington D/ST,D/ST,WSH,127.0,62.27
+10,Maitland Tiburon,3121427,Curtis Samuel,WR,CAR,175.6,127.75
+10,Maitland Tiburon,3915165,Rodrigo Blankenship,K,IND,145.0,125.51
+10,Maitland Tiburon,4040715,Jalen Hurts,QB,PHI,108.94,26.51
+10,Maitland Tiburon,3122976,Jeff Wilson Jr.,RB,SF,137.8,15.14
+10,Maitland Tiburon,3039707,Mitchell Trubisky,QB,CHI,154.7,140.26
+10,Maitland Tiburon,3895228,Tyrell Adams,LB,HOU,133.0,0.0
+10,Maitland Tiburon,12537,Jared Cook,TE,None,111.9,126.91
+10,Maitland Tiburon,-16029,Panthers D/ST,D/ST,CAR,80.0,48.01
+11,Dez (Bryant) Nuts,3117251,Christian McCaffrey,RB,CAR,83.9,289.86
+11,Dez (Bryant) Nuts,3919596,Chris Carson,RB,SEA,169.3,205.93
+11,Dez (Bryant) Nuts,15795,DeAndre Hopkins,WR,ARI,233.3,201.15
+11,Dez (Bryant) Nuts,3059915,Kareem Hunt,RB,CLE,200.5,147.41
+11,Dez (Bryant) Nuts,15835,Zach Ertz,TE,PHI,63.5,154.69
+11,Dez (Bryant) Nuts,3045144,Tyler Boyd,WR,CIN,155.14,156.19
+11,Dez (Bryant) Nuts,2576623,DeVante Parker,WR,MIA,134.8,169.49
+11,Dez (Bryant) Nuts,15683,Justin Tucker,K,BAL,143.0,135.22
+11,Dez (Bryant) Nuts,-16023,Steelers D/ST,D/ST,PIT,147.0,130.69
+11,Dez (Bryant) Nuts,8439,Aaron Rodgers,QB,GB,382.76,264.22
+11,Dez (Bryant) Nuts,3128390,Allen Lazard,WR,GB,81.3,109.44
+11,Dez (Bryant) Nuts,16782,Jerick McKinnon,RB,SF,112.7,77.98
+11,Dez (Bryant) Nuts,3025433,Mike Davis,RB,CAR,180.0,48.52
+11,Dez (Bryant) Nuts,3047566,Myles Jack,LB,JAX,128.0,106.8
+11,Dez (Bryant) Nuts,3124084,Joey Slye,K,CAR,124.0,117.52
+11,Dez (Bryant) Nuts,3117256,Dalton Schultz,TE,DAL,118.0,31.6
+11,Dez (Bryant) Nuts,3134353,Tim Patrick,WR,DEN,137.7,0.0
+11,Dez (Bryant) Nuts,3126486,Deebo Samuel,WR,SF,65.2,152.31
+12,Rule  #76,4047365,Josh Jacobs,RB,LV,214.8,222.45
+12,Rule  #76,2979843,Kenyan Drake,RB,ARI,180.7,218.63
+12,Rule  #76,3915416,DJ Moore,WR,CAR,185.5,186.86
+12,Rule  #76,4047646,A.J. Brown,WR,TEN,213.5,180.81
+12,Rule  #76,3121422,Terry McLaurin,WR,WSH,183.3,172.31
+12,Rule  #76,3917315,Kyler Murray,QB,ARI,378.74,299.65
+12,Rule  #76,2576414,Raheem Mostert,RB,SF,91.7,151.65
+12,Rule  #76,4036131,Noah Fant,TE,DEN,118.3,118.95
+12,Rule  #76,3052896,Jaylon Smith,LB,DAL,163.0,160.7
+12,Rule  #76,2975674,Robert Tonyan,TE,GB,150.6,33.12
+12,Rule  #76,-16017,Patriots D/ST,D/ST,NE,90.0,117.37
+12,Rule  #76,13934,Antonio Brown,WR,TB,95.6,0.0
+12,Rule  #76,3915189,Roquan Smith,LB,CHI,153.0,135.36
+12,Rule  #76,4243315,Salvon Ahmed,RB,MIA,63.5,0.0
+12,Rule  #76,2468609,Taysom Hill,QB,NO,153.62,65.29
+12,Rule  #76,3122866,Devontae Booker,RB,LV,80.2,63.7
+12,Rule  #76,-16022,Cardinals D/ST,D/ST,ARI,91.0,67.48
+12,Rule  #76,9704,Stephen Gostkowski,K,TEN,112.0,112.83
+13,Kamara Virus,3054850,Alvin Kamara,RB,NO,338.3,252.66
+13,Kamara Virus,3116385,Joe Mixon,RB,CIN,90.1,209.88
+13,Kamara Virus,3116165,Chris Godwin,WR,TB,160.5,202.36
+13,Kamara Virus,3925357,Calvin Ridley,WR,ATL,237.5,180.75
+13,Kamara Virus,3116365,Mark Andrews,TE,BAL,143.1,167.32
+13,Kamara Virus,3918298,Josh Allen,QB,BUF,396.56,273.18
+13,Kamara Virus,4047650,DK Metcalf,WR,SEA,232.8,168.79
+13,Kamara Virus,3932905,Diontae Johnson,WR,PIT,179.8,145.81
+13,Kamara Virus,-16033,Ravens D/ST,D/ST,BAL,125.0,122.87
+13,Kamara Virus,3054212,Jonnu Smith,TE,TEN,120.7,92.74
+13,Kamara Virus,3886818,Myles Gaskin,RB,MIA,143.7,20.71
+13,Kamara Virus,4262921,Justin Jefferson,WR,MIN,231.2,114.22
+13,Kamara Virus,4038941,Justin Herbert,QB,LAC,335.84,159.08
+13,Kamara Virus,4259545,D'Andre Swift,RB,DET,166.8,142.37
+13,Kamara Virus,4035434,Devin White,LB,TB,162.0,133.64
+13,Kamara Virus,2985659,Wil Lutz,K,NO,130.0,136.78
+13,Kamara Virus,15825,Le'Veon Bell,RB,KC,66.6,178.81
+13,Kamara Virus,-16005,Browns D/ST,D/ST,CLE,82.0,89.43

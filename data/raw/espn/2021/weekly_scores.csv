@@ -1,0 +1,205 @@
+week,is_regular,team_id,team_name,points,opp_team_id,opp_team_name,is_bye,outcome
+1,True,1,"Here Kittle, Kittle",133.86,9,Tonie's Tigers,False,W
+1,True,2,Zeke -A Virus,96.7,3,Jim Ward's Ole Dick Necks,False,L
+1,True,3,Jim Ward's Ole Dick Necks,138.08,2,Zeke -A Virus,False,W
+1,True,4,Hurts So Good,166.66,12,Rule  #76,False,W
+1,True,5,Kissin Cousins ,115.94,13,Dak in a Box,False,W
+1,True,6,This Year Will  Be A Brees ,152.0,10,Maitland Tiburon,False,W
+1,True,8,SCLSU Mud Dogs,98.68,11,Dez (Bryant) Nuts,False,L
+1,True,9,Tonie's Tigers,110.76,1,"Here Kittle, Kittle",False,L
+1,True,10,Maitland Tiburon,108.36,6,This Year Will  Be A Brees ,False,L
+1,True,11,Dez (Bryant) Nuts,104.14,8,SCLSU Mud Dogs,False,W
+1,True,12,Rule  #76,105.36,4,Hurts So Good,False,L
+1,True,13,Dak in a Box,114.42,5,Kissin Cousins ,False,L
+2,True,1,"Here Kittle, Kittle",112.22,13,Dak in a Box,False,W
+2,True,2,Zeke -A Virus,129.46,8,SCLSU Mud Dogs,False,L
+2,True,3,Jim Ward's Ole Dick Necks,90.62,4,Hurts So Good,False,L
+2,True,4,Hurts So Good,126.4,3,Jim Ward's Ole Dick Necks,False,W
+2,True,5,Kissin Cousins ,89.68,10,Maitland Tiburon,False,L
+2,True,6,This Year Will  Be A Brees ,104.46,9,Tonie's Tigers,False,L
+2,True,8,SCLSU Mud Dogs,132.72,2,Zeke -A Virus,False,W
+2,True,9,Tonie's Tigers,155.84,6,This Year Will  Be A Brees ,False,W
+2,True,10,Maitland Tiburon,121.7,5,Kissin Cousins ,False,W
+2,True,11,Dez (Bryant) Nuts,131.92,12,Rule  #76,False,L
+2,True,12,Rule  #76,140.9,11,Dez (Bryant) Nuts,False,W
+2,True,13,Dak in a Box,104.28,1,"Here Kittle, Kittle",False,L
+3,True,1,"Here Kittle, Kittle",121.82,5,Kissin Cousins ,False,L
+3,True,2,Zeke -A Virus,137.02,4,Hurts So Good,False,W
+3,True,3,Jim Ward's Ole Dick Necks,136.34,11,Dez (Bryant) Nuts,False,L
+3,True,4,Hurts So Good,110.24,2,Zeke -A Virus,False,L
+3,True,5,Kissin Cousins ,129.44,1,"Here Kittle, Kittle",False,W
+3,True,6,This Year Will  Be A Brees ,83.58,13,Dak in a Box,False,L
+3,True,8,SCLSU Mud Dogs,103.6,12,Rule  #76,False,W
+3,True,9,Tonie's Tigers,122.88,10,Maitland Tiburon,False,L
+3,True,10,Maitland Tiburon,160.24,9,Tonie's Tigers,False,W
+3,True,11,Dez (Bryant) Nuts,143.02,3,Jim Ward's Ole Dick Necks,False,W
+3,True,12,Rule  #76,85.44,8,SCLSU Mud Dogs,False,L
+3,True,13,Dak in a Box,87.42,6,This Year Will  Be A Brees ,False,W
+4,True,1,"Here Kittle, Kittle",111.86,10,Maitland Tiburon,False,L
+4,True,2,Zeke -A Virus,76.12,12,Rule  #76,False,L
+4,True,3,Jim Ward's Ole Dick Necks,122.38,8,SCLSU Mud Dogs,False,L
+4,True,4,Hurts So Good,135.38,11,Dez (Bryant) Nuts,False,W
+4,True,5,Kissin Cousins ,105.72,6,This Year Will  Be A Brees ,False,L
+4,True,6,This Year Will  Be A Brees ,129.84,5,Kissin Cousins ,False,W
+4,True,8,SCLSU Mud Dogs,138.62,3,Jim Ward's Ole Dick Necks,False,W
+4,True,9,Tonie's Tigers,94.16,13,Dak in a Box,False,L
+4,True,10,Maitland Tiburon,114.02,1,"Here Kittle, Kittle",False,W
+4,True,11,Dez (Bryant) Nuts,125.1,4,Hurts So Good,False,L
+4,True,12,Rule  #76,114.32,2,Zeke -A Virus,False,W
+4,True,13,Dak in a Box,115.72,9,Tonie's Tigers,False,W
+5,True,1,"Here Kittle, Kittle",129.58,6,This Year Will  Be A Brees ,False,L
+5,True,2,Zeke -A Virus,164.8,11,Dez (Bryant) Nuts,False,W
+5,True,3,Jim Ward's Ole Dick Necks,133.42,12,Rule  #76,False,W
+5,True,4,Hurts So Good,114.42,8,SCLSU Mud Dogs,False,W
+5,True,5,Kissin Cousins ,137.1,9,Tonie's Tigers,False,W
+5,True,6,This Year Will  Be A Brees ,139.88,1,"Here Kittle, Kittle",False,W
+5,True,8,SCLSU Mud Dogs,95.48,4,Hurts So Good,False,L
+5,True,9,Tonie's Tigers,102.84,5,Kissin Cousins ,False,L
+5,True,10,Maitland Tiburon,135.76,13,Dak in a Box,False,W
+5,True,11,Dez (Bryant) Nuts,143.8,2,Zeke -A Virus,False,L
+5,True,12,Rule  #76,124.36,3,Jim Ward's Ole Dick Necks,False,L
+5,True,13,Dak in a Box,105.08,10,Maitland Tiburon,False,L
+6,True,1,"Here Kittle, Kittle",89.24,12,Rule  #76,False,L
+6,True,2,Zeke -A Virus,143.12,10,Maitland Tiburon,False,W
+6,True,3,Jim Ward's Ole Dick Necks,125.5,6,This Year Will  Be A Brees ,False,L
+6,True,4,Hurts So Good,115.0,9,Tonie's Tigers,False,L
+6,True,5,Kissin Cousins ,104.88,8,SCLSU Mud Dogs,False,L
+6,True,6,This Year Will  Be A Brees ,128.68,3,Jim Ward's Ole Dick Necks,False,W
+6,True,8,SCLSU Mud Dogs,113.08,5,Kissin Cousins ,False,W
+6,True,9,Tonie's Tigers,136.18,4,Hurts So Good,False,W
+6,True,10,Maitland Tiburon,124.86,2,Zeke -A Virus,False,L
+6,True,11,Dez (Bryant) Nuts,160.24,13,Dak in a Box,False,W
+6,True,12,Rule  #76,136.2,1,"Here Kittle, Kittle",False,W
+6,True,13,Dak in a Box,125.4,11,Dez (Bryant) Nuts,False,L
+7,True,1,"Here Kittle, Kittle",123.74,4,Hurts So Good,False,W
+7,True,2,Zeke -A Virus,148.72,6,This Year Will  Be A Brees ,False,W
+7,True,3,Jim Ward's Ole Dick Necks,157.92,5,Kissin Cousins ,False,W
+7,True,4,Hurts So Good,62.44,1,"Here Kittle, Kittle",False,L
+7,True,5,Kissin Cousins ,109.38,3,Jim Ward's Ole Dick Necks,False,L
+7,True,6,This Year Will  Be A Brees ,85.38,2,Zeke -A Virus,False,L
+7,True,8,SCLSU Mud Dogs,127.34,9,Tonie's Tigers,False,W
+7,True,9,Tonie's Tigers,90.14,8,SCLSU Mud Dogs,False,L
+7,True,10,Maitland Tiburon,142.14,11,Dez (Bryant) Nuts,False,W
+7,True,11,Dez (Bryant) Nuts,102.76,10,Maitland Tiburon,False,L
+7,True,12,Rule  #76,114.66,13,Dak in a Box,False,W
+7,True,13,Dak in a Box,95.14,12,Rule  #76,False,L
+8,True,1,"Here Kittle, Kittle",125.16,8,SCLSU Mud Dogs,False,W
+8,True,2,Zeke -A Virus,123.36,5,Kissin Cousins ,False,W
+8,True,3,Jim Ward's Ole Dick Necks,120.32,9,Tonie's Tigers,False,L
+8,True,4,Hurts So Good,110.82,13,Dak in a Box,False,L
+8,True,5,Kissin Cousins ,70.86,2,Zeke -A Virus,False,L
+8,True,6,This Year Will  Be A Brees ,109.04,11,Dez (Bryant) Nuts,False,L
+8,True,8,SCLSU Mud Dogs,107.4,1,"Here Kittle, Kittle",False,L
+8,True,9,Tonie's Tigers,134.7,3,Jim Ward's Ole Dick Necks,False,W
+8,True,10,Maitland Tiburon,85.76,12,Rule  #76,False,W
+8,True,11,Dez (Bryant) Nuts,121.0,6,This Year Will  Be A Brees ,False,W
+8,True,12,Rule  #76,70.96,10,Maitland Tiburon,False,L
+8,True,13,Dak in a Box,110.94,4,Hurts So Good,False,W
+9,True,1,"Here Kittle, Kittle",146.28,3,Jim Ward's Ole Dick Necks,False,W
+9,True,2,Zeke -A Virus,88.56,9,Tonie's Tigers,False,W
+9,True,3,Jim Ward's Ole Dick Necks,124.44,1,"Here Kittle, Kittle",False,L
+9,True,4,Hurts So Good,83.78,10,Maitland Tiburon,False,L
+9,True,5,Kissin Cousins ,119.8,11,Dez (Bryant) Nuts,False,W
+9,True,6,This Year Will  Be A Brees ,125.58,12,Rule  #76,False,L
+9,True,8,SCLSU Mud Dogs,114.94,13,Dak in a Box,False,W
+9,True,9,Tonie's Tigers,64.22,2,Zeke -A Virus,False,L
+9,True,10,Maitland Tiburon,90.94,4,Hurts So Good,False,W
+9,True,11,Dez (Bryant) Nuts,101.36,5,Kissin Cousins ,False,L
+9,True,12,Rule  #76,125.72,6,This Year Will  Be A Brees ,False,W
+9,True,13,Dak in a Box,80.78,8,SCLSU Mud Dogs,False,L
+10,True,1,"Here Kittle, Kittle",122.54,2,Zeke -A Virus,False,W
+10,True,2,Zeke -A Virus,115.0,1,"Here Kittle, Kittle",False,L
+10,True,3,Jim Ward's Ole Dick Necks,86.8,13,Dak in a Box,False,L
+10,True,4,Hurts So Good,102.72,6,This Year Will  Be A Brees ,False,L
+10,True,5,Kissin Cousins ,100.56,12,Rule  #76,False,L
+10,True,6,This Year Will  Be A Brees ,107.72,4,Hurts So Good,False,W
+10,True,8,SCLSU Mud Dogs,126.54,10,Maitland Tiburon,False,W
+10,True,9,Tonie's Tigers,69.0,11,Dez (Bryant) Nuts,False,L
+10,True,10,Maitland Tiburon,98.44,8,SCLSU Mud Dogs,False,L
+10,True,11,Dez (Bryant) Nuts,121.92,9,Tonie's Tigers,False,W
+10,True,12,Rule  #76,105.78,5,Kissin Cousins ,False,W
+10,True,13,Dak in a Box,117.64,3,Jim Ward's Ole Dick Necks,False,W
+11,True,1,"Here Kittle, Kittle",131.12,11,Dez (Bryant) Nuts,False,W
+11,True,2,Zeke -A Virus,98.56,13,Dak in a Box,False,W
+11,True,3,Jim Ward's Ole Dick Necks,96.68,10,Maitland Tiburon,False,L
+11,True,4,Hurts So Good,144.58,5,Kissin Cousins ,False,W
+11,True,5,Kissin Cousins ,112.24,4,Hurts So Good,False,L
+11,True,6,This Year Will  Be A Brees ,125.3,8,SCLSU Mud Dogs,False,W
+11,True,8,SCLSU Mud Dogs,120.6,6,This Year Will  Be A Brees ,False,L
+11,True,9,Tonie's Tigers,66.48,12,Rule  #76,False,L
+11,True,10,Maitland Tiburon,114.0,3,Jim Ward's Ole Dick Necks,False,W
+11,True,11,Dez (Bryant) Nuts,89.08,1,"Here Kittle, Kittle",False,L
+11,True,12,Rule  #76,185.0,9,Tonie's Tigers,False,W
+11,True,13,Dak in a Box,87.84,2,Zeke -A Virus,False,L
+12,True,1,"Here Kittle, Kittle",96.4,12,Rule  #76,False,L
+12,True,2,Zeke -A Virus,108.8,10,Maitland Tiburon,False,L
+12,True,3,Jim Ward's Ole Dick Necks,71.72,6,This Year Will  Be A Brees ,False,L
+12,True,4,Hurts So Good,131.36,9,Tonie's Tigers,False,W
+12,True,5,Kissin Cousins ,84.02,8,SCLSU Mud Dogs,False,L
+12,True,6,This Year Will  Be A Brees ,102.6,3,Jim Ward's Ole Dick Necks,False,W
+12,True,8,SCLSU Mud Dogs,128.4,5,Kissin Cousins ,False,W
+12,True,9,Tonie's Tigers,102.44,4,Hurts So Good,False,L
+12,True,10,Maitland Tiburon,129.12,2,Zeke -A Virus,False,W
+12,True,11,Dez (Bryant) Nuts,126.78,13,Dak in a Box,False,W
+12,True,12,Rule  #76,98.64,1,"Here Kittle, Kittle",False,W
+12,True,13,Dak in a Box,93.4,11,Dez (Bryant) Nuts,False,L
+13,True,1,"Here Kittle, Kittle",174.6,4,Hurts So Good,False,W
+13,True,2,Zeke -A Virus,111.0,6,This Year Will  Be A Brees ,False,L
+13,True,3,Jim Ward's Ole Dick Necks,82.88,5,Kissin Cousins ,False,W
+13,True,4,Hurts So Good,104.26,1,"Here Kittle, Kittle",False,L
+13,True,5,Kissin Cousins ,74.2,3,Jim Ward's Ole Dick Necks,False,L
+13,True,6,This Year Will  Be A Brees ,143.22,2,Zeke -A Virus,False,W
+13,True,8,SCLSU Mud Dogs,108.36,9,Tonie's Tigers,False,W
+13,True,9,Tonie's Tigers,95.62,8,SCLSU Mud Dogs,False,L
+13,True,10,Maitland Tiburon,154.82,11,Dez (Bryant) Nuts,False,W
+13,True,11,Dez (Bryant) Nuts,109.9,10,Maitland Tiburon,False,L
+13,True,12,Rule  #76,138.34,13,Dak in a Box,False,W
+13,True,13,Dak in a Box,97.62,12,Rule  #76,False,L
+14,True,1,"Here Kittle, Kittle",132.72,13,Dak in a Box,False,W
+14,True,2,Zeke -A Virus,170.72,5,Kissin Cousins ,False,W
+14,True,3,Jim Ward's Ole Dick Necks,127.7,9,Tonie's Tigers,False,L
+14,True,4,Hurts So Good,117.32,8,SCLSU Mud Dogs,False,L
+14,True,5,Kissin Cousins ,63.54,2,Zeke -A Virus,False,L
+14,True,6,This Year Will  Be A Brees ,76.18,11,Dez (Bryant) Nuts,False,L
+14,True,8,SCLSU Mud Dogs,124.02,4,Hurts So Good,False,W
+14,True,9,Tonie's Tigers,145.82,3,Jim Ward's Ole Dick Necks,False,W
+14,True,10,Maitland Tiburon,124.72,12,Rule  #76,False,L
+14,True,11,Dez (Bryant) Nuts,168.58,6,This Year Will  Be A Brees ,False,W
+14,True,12,Rule  #76,127.64,10,Maitland Tiburon,False,W
+14,True,13,Dak in a Box,84.84,1,"Here Kittle, Kittle",False,L
+15,False,1,"Here Kittle, Kittle",120.94,2,Zeke -A Virus,False,W
+15,False,2,Zeke -A Virus,106.0,1,"Here Kittle, Kittle",False,L
+15,False,3,Jim Ward's Ole Dick Necks,95.64,5,Kissin Cousins ,False,L
+15,False,4,Hurts So Good,90.04,8,SCLSU Mud Dogs,False,W
+15,False,5,Kissin Cousins ,134.28,3,Jim Ward's Ole Dick Necks,False,W
+15,False,6,This Year Will  Be A Brees ,138.6,12,Rule  #76,False,W
+15,False,8,SCLSU Mud Dogs,84.6,4,Hurts So Good,False,L
+15,False,9,Tonie's Tigers,55.26,13,Dak in a Box,False,L
+15,False,10,Maitland Tiburon,100.58,11,Dez (Bryant) Nuts,False,L
+15,False,11,Dez (Bryant) Nuts,100.76,10,Maitland Tiburon,False,W
+15,False,12,Rule  #76,109.92,6,This Year Will  Be A Brees ,False,L
+15,False,13,Dak in a Box,72.88,9,Tonie's Tigers,False,W
+16,False,1,"Here Kittle, Kittle",179.8,4,Hurts So Good,False,W
+16,False,2,Zeke -A Virus,91.86,12,Rule  #76,False,W
+16,False,3,Jim Ward's Ole Dick Necks,125.24,9,Tonie's Tigers,False,W
+16,False,4,Hurts So Good,114.06,1,"Here Kittle, Kittle",False,L
+16,False,5,Kissin Cousins ,97.3,13,Dak in a Box,False,L
+16,False,6,This Year Will  Be A Brees ,108.1,11,Dez (Bryant) Nuts,False,W
+16,False,8,SCLSU Mud Dogs,117.52,10,Maitland Tiburon,False,L
+16,False,9,Tonie's Tigers,66.98,3,Jim Ward's Ole Dick Necks,False,L
+16,False,10,Maitland Tiburon,154.3,8,SCLSU Mud Dogs,False,W
+16,False,11,Dez (Bryant) Nuts,98.78,6,This Year Will  Be A Brees ,False,L
+16,False,12,Rule  #76,89.58,2,Zeke -A Virus,False,L
+16,False,13,Dak in a Box,137.9,5,Kissin Cousins ,False,W
+17,False,1,"Here Kittle, Kittle",135.74,6,This Year Will  Be A Brees ,False,W
+17,False,2,Zeke -A Virus,124.0,10,Maitland Tiburon,False,L
+17,False,3,Jim Ward's Ole Dick Necks,108.58,13,Dak in a Box,False,L
+17,False,4,Hurts So Good,86.06,11,Dez (Bryant) Nuts,False,L
+17,False,5,Kissin Cousins ,121.3,9,Tonie's Tigers,False,W
+17,False,6,This Year Will  Be A Brees ,132.26,1,"Here Kittle, Kittle",False,L
+17,False,8,SCLSU Mud Dogs,136.36,12,Rule  #76,False,W
+17,False,9,Tonie's Tigers,50.8,5,Kissin Cousins ,False,L
+17,False,10,Maitland Tiburon,167.42,2,Zeke -A Virus,False,W
+17,False,11,Dez (Bryant) Nuts,135.36,4,Hurts So Good,False,W
+17,False,12,Rule  #76,120.12,8,SCLSU Mud Dogs,False,L
+17,False,13,Dak in a Box,118.14,3,Jim Ward's Ole Dick Necks,False,W

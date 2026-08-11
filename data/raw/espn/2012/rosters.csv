@@ -1,0 +1,239 @@
+team_id,team_name,player_id,player_name,position,pro_team,total_points,projected_total_points
+1,Show ME Your TD's,13994,Cam Newton,QB,CAR,611.0,0
+1,Show ME Your TD's,4461,Andre Johnson,WR,HOU,345.0,0
+1,Show ME Your TD's,5679,Michael Turner,RB,ATL,314.0,0
+1,Show ME Your TD's,13230,Aaron Hernandez,TE,NE,121.0,0
+1,Show ME Your TD's,11754,BenJarvus Green-Ellis,RB,CIN,373.0,0
+1,Show ME Your TD's,12500,Shonn Greene,RB,NYJ,379.0,0
+1,Show ME Your TD's,13271,Eric Decker,WR,DEN,283.0,0
+1,Show ME Your TD's,10522,James Jones,WR,GB,236.0,0
+1,Show ME Your TD's,-16004,Bengals D/ST,D/ST,CIN,960.0,0
+1,Show ME Your TD's,9801,Cortland Finnegan,CB,LAR,104.0,0
+1,Show ME Your TD's,12567,Brandon Gibson,WR,LAR,159.0,0
+1,Show ME Your TD's,14054,Kyle Rudolph,TE,MIN,144.0,0
+1,Show ME Your TD's,13979,J.J. Watt,DE,HOU,132.0,0
+1,Show ME Your TD's,12570,Darrius Heyward-Bey,WR,LV,153.0,0
+1,Show ME Your TD's,-16005,Browns D/ST,D/ST,CLE,978.0,0
+1,Show ME Your TD's,12705,Brandon Myers,TE,LV,175.0,0
+1,Show ME Your TD's,11688,Dan Carpenter,K,MIA,100.0,0
+2,Team O'Dell,2330,Tom Brady,QB,NE,540.0,0
+2,Team O'Dell,10456,Marshawn Lynch,RB,SEA,605.0,0
+2,Team O'Dell,10713,Pierre Thomas,RB,NO,208.0,0
+2,Team O'Dell,14052,Mikel Leshoure,RB,DET,310.0,0
+2,Team O'Dell,4459,Carson Palmer,QB,LV,390.0,0
+2,Team O'Dell,13226,Andre Roberts,WR,ARI,178.0,0
+2,Team O'Dell,11678,Davone Bess,WR,MIA,156.0,0
+2,Team O'Dell,9638,Greg Jennings,WR,GB,94.0,0
+2,Team O'Dell,11439,Pierre Garcon,WR,WSH,159.0,0
+2,Team O'Dell,12503,Rashad Jennings,RB,JAX,108.0,0
+2,Team O'Dell,12516,Knowshon Moreno,RB,DEN,202.0,0
+2,Team O'Dell,14924,T.Y. Hilton,WR,IND,237.0,0
+2,Team O'Dell,14322,Dan Bailey,K,DAL,136.0,0
+2,Team O'Dell,4482,Dallas Clark,TE,TB,105.0,0
+2,Team O'Dell,13935,Danario Alexander,WR,LAC,173.0,0
+2,Team O'Dell,5651,Jared Allen,DE,MIN,65.0,0
+2,Team O'Dell,-16002,Bills D/ST,D/ST,BUF,961.0,0
+3,Team Munford,12483,Matthew Stafford,QB,DET,494.0,0
+3,Team Munford,8442,Roddy White,WR,ATL,320.0,0
+3,Team Munford,8479,Frank Gore,RB,SF,458.0,0
+3,Team Munford,5362,Antonio Gates,TE,LAC,140.0,0
+3,Team Munford,9704,Stephen Gostkowski,K,NE,161.0,0
+3,Team Munford,9613,DeAngelo Williams,RB,CAR,267.0,0
+3,Team Munford,12579,Jeremy Maclin,WR,PHI,207.0,0
+3,Team Munford,-16001,Falcons D/ST,D/ST,ATL,934.0,0
+3,Team Munford,9400,Lance Moore,WR,NO,251.0,0
+3,Team Munford,13197,Sam Bradford,QB,LAR,394.0,0
+3,Team Munford,14909,Kendall Wright,WR,TEN,133.0,0
+3,Team Munford,13228,Jermaine Gresham,TE,CIN,166.0,0
+3,Team Munford,14193,Jacquizz Rodgers,RB,ATL,176.0,0
+3,Team Munford,-16022,Cardinals D/ST,D/ST,ARI,1013.0,0
+3,Team Munford,11271,Curtis Lofton,LB,NO,95.0,0
+3,Team Munford,15078,Chris Givens,WR,LAR,156.0,0
+3,Team Munford,3504,Shayne Graham,K,HOU,148.0,0
+4,Yellow Egg Roll,8439,Aaron Rodgers,QB,GB,553.0,0
+4,Yellow Egg Roll,5941,Wes Welker,WR,NE,310.0,0
+4,Yellow Egg Roll,5549,Steven Jackson,RB,LAR,381.0,0
+4,Yellow Egg Roll,10147,Miles Austin,WR,DAL,218.0,0
+4,Yellow Egg Roll,11325,Jermichael Finley,TE,GB,135.0,0
+4,Yellow Egg Roll,-16023,Steelers D/ST,D/ST,PIT,916.0,0
+4,Yellow Egg Roll,6016,Malcom Floyd,WR,LAC,188.0,0
+4,Yellow Egg Roll,8416,Alex Smith,QB,SF,206.0,0
+4,Yellow Egg Roll,11329,Mario Manningham,WR,SF,95.0,0
+4,Yellow Egg Roll,13986,Jon Baldwin,WR,KC,63.0,0
+4,Yellow Egg Roll,-16017,Patriots D/ST,D/ST,NE,963.0,0
+4,Yellow Egg Roll,11674,Danny Amendola,WR,LAR,147.0,0
+4,Yellow Egg Roll,9603,Chad Greenway,LB,MIN,113.0,0
+4,Yellow Egg Roll,11197,Jackie Battle,RB,LAC,128.0,0
+4,Yellow Egg Roll,8612,Joel Dreessen,TE,DEN,89.0,0
+4,Yellow Egg Roll,3413,Lawrence Tynes,K,NYG,148.0,0
+4,Yellow Egg Roll,11788,Danny Woodhead,RB,NE,185.0,0
+5,Team Wester,10447,Calvin Johnson,WR,DET,433.0,0
+5,Team Wester,5529,Philip Rivers,QB,LAC,354.0,0
+5,Team Wester,9592,Vernon Davis,TE,SF,132.0,0
+5,Team Wester,14028,Stevan Ridley,RB,NE,455.0,0
+5,Team Wester,13216,Demaryius Thomas,WR,DEN,350.0,0
+5,Team Wester,-16025,49ers D/ST,D/ST,SF,1003.0,0
+5,Team Wester,14885,Doug Martin,RB,TB,587.0,0
+5,Team Wester,9619,DeMeco Ryans,LB,PHI,92.0,0
+5,Team Wester,11298,Kevin Smith,RB,DET,55.0,0
+5,Team Wester,14012,Andy Dalton,QB,CIN,402.0,0
+5,Team Wester,14907,Justin Blackmon,WR,JAX,198.0,0
+5,Team Wester,11122,Matt Prater,K,DEN,140.0,0
+5,Team Wester,10605,Brent Celek,TE,PHI,129.0,0
+5,Team Wester,14900,Coby Fleener,TE,IND,63.0,0
+5,Team Wester,14077,Delone Carter,RB,IND,50.0,0
+5,Team Wester,14908,Michael Floyd,WR,ARI,112.0,0
+5,Team Wester,11276,Eddie Royal,WR,LAC,51.0,0
+6,Team Thomas,11289,Ray Rice,RB,BAL,482.0,0
+6,Team Thomas,11238,Darren McFadden,RB,LV,273.0,0
+6,Team Thomas,13232,Jimmy Graham,TE,NO,244.0,0
+6,Team Thomas,9705,Brandon Marshall,WR,CHI,381.0,0
+6,Team Thomas,13203,C.J. Spiller,RB,BUF,497.0,0
+6,Team Thomas,14032,Torrey Smith,WR,BAL,214.0,0
+6,Team Thomas,14874,Andrew Luck,QB,IND,495.0,0
+6,Team Thomas,12556,Kenny Britt,WR,TEN,143.0,0
+6,Team Thomas,2148,Sebastian Janikowski,K,LV,132.0,0
+6,Team Thomas,11280,Jerome Simpson,WR,MIN,44.0,0
+6,Team Thomas,-16016,Vikings D/ST,D/ST,MIN,995.0,0
+6,Team Thomas,14901,Dwayne Allen,TE,IND,113.0,0
+6,Team Thomas,14184,Cecil Shorts,WR,JAX,236.0,0
+6,Team Thomas,15705,Josh Gordon,WR,CLE,176.0,0
+6,Team Thomas,8430,Derrick Johnson,LB,KC,118.0,0
+6,Team Thomas,15092,Bryce Brown,RB,PHI,179.0,0
+6,Team Thomas,-16003,Bears D/ST,D/ST,CHI,1034.0,0
+7,Team Merrill,10452,Adrian Peterson,RB,MIN,763.0,0
+7,Team Merrill,2549,Michael Vick,QB,PHI,301.0,0
+7,Team Merrill,2622,Steve Smith,WR,CAR,267.0,0
+7,Team Merrill,10467,Dwayne Bowe,WR,KC,174.0,0
+7,Team Merrill,2578,Reggie Wayne,WR,IND,302.0,0
+7,Team Merrill,9684,Owen Daniels,TE,HOU,168.0,0
+7,Team Merrill,8664,Ryan Fitzpatrick,QB,BUF,369.0,0
+7,Team Merrill,14123,Alex Henery,K,PHI,114.0,0
+7,Team Merrill,14053,Randall Cobb,WR,GB,273.0,0
+7,Team Merrill,13289,Tony Moeaki,TE,KC,89.0,0
+7,Team Merrill,12490,Andre Brown,RB,NYG,177.0,0
+7,Team Merrill,10478,Paul Posluszny,LB,JAX,123.0,0
+7,Team Merrill,-16007,Broncos D/ST,D/ST,DEN,1008.0,0
+7,Team Merrill,13981,Mark Ingram,RB,NO,195.0,0
+7,Team Merrill,14001,Colin Kaepernick,QB,SF,308.0,0
+7,Team Merrill,14887,David Wilson,RB,NYG,136.0,0
+7,Team Merrill,9695,Jason Avant,WR,PHI,124.0,0
+8,Team Ray,9646,Maurice Jones-Drew,RB,JAX,146.0,0
+8,Team Ray,14875,Robert Griffin III,QB,WSH,598.0,0
+8,Team Ray,9588,Reggie Bush,RB,MIA,376.0,0
+8,Team Ray,11270,Jordy Nelson,WR,GB,191.0,0
+8,Team Ray,10455,Patrick Willis,LB,SF,104.0,0
+8,Team Ray,8475,Vincent Jackson,WR,TB,327.0,0
+8,Team Ray,11373,Jacob Tamme,TE,DEN,112.0,0
+8,Team Ray,12489,Donald Brown,RB,IND,134.0,0
+8,Team Ray,11252,Joe Flacco,QB,BAL,392.0,0
+8,Team Ray,10488,Sidney Rice,WR,SEA,180.0,0
+8,Team Ray,4333,Matt Bryant,K,ATL,156.0,0
+8,Team Ray,11295,Martellus Bennett,TE,NYG,145.0,0
+8,Team Ray,-16012,Chiefs D/ST,D/ST,KC,890.0,0
+8,Team Ray,1097,Adam Vinatieri,K,IND,125.0,0
+8,Team Ray,12898,Isaac Redman,RB,PIT,162.0,0
+8,Team Ray,11304,Earl Bennett,WR,CHI,82.0,0
+8,Team Ray,4493,Charles Tillman,CB,CHI,111.0,0
+9,Danny Woodheads,12497,Arian Foster,RB,HOU,571.0,0
+9,Danny Woodheads,13229,Rob Gronkowski,TE,NE,224.0,0
+9,Danny Woodheads,13982,Julio Jones,WR,ATL,300.0,0
+9,Danny Woodheads,4481,Willis McGahee,RB,DEN,281.0,0
+9,Danny Woodheads,12473,Josh Freeman,QB,TB,410.0,0
+9,Danny Woodheads,9307,Nate Washington,WR,TEN,165.0,0
+9,Danny Woodheads,15009,Alfred Morris,RB,WSH,578.0,0
+9,Danny Woodheads,13958,Andrew Hawkins,WR,CIN,124.0,0
+9,Danny Woodheads,13217,Golden Tate,WR,SEA,178.0,0
+9,Danny Woodheads,-16026,Seahawks D/ST,D/ST,SEA,923.0,0
+9,Danny Woodheads,13536,Joique Bell,RB,DET,208.0,0
+9,Danny Woodheads,9597,Jay Cutler,QB,CHI,327.0,0
+9,Danny Woodheads,14895,Ronnie Hillman,RB,DEN,87.0,0
+9,Danny Woodheads,9361,Shaun Suisham,K,PIT,130.0,0
+9,Danny Woodheads,9614,Marcedes Lewis,TE,JAX,127.0,0
+9,Danny Woodheads,10057,Montell Owens,RB,JAX,91.0,0
+9,Danny Woodheads,14974,Janoris Jenkins,CB,LAR,106.0,0
+10,High Noon,1428,Peyton Manning,QB,DEN,513.0,0
+10,High Noon,14884,Trent Richardson,RB,CLE,412.0,0
+10,High Noon,12586,Hakeem Nicks,WR,NYG,150.0,0
+10,High Noon,9838,Marques Colston,WR,NO,286.0,0
+10,High Noon,-16033,Ravens D/ST,D/ST,BAL,1052.0,0
+10,High Noon,10572,Scott Chandler,TE,BUF,144.0,0
+10,High Noon,14055,Alex Green,RB,GB,144.0,0
+10,High Noon,14898,Vick Ballard,RB,IND,272.0,0
+10,High Noon,2564,Santana Moss,WR,WSH,155.0,0
+10,High Noon,11264,Dustin Keller,TE,NYJ,67.0,0
+10,High Noon,9629,Roman Harper,S,NO,104.0,0
+10,High Noon,13206,Jonathan Dwyer,RB,PIT,198.0,0
+10,High Noon,14056,Daniel Thomas,RB,MIA,128.0,0
+10,High Noon,12454,James Laurinaitis,LB,LAR,128.0,0
+10,High Noon,12525,Beanie Wells,RB,ARI,89.0,0
+10,High Noon,12576,Brandon LaFell,WR,CAR,156.0,0
+10,High Noon,2489,Rian Lindell,K,BUF,107.0,0
+11,Peyton  Man-thing,2580,Drew Brees,QB,NO,566.0,0
+11,Peyton  Man-thing,11307,Jamaal Charles,RB,KC,524.0,0
+11,Peyton  Man-thing,14005,DeMarco Murray,RB,DAL,260.0,0
+11,Peyton  Man-thing,13215,Dez Bryant,WR,DAL,349.0,0
+11,Peyton  Man-thing,4527,Jason Witten,TE,DAL,221.0,0
+11,Peyton  Man-thing,-16034,Texans D/ST,D/ST,HOU,996.0,0
+11,Peyton  Man-thing,11247,Jonathan Stewart,RB,CAR,129.0,0
+11,Peyton  Man-thing,11458,Steve Johnson,WR,BUF,241.0,0
+11,Peyton  Man-thing,14993,Greg Zuerlein,K,LAR,110.0,0
+11,Peyton  Man-thing,12568,Brian Hartline,WR,MIA,215.0,0
+11,Peyton  Man-thing,1575,Matt Hasselbeck,QB,TEN,136.0,0
+11,Peyton  Man-thing,14023,Mason Foster,LB,TB,91.0,0
+11,Peyton  Man-thing,15111,Daryl Richardson,RB,LAR,142.0,0
+11,Peyton  Man-thing,13208,Montario Hardesty,RB,CLE,76.0,0
+11,Peyton  Man-thing,11267,Donnie Avery,WR,IND,170.0,0
+11,Peyton  Man-thing,-16020,Jets D/ST,D/ST,NYJ,920.0,0
+11,Peyton  Man-thing,14129,Bilal Powell,RB,NYJ,165.0,0
+12,Rule #76,11237,Matt Ryan,QB,ATL,509.0,0
+12,Rule #76,11278,Matt Forte,RB,CHI,422.0,0
+12,Rule #76,13553,Victor Cruz,WR,NYG,281.0,0
+12,Rule #76,10693,Ahmad Bradshaw,RB,NYG,366.0,0
+12,Rule #76,11283,DeSean Jackson,WR,PHI,149.0,0
+12,Rule #76,1231,Tony Gonzalez,TE,ATL,231.0,0
+12,Rule #76,10544,Michael Bush,RB,CHI,140.0,0
+12,Rule #76,4512,Anquan Boldin,WR,BAL,202.0,0
+12,Rule #76,5615,Matt Schaub,QB,HOU,379.0,0
+12,Rule #76,10475,Greg Olsen,TE,CAR,188.0,0
+12,Rule #76,9620,D'Qwell Jackson,LB,CLE,89.0,0
+12,Rule #76,5558,Karlos Dansby,LB,MIA,112.0,0
+12,Rule #76,14912,Alshon Jeffery,WR,CHI,84.0,0
+12,Rule #76,12581,Mohamed Massaquoi,WR,CLE,48.0,0
+12,Rule #76,15478,Brandon Bolden,RB,NE,96.0,0
+12,Rule #76,-16024,Chargers D/ST,D/ST,LAC,1043.0,0
+12,Rule #76,11543,Garrett Hartley,K,NO,115.0,0
+13,Shake Them Dreads,11258,Chris Johnson,RB,TEN,440.0,0
+13,Shake Them Dreads,5526,Eli Manning,QB,NYG,387.0,0
+13,Shake Them Dreads,13983,A.J. Green,WR,CIN,346.0,0
+13,Shake Them Dreads,4582,Brandon Lloyd,WR,NE,206.0,0
+13,Shake Them Dreads,8544,Darren Sproles,RB,NO,239.0,0
+13,Shake Them Dreads,-16021,Eagles D/ST,D/ST,PHI,929.0,0
+13,Shake Them Dreads,12563,Michael Crabtree,WR,SF,276.0,0
+13,Shake Them Dreads,13256,Jason Pierre-Paul,DE,NYG,69.0,0
+13,Shake Them Dreads,10636,Mason Crosby,K,GB,114.0,0
+13,Shake Them Dreads,13969,Jake Locker,QB,TEN,266.0,0
+13,Shake Them Dreads,8444,Heath Miller,TE,PIT,203.0,0
+13,Shake Them Dreads,12730,LaRod Stephens-Howling,RB,ARI,152.0,0
+13,Shake Them Dreads,-16009,Packers D/ST,D/ST,GB,934.0,0
+13,Shake Them Dreads,14151,Jeremy Kerley,WR,NYJ,174.0,0
+13,Shake Them Dreads,11244,Jerod Mayo,LB,NE,100.0,0
+13,Shake Them Dreads,11717,Marcel Reece,RB,LV,174.0,0
+13,Shake Them Dreads,14101,Greg McElroy,QB,NYJ,22.0,0
+14,Team O'Dell,12514,LeSean McCoy,RB,PHI,346.0,0
+14,Team O'Dell,5528,Larry Fitzgerald,WR,ARI,182.0,0
+14,Team O'Dell,12601,Mike Wallace,WR,PIT,211.0,0
+14,Team O'Dell,13204,Ryan Mathews,RB,LAC,238.0,0
+14,Team O'Dell,5209,Tony Romo,QB,DAL,490.0,0
+14,Team O'Dell,14192,Roy Helu,RB,WSH,9.0,0
+14,Team O'Dell,12537,Jared Cook,TE,TEN,115.0,0
+14,Team O'Dell,13200,Tim Tebow,QB,NYJ,22.0,0
+14,Team O'Dell,-16019,Giants D/ST,D/ST,NYG,1030.0,0
+14,Team O'Dell,14153,Denarius Moore,WR,LV,187.0,0
+14,Team O'Dell,14017,Shane Vereen,RB,NE,115.0,0
+14,Team O'Dell,11256,Felix Jones,RB,DAL,180.0,0
+14,Team O'Dell,13305,Daryl Washington,LB,ARI,133.0,0
+14,Team O'Dell,13489,Mike Williams,WR,TB,249.0,0
+14,Team O'Dell,13262,NaVorro Bowman,LB,SF,109.0,0
+14,Team O'Dell,14027,Vincent Brown,WR,LAC,0.0,0
+14,Team O'Dell,286,Jason Hanson,K,DET,151.0,0

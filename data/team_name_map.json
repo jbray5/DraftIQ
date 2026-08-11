@@ -1,0 +1,818 @@
+{
+  "Nico Suave": {
+    "owner": "cjhubauer",
+    "team_id": 1,
+    "abbrev": "BSHU",
+    "years": [
+      2025,
+      2026
+    ]
+  },
+  "Jim Ward's Ole Dick Necks": {
+    "owner": "Henry Munford",
+    "team_id": 3,
+    "abbrev": "MUNF",
+    "years": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ]
+  },
+  "Injured Reserve ": {
+    "owner": "Make Bama Champions Again",
+    "team_id": 4,
+    "abbrev": "IR",
+    "years": [
+      2024,
+      2025
+    ]
+  },
+  "Flowers for Allgeiernon": {
+    "owner": "payton9218600",
+    "team_id": 5,
+    "abbrev": "W3st",
+    "years": [
+      2025,
+      2026
+    ]
+  },
+  "Thom-ASS": {
+    "owner": "zwthomas89; zthoma7700709",
+    "team_id": 6,
+    "abbrev": "THOM",
+    "years": [
+      2023,
+      2024,
+      2025
+    ]
+  },
+  "SCLSU Mud Dogs": {
+    "owner": "jbray5",
+    "team_id": 8,
+    "abbrev": "SMD",
+    "years": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ]
+  },
+  "Men of Will": {
+    "owner": "wdsx5",
+    "team_id": 9,
+    "abbrev": "Will",
+    "years": [
+      2023,
+      2024,
+      2025,
+      2026
+    ]
+  },
+  "Silence of the Lamb": {
+    "owner": "espnfan1709357526",
+    "team_id": 10,
+    "abbrev": "Walk",
+    "years": [
+      2025,
+      2026
+    ]
+  },
+  "ConcreteJungleWet DreamTomato": {
+    "owner": "Gtgilbert88",
+    "team_id": 11,
+    "abbrev": "TGIL",
+    "years": [
+      2024,
+      2025,
+      2026
+    ]
+  },
+  "Blake's Holographic Charizard": {
+    "owner": "dcputman; espnfan0780082387",
+    "team_id": 12,
+    "abbrev": "Char",
+    "years": [
+      2025,
+      2026
+    ]
+  },
+  "Christopher's Kryptonite ": {
+    "owner": "tcspivey8",
+    "team_id": 13,
+    "abbrev": "3X",
+    "years": [
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ]
+  },
+  "Deston's Ride or Dies ": {
+    "owner": "wbbollinger08",
+    "team_id": 14,
+    "abbrev": "BBT",
+    "years": [
+      2025,
+      2026
+    ]
+  },
+  "Too Much Bama In Me ": {
+    "owner": "cjhubauer",
+    "team_id": 1,
+    "abbrev": "BSHU",
+    "years": [
+      2024
+    ]
+  },
+  "Pour One Out For Mahomies!!": {
+    "owner": "Burns1981",
+    "team_id": 2,
+    "abbrev": "POFM",
+    "years": [
+      2023,
+      2024
+    ]
+  },
+  "Jones in for a Repeat": {
+    "owner": "payton9218600",
+    "team_id": 5,
+    "abbrev": "W3st",
+    "years": [
+      2024
+    ]
+  },
+  "LaPorta Potty": {
+    "owner": "espnfan1709357526",
+    "team_id": 10,
+    "abbrev": "DAT",
+    "years": [
+      2024
+    ]
+  },
+  "Rule  #76": {
+    "owner": "dcputman",
+    "team_id": 12,
+    "abbrev": "76",
+    "years": [
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024
+    ]
+  },
+  "Garretteed Satisfaction ": {
+    "owner": "cjhubauer",
+    "team_id": 1,
+    "abbrev": "BSHU",
+    "years": [
+      2023
+    ]
+  },
+  "King Me": {
+    "owner": "Josh Swing",
+    "team_id": 4,
+    "abbrev": "King",
+    "years": [
+      2023
+    ]
+  },
+  "You Can Chuck the Tubb": {
+    "owner": "payton9218600",
+    "team_id": 5,
+    "abbrev": "W3st",
+    "years": [
+      2023
+    ]
+  },
+  "Amon-Ra Dog": {
+    "owner": "espnfan1709357526",
+    "team_id": 10,
+    "abbrev": "RAW",
+    "years": [
+      2023
+    ]
+  },
+  "Bijan mustard": {
+    "owner": "Gtgilbert88",
+    "team_id": 11,
+    "abbrev": "TGIL",
+    "years": [
+      2023
+    ]
+  },
+  "T's Diddy ": {
+    "owner": "cjhubauer",
+    "team_id": 1,
+    "abbrev": "BSHU",
+    "years": [
+      2022
+    ]
+  },
+  "Zeke -A Virus": {
+    "owner": "Burns1981",
+    "team_id": 2,
+    "abbrev": "ZAV",
+    "years": [
+      2021,
+      2022
+    ]
+  },
+  "BUT kicKERs": {
+    "owner": "Josh Swing",
+    "team_id": 4,
+    "abbrev": "BUT",
+    "years": [
+      2022
+    ]
+  },
+  "COD Lobby Kyler": {
+    "owner": "payton9218600",
+    "team_id": 5,
+    "abbrev": "W3st",
+    "years": [
+      2022
+    ]
+  },
+  "SWIFT Kick In The Balls ": {
+    "owner": "zwthomas89; zthoma7700709",
+    "team_id": 6,
+    "abbrev": "THOM",
+    "years": [
+      2022
+    ]
+  },
+  "TBD TBD": {
+    "owner": "wdsx5",
+    "team_id": 9,
+    "abbrev": "TBD",
+    "years": [
+      2022
+    ]
+  },
+  "Maitland Tiburon": {
+    "owner": "espnfan1709357526",
+    "team_id": 10,
+    "abbrev": "TIB",
+    "years": [
+      2020,
+      2021,
+      2022
+    ]
+  },
+  "Dez (Bryant) Nuts": {
+    "owner": "Gtgilbert88",
+    "team_id": 11,
+    "abbrev": "TGIL",
+    "years": [
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022
+    ]
+  },
+  "Here Kittle, Kittle": {
+    "owner": "cjhubauer",
+    "team_id": 1,
+    "abbrev": "BSHU",
+    "years": [
+      2021
+    ]
+  },
+  "Hurts So Good": {
+    "owner": "Josh Swing",
+    "team_id": 4,
+    "abbrev": "HSG",
+    "years": [
+      2021
+    ]
+  },
+  "Kissin Cousins ": {
+    "owner": "payton9218600",
+    "team_id": 5,
+    "abbrev": "W3st",
+    "years": [
+      2021
+    ]
+  },
+  "This Year Will  Be A Brees ": {
+    "owner": "zwthomas89; zthoma7700709",
+    "team_id": 6,
+    "abbrev": "THOM",
+    "years": [
+      2020,
+      2021
+    ]
+  },
+  "Tonie's Tigers": {
+    "owner": "crtaylor225",
+    "team_id": 9,
+    "abbrev": "CT",
+    "years": [
+      2017,
+      2018,
+      2019,
+      2020,
+      2021
+    ]
+  },
+  "Dak in a Box": {
+    "owner": "tcspivey8",
+    "team_id": 13,
+    "abbrev": "3X",
+    "years": [
+      2021
+    ]
+  },
+  "Jim, Tannehill, Laundry ": {
+    "owner": "cjhubauer",
+    "team_id": 1,
+    "abbrev": "BSHU",
+    "years": [
+      2020
+    ]
+  },
+  "Lamar  The Merrier!": {
+    "owner": "Burns1981",
+    "team_id": 2,
+    "abbrev": "LTM",
+    "years": [
+      2020
+    ]
+  },
+  "Thunder Thighs": {
+    "owner": "Josh Swing",
+    "team_id": 4,
+    "abbrev": "TT",
+    "years": [
+      2020
+    ]
+  },
+  "Russ Finna Cuck": {
+    "owner": "payton9218600",
+    "team_id": 5,
+    "abbrev": "W3st",
+    "years": [
+      2020
+    ]
+  },
+  "Kamara Virus": {
+    "owner": "tcspivey8",
+    "team_id": 13,
+    "abbrev": "SPVY",
+    "years": [
+      2020
+    ]
+  },
+  "Below Average Joes": {
+    "owner": "cjhubauer",
+    "team_id": 1,
+    "abbrev": "BSHU",
+    "years": [
+      2019
+    ]
+  },
+  "Rodger  That": {
+    "owner": "jmodell10",
+    "team_id": 2,
+    "abbrev": "ODE",
+    "years": [
+      2017,
+      2018,
+      2019
+    ]
+  },
+  "The New Guy": {
+    "owner": "Josh Swing",
+    "team_id": 4,
+    "abbrev": "B",
+    "years": [
+      2019
+    ]
+  },
+  "Remember the Fucking Titans": {
+    "owner": "payton9218600",
+    "team_id": 5,
+    "abbrev": "DVDA",
+    "years": [
+      2019
+    ]
+  },
+  "Dude, Where's  My Lamar": {
+    "owner": "zwthomas89; zthoma7700709",
+    "team_id": 6,
+    "abbrev": "THOM",
+    "years": [
+      2019
+    ]
+  },
+  "High Noon": {
+    "owner": "jtmurphree",
+    "team_id": 10,
+    "abbrev": "MURP",
+    "years": [
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019
+    ]
+  },
+  "Fuck Luck": {
+    "owner": "tcspivey8",
+    "team_id": 13,
+    "abbrev": "SPVY",
+    "years": [
+      2019
+    ]
+  },
+  "Show ME Your TD's": {
+    "owner": "cjhubauer",
+    "team_id": 1,
+    "abbrev": "HUBA",
+    "years": [
+      2012
+    ]
+  },
+  "Team O'Dell": {
+    "owner": "jmodell10",
+    "team_id": 2,
+    "abbrev": "O'DE",
+    "years": [
+      2012,
+      2013,
+      2014
+    ]
+  },
+  "Team Munford": {
+    "owner": "Henry Munford",
+    "team_id": 3,
+    "abbrev": "MUNF",
+    "years": [
+      2012,
+      2013,
+      2014
+    ]
+  },
+  "Yellow Egg Roll": {
+    "owner": "obigxbuddhao",
+    "team_id": 4,
+    "abbrev": "CHEN",
+    "years": [
+      2012
+    ]
+  },
+  "Team Wester": {
+    "owner": "pwes58",
+    "team_id": 5,
+    "abbrev": "WEST",
+    "years": [
+      2012
+    ]
+  },
+  "Team Thomas": {
+    "owner": "zwthomas89",
+    "team_id": 6,
+    "abbrev": "THOM",
+    "years": [
+      2012
+    ]
+  },
+  "Team Merrill": {
+    "owner": "HHSBaller020",
+    "team_id": 7,
+    "abbrev": "MERR",
+    "years": [
+      2012
+    ]
+  },
+  "Team Ray": {
+    "owner": "jbray5",
+    "team_id": 8,
+    "abbrev": "RAY",
+    "years": [
+      2012
+    ]
+  },
+  "Danny Woodheads": {
+    "owner": "crtaylor225",
+    "team_id": 9,
+    "abbrev": "TAYL",
+    "years": [
+      2012
+    ]
+  },
+  "Peyton  Man-thing": {
+    "owner": "Gtgilbert88",
+    "team_id": 11,
+    "abbrev": "GILB",
+    "years": [
+      2012,
+      2013,
+      2014
+    ]
+  },
+  "Rule #76": {
+    "owner": "dcputman",
+    "team_id": 12,
+    "abbrev": "76",
+    "years": [
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018
+    ]
+  },
+  "Shake Them Dreads": {
+    "owner": "tcspivey8",
+    "team_id": 13,
+    "abbrev": "SPIV",
+    "years": [
+      2012,
+      2013
+    ]
+  },
+  "Toomer's Coroners": {
+    "owner": "cjhubauer",
+    "team_id": 1,
+    "abbrev": "BSHU",
+    "years": [
+      2013
+    ]
+  },
+  "Medulla Amendola": {
+    "owner": "obigxbuddhao",
+    "team_id": 4,
+    "abbrev": "B",
+    "years": [
+      2013
+    ]
+  },
+  "And god said I  hate you Tebow": {
+    "owner": "pwes58",
+    "team_id": 5,
+    "abbrev": "TBOW",
+    "years": [
+      2013,
+      2014
+    ]
+  },
+  "LUCK isonmyside": {
+    "owner": "zwthomas89",
+    "team_id": 6,
+    "abbrev": "THOM",
+    "years": [
+      2013,
+      2014
+    ]
+  },
+  "Slumber Lumber": {
+    "owner": "jbray5",
+    "team_id": 8,
+    "abbrev": "RAY",
+    "years": [
+      2013
+    ]
+  },
+  "Schaub on my Knob": {
+    "owner": "crtaylor225",
+    "team_id": 9,
+    "abbrev": "KNOB",
+    "years": [
+      2013,
+      2014
+    ]
+  },
+  "Jaquizz Onyourface": {
+    "owner": "cjhubauer",
+    "team_id": 1,
+    "abbrev": "BSHU",
+    "years": [
+      2014
+    ]
+  },
+  "Team Cornelius": {
+    "owner": "bcornelius2",
+    "team_id": 4,
+    "abbrev": "B",
+    "years": [
+      2014,
+      2015
+    ]
+  },
+  "Beats by Ray": {
+    "owner": "jbray5",
+    "team_id": 8,
+    "abbrev": "RAY",
+    "years": [
+      2014,
+      2015
+    ]
+  },
+  "Rice Beater": {
+    "owner": "tcspivey8",
+    "team_id": 13,
+    "abbrev": "SPIV",
+    "years": [
+      2014
+    ]
+  },
+  "Luck her right in the Percy": {
+    "owner": "cjhubauer",
+    "team_id": 1,
+    "abbrev": "BSHU",
+    "years": [
+      2015
+    ]
+  },
+  "FOR WHOM O'DELL TOLLS": {
+    "owner": "jmodell10",
+    "team_id": 2,
+    "abbrev": "ODE",
+    "years": [
+      2015,
+      2016
+    ]
+  },
+  "Jim Ward's Allstars": {
+    "owner": "Henry Munford",
+    "team_id": 3,
+    "abbrev": "MUNF",
+    "years": [
+      2015,
+      2016,
+      2017
+    ]
+  },
+  "GrandWizard TravisCoons": {
+    "owner": "pwes58",
+    "team_id": 5,
+    "abbrev": "GWTC",
+    "years": [
+      2015
+    ]
+  },
+  "Demaryius Is My Brother ": {
+    "owner": "zwthomas89",
+    "team_id": 6,
+    "abbrev": "THOM",
+    "years": [
+      2015
+    ]
+  },
+  "Watt Watt in the butt": {
+    "owner": "crtaylor225",
+    "team_id": 9,
+    "abbrev": "CTAY",
+    "years": [
+      2015,
+      2016
+    ]
+  },
+  "Ha Ha's Chuckle Hut": {
+    "owner": "tcspivey8",
+    "team_id": 13,
+    "abbrev": "CHMP",
+    "years": [
+      2015
+    ]
+  },
+  "A team has no name": {
+    "owner": "cjhubauer",
+    "team_id": 1,
+    "abbrev": "BSHU",
+    "years": [
+      2016
+    ]
+  },
+  "Bell yeah": {
+    "owner": "bcornelius2",
+    "team_id": 4,
+    "abbrev": "B",
+    "years": [
+      2016,
+      2017,
+      2018
+    ]
+  },
+  "Stoned Cold Stunners": {
+    "owner": "pwes58",
+    "team_id": 5,
+    "abbrev": "SCC",
+    "years": [
+      2016
+    ]
+  },
+  "Aaron Rogers Is Mine Now": {
+    "owner": "zwthomas89",
+    "team_id": 6,
+    "abbrev": "THOM",
+    "years": [
+      2016
+    ]
+  },
+  "Tyrod the Toolman Taylor": {
+    "owner": "jbray5",
+    "team_id": 8,
+    "abbrev": "TTT",
+    "years": [
+      2016
+    ]
+  },
+  "Living Legend": {
+    "owner": "tcspivey8",
+    "team_id": 13,
+    "abbrev": "CHMP",
+    "years": [
+      2016
+    ]
+  },
+  "You like  That?": {
+    "owner": "cjhubauer",
+    "team_id": 1,
+    "abbrev": "BSHU",
+    "years": [
+      2017
+    ]
+  },
+  "Send Points": {
+    "owner": "payton9218600",
+    "team_id": 5,
+    "abbrev": "Help",
+    "years": [
+      2017
+    ]
+  },
+  "Dude, Where's  My Carr ": {
+    "owner": "zwthomas89",
+    "team_id": 6,
+    "abbrev": "THOM",
+    "years": [
+      2017,
+      2018
+    ]
+  },
+  "Free Pimp  Zeke ": {
+    "owner": "jbray5",
+    "team_id": 8,
+    "abbrev": "FPZ",
+    "years": [
+      2017
+    ]
+  },
+  "Dumpster Fire": {
+    "owner": "tcspivey8",
+    "team_id": 13,
+    "abbrev": "FML",
+    "years": [
+      2017
+    ]
+  },
+  "Thielen and Dealin": {
+    "owner": "cjhubauer",
+    "team_id": 1,
+    "abbrev": "BSHU",
+    "years": [
+      2018
+    ]
+  },
+  "Be Gentle": {
+    "owner": "payton9218600",
+    "team_id": 5,
+    "abbrev": "DVDA",
+    "years": [
+      2018
+    ]
+  },
+  "Afternoon TE Time": {
+    "owner": "tcspivey8",
+    "team_id": 13,
+    "abbrev": "SPVY",
+    "years": [
+      2018
+    ]
+  }
+}

@@ -51,7 +51,11 @@ export function normalizePlayer(raw, indexIfNeeded) {
     points,
     rank,
     adp,
-    headshot
+    headshot,
+    // Authoritative model values from /api/board (league-scored). Preferred over
+    // the client-side recompute below when present.
+    serverVorp: typeof raw?.vorp === 'number' ? raw.vorp : null,
+    draftScore: typeof raw?.draftScore === 'number' ? raw.draftScore : null,
   };
 }
 
@@ -89,7 +93,10 @@ export function calculateDraftMetrics(players) {
     const idx = posList.findIndex(x => x?.playerId === p.playerId);
     const nextPoints = posList[idx + 1]?.points ?? p.points ?? 0;
     const cliff = (p.points ?? 0) - nextPoints;
-    const vorp = (p.points ?? 0) - (replacementPoints[(p.position || '').toUpperCase()] ?? 0);
+    // Prefer the server's league-calibrated VORP; fall back to a client estimate.
+    const vorp = (p.serverVorp != null)
+      ? p.serverVorp
+      : (p.points ?? 0) - (replacementPoints[(p.position || '').toUpperCase()] ?? 0);
     return { ...p, vorp, cliff };
   });
 
@@ -120,7 +127,10 @@ export function calculateDraftMetrics(players) {
     const pointsNorm = norm(p.points, ranges.points);
     const vorpNorm = norm(p.vorp, ranges.vorp);
     const cliffNorm = norm(p.cliff, ranges.cliff);
-    const compositeScore = adpNorm * 0.70 + pointsNorm * 0.05 + vorpNorm * 0.20 + cliffNorm * 0.05;
+    // Use the calibrated DraftIQ score from the server when available; otherwise
+    // fall back to the legacy ADP-weighted composite.
+    const legacyComposite = adpNorm * 0.70 + pointsNorm * 0.05 + vorpNorm * 0.20 + cliffNorm * 0.05;
+    const compositeScore = (p.draftScore != null) ? p.draftScore : legacyComposite;
     return { ...p, compositeScore };
   });
 }

@@ -1,0 +1,205 @@
+week,is_regular,team_id,team_name,points,opp_team_id,opp_team_name,is_bye,outcome
+1,True,1,Too Much Bama In Me ,120.28,9,Men of Will,False,L
+1,True,2,Pour One Out For Mahomies!!,125.58,3,Jim Ward's Ole Dick Necks,False,L
+1,True,3,Jim Ward's Ole Dick Necks,146.96,2,Pour One Out For Mahomies!!,False,W
+1,True,4,Injured Reserve ,86.76,12,Rule  #76,False,L
+1,True,5,Jones in for a Repeat,118.42,13,Christopher's Kryptonite ,False,W
+1,True,6,Thom-ASS,131.94,10,LaPorta Potty,False,W
+1,True,8,SCLSU Mud Dogs,109.68,11,ConcreteJungleWet DreamTomato,False,W
+1,True,9,Men of Will,123.52,1,Too Much Bama In Me ,False,W
+1,True,10,LaPorta Potty,93.1,6,Thom-ASS,False,L
+1,True,11,ConcreteJungleWet DreamTomato,91.02,8,SCLSU Mud Dogs,False,L
+1,True,12,Rule  #76,90.98,4,Injured Reserve ,False,W
+1,True,13,Christopher's Kryptonite ,103.24,5,Jones in for a Repeat,False,L
+2,True,1,Too Much Bama In Me ,92.98,13,Christopher's Kryptonite ,False,L
+2,True,2,Pour One Out For Mahomies!!,100.46,8,SCLSU Mud Dogs,False,L
+2,True,3,Jim Ward's Ole Dick Necks,122.5,4,Injured Reserve ,False,W
+2,True,4,Injured Reserve ,81.42,3,Jim Ward's Ole Dick Necks,False,L
+2,True,5,Jones in for a Repeat,93.16,10,LaPorta Potty,False,L
+2,True,6,Thom-ASS,151.06,9,Men of Will,False,W
+2,True,8,SCLSU Mud Dogs,128.66,2,Pour One Out For Mahomies!!,False,W
+2,True,9,Men of Will,114.08,6,Thom-ASS,False,L
+2,True,10,LaPorta Potty,104.62,5,Jones in for a Repeat,False,W
+2,True,11,ConcreteJungleWet DreamTomato,155.12,12,Rule  #76,False,W
+2,True,12,Rule  #76,148.24,11,ConcreteJungleWet DreamTomato,False,L
+2,True,13,Christopher's Kryptonite ,105.64,1,Too Much Bama In Me ,False,W
+3,True,1,Too Much Bama In Me ,75.26,5,Jones in for a Repeat,False,L
+3,True,2,Pour One Out For Mahomies!!,110.94,4,Injured Reserve ,False,W
+3,True,3,Jim Ward's Ole Dick Necks,79.7,11,ConcreteJungleWet DreamTomato,False,L
+3,True,4,Injured Reserve ,82.96,2,Pour One Out For Mahomies!!,False,L
+3,True,5,Jones in for a Repeat,79.68,1,Too Much Bama In Me ,False,W
+3,True,6,Thom-ASS,132.18,13,Christopher's Kryptonite ,False,W
+3,True,8,SCLSU Mud Dogs,140.16,12,Rule  #76,False,W
+3,True,9,Men of Will,139.38,10,LaPorta Potty,False,L
+3,True,10,LaPorta Potty,163.76,9,Men of Will,False,W
+3,True,11,ConcreteJungleWet DreamTomato,92.54,3,Jim Ward's Ole Dick Necks,False,W
+3,True,12,Rule  #76,114.08,8,SCLSU Mud Dogs,False,L
+3,True,13,Christopher's Kryptonite ,116.98,6,Thom-ASS,False,L
+4,True,1,Too Much Bama In Me ,121.18,10,LaPorta Potty,False,W
+4,True,2,Pour One Out For Mahomies!!,100.5,12,Rule  #76,False,W
+4,True,3,Jim Ward's Ole Dick Necks,109.6,8,SCLSU Mud Dogs,False,L
+4,True,4,Injured Reserve ,98.38,11,ConcreteJungleWet DreamTomato,False,L
+4,True,5,Jones in for a Repeat,124.2,6,Thom-ASS,False,W
+4,True,6,Thom-ASS,118.62,5,Jones in for a Repeat,False,L
+4,True,8,SCLSU Mud Dogs,115.12,3,Jim Ward's Ole Dick Necks,False,W
+4,True,9,Men of Will,120.24,13,Christopher's Kryptonite ,False,L
+4,True,10,LaPorta Potty,117.34,1,Too Much Bama In Me ,False,L
+4,True,11,ConcreteJungleWet DreamTomato,114.42,4,Injured Reserve ,False,W
+4,True,12,Rule  #76,82.08,2,Pour One Out For Mahomies!!,False,L
+4,True,13,Christopher's Kryptonite ,136.78,9,Men of Will,False,W
+5,True,1,Too Much Bama In Me ,119.74,6,Thom-ASS,False,W
+5,True,2,Pour One Out For Mahomies!!,113.24,11,ConcreteJungleWet DreamTomato,False,W
+5,True,3,Jim Ward's Ole Dick Necks,128.24,12,Rule  #76,False,W
+5,True,4,Injured Reserve ,124.58,8,SCLSU Mud Dogs,False,W
+5,True,5,Jones in for a Repeat,120.96,9,Men of Will,False,W
+5,True,6,Thom-ASS,87.16,1,Too Much Bama In Me ,False,L
+5,True,8,SCLSU Mud Dogs,120.32,4,Injured Reserve ,False,L
+5,True,9,Men of Will,117.92,5,Jones in for a Repeat,False,L
+5,True,10,LaPorta Potty,101.66,13,Christopher's Kryptonite ,False,L
+5,True,11,ConcreteJungleWet DreamTomato,111.5,2,Pour One Out For Mahomies!!,False,L
+5,True,12,Rule  #76,116.3,3,Jim Ward's Ole Dick Necks,False,L
+5,True,13,Christopher's Kryptonite ,120.44,10,LaPorta Potty,False,W
+6,True,1,Too Much Bama In Me ,136.7,12,Rule  #76,False,W
+6,True,2,Pour One Out For Mahomies!!,72.4,10,LaPorta Potty,False,L
+6,True,3,Jim Ward's Ole Dick Necks,112.08,6,Thom-ASS,False,L
+6,True,4,Injured Reserve ,90.52,9,Men of Will,False,L
+6,True,5,Jones in for a Repeat,116.54,8,SCLSU Mud Dogs,False,L
+6,True,6,Thom-ASS,134.58,3,Jim Ward's Ole Dick Necks,False,W
+6,True,8,SCLSU Mud Dogs,143.16,5,Jones in for a Repeat,False,W
+6,True,9,Men of Will,112.92,4,Injured Reserve ,False,W
+6,True,10,LaPorta Potty,113.82,2,Pour One Out For Mahomies!!,False,W
+6,True,11,ConcreteJungleWet DreamTomato,126.16,13,Christopher's Kryptonite ,False,W
+6,True,12,Rule  #76,81.16,1,Too Much Bama In Me ,False,L
+6,True,13,Christopher's Kryptonite ,92.4,11,ConcreteJungleWet DreamTomato,False,L
+7,True,1,Too Much Bama In Me ,136.72,4,Injured Reserve ,False,W
+7,True,2,Pour One Out For Mahomies!!,76.02,6,Thom-ASS,False,L
+7,True,3,Jim Ward's Ole Dick Necks,79.84,5,Jones in for a Repeat,False,L
+7,True,4,Injured Reserve ,103.14,1,Too Much Bama In Me ,False,L
+7,True,5,Jones in for a Repeat,114.96,3,Jim Ward's Ole Dick Necks,False,W
+7,True,6,Thom-ASS,116.08,2,Pour One Out For Mahomies!!,False,W
+7,True,8,SCLSU Mud Dogs,99.74,9,Men of Will,False,L
+7,True,9,Men of Will,148.34,8,SCLSU Mud Dogs,False,W
+7,True,10,LaPorta Potty,111.7,11,ConcreteJungleWet DreamTomato,False,L
+7,True,11,ConcreteJungleWet DreamTomato,127.16,10,LaPorta Potty,False,W
+7,True,12,Rule  #76,93.3,13,Christopher's Kryptonite ,False,L
+7,True,13,Christopher's Kryptonite ,133.38,12,Rule  #76,False,W
+8,True,1,Too Much Bama In Me ,134.66,8,SCLSU Mud Dogs,False,W
+8,True,2,Pour One Out For Mahomies!!,97.92,5,Jones in for a Repeat,False,L
+8,True,3,Jim Ward's Ole Dick Necks,139.2,9,Men of Will,False,W
+8,True,4,Injured Reserve ,85.86,13,Christopher's Kryptonite ,False,L
+8,True,5,Jones in for a Repeat,111.5,2,Pour One Out For Mahomies!!,False,W
+8,True,6,Thom-ASS,124.8,11,ConcreteJungleWet DreamTomato,False,L
+8,True,8,SCLSU Mud Dogs,95.66,1,Too Much Bama In Me ,False,L
+8,True,9,Men of Will,131.96,3,Jim Ward's Ole Dick Necks,False,L
+8,True,10,LaPorta Potty,120.44,12,Rule  #76,False,L
+8,True,11,ConcreteJungleWet DreamTomato,131.54,6,Thom-ASS,False,W
+8,True,12,Rule  #76,139.78,10,LaPorta Potty,False,W
+8,True,13,Christopher's Kryptonite ,121.64,4,Injured Reserve ,False,W
+9,True,1,Too Much Bama In Me ,127.04,3,Jim Ward's Ole Dick Necks,False,W
+9,True,2,Pour One Out For Mahomies!!,93.7,9,Men of Will,False,W
+9,True,3,Jim Ward's Ole Dick Necks,114.04,1,Too Much Bama In Me ,False,L
+9,True,4,Injured Reserve ,110.34,10,LaPorta Potty,False,L
+9,True,5,Jones in for a Repeat,118.0,11,ConcreteJungleWet DreamTomato,False,L
+9,True,6,Thom-ASS,147.08,12,Rule  #76,False,W
+9,True,8,SCLSU Mud Dogs,113.16,13,Christopher's Kryptonite ,False,W
+9,True,9,Men of Will,87.38,2,Pour One Out For Mahomies!!,False,L
+9,True,10,LaPorta Potty,131.32,4,Injured Reserve ,False,W
+9,True,11,ConcreteJungleWet DreamTomato,139.4,5,Jones in for a Repeat,False,W
+9,True,12,Rule  #76,94.66,6,Thom-ASS,False,L
+9,True,13,Christopher's Kryptonite ,100.98,8,SCLSU Mud Dogs,False,L
+10,True,1,Too Much Bama In Me ,99.88,2,Pour One Out For Mahomies!!,False,W
+10,True,2,Pour One Out For Mahomies!!,65.0,1,Too Much Bama In Me ,False,L
+10,True,3,Jim Ward's Ole Dick Necks,102.48,13,Christopher's Kryptonite ,False,W
+10,True,4,Injured Reserve ,107.32,6,Thom-ASS,False,L
+10,True,5,Jones in for a Repeat,131.84,12,Rule  #76,False,W
+10,True,6,Thom-ASS,136.22,4,Injured Reserve ,False,W
+10,True,8,SCLSU Mud Dogs,107.38,10,LaPorta Potty,False,L
+10,True,9,Men of Will,112.7,11,ConcreteJungleWet DreamTomato,False,W
+10,True,10,LaPorta Potty,117.14,8,SCLSU Mud Dogs,False,W
+10,True,11,ConcreteJungleWet DreamTomato,107.38,9,Men of Will,False,L
+10,True,12,Rule  #76,107.74,5,Jones in for a Repeat,False,L
+10,True,13,Christopher's Kryptonite ,96.94,3,Jim Ward's Ole Dick Necks,False,L
+11,True,1,Too Much Bama In Me ,115.9,11,ConcreteJungleWet DreamTomato,False,W
+11,True,2,Pour One Out For Mahomies!!,105.68,13,Christopher's Kryptonite ,False,L
+11,True,3,Jim Ward's Ole Dick Necks,105.78,10,LaPorta Potty,False,W
+11,True,4,Injured Reserve ,121.84,5,Jones in for a Repeat,False,W
+11,True,5,Jones in for a Repeat,103.04,4,Injured Reserve ,False,L
+11,True,6,Thom-ASS,128.86,8,SCLSU Mud Dogs,False,L
+11,True,8,SCLSU Mud Dogs,137.04,6,Thom-ASS,False,W
+11,True,9,Men of Will,98.68,12,Rule  #76,False,L
+11,True,10,LaPorta Potty,104.34,3,Jim Ward's Ole Dick Necks,False,L
+11,True,11,ConcreteJungleWet DreamTomato,113.24,1,Too Much Bama In Me ,False,L
+11,True,12,Rule  #76,134.9,9,Men of Will,False,W
+11,True,13,Christopher's Kryptonite ,144.54,2,Pour One Out For Mahomies!!,False,W
+12,True,1,Too Much Bama In Me ,153.78,12,Rule  #76,False,W
+12,True,2,Pour One Out For Mahomies!!,106.02,10,LaPorta Potty,False,W
+12,True,3,Jim Ward's Ole Dick Necks,97.46,6,Thom-ASS,False,L
+12,True,4,Injured Reserve ,127.56,9,Men of Will,False,W
+12,True,5,Jones in for a Repeat,105.2,8,SCLSU Mud Dogs,False,L
+12,True,6,Thom-ASS,141.1,3,Jim Ward's Ole Dick Necks,False,W
+12,True,8,SCLSU Mud Dogs,138.8,5,Jones in for a Repeat,False,W
+12,True,9,Men of Will,101.68,4,Injured Reserve ,False,L
+12,True,10,LaPorta Potty,105.66,2,Pour One Out For Mahomies!!,False,L
+12,True,11,ConcreteJungleWet DreamTomato,74.96,13,Christopher's Kryptonite ,False,L
+12,True,12,Rule  #76,79.9,1,Too Much Bama In Me ,False,L
+12,True,13,Christopher's Kryptonite ,105.56,11,ConcreteJungleWet DreamTomato,False,W
+13,True,1,Too Much Bama In Me ,117.2,4,Injured Reserve ,False,W
+13,True,2,Pour One Out For Mahomies!!,121.52,6,Thom-ASS,False,W
+13,True,3,Jim Ward's Ole Dick Necks,61.28,5,Jones in for a Repeat,False,L
+13,True,4,Injured Reserve ,108.5,1,Too Much Bama In Me ,False,L
+13,True,5,Jones in for a Repeat,90.5,3,Jim Ward's Ole Dick Necks,False,W
+13,True,6,Thom-ASS,108.62,2,Pour One Out For Mahomies!!,False,L
+13,True,8,SCLSU Mud Dogs,154.44,9,Men of Will,False,W
+13,True,9,Men of Will,126.28,8,SCLSU Mud Dogs,False,L
+13,True,10,LaPorta Potty,150.56,11,ConcreteJungleWet DreamTomato,False,W
+13,True,11,ConcreteJungleWet DreamTomato,98.32,10,LaPorta Potty,False,L
+13,True,12,Rule  #76,160.9,13,Christopher's Kryptonite ,False,W
+13,True,13,Christopher's Kryptonite ,129.64,12,Rule  #76,False,L
+14,True,1,Too Much Bama In Me ,151.54,13,Christopher's Kryptonite ,False,W
+14,True,2,Pour One Out For Mahomies!!,107.18,5,Jones in for a Repeat,False,L
+14,True,3,Jim Ward's Ole Dick Necks,130.72,9,Men of Will,False,L
+14,True,4,Injured Reserve ,51.3,8,SCLSU Mud Dogs,False,L
+14,True,5,Jones in for a Repeat,140.38,2,Pour One Out For Mahomies!!,False,W
+14,True,6,Thom-ASS,106.1,11,ConcreteJungleWet DreamTomato,False,L
+14,True,8,SCLSU Mud Dogs,97.02,4,Injured Reserve ,False,W
+14,True,9,Men of Will,138.12,3,Jim Ward's Ole Dick Necks,False,W
+14,True,10,LaPorta Potty,115.22,12,Rule  #76,False,L
+14,True,11,ConcreteJungleWet DreamTomato,143.32,6,Thom-ASS,False,W
+14,True,12,Rule  #76,116.66,10,LaPorta Potty,False,W
+14,True,13,Christopher's Kryptonite ,143.8,1,Too Much Bama In Me ,False,L
+15,False,1,Too Much Bama In Me ,118.34,3,Jim Ward's Ole Dick Necks,False,W
+15,False,2,Pour One Out For Mahomies!!,102.18,12,Rule  #76,False,L
+15,False,3,Jim Ward's Ole Dick Necks,74.96,1,Too Much Bama In Me ,False,L
+15,False,4,Injured Reserve ,96.82,9,Men of Will,False,L
+15,False,5,Jones in for a Repeat,100.44,13,Christopher's Kryptonite ,False,L
+15,False,6,Thom-ASS,92.78,11,ConcreteJungleWet DreamTomato,False,L
+15,False,8,SCLSU Mud Dogs,141.14,10,LaPorta Potty,False,W
+15,False,9,Men of Will,102.5,4,Injured Reserve ,False,W
+15,False,10,LaPorta Potty,126.76,8,SCLSU Mud Dogs,False,L
+15,False,11,ConcreteJungleWet DreamTomato,169.1,6,Thom-ASS,False,W
+15,False,12,Rule  #76,119.46,2,Pour One Out For Mahomies!!,False,W
+15,False,13,Christopher's Kryptonite ,144.06,5,Jones in for a Repeat,False,W
+16,False,1,Too Much Bama In Me ,92.8,11,ConcreteJungleWet DreamTomato,False,L
+16,False,2,Pour One Out For Mahomies!!,59.36,4,Injured Reserve ,False,L
+16,False,3,Jim Ward's Ole Dick Necks,90.76,10,LaPorta Potty,False,L
+16,False,4,Injured Reserve ,93.42,2,Pour One Out For Mahomies!!,False,W
+16,False,5,Jones in for a Repeat,137.54,6,Thom-ASS,False,L
+16,False,6,Thom-ASS,159.32,5,Jones in for a Repeat,False,W
+16,False,8,SCLSU Mud Dogs,161.62,13,Christopher's Kryptonite ,False,W
+16,False,9,Men of Will,107.88,12,Rule  #76,False,L
+16,False,10,LaPorta Potty,185.14,3,Jim Ward's Ole Dick Necks,False,W
+16,False,11,ConcreteJungleWet DreamTomato,98.14,1,Too Much Bama In Me ,False,W
+16,False,12,Rule  #76,111.38,9,Men of Will,False,W
+16,False,13,Christopher's Kryptonite ,120.34,8,SCLSU Mud Dogs,False,L
+17,False,1,Too Much Bama In Me ,137.02,13,Christopher's Kryptonite ,False,W
+17,False,2,Pour One Out For Mahomies!!,96.18,9,Men of Will,False,L
+17,False,3,Jim Ward's Ole Dick Necks,64.0,5,Jones in for a Repeat,False,L
+17,False,4,Injured Reserve ,90.26,12,Rule  #76,False,L
+17,False,5,Jones in for a Repeat,87.18,3,Jim Ward's Ole Dick Necks,False,W
+17,False,6,Thom-ASS,103.68,10,LaPorta Potty,False,L
+17,False,8,SCLSU Mud Dogs,153.48,11,ConcreteJungleWet DreamTomato,False,W
+17,False,9,Men of Will,131.82,2,Pour One Out For Mahomies!!,False,W
+17,False,10,LaPorta Potty,142.32,6,Thom-ASS,False,W
+17,False,11,ConcreteJungleWet DreamTomato,130.16,8,SCLSU Mud Dogs,False,L
+17,False,12,Rule  #76,126.44,4,Injured Reserve ,False,W
+17,False,13,Christopher's Kryptonite ,94.6,1,Too Much Bama In Me ,False,L

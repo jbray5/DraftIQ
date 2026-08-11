@@ -1,34 +1,61 @@
-<<<<<<< HEAD
-# Fantasy Football Draft Tool
-This project contains a custom algorithm for fantasy football drafts, considering unique league settings and player metrics.
-
-## Project Structure
-- **data/**: Contains raw and processed data files.
-- **scripts/**: Core scripts for data processing and draft algorithm.
-- **models/**: Machine learning models and training scripts.
-- **notebooks/**: Jupyter notebooks for data analysis and visualization.
-- **output/**: Generated reports and visualizations.
-- **env/**: Virtual environment directory (optional).
-=======
 # DraftIQ
-DraftIQ is an intelligent, customizable fantasy football draft tool built for players who want an edge. It combines real-time data, predictive algorithms, and an intuitive drag-and-drop interface to help you dominate your draft — one pick at a time.
 
-🧠 DraftIQ – Smarter Fantasy Football Drafting
-DraftIQ is an intelligent, customizable fantasy football draft tool built for players who want an edge. It combines real-time data, predictive algorithms, and an intuitive drag-and-drop interface to help you dominate your draft — one pick at a time.
+An intelligent, league-aware fantasy football draft command center — built to win
+a specific 12-team ESPN half-PPR home league. DraftIQ combines live projections,
+a calibrated draft model, and an AI coach (Claude) behind a fast drag-and-drop
+draft board.
 
-✨ Features
-📊 Next Pick Recommendations powered by your custom algorithm
+## Stack
 
-🖱️ Drag-and-Drop Roster Building for easy draft management
+- **Backend:** Python / Flask (`api.py`) — serves merged rankings, an AI coach
+  endpoint, and league config.
+- **Frontend:** React + Vite + Tailwind (`frontend/`) — drag-and-drop draft board,
+  available-player pool, suggestions, your-team panel, undo/redo, localStorage.
+- **AI coach:** Anthropic Claude (structured JSON advice per player).
+- **Data:** SportsData.io (projections / ADP / headshots) + ESPN league history.
 
-🧩 Position & Tier Filters to simplify decision-making
+## Project layout
 
-🔄 Live Draft Board View with team-by-team pick tracking
+```
+api.py                 Flask app: /api/rankings, /api/ai/opinion, /api/league-tendencies
+context_builder.py     Prompt/context assembly for the coach
+data/
+  raw/                 Source data + league exports (drafts, projections, stats)
+  processed/           Derived/cleaned tables (gitignored)
+  league_tendencies.json   Per-team biases + scoring used by the coach
+frontend/              React app (components/, hooks/, utils/, lib/)
+models/                Draft model (VORP/VONA, scarcity, calibration) — WIP
+.claude/               Claude Code config: skills, subagents, settings
+CLAUDE.md              Guide for AI agents working in this repo
+```
 
-🧠 Smart Suggestion Engine tailored to your team composition, ADP, and bye weeks
+## Setup
 
-💻 Built with Python + React, using Django and REST APIs for modern interactivity
+```bash
+# 1. Python backend
+python -m venv .venv && . .venv/Scripts/activate   # Windows; use bin/activate on *nix
+pip install -r requirements.txt
+cp .env.example .env                                # then fill in keys
 
-🚀 Why DraftIQ?
-While others fumble with spreadsheets or basic cheat sheets, DraftIQ gives you intelligent insight, smooth UX, and custom control. Draft like a data scientist. Win like a champion.
->>>>>>> 33a357f2539cac8f941c3f87609d8c40b8dd8436
+# 2. Run the API (port 5001)
+python api.py
+
+# 3. Frontend
+cd frontend
+npm install
+npm run dev                                         # Vite dev server
+```
+
+## League
+
+12-team ESPN, half-PPR, with IDP / K / D-ST. Roster: QB, RB1, RB2, WR1, WR2, TE,
+FLEX, IDP, D/ST, K, + 7 bench. See `data/league_tendencies.json` and `CLAUDE.md`
+for the model and scoring assumptions.
+
+## Roadmap
+
+- [x] Live rankings (SportsData.io) + drag-and-drop board
+- [x] AI coach on Claude with structured output
+- [ ] ESPN puller: live ADP + historical drafts/standings/weekly scores
+- [ ] Calibrated draft model (VONA + positional scarcity + pick-timing + roster value)
+- [ ] Cheat-sheet, draft-grade, and what-if/trade screens

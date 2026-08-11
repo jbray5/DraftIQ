@@ -1,0 +1,205 @@
+team_id,team_name,player_id,player_name,position,pro_team,total_points,projected_total_points
+1,A team has no name,16799,Allen Robinson,WR,JAX,155.5,0
+1,A team has no name,9705,Brandon Marshall,WR,NYG,126.5,0
+1,A team has no name,12514,LeSean McCoy,RB,BUF,263.0,0
+1,A team has no name,12563,Michael Crabtree,WR,LV,188.5,0
+1,A team has no name,16724,Blake Bortles,QB,JAX,260.5,0
+1,A team has no name,16757,Derek Carr,QB,LV,257.0,0
+1,A team has no name,14851,Terrelle Pryor Sr.,WR,WSH,167.5,0
+1,A team has no name,15952,Mike Gillislee,RB,BUF,119.5,0
+1,A team has no name,2575408,Robert Kelley,RB,WSH,116.0,0
+1,A team has no name,2576237,Thomas Rawls,RB,SEA,64.5,0
+1,A team has no name,2148,Sebastian Janikowski,K,LV,134.0,0
+1,A team has no name,16732,Eric Ebron,TE,DET,109.5,0
+1,A team has no name,16727,Ryan Shazier,LB,PIT,108.0,0
+1,A team has no name,17402,Seth Roberts,WR,LV,86.0,0
+1,A team has no name,14023,Mason Foster,LB,WSH,128.0,0
+1,A team has no name,-16010,Titans D/ST,D/ST,TEN,1013.0,0
+1,A team has no name,2520698,Cameron Meredith,WR,CHI,145.0,0
+2,FOR WHOM O'DELL TOLLS,2977644,Todd Gurley,RB,LAR,164.5,0
+2,FOR WHOM O'DELL TOLLS,14912,Alshon Jeffery,WR,PHI,117.0,0
+2,FOR WHOM O'DELL TOLLS,10475,Greg Olsen,TE,CAR,163.0,0
+2,FOR WHOM O'DELL TOLLS,14005,DeMarco Murray,RB,TEN,255.5,0
+2,FOR WHOM O'DELL TOLLS,2515416,Jeremy Langford,RB,CHI,56.5,0
+2,FOR WHOM O'DELL TOLLS,11283,DeSean Jackson,WR,TB,147.0,0
+2,FOR WHOM O'DELL TOLLS,14012,Andy Dalton,QB,CIN,251.0,0
+2,FOR WHOM O'DELL TOLLS,2622,Steve Smith Sr.,WR,BAL,145.0,0
+2,FOR WHOM O'DELL TOLLS,2969939,Jameis Winston,QB,TB,244.0,0
+2,FOR WHOM O'DELL TOLLS,15349,Cole Beasley,WR,DAL,142.5,0
+2,FOR WHOM O'DELL TOLLS,14402,Chris Hogan,WR,NE,105.0,0
+2,FOR WHOM O'DELL TOLLS,11923,Steven Hauschka,K,BUF,138.0,0
+2,FOR WHOM O'DELL TOLLS,14860,Craig Robertson,LB,NO,123.0,0
+2,FOR WHOM O'DELL TOLLS,2576623,DeVante Parker,WR,MIA,122.0,0
+2,FOR WHOM O'DELL TOLLS,2971589,Paul Perkins,RB,NYG,62.5,0
+2,FOR WHOM O'DELL TOLLS,-16030,Jaguars D/ST,D/ST,JAX,1061.0,0
+2,FOR WHOM O'DELL TOLLS,14360,Matt Asiata,RB,MIN,107.0,0
+3,Jim Ward's Allstars,13983,A.J. Green,WR,CIN,149.0,0
+3,Jim Ward's Allstars,13981,Mark Ingram,RB,NO,205.0,0
+3,Jim Ward's Allstars,16737,Mike Evans,WR,TB,249.0,0
+3,Jim Ward's Allstars,16730,Kelvin Benjamin,WR,CAR,160.5,0
+3,Jim Ward's Allstars,16803,Jeremy Hill,RB,CIN,157.5,0
+3,Jim Ward's Allstars,2580,Drew Brees,QB,NO,325.0,0
+3,Jim Ward's Allstars,-16022,Cardinals D/ST,D/ST,ARI,1173.0,0
+3,Jim Ward's Allstars,2976592,Sterling Shepard,WR,NYG,148.5,0
+3,Jim Ward's Allstars,2979477,Tevin Coleman,RB,ATL,163.5,0
+3,Jim Ward's Allstars,2577429,Benardrick McKinney,LB,HOU,141.0,0
+3,Jim Ward's Allstars,2577134,Ty Montgomery,RB,GB,110.0,0
+3,Jim Ward's Allstars,16766,C.J. Fiedorowicz,TE,HOU,102.0,0
+3,Jim Ward's Allstars,15965,Dustin Hopkins,K,WSH,143.0,0
+3,Jim Ward's Allstars,3122866,Devontae Booker,RB,DEN,114.5,0
+3,Jim Ward's Allstars,-16023,Steelers D/ST,D/ST,PIT,1154.0,0
+3,Jim Ward's Allstars,-16004,Bengals D/ST,D/ST,CIN,1172.0,0
+3,Jim Ward's Allstars,3046439,Hunter Henry,TE,LAC,109.0,0
+4,Bell yeah,16790,Jarvis Landry,WR,MIA,178.0,0
+4,Bell yeah,14881,Russell Wilson,QB,SEA,258.0,0
+4,Bell yeah,8479,Frank Gore,RB,IND,185.0,0
+4,Bell yeah,13295,Emmanuel Sanders,WR,DEN,165.5,0
+4,Bell yeah,-16026,Seahawks D/ST,D/ST,SEA,1248.0,0
+4,Bell yeah,4527,Jason Witten,TE,DAL,114.5,0
+4,Bell yeah,2976316,Michael Thomas,WR,NO,207.0,0
+4,Bell yeah,8416,Alex Smith,QB,KC,214.5,0
+4,Bell yeah,15825,Le'Veon Bell,RB,PIT,269.5,0
+4,Bell yeah,2573079,Carson Wentz,QB,PHI,206.5,0
+4,Bell yeah,14922,Mohamed Sanu,WR,ATL,113.5,0
+4,Bell yeah,2578553,Malcolm Mitchell,WR,NE,76.0,0
+4,Bell yeah,15918,Caleb Sturgis,K,PHI,144.0,0
+4,Bell yeah,17300,Zachary Orr,LB,BAL,144.0,0
+4,Bell yeah,-16009,Packers D/ST,D/ST,GB,1044.0,0
+4,Bell yeah,9592,Vernon Davis,TE,WSH,87.0,0
+4,Bell yeah,2574808,Robby Anderson,WR,NYJ,94.0,0
+5,Stoned Cold Stunners,13982,Julio Jones,WR,ATL,213.5,0
+5,Stoned Cold Stunners,2976499,Amari Cooper,WR,LV,181.5,0
+5,Stoned Cold Stunners,16777,Carlos Hyde,RB,SF,168.5,0
+5,Stoned Cold Stunners,11247,Jonathan Stewart,RB,CAR,133.0,0
+5,Stoned Cold Stunners,15847,Travis Kelce,TE,KC,175.5,0
+5,Stoned Cold Stunners,2976212,Stefon Diggs,WR,MIN,146.0,0
+5,Stoned Cold Stunners,-16012,Chiefs D/ST,D/ST,KC,1140.0,0
+5,Stoned Cold Stunners,9704,Stephen Gostkowski,K,NE,135.0,0
+5,Stoned Cold Stunners,11237,Matt Ryan,QB,ATL,334.0,0
+5,Stoned Cold Stunners,8544,Darren Sproles,RB,PHI,125.0,0
+5,Stoned Cold Stunners,12601,Mike Wallace,WR,BAL,162.0,0
+5,Stoned Cold Stunners,16783,Terrance West,RB,BAL,142.0,0
+5,Stoned Cold Stunners,15835,Zach Ertz,TE,PHI,138.0,0
+5,Stoned Cold Stunners,4459,Carson Palmer,QB,ARI,234.0,0
+5,Stoned Cold Stunners,-16033,Ravens D/ST,D/ST,BAL,1140.0,0
+5,Stoned Cold Stunners,16460,Adam Thielen,WR,MIN,159.5,0
+5,Stoned Cold Stunners,15830,Jamie Collins,LB,CLE,126.0,0
+6,Aaron Rogers Is Mine Now,8439,Aaron Rodgers,QB,GB,365.0,0
+6,Aaron Rogers Is Mine Now,15920,Latavius Murray,RB,MIN,180.5,0
+6,Aaron Rogers Is Mine Now,14885,Doug Martin,RB,TB,73.0,0
+6,Aaron Rogers Is Mine Now,16763,Jordan Matthews,WR,PHI,128.5,0
+6,Aaron Rogers Is Mine Now,2573300,Jay Ajayi,RB,MIA,192.5,0
+6,Aaron Rogers Is Mine Now,13284,Sean Lee,LB,DAL,147.0,0
+6,Aaron Rogers Is Mine Now,4512,Anquan Boldin,WR,DET,132.5,0
+6,Aaron Rogers Is Mine Now,-16002,Bills D/ST,D/ST,BUF,1213.0,0
+6,Aaron Rogers Is Mine Now,14151,Jeremy Kerley,WR,SF,110.0,0
+6,Aaron Rogers Is Mine Now,12576,Brandon LaFell,WR,CIN,148.0,0
+6,Aaron Rogers Is Mine Now,16913,James White,RB,NE,121.0,0
+6,Aaron Rogers Is Mine Now,2976516,T.J. Yeldon,RB,JAX,101.0,0
+6,Aaron Rogers Is Mine Now,-16024,Chargers D/ST,D/ST,LAC,1148.0,0
+6,Aaron Rogers Is Mine Now,16504,Jack Doyle,TE,IND,111.5,0
+6,Aaron Rogers Is Mine Now,9329,Nick Novak,K,HOU,136.0,0
+6,Aaron Rogers Is Mine Now,3043275,Austin Hooper,TE,ATL,50.5,0
+6,Aaron Rogers Is Mine Now,16921,Alfred Blue,RB,HOU,54.0,0
+8,Tyrod the Toolman Taylor,14880,Kirk Cousins,QB,WSH,290.0,0
+8,Tyrod the Toolman Taylor,5528,Larry Fitzgerald,WR,ARI,184.5,0
+8,Tyrod the Toolman Taylor,15994,Theo Riddick,RB,DET,125.5,0
+8,Tyrod the Toolman Taylor,14163,Tyrod Taylor,QB,BUF,254.0,0
+8,Tyrod the Toolman Taylor,15062,Travis Benjamin,WR,LAC,106.5,0
+8,Tyrod the Toolman Taylor,13232,Jimmy Graham,TE,SEA,151.5,0
+8,Tyrod the Toolman Taylor,13217,Golden Tate,WR,DET,169.5,0
+8,Tyrod the Toolman Taylor,13934,Antonio Brown,WR,PIT,248.0,0
+8,Tyrod the Toolman Taylor,14129,Bilal Powell,RB,NYJ,159.0,0
+8,Tyrod the Toolman Taylor,11295,Martellus Bennett,TE,GB,132.5,0
+8,Tyrod the Toolman Taylor,14979,Bobby Wagner,LB,SEA,180.0,0
+8,Tyrod the Toolman Taylor,17427,Cairo Santos,K,KC,137.0,0
+8,Tyrod the Toolman Taylor,13587,Chris Ivory,RB,JAX,75.0,0
+8,Tyrod the Toolman Taylor,16782,Jerick McKinnon,RB,MIN,118.5,0
+8,Tyrod the Toolman Taylor,11688,Dan Carpenter,K,BUF,98.0,0
+8,Tyrod the Toolman Taylor,17437,Taylor Gabriel,WR,ATL,115.5,0
+8,Tyrod the Toolman Taylor,-16020,Jets D/ST,D/ST,NYJ,1107.0,0
+9,Watt Watt in the butt,2508176,David Johnson,RB,ARI,357.0,0
+9,Watt Watt in the butt,13994,Cam Newton,QB,CAR,242.0,0
+9,Watt Watt in the butt,14924,T.Y. Hilton,WR,IND,223.5,0
+9,Watt Watt in the butt,14053,Randall Cobb,WR,GB,118.0,0
+9,Watt Watt in the butt,14221,Doug Baldwin,WR,SEA,199.0,0
+9,Watt Watt in the butt,2330,Tom Brady,QB,NE,251.0,0
+9,Watt Watt in the butt,17177,Allen Hurns,WR,JAX,78.5,0
+9,Watt Watt in the butt,2587819,Tyrell Williams,WR,LAC,180.5,0
+9,Watt Watt in the butt,17453,Cameron Brate,TE,TB,137.5,0
+9,Watt Watt in the butt,14909,Kendall Wright,WR,CHI,71.5,0
+9,Watt Watt in the butt,11383,Tim Hightower,RB,SF,103.0,0
+9,Watt Watt in the butt,-16017,Patriots D/ST,D/ST,NE,1169.0,0
+9,Watt Watt in the butt,3046409,Alex Collins,RB,SEA,25.5,0
+9,Watt Watt in the butt,2971888,Kenneth Dixon,RB,BAL,80.0,0
+9,Watt Watt in the butt,14017,Shane Vereen,RB,NYG,29.5,0
+9,Watt Watt in the butt,1097,Adam Vinatieri,K,IND,145.0,0
+9,Watt Watt in the butt,16710,Khalil Mack,DE,LV,119.0,0
+10,High Noon,12649,Julian Edelman,WR,NE,172.0,0
+10,High Noon,14874,Andrew Luck,QB,IND,298.0,0
+10,High Noon,16791,Donte Moncrief,WR,IND,86.0,0
+10,High Noon,15072,Marvin Jones,WR,DET,137.5,0
+10,High Noon,17133,Isaiah Crowell,RB,CLE,175.0,0
+10,High Noon,-16016,Vikings D/ST,D/ST,MIN,1170.0,0
+10,High Noon,4333,Matt Bryant,K,ATL,176.0,0
+10,High Noon,12556,Kenny Britt,WR,CLE,156.0,0
+10,High Noon,14198,Dion Lewis,RB,NE,39.5,0
+10,High Noon,3060022,Jordan Howard,RB,CHI,207.5,0
+10,High Noon,15102,Rishard Matthews,WR,TEN,173.5,0
+10,High Noon,14269,Dontrelle Inman,WR,LAC,131.0,0
+10,High Noon,13204,Ryan Mathews,RB,PHI,132.5,0
+10,High Noon,-16019,Giants D/ST,D/ST,NYG,1288.0,0
+10,High Noon,13231,Dennis Pitta,TE,BAL,120.0,0
+10,High Noon,15070,Tahir Whitehead,LB,DET,132.0,0
+10,High Noon,12537,Jared Cook,TE,LV,52.0,0
+11,Dez (Bryant) Nuts,11270,Jordy Nelson,WR,GB,248.5,0
+11,Dez (Bryant) Nuts,13216,Demaryius Thomas,WR,DEN,177.0,0
+11,Dez (Bryant) Nuts,11278,Matt Forte,RB,NYJ,156.0,0
+11,Dez (Bryant) Nuts,5529,Philip Rivers,QB,LAC,250.0,0
+11,Dez (Bryant) Nuts,5362,Antonio Gates,TE,LAC,117.5,0
+11,Dez (Bryant) Nuts,12503,Rashad Jennings,RB,NYG,110.5,0
+11,Dez (Bryant) Nuts,-16029,Panthers D/ST,D/ST,CAR,1204.0,0
+11,Dez (Bryant) Nuts,2577417,Dak Prescott,QB,DAL,272.0,0
+11,Dez (Bryant) Nuts,13214,James Starks,RB,GB,42.5,0
+11,Dez (Bryant) Nuts,11122,Matt Prater,K,DET,143.0,0
+11,Dez (Bryant) Nuts,15806,Alec Ogletree,LB,LAR,144.0,0
+11,Dez (Bryant) Nuts,16020,Spencer Ware,RB,KC,163.5,0
+11,Dez (Bryant) Nuts,2577654,DeAndre Washington,RB,LV,69.5,0
+11,Dez (Bryant) Nuts,12579,Jeremy Maclin,WR,KC,83.0,0
+11,Dez (Bryant) Nuts,2985659,Wil Lutz,K,NO,142.0,0
+11,Dez (Bryant) Nuts,3116406,Tyreek Hill,WR,KC,181.5,0
+11,Dez (Bryant) Nuts,-16034,Texans D/ST,D/ST,HOU,1120.0,0
+12,Rule #76,15860,Jordan Reed,TE,WSH,131.0,0
+12,Rule #76,5536,Ben Roethlisberger,QB,PIT,246.0,0
+12,Rule #76,2576434,Melvin Gordon,RB,LAC,219.5,0
+12,Rule #76,13213,LeGarrette Blount,RB,NE,221.5,0
+12,Rule #76,15683,Justin Tucker,K,BAL,174.0,0
+12,Rule #76,14054,Kyle Rudolph,TE,MIN,162.5,0
+12,Rule #76,11439,Pierre Garcon,WR,SF,152.5,0
+12,Rule #76,13215,Dez Bryant,WR,DAL,152.0,0
+12,Rule #76,14973,Zach Brown,LB,WSH,163.0,0
+12,Rule #76,2576980,Marcus Mariota,QB,TEN,247.0,0
+12,Rule #76,16800,Davante Adams,WR,GB,205.5,0
+12,Rule #76,17258,Willie Snead,WR,NO,151.0,0
+12,Rule #76,2979841,Landon Collins,S,NYG,151.0,0
+12,Rule #76,-16008,Lions D/ST,D/ST,DET,1069.0,0
+12,Rule #76,3051392,Ezekiel Elliott,RB,DAL,297.0,0
+12,Rule #76,-16021,Eagles D/ST,D/ST,PHI,1109.0,0
+12,Rule #76,-16013,Raiders D/ST,D/ST,LV,1066.0,0
+13,Living Legend,16733,Odell Beckham Jr.,WR,NYG,239.5,0
+13,Living Legend,9761,Delanie Walker,TE,TEN,150.5,0
+13,Living Legend,5526,Eli Manning,QB,NYG,218.0,0
+13,Living Legend,2969962,Duke Johnson Jr.,RB,CLE,106.5,0
+13,Living Legend,-16007,Broncos D/ST,D/ST,DEN,1220.0,0
+13,Living Legend,14322,Dan Bailey,K,DAL,137.0,0
+13,Living Legend,12483,Matthew Stafford,QB,DET,268.0,0
+13,Living Legend,16944,Devonta Freeman,RB,ATL,243.0,0
+13,Living Legend,16725,Sammy Watkins,WR,BUF,68.0,0
+13,Living Legend,14886,Lamar Miller,RB,HOU,165.5,0
+13,Living Legend,2576716,Jamison Crowder,WR,WSH,156.5,0
+13,Living Legend,2978929,Corey Coleman,WR,CLE,72.5,0
+13,Living Legend,16731,Brandin Cooks,WR,NE,198.0,0
+13,Living Legend,15795,DeAndre Hopkins,WR,HOU,157.0,0
+13,Living Legend,14900,Coby Fleener,TE,NO,105.0,0
+13,Living Legend,2976541,Kwon Alexander,LB,TB,163.0,0
+13,Living Legend,2575553,Kenneth Farrow,RB,LAC,25.5,0

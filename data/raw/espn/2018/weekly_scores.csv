@@ -1,0 +1,193 @@
+week,is_regular,team_id,team_name,points,opp_team_id,opp_team_name,is_bye,outcome
+1,True,1,Thielen and Dealin,105.86,9,Tonie's Tigers,False,W
+1,True,2,Rodger  That,116.74,13,Afternoon TE Time,False,L
+1,True,3,Jim Ward's Ole Dick Necks,138.06,12,Rule #76,False,L
+1,True,4,Bell yeah,132.18,5,Be Gentle,False,W
+1,True,5,Be Gentle,86.74,4,Bell yeah,False,L
+1,True,6,"Dude, Where's  My Carr ",87.14,10,High Noon,False,L
+1,True,8,SCLSU Mud Dogs,129.22,11,Dez (Bryant) Nuts,False,W
+1,True,9,Tonie's Tigers,90.06,1,Thielen and Dealin,False,L
+1,True,10,High Noon,143.24,6,"Dude, Where's  My Carr ",False,W
+1,True,11,Dez (Bryant) Nuts,113.5,8,SCLSU Mud Dogs,False,L
+1,True,12,Rule #76,149.26,3,Jim Ward's Ole Dick Necks,False,W
+1,True,13,Afternoon TE Time,146.44,2,Rodger  That,False,W
+2,True,1,Thielen and Dealin,126.6,4,Bell yeah,False,W
+2,True,2,Rodger  That,104.04,3,Jim Ward's Ole Dick Necks,False,W
+2,True,3,Jim Ward's Ole Dick Necks,97.78,2,Rodger  That,False,L
+2,True,4,Bell yeah,100.18,1,Thielen and Dealin,False,L
+2,True,5,Be Gentle,90.5,6,"Dude, Where's  My Carr ",False,L
+2,True,6,"Dude, Where's  My Carr ",119.2,5,Be Gentle,False,W
+2,True,8,SCLSU Mud Dogs,141.14,12,Rule #76,False,W
+2,True,9,Tonie's Tigers,109.32,10,High Noon,False,L
+2,True,10,High Noon,127.38,9,Tonie's Tigers,False,W
+2,True,11,Dez (Bryant) Nuts,168.98,13,Afternoon TE Time,False,W
+2,True,12,Rule #76,126.74,8,SCLSU Mud Dogs,False,L
+2,True,13,Afternoon TE Time,145.3,11,Dez (Bryant) Nuts,False,L
+3,True,1,Thielen and Dealin,101.14,5,Be Gentle,False,L
+3,True,2,Rodger  That,105.6,12,Rule #76,False,L
+3,True,3,Jim Ward's Ole Dick Necks,117.36,11,Dez (Bryant) Nuts,False,L
+3,True,4,Bell yeah,64.82,10,High Noon,False,L
+3,True,5,Be Gentle,122.4,1,Thielen and Dealin,False,W
+3,True,6,"Dude, Where's  My Carr ",126.24,9,Tonie's Tigers,False,W
+3,True,8,SCLSU Mud Dogs,110.96,13,Afternoon TE Time,False,L
+3,True,9,Tonie's Tigers,109.04,6,"Dude, Where's  My Carr ",False,L
+3,True,10,High Noon,101.48,4,Bell yeah,False,W
+3,True,11,Dez (Bryant) Nuts,128.02,3,Jim Ward's Ole Dick Necks,False,W
+3,True,12,Rule #76,126.84,2,Rodger  That,False,W
+3,True,13,Afternoon TE Time,156.5,8,SCLSU Mud Dogs,False,W
+4,True,1,Thielen and Dealin,140.68,6,"Dude, Where's  My Carr ",False,W
+4,True,2,Rodger  That,116.72,8,SCLSU Mud Dogs,False,L
+4,True,3,Jim Ward's Ole Dick Necks,119.16,13,Afternoon TE Time,False,L
+4,True,4,Bell yeah,86.06,9,Tonie's Tigers,False,L
+4,True,5,Be Gentle,118.38,10,High Noon,False,L
+4,True,6,"Dude, Where's  My Carr ",130.54,1,Thielen and Dealin,False,L
+4,True,8,SCLSU Mud Dogs,141.16,2,Rodger  That,False,W
+4,True,9,Tonie's Tigers,117.08,4,Bell yeah,False,W
+4,True,10,High Noon,152.38,5,Be Gentle,False,W
+4,True,11,Dez (Bryant) Nuts,146.76,12,Rule #76,False,W
+4,True,12,Rule #76,94.5,11,Dez (Bryant) Nuts,False,L
+4,True,13,Afternoon TE Time,151.0,3,Jim Ward's Ole Dick Necks,False,W
+5,True,1,Thielen and Dealin,114.74,10,High Noon,False,W
+5,True,2,Rodger  That,131.58,11,Dez (Bryant) Nuts,False,W
+5,True,3,Jim Ward's Ole Dick Necks,113.5,8,SCLSU Mud Dogs,False,L
+5,True,4,Bell yeah,134.14,6,"Dude, Where's  My Carr ",False,W
+5,True,5,Be Gentle,90.48,9,Tonie's Tigers,False,L
+5,True,6,"Dude, Where's  My Carr ",109.14,4,Bell yeah,False,L
+5,True,8,SCLSU Mud Dogs,138.62,3,Jim Ward's Ole Dick Necks,False,W
+5,True,9,Tonie's Tigers,126.12,5,Be Gentle,False,W
+5,True,10,High Noon,106.82,1,Thielen and Dealin,False,L
+5,True,11,Dez (Bryant) Nuts,83.0,2,Rodger  That,False,L
+5,True,12,Rule #76,114.76,13,Afternoon TE Time,False,W
+5,True,13,Afternoon TE Time,112.8,12,Rule #76,False,L
+6,True,1,Thielen and Dealin,114.62,2,Rodger  That,False,L
+6,True,2,Rodger  That,124.1,1,Thielen and Dealin,False,W
+6,True,3,Jim Ward's Ole Dick Necks,142.6,4,Bell yeah,False,W
+6,True,4,Bell yeah,99.26,3,Jim Ward's Ole Dick Necks,False,L
+6,True,5,Be Gentle,72.2,12,Rule #76,False,L
+6,True,6,"Dude, Where's  My Carr ",145.42,8,SCLSU Mud Dogs,False,W
+6,True,8,SCLSU Mud Dogs,126.18,6,"Dude, Where's  My Carr ",False,L
+6,True,9,Tonie's Tigers,120.64,13,Afternoon TE Time,False,W
+6,True,10,High Noon,139.6,11,Dez (Bryant) Nuts,False,W
+6,True,11,Dez (Bryant) Nuts,115.16,10,High Noon,False,L
+6,True,12,Rule #76,123.98,5,Be Gentle,False,W
+6,True,13,Afternoon TE Time,119.78,9,Tonie's Tigers,False,L
+7,True,1,Thielen and Dealin,99.24,13,Afternoon TE Time,False,L
+7,True,2,Rodger  That,103.06,4,Bell yeah,False,W
+7,True,3,Jim Ward's Ole Dick Necks,108.96,6,"Dude, Where's  My Carr ",False,W
+7,True,4,Bell yeah,93.92,2,Rodger  That,False,L
+7,True,5,Be Gentle,76.66,11,Dez (Bryant) Nuts,False,L
+7,True,6,"Dude, Where's  My Carr ",88.5,3,Jim Ward's Ole Dick Necks,False,L
+7,True,8,SCLSU Mud Dogs,168.62,10,High Noon,False,W
+7,True,9,Tonie's Tigers,128.88,12,Rule #76,False,W
+7,True,10,High Noon,106.8,8,SCLSU Mud Dogs,False,L
+7,True,11,Dez (Bryant) Nuts,123.22,5,Be Gentle,False,W
+7,True,12,Rule #76,128.74,9,Tonie's Tigers,False,L
+7,True,13,Afternoon TE Time,128.86,1,Thielen and Dealin,False,W
+8,True,1,Thielen and Dealin,148.06,12,Rule #76,False,W
+8,True,2,Rodger  That,119.94,6,"Dude, Where's  My Carr ",False,L
+8,True,3,Jim Ward's Ole Dick Necks,139.36,10,High Noon,False,W
+8,True,4,Bell yeah,115.5,13,Afternoon TE Time,False,L
+8,True,5,Be Gentle,92.46,8,SCLSU Mud Dogs,False,L
+8,True,6,"Dude, Where's  My Carr ",166.74,2,Rodger  That,False,W
+8,True,8,SCLSU Mud Dogs,124.52,5,Be Gentle,False,W
+8,True,9,Tonie's Tigers,111.0,11,Dez (Bryant) Nuts,False,L
+8,True,10,High Noon,118.54,3,Jim Ward's Ole Dick Necks,False,L
+8,True,11,Dez (Bryant) Nuts,113.9,9,Tonie's Tigers,False,W
+8,True,12,Rule #76,138.44,1,Thielen and Dealin,False,L
+8,True,13,Afternoon TE Time,137.86,4,Bell yeah,False,W
+9,True,1,Thielen and Dealin,114.66,11,Dez (Bryant) Nuts,False,L
+9,True,2,Rodger  That,99.06,10,High Noon,False,W
+9,True,3,Jim Ward's Ole Dick Necks,124.1,5,Be Gentle,False,W
+9,True,4,Bell yeah,90.46,12,Rule #76,False,W
+9,True,5,Be Gentle,81.28,3,Jim Ward's Ole Dick Necks,False,L
+9,True,6,"Dude, Where's  My Carr ",121.42,13,Afternoon TE Time,False,W
+9,True,8,SCLSU Mud Dogs,157.7,9,Tonie's Tigers,False,W
+9,True,9,Tonie's Tigers,125.94,8,SCLSU Mud Dogs,False,L
+9,True,10,High Noon,78.86,2,Rodger  That,False,L
+9,True,11,Dez (Bryant) Nuts,128.3,1,Thielen and Dealin,False,W
+9,True,12,Rule #76,87.02,4,Bell yeah,False,L
+9,True,13,Afternoon TE Time,119.12,6,"Dude, Where's  My Carr ",False,L
+10,True,1,Thielen and Dealin,133.74,8,SCLSU Mud Dogs,False,L
+10,True,2,Rodger  That,85.56,5,Be Gentle,False,W
+10,True,3,Jim Ward's Ole Dick Necks,129.3,9,Tonie's Tigers,False,W
+10,True,4,Bell yeah,89.62,11,Dez (Bryant) Nuts,False,L
+10,True,5,Be Gentle,63.72,2,Rodger  That,False,L
+10,True,6,"Dude, Where's  My Carr ",120.94,12,Rule #76,False,W
+10,True,8,SCLSU Mud Dogs,153.16,1,Thielen and Dealin,False,W
+10,True,9,Tonie's Tigers,102.3,3,Jim Ward's Ole Dick Necks,False,L
+10,True,10,High Noon,121.42,13,Afternoon TE Time,False,L
+10,True,11,Dez (Bryant) Nuts,138.8,4,Bell yeah,False,W
+10,True,12,Rule #76,96.72,6,"Dude, Where's  My Carr ",False,L
+10,True,13,Afternoon TE Time,173.34,10,High Noon,False,W
+11,True,1,Thielen and Dealin,105.38,3,Jim Ward's Ole Dick Necks,False,L
+11,True,2,Rodger  That,87.28,9,Tonie's Tigers,False,L
+11,True,3,Jim Ward's Ole Dick Necks,135.04,1,Thielen and Dealin,False,W
+11,True,4,Bell yeah,77.14,8,SCLSU Mud Dogs,False,L
+11,True,5,Be Gentle,115.78,13,Afternoon TE Time,False,L
+11,True,6,"Dude, Where's  My Carr ",87.34,11,Dez (Bryant) Nuts,False,L
+11,True,8,SCLSU Mud Dogs,184.62,4,Bell yeah,False,W
+11,True,9,Tonie's Tigers,107.72,2,Rodger  That,False,W
+11,True,10,High Noon,127.86,12,Rule #76,False,W
+11,True,11,Dez (Bryant) Nuts,106.8,6,"Dude, Where's  My Carr ",False,W
+11,True,12,Rule #76,122.14,10,High Noon,False,L
+11,True,13,Afternoon TE Time,169.72,5,Be Gentle,False,W
+12,True,1,Thielen and Dealin,127.78,2,Rodger  That,False,W
+12,True,2,Rodger  That,100.82,1,Thielen and Dealin,False,L
+12,True,3,Jim Ward's Ole Dick Necks,117.82,4,Bell yeah,False,W
+12,True,4,Bell yeah,77.3,3,Jim Ward's Ole Dick Necks,False,L
+12,True,5,Be Gentle,118.44,12,Rule #76,False,W
+12,True,6,"Dude, Where's  My Carr ",169.24,8,SCLSU Mud Dogs,False,L
+12,True,8,SCLSU Mud Dogs,173.56,6,"Dude, Where's  My Carr ",False,W
+12,True,9,Tonie's Tigers,130.34,13,Afternoon TE Time,False,L
+12,True,10,High Noon,125.52,11,Dez (Bryant) Nuts,False,W
+12,True,11,Dez (Bryant) Nuts,59.6,10,High Noon,False,L
+12,True,12,Rule #76,117.26,5,Be Gentle,False,L
+12,True,13,Afternoon TE Time,145.08,9,Tonie's Tigers,False,W
+13,True,1,Thielen and Dealin,94.34,13,Afternoon TE Time,False,L
+13,True,2,Rodger  That,90.52,4,Bell yeah,False,L
+13,True,3,Jim Ward's Ole Dick Necks,90.42,6,"Dude, Where's  My Carr ",False,L
+13,True,4,Bell yeah,101.94,2,Rodger  That,False,W
+13,True,5,Be Gentle,96.9,11,Dez (Bryant) Nuts,False,W
+13,True,6,"Dude, Where's  My Carr ",156.84,3,Jim Ward's Ole Dick Necks,False,W
+13,True,8,SCLSU Mud Dogs,145.0,10,High Noon,False,W
+13,True,9,Tonie's Tigers,127.84,12,Rule #76,False,W
+13,True,10,High Noon,120.0,8,SCLSU Mud Dogs,False,L
+13,True,11,Dez (Bryant) Nuts,95.54,5,Be Gentle,False,L
+13,True,12,Rule #76,106.66,9,Tonie's Tigers,False,L
+13,True,13,Afternoon TE Time,123.96,1,Thielen and Dealin,False,W
+14,False,1,Thielen and Dealin,81.92,13,Afternoon TE Time,False,L
+14,False,2,Rodger  That,81.84,4,Bell yeah,False,L
+14,False,3,Jim Ward's Ole Dick Necks,126.28,6,"Dude, Where's  My Carr ",False,L
+14,False,4,Bell yeah,88.02,2,Rodger  That,False,W
+14,False,5,Be Gentle,73.2,12,Rule #76,False,L
+14,False,6,"Dude, Where's  My Carr ",137.92,3,Jim Ward's Ole Dick Necks,False,W
+14,False,8,SCLSU Mud Dogs,141.08,9,Tonie's Tigers,False,W
+14,False,9,Tonie's Tigers,99.14,8,SCLSU Mud Dogs,False,L
+14,False,10,High Noon,107.24,11,Dez (Bryant) Nuts,False,W
+14,False,11,Dez (Bryant) Nuts,88.58,10,High Noon,False,L
+14,False,12,Rule #76,122.2,5,Be Gentle,False,W
+14,False,13,Afternoon TE Time,151.72,1,Thielen and Dealin,False,W
+15,False,1,Thielen and Dealin,127.7,9,Tonie's Tigers,False,W
+15,False,2,Rodger  That,60.36,5,Be Gentle,False,L
+15,False,3,Jim Ward's Ole Dick Necks,109.98,11,Dez (Bryant) Nuts,False,W
+15,False,4,Bell yeah,95.26,12,Rule #76,False,L
+15,False,5,Be Gentle,106.54,2,Rodger  That,False,W
+15,False,6,"Dude, Where's  My Carr ",172.42,8,SCLSU Mud Dogs,False,W
+15,False,8,SCLSU Mud Dogs,87.12,6,"Dude, Where's  My Carr ",False,L
+15,False,9,Tonie's Tigers,46.12,1,Thielen and Dealin,False,L
+15,False,10,High Noon,135.26,13,Afternoon TE Time,False,W
+15,False,11,Dez (Bryant) Nuts,70.2,3,Jim Ward's Ole Dick Necks,False,L
+15,False,12,Rule #76,104.52,4,Bell yeah,False,W
+15,False,13,Afternoon TE Time,132.16,10,High Noon,False,L
+16,False,1,Thielen and Dealin,147.36,3,Jim Ward's Ole Dick Necks,False,W
+16,False,2,Rodger  That,122.58,4,Bell yeah,False,W
+16,False,3,Jim Ward's Ole Dick Necks,126.28,1,Thielen and Dealin,False,L
+16,False,4,Bell yeah,70.74,2,Rodger  That,False,L
+16,False,5,Be Gentle,118.58,12,Rule #76,False,W
+16,False,6,"Dude, Where's  My Carr ",134.58,10,High Noon,False,W
+16,False,8,SCLSU Mud Dogs,144.12,13,Afternoon TE Time,False,L
+16,False,9,Tonie's Tigers,97.14,11,Dez (Bryant) Nuts,False,L
+16,False,10,High Noon,110.88,6,"Dude, Where's  My Carr ",False,L
+16,False,11,Dez (Bryant) Nuts,109.7,9,Tonie's Tigers,False,W
+16,False,12,Rule #76,69.14,5,Be Gentle,False,L
+16,False,13,Afternoon TE Time,152.56,8,SCLSU Mud Dogs,False,W

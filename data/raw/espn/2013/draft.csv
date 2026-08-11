@@ -1,0 +1,205 @@
+overall_pick,round_num,round_pick,team_id,team_name,owner,player_id,player_name,position,bid_amount,keeper
+1,1,1,2,Team O'Dell,jmodell10,8439,Aaron Rodgers,QB,0,False
+2,1,2,5,And god said I  hate you Tebow,pwes58,10452,Adrian Peterson,RB,0,False
+3,1,3,12,Rule #76,dcputman,11289,Ray Rice,RB,0,False
+4,1,4,10,High Noon,jtmurphree,10456,Marshawn Lynch,RB,0,False
+5,1,5,9,Schaub on my Knob,crtaylor225,12497,Arian Foster,,0,False
+6,1,6,1,Toomer's Coroners,cjhubauer,14884,Trent Richardson,RB,0,False
+7,1,7,13,Shake Them Dreads,tcspivey8,13203,C.J. Spiller,RB,0,False
+8,1,8,11,Peyton  Man-thing,Gtgilbert88,11307,Jamaal Charles,RB,0,False
+9,1,9,3,Team Munford,Henry Munford,11237,Matt Ryan,QB,0,False
+10,1,10,8,Slumber Lumber,jbray5,14885,Doug Martin,RB,0,False
+11,1,11,4,Medulla Amendola,obigxbuddhao,15009,Alfred Morris,RB,0,False
+12,1,12,6,LUCK isonmyside,zwthomas89,12514,LeSean McCoy,RB,0,False
+13,2,1,6,LUCK isonmyside,zwthomas89,10447,Calvin Johnson,WR,0,False
+14,2,2,4,Medulla Amendola,obigxbuddhao,2330,Tom Brady,QB,0,False
+15,2,3,8,Slumber Lumber,jbray5,5549,Steven Jackson,RB,0,False
+16,2,4,3,Team Munford,Henry Munford,11278,Matt Forte,RB,0,False
+17,2,5,11,Peyton  Man-thing,Gtgilbert88,2580,Drew Brees,QB,0,False
+18,2,6,13,Shake Them Dreads,tcspivey8,13983,A.J. Green,WR,0,False
+19,2,7,1,Toomer's Coroners,cjhubauer,1428,Peyton Manning,QB,0,False
+20,2,8,9,Schaub on my Knob,crtaylor225,13215,Dez Bryant,WR,0,False
+21,2,9,10,High Noon,jtmurphree,14028,Stevan Ridley,RB,0,False
+22,2,10,12,Rule #76,dcputman,13982,Julio Jones,,0,False
+23,2,11,5,And god said I  hate you Tebow,pwes58,8479,Frank Gore,RB,0,False
+24,2,12,2,Team O'Dell,jmodell10,9705,Brandon Marshall,WR,0,False
+25,3,1,2,Team O'Dell,jmodell10,9646,Maurice Jones-Drew,RB,0,False
+26,3,2,5,And god said I  hate you Tebow,pwes58,5528,Larry Fitzgerald,WR,0,False
+27,3,3,12,Rule #76,dcputman,11238,Darren McFadden,RB,0,False
+28,3,4,10,High Noon,jtmurphree,12483,Matthew Stafford,QB,0,False
+29,3,5,9,Schaub on my Knob,crtaylor225,15848,Eddie Lacy,RB,0,False
+30,3,6,1,Toomer's Coroners,cjhubauer,4461,Andre Johnson,WR,0,False
+31,3,7,13,Shake Them Dreads,tcspivey8,11258,Chris Johnson,RB,0,False
+32,3,8,11,Peyton  Man-thing,Gtgilbert88,14887,David Wilson,,0,False
+33,3,9,3,Team Munford,Henry Munford,8442,Roddy White,WR,0,False
+34,3,10,8,Slumber Lumber,jbray5,14001,Colin Kaepernick,QB,0,False
+35,3,11,4,Medulla Amendola,obigxbuddhao,13994,Cam Newton,QB,0,False
+36,3,12,6,LUCK isonmyside,zwthomas89,13232,Jimmy Graham,TE,0,False
+37,4,1,6,LUCK isonmyside,zwthomas89,9588,Reggie Bush,RB,0,False
+38,4,2,4,Medulla Amendola,obigxbuddhao,13216,Demaryius Thomas,WR,0,False
+39,4,3,8,Slumber Lumber,jbray5,14053,Randall Cobb,,0,False
+40,4,4,3,Team Munford,Henry Munford,2578,Reggie Wayne,,0,False
+41,4,5,11,Peyton  Man-thing,Gtgilbert88,5941,Wes Welker,WR,0,False
+42,4,6,13,Shake Them Dreads,tcspivey8,14875,Robert Griffin III,QB,0,False
+43,4,7,1,Toomer's Coroners,cjhubauer,11674,Danny Amendola,,0,False
+44,4,8,9,Schaub on my Knob,crtaylor225,14881,Russell Wilson,QB,0,False
+45,4,9,10,High Noon,jtmurphree,8475,Vincent Jackson,WR,0,False
+46,4,10,12,Rule #76,dcputman,5209,Tony Romo,QB,0,False
+47,4,11,5,And god said I  hate you Tebow,pwes58,11252,Joe Flacco,QB,0,False
+48,4,12,2,Team O'Dell,jmodell10,1231,Tony Gonzalez,TE,0,False
+49,5,1,2,Team O'Dell,jmodell10,8544,Darren Sproles,RB,0,False
+50,5,2,5,And god said I  hate you Tebow,pwes58,13553,Victor Cruz,WR,0,False
+51,5,3,12,Rule #76,dcputman,14005,DeMarco Murray,RB,0,False
+52,5,4,10,High Noon,jtmurphree,15823,Montee Ball,RB,0,False
+53,5,5,9,Schaub on my Knob,crtaylor225,4527,Jason Witten,TE,0,False
+54,5,6,1,Toomer's Coroners,cjhubauer,9592,Vernon Davis,TE,0,False
+55,5,7,13,Shake Them Dreads,tcspivey8,9838,Marques Colston,WR,0,False
+56,5,8,11,Peyton  Man-thing,Gtgilbert88,-16025,49ers D/ST,D/ST,0,False
+57,5,9,3,Team Munford,Henry Munford,9684,Owen Daniels,,0,False
+58,5,10,8,Slumber Lumber,jbray5,2622,Steve Smith,WR,0,False
+59,5,11,4,Medulla Amendola,obigxbuddhao,13204,Ryan Mathews,RB,0,False
+60,5,12,6,LUCK isonmyside,zwthomas89,14874,Andrew Luck,QB,0,False
+61,6,1,6,LUCK isonmyside,zwthomas89,12586,Hakeem Nicks,WR,0,False
+62,6,2,4,Medulla Amendola,obigxbuddhao,10522,James Jones,WR,0,False
+63,6,3,8,Slumber Lumber,jbray5,13271,Eric Decker,WR,0,False
+64,6,4,3,Team Munford,Henry Munford,13587,Chris Ivory,RB,0,False
+65,6,5,11,Peyton  Man-thing,Gtgilbert88,12601,Mike Wallace,WR,0,False
+66,6,6,13,Shake Them Dreads,tcspivey8,13229,Rob Gronkowski,,0,False
+67,6,7,1,Toomer's Coroners,cjhubauer,14886,Lamar Miller,RB,0,False
+68,6,8,9,Schaub on my Knob,crtaylor225,5615,Matt Schaub,,0,False
+69,6,9,10,High Noon,jtmurphree,11283,DeSean Jackson,WR,0,False
+70,6,10,12,Rule #76,dcputman,11439,Pierre Garcon,WR,0,False
+71,6,11,5,And god said I  hate you Tebow,pwes58,13979,J.J. Watt,,0,False
+72,6,12,2,Team O'Dell,jmodell10,11270,Jordy Nelson,WR,0,False
+73,7,1,2,Team O'Dell,jmodell10,10147,Miles Austin,,0,False
+74,7,2,5,And god said I  hate you Tebow,pwes58,-16022,Cardinals D/ST,D/ST,0,False
+75,7,3,12,Rule #76,dcputman,10475,Greg Olsen,TE,0,False
+76,7,4,10,High Noon,jtmurphree,-16026,Seahawks D/ST,D/ST,0,False
+77,7,5,9,Schaub on my Knob,crtaylor225,10467,Dwayne Bowe,WR,0,False
+78,7,6,1,Toomer's Coroners,cjhubauer,-16034,Texans D/ST,,0,False
+79,7,7,13,Shake Them Dreads,tcspivey8,14032,Torrey Smith,WR,0,False
+80,7,8,11,Peyton  Man-thing,Gtgilbert88,13934,Antonio Brown,WR,0,False
+81,7,9,3,Team Munford,Henry Munford,5526,Eli Manning,QB,0,False
+82,7,10,8,Slumber Lumber,jbray5,12537,Jared Cook,TE,0,False
+83,7,11,4,Medulla Amendola,obigxbuddhao,11244,Jerod Mayo,,0,False
+84,7,12,6,LUCK isonmyside,zwthomas89,15825,Le'Veon Bell,RB,0,False
+85,8,1,6,LUCK isonmyside,zwthomas89,15705,Josh Gordon,WR,0,False
+86,8,2,4,Medulla Amendola,obigxbuddhao,11325,Jermichael Finley,,0,False
+87,8,3,8,Slumber Lumber,jbray5,14193,Jacquizz Rodgers,,0,False
+88,8,4,3,Team Munford,Henry Munford,4333,Matt Bryant,,0,False
+89,8,5,11,Peyton  Man-thing,Gtgilbert88,11754,BenJarvus Green-Ellis,RB,0,False
+90,8,6,13,Shake Them Dreads,tcspivey8,-16003,Bears D/ST,D/ST,0,False
+91,8,7,1,Toomer's Coroners,cjhubauer,14938,Luke Kuechly,LB,0,False
+92,8,8,9,Schaub on my Knob,crtaylor225,4512,Anquan Boldin,WR,0,False
+93,8,9,10,High Noon,jtmurphree,13981,Mark Ingram,RB,0,False
+94,8,10,12,Rule #76,dcputman,14924,T.Y. Hilton,WR,0,False
+95,8,11,5,And god said I  hate you Tebow,pwes58,14054,Kyle Rudolph,,0,False
+96,8,12,2,Team O'Dell,jmodell10,-16023,Steelers D/ST,,0,False
+97,9,1,2,Team O'Dell,jmodell10,9704,Stephen Gostkowski,K,0,False
+98,9,2,5,And god said I  hate you Tebow,pwes58,10693,Ahmad Bradshaw,,0,False
+99,9,3,12,Rule #76,dcputman,15111,Daryl Richardson,,0,False
+100,9,4,10,High Noon,jtmurphree,11458,Steve Johnson,WR,0,False
+101,9,5,9,Schaub on my Knob,crtaylor225,9638,Greg Jennings,WR,0,False
+102,9,6,1,Toomer's Coroners,cjhubauer,15826,Giovani Bernard,RB,0,False
+103,9,7,13,Shake Them Dreads,tcspivey8,2549,Michael Vick,,0,False
+104,9,8,11,Peyton  Man-thing,Gtgilbert88,9613,DeAngelo Williams,RB,0,False
+105,9,9,3,Team Munford,Henry Munford,12454,James Laurinaitis,LB,0,False
+106,9,10,8,Slumber Lumber,jbray5,8426,DeMarcus Ware,DE,0,False
+107,9,11,4,Medulla Amendola,obigxbuddhao,13489,Mike Williams,,0,False
+108,9,12,6,LUCK isonmyside,zwthomas89,12556,Kenny Britt,,0,False
+109,10,1,6,LUCK isonmyside,zwthomas89,14898,Vick Ballard,,0,False
+110,10,2,4,Medulla Amendola,obigxbuddhao,1440,Phil Dawson,K,0,False
+111,10,3,8,Slumber Lumber,jbray5,-16033,Ravens D/ST,D/ST,0,False
+112,10,4,3,Team Munford,Henry Munford,11257,Rashard Mendenhall,RB,0,False
+113,10,5,11,Peyton  Man-thing,Gtgilbert88,14184,Cecil Shorts,WR,0,False
+114,10,6,13,Shake Them Dreads,tcspivey8,14895,Ronnie Hillman,,0,False
+115,10,7,1,Toomer's Coroners,cjhubauer,13295,Emmanuel Sanders,,0,False
+116,10,8,9,Schaub on my Knob,crtaylor225,15786,Tavon Austin,,0,False
+117,10,9,10,High Noon,jtmurphree,13262,NaVorro Bowman,LB,0,False
+118,10,10,12,Rule #76,dcputman,14017,Shane Vereen,RB,0,False
+119,10,11,5,And god said I  hate you Tebow,pwes58,15091,Randy Bullock,,0,False
+120,10,12,2,Team O'Dell,jmodell10,10455,Patrick Willis,,0,False
+121,11,1,2,Team O'Dell,jmodell10,10488,Sidney Rice,,0,False
+122,11,2,5,And god said I  hate you Tebow,pwes58,4459,Carson Palmer,,0,False
+123,11,3,12,Rule #76,dcputman,14908,Michael Floyd,WR,0,False
+124,11,4,10,High Noon,jtmurphree,14912,Alshon Jeffery,WR,0,False
+125,11,5,9,Schaub on my Knob,crtaylor225,12490,Andre Brown,RB,0,False
+126,11,6,1,Toomer's Coroners,cjhubauer,12568,Brian Hartline,WR,0,False
+127,11,7,13,Shake Them Dreads,tcspivey8,14911,Rueben Randle,,0,False
+128,11,8,11,Peyton  Man-thing,Gtgilbert88,5362,Antonio Gates,TE,0,False
+129,11,9,3,Team Munford,Henry Munford,15078,Chris Givens,,0,False
+130,11,10,8,Slumber Lumber,jbray5,5536,Ben Roethlisberger,QB,0,False
+131,11,11,4,Medulla Amendola,obigxbuddhao,-16017,Patriots D/ST,D/ST,0,False
+132,11,12,6,LUCK isonmyside,zwthomas89,13197,Sam Bradford,,0,False
+133,12,1,6,LUCK isonmyside,zwthomas89,15795,DeAndre Hopkins,WR,0,False
+134,12,2,4,Medulla Amendola,obigxbuddhao,9400,Lance Moore,,0,False
+135,12,3,8,Slumber Lumber,jbray5,14153,Denarius Moore,WR,0,False
+136,12,4,3,Team Munford,Henry Munford,-16009,Packers D/ST,,0,False
+137,12,5,11,Peyton  Man-thing,Gtgilbert88,14888,Isaiah Pead,,0,False
+138,12,6,13,Shake Them Dreads,tcspivey8,12705,Brandon Myers,TE,0,False
+139,12,7,1,Toomer's Coroners,cjhubauer,11122,Matt Prater,K,0,False
+140,12,8,9,Schaub on my Knob,crtaylor225,12898,Isaac Redman,,0,False
+141,12,9,10,High Noon,jtmurphree,14192,Roy Helu,,0,False
+142,12,10,12,Rule #76,dcputman,14012,Andy Dalton,QB,0,False
+143,12,11,5,And god said I  hate you Tebow,pwes58,14027,Vincent Brown,,0,False
+144,12,12,2,Team O'Dell,jmodell10,13217,Golden Tate,WR,0,False
+145,13,1,2,Team O'Dell,jmodell10,15092,Bryce Brown,,0,False
+146,13,2,5,And god said I  hate you Tebow,pwes58,14891,Bernard Pierce,,0,False
+147,13,3,12,Rule #76,dcputman,13284,Sean Lee,LB,0,False
+148,13,4,10,High Noon,jtmurphree,13969,Jake Locker,,0,False
+149,13,5,9,Schaub on my Knob,crtaylor225,-16004,Bengals D/ST,,0,False
+150,13,6,1,Toomer's Coroners,cjhubauer,12500,Shonn Greene,,0,False
+151,13,7,13,Shake Them Dreads,tcspivey8,15683,Justin Tucker,,0,False
+152,13,8,11,Peyton  Man-thing,Gtgilbert88,14052,Mikel Leshoure,,0,False
+153,13,9,3,Team Munford,Henry Munford,12549,Brandon Pettigrew,,0,False
+154,13,10,8,Slumber Lumber,jbray5,2148,Sebastian Janikowski,K,0,False
+155,13,11,4,Medulla Amendola,obigxbuddhao,14909,Kendall Wright,WR,0,False
+156,13,12,6,LUCK isonmyside,zwthomas89,15058,Blair Walsh,K,0,False
+157,14,1,6,LUCK isonmyside,zwthomas89,13210,Ben Tate,,0,False
+158,14,2,4,Medulla Amendola,obigxbuddhao,10544,Michael Bush,,0,False
+159,14,3,8,Slumber Lumber,jbray5,11295,Martellus Bennett,TE,0,False
+160,14,4,3,Team Munford,Henry Munford,10713,Pierre Thomas,RB,0,False
+161,14,5,11,Peyton  Man-thing,Gtgilbert88,11247,Jonathan Stewart,,0,False
+162,14,6,13,Shake Them Dreads,tcspivey8,12417,Cameron Wake,,0,False
+163,14,7,1,Toomer's Coroners,cjhubauer,10195,Fred Jackson,RB,0,False
+164,14,8,9,Schaub on my Knob,crtaylor225,6016,Malcom Floyd,,0,False
+165,14,9,10,High Noon,jtmurphree,11282,Fred Davis,,0,False
+166,14,10,12,Rule #76,dcputman,14189,Jordan Cameron,TE,0,False
+167,14,11,5,And god said I  hate you Tebow,pwes58,14919,Ryan Broyles,,0,False
+168,14,12,2,Team O'Dell,jmodell10,12576,Brandon LaFell,WR,0,False
+169,15,1,2,Team O'Dell,jmodell10,2564,Santana Moss,,0,False
+170,15,2,5,And god said I  hate you Tebow,pwes58,14129,Bilal Powell,RB,0,False
+171,15,3,12,Rule #76,dcputman,14907,Justin Blackmon,,0,False
+172,15,4,10,High Noon,jtmurphree,13206,Jonathan Dwyer,,0,False
+173,15,5,9,Schaub on my Knob,crtaylor225,13226,Andre Roberts,,0,False
+174,15,6,1,Toomer's Coroners,cjhubauer,8416,Alex Smith,QB,0,False
+175,15,7,13,Shake Them Dreads,tcspivey8,-16007,Broncos D/ST,D/ST,0,False
+176,15,8,11,Peyton  Man-thing,Gtgilbert88,4680,Josh Brown,,0,False
+177,15,9,3,Team Munford,Henry Munford,15925,Johnathan Franklin,,0,False
+178,15,10,8,Slumber Lumber,jbray5,16381,Kenbrell Thompkins,WR,0,False
+179,15,11,4,Medulla Amendola,obigxbuddhao,14894,Robert Turbin,,0,False
+180,15,12,6,LUCK isonmyside,zwthomas89,14900,Coby Fleener,TE,0,False
+181,16,1,6,LUCK isonmyside,zwthomas89,-16019,Giants D/ST,,0,False
+182,16,2,4,Medulla Amendola,obigxbuddhao,15246,Vontaze Burfict,LB,0,False
+183,16,3,8,Slumber Lumber,jbray5,1716,David Akers,K,0,False
+184,16,4,3,Team Munford,Henry Munford,14322,Dan Bailey,K,0,False
+185,16,5,11,Peyton  Man-thing,Gtgilbert88,-16014,Rams D/ST,D/ST,0,False
+186,16,6,13,Shake Them Dreads,tcspivey8,15807,Cordarrelle Patterson,WR,0,False
+187,16,7,1,Toomer's Coroners,cjhubauer,15788,Tyler Eifert,,0,False
+188,16,8,9,Schaub on my Knob,crtaylor225,14979,Bobby Wagner,LB,0,False
+189,16,9,10,High Noon,jtmurphree,11543,Garrett Hartley,K,0,False
+190,16,10,12,Rule #76,dcputman,1097,Adam Vinatieri,K,0,False
+191,16,11,5,And god said I  hate you Tebow,pwes58,9597,Jay Cutler,QB,0,False
+192,16,12,2,Team O'Dell,jmodell10,11788,Danny Woodhead,RB,0,False
+193,17,1,2,Team O'Dell,jmodell10,8418,Braylon Edwards,,0,False
+194,17,2,5,And god said I  hate you Tebow,pwes58,15996,Zac Stacy,RB,0,False
+195,17,3,12,Rule #76,dcputman,-16027,Buccaneers D/ST,,0,False
+196,17,4,10,High Noon,jtmurphree,14204,Julius Thomas,TE,0,False
+197,17,5,9,Schaub on my Knob,crtaylor225,14993,Greg Zuerlein,,0,False
+198,17,6,1,Toomer's Coroners,cjhubauer,12570,Darrius Heyward-Bey,,0,False
+199,17,7,13,Shake Them Dreads,tcspivey8,11658,Mike Tolbert,,0,False
+200,17,8,11,Peyton  Man-thing,Gtgilbert88,8430,Derrick Johnson,,0,False
+201,17,9,3,Team Munford,Henry Munford,9620,D'Qwell Jackson,LB,0,False
+202,17,10,8,Slumber Lumber,jbray5,14932,Mark Barron,S,0,False
+203,17,11,4,Medulla Amendola,obigxbuddhao,14056,Daniel Thomas,RB,0,False
+204,17,12,6,LUCK isonmyside,zwthomas89,10478,Paul Posluszny,LB,0,False

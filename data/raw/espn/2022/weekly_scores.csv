@@ -1,0 +1,205 @@
+week,is_regular,team_id,team_name,points,opp_team_id,opp_team_name,is_bye,outcome
+1,True,1,T's Diddy ,111.0,9,TBD TBD,False,L
+1,True,2,Zeke -A Virus,139.4,3,Jim Ward's Ole Dick Necks,False,W
+1,True,3,Jim Ward's Ole Dick Necks,81.0,2,Zeke -A Virus,False,L
+1,True,4,BUT kicKERs,92.96,12,Rule  #76,False,L
+1,True,5,COD Lobby Kyler,81.52,13,Christopher's Kryptonite ,False,L
+1,True,6,SWIFT Kick In The Balls ,119.92,10,Maitland Tiburon,False,L
+1,True,8,SCLSU Mud Dogs,61.38,11,Dez (Bryant) Nuts,False,L
+1,True,9,TBD TBD,119.66,1,T's Diddy ,False,W
+1,True,10,Maitland Tiburon,140.12,6,SWIFT Kick In The Balls ,False,W
+1,True,11,Dez (Bryant) Nuts,128.8,8,SCLSU Mud Dogs,False,W
+1,True,12,Rule  #76,106.72,4,BUT kicKERs,False,W
+1,True,13,Christopher's Kryptonite ,126.58,5,COD Lobby Kyler,False,W
+2,True,1,T's Diddy ,125.36,13,Christopher's Kryptonite ,False,L
+2,True,2,Zeke -A Virus,128.2,8,SCLSU Mud Dogs,False,W
+2,True,3,Jim Ward's Ole Dick Necks,98.68,4,BUT kicKERs,False,L
+2,True,4,BUT kicKERs,147.06,3,Jim Ward's Ole Dick Necks,False,W
+2,True,5,COD Lobby Kyler,74.08,10,Maitland Tiburon,False,L
+2,True,6,SWIFT Kick In The Balls ,129.46,9,TBD TBD,False,W
+2,True,8,SCLSU Mud Dogs,98.3,2,Zeke -A Virus,False,L
+2,True,9,TBD TBD,108.46,6,SWIFT Kick In The Balls ,False,L
+2,True,10,Maitland Tiburon,141.62,5,COD Lobby Kyler,False,W
+2,True,11,Dez (Bryant) Nuts,112.98,12,Rule  #76,False,L
+2,True,12,Rule  #76,132.12,11,Dez (Bryant) Nuts,False,W
+2,True,13,Christopher's Kryptonite ,158.78,1,T's Diddy ,False,W
+3,True,1,T's Diddy ,100.36,5,COD Lobby Kyler,False,L
+3,True,2,Zeke -A Virus,107.38,4,BUT kicKERs,False,W
+3,True,3,Jim Ward's Ole Dick Necks,95.2,11,Dez (Bryant) Nuts,False,L
+3,True,4,BUT kicKERs,74.34,2,Zeke -A Virus,False,L
+3,True,5,COD Lobby Kyler,106.96,1,T's Diddy ,False,W
+3,True,6,SWIFT Kick In The Balls ,114.2,13,Christopher's Kryptonite ,False,W
+3,True,8,SCLSU Mud Dogs,153.62,12,Rule  #76,False,W
+3,True,9,TBD TBD,96.68,10,Maitland Tiburon,False,W
+3,True,10,Maitland Tiburon,94.5,9,TBD TBD,False,L
+3,True,11,Dez (Bryant) Nuts,99.76,3,Jim Ward's Ole Dick Necks,False,W
+3,True,12,Rule  #76,112.02,8,SCLSU Mud Dogs,False,L
+3,True,13,Christopher's Kryptonite ,93.8,6,SWIFT Kick In The Balls ,False,L
+4,True,1,T's Diddy ,137.38,10,Maitland Tiburon,False,W
+4,True,2,Zeke -A Virus,82.66,12,Rule  #76,False,L
+4,True,3,Jim Ward's Ole Dick Necks,129.82,8,SCLSU Mud Dogs,False,L
+4,True,4,BUT kicKERs,99.9,11,Dez (Bryant) Nuts,False,L
+4,True,5,COD Lobby Kyler,129.08,6,SWIFT Kick In The Balls ,False,W
+4,True,6,SWIFT Kick In The Balls ,123.08,5,COD Lobby Kyler,False,L
+4,True,8,SCLSU Mud Dogs,148.3,3,Jim Ward's Ole Dick Necks,False,W
+4,True,9,TBD TBD,101.9,13,Christopher's Kryptonite ,False,L
+4,True,10,Maitland Tiburon,136.16,1,T's Diddy ,False,L
+4,True,11,Dez (Bryant) Nuts,139.52,4,BUT kicKERs,False,W
+4,True,12,Rule  #76,106.76,2,Zeke -A Virus,False,W
+4,True,13,Christopher's Kryptonite ,127.32,9,TBD TBD,False,W
+5,True,1,T's Diddy ,115.36,6,SWIFT Kick In The Balls ,False,W
+5,True,2,Zeke -A Virus,132.08,11,Dez (Bryant) Nuts,False,W
+5,True,3,Jim Ward's Ole Dick Necks,132.74,12,Rule  #76,False,W
+5,True,4,BUT kicKERs,95.6,8,SCLSU Mud Dogs,False,L
+5,True,5,COD Lobby Kyler,114.8,9,TBD TBD,False,L
+5,True,6,SWIFT Kick In The Balls ,89.68,1,T's Diddy ,False,L
+5,True,8,SCLSU Mud Dogs,153.14,4,BUT kicKERs,False,W
+5,True,9,TBD TBD,131.52,5,COD Lobby Kyler,False,W
+5,True,10,Maitland Tiburon,110.48,13,Christopher's Kryptonite ,False,L
+5,True,11,Dez (Bryant) Nuts,84.06,2,Zeke -A Virus,False,L
+5,True,12,Rule  #76,81.06,3,Jim Ward's Ole Dick Necks,False,L
+5,True,13,Christopher's Kryptonite ,124.16,10,Maitland Tiburon,False,W
+6,True,1,T's Diddy ,148.12,12,Rule  #76,False,W
+6,True,2,Zeke -A Virus,109.22,10,Maitland Tiburon,False,W
+6,True,3,Jim Ward's Ole Dick Necks,104.0,6,SWIFT Kick In The Balls ,False,W
+6,True,4,BUT kicKERs,118.8,9,TBD TBD,False,W
+6,True,5,COD Lobby Kyler,66.08,8,SCLSU Mud Dogs,False,L
+6,True,6,SWIFT Kick In The Balls ,88.4,3,Jim Ward's Ole Dick Necks,False,L
+6,True,8,SCLSU Mud Dogs,96.02,5,COD Lobby Kyler,False,W
+6,True,9,TBD TBD,74.42,4,BUT kicKERs,False,L
+6,True,10,Maitland Tiburon,97.54,2,Zeke -A Virus,False,L
+6,True,11,Dez (Bryant) Nuts,94.72,13,Christopher's Kryptonite ,False,L
+6,True,12,Rule  #76,128.3,1,T's Diddy ,False,L
+6,True,13,Christopher's Kryptonite ,117.16,11,Dez (Bryant) Nuts,False,W
+7,True,1,T's Diddy ,141.8,4,BUT kicKERs,False,W
+7,True,2,Zeke -A Virus,104.72,6,SWIFT Kick In The Balls ,False,L
+7,True,3,Jim Ward's Ole Dick Necks,121.66,5,COD Lobby Kyler,False,L
+7,True,4,BUT kicKERs,71.74,1,T's Diddy ,False,L
+7,True,5,COD Lobby Kyler,122.76,3,Jim Ward's Ole Dick Necks,False,W
+7,True,6,SWIFT Kick In The Balls ,116.54,2,Zeke -A Virus,False,W
+7,True,8,SCLSU Mud Dogs,102.0,9,TBD TBD,False,W
+7,True,9,TBD TBD,93.42,8,SCLSU Mud Dogs,False,L
+7,True,10,Maitland Tiburon,88.94,11,Dez (Bryant) Nuts,False,L
+7,True,11,Dez (Bryant) Nuts,90.52,10,Maitland Tiburon,False,W
+7,True,12,Rule  #76,87.4,13,Christopher's Kryptonite ,False,L
+7,True,13,Christopher's Kryptonite ,114.18,12,Rule  #76,False,W
+8,True,1,T's Diddy ,116.94,8,SCLSU Mud Dogs,False,L
+8,True,2,Zeke -A Virus,75.02,5,COD Lobby Kyler,False,L
+8,True,3,Jim Ward's Ole Dick Necks,125.28,9,TBD TBD,False,L
+8,True,4,BUT kicKERs,144.54,13,Christopher's Kryptonite ,False,W
+8,True,5,COD Lobby Kyler,113.64,2,Zeke -A Virus,False,W
+8,True,6,SWIFT Kick In The Balls ,119.38,11,Dez (Bryant) Nuts,False,L
+8,True,8,SCLSU Mud Dogs,153.2,1,T's Diddy ,False,W
+8,True,9,TBD TBD,128.7,3,Jim Ward's Ole Dick Necks,False,W
+8,True,10,Maitland Tiburon,128.98,12,Rule  #76,False,L
+8,True,11,Dez (Bryant) Nuts,142.74,6,SWIFT Kick In The Balls ,False,W
+8,True,12,Rule  #76,145.98,10,Maitland Tiburon,False,W
+8,True,13,Christopher's Kryptonite ,129.02,4,BUT kicKERs,False,L
+9,True,1,T's Diddy ,128.2,3,Jim Ward's Ole Dick Necks,False,W
+9,True,2,Zeke -A Virus,78.44,9,TBD TBD,False,W
+9,True,3,Jim Ward's Ole Dick Necks,124.7,1,T's Diddy ,False,L
+9,True,4,BUT kicKERs,89.68,10,Maitland Tiburon,False,L
+9,True,5,COD Lobby Kyler,97.8,11,Dez (Bryant) Nuts,False,L
+9,True,6,SWIFT Kick In The Balls ,85.74,12,Rule  #76,False,L
+9,True,8,SCLSU Mud Dogs,144.12,13,Christopher's Kryptonite ,False,L
+9,True,9,TBD TBD,74.5,2,Zeke -A Virus,False,L
+9,True,10,Maitland Tiburon,90.14,4,BUT kicKERs,False,W
+9,True,11,Dez (Bryant) Nuts,116.48,5,COD Lobby Kyler,False,W
+9,True,12,Rule  #76,112.22,6,SWIFT Kick In The Balls ,False,W
+9,True,13,Christopher's Kryptonite ,165.5,8,SCLSU Mud Dogs,False,W
+10,True,1,T's Diddy ,102.66,2,Zeke -A Virus,False,L
+10,True,2,Zeke -A Virus,121.94,1,T's Diddy ,False,W
+10,True,3,Jim Ward's Ole Dick Necks,87.88,13,Christopher's Kryptonite ,False,L
+10,True,4,BUT kicKERs,96.2,6,SWIFT Kick In The Balls ,False,W
+10,True,5,COD Lobby Kyler,128.8,12,Rule  #76,False,W
+10,True,6,SWIFT Kick In The Balls ,79.42,4,BUT kicKERs,False,L
+10,True,8,SCLSU Mud Dogs,140.88,10,Maitland Tiburon,False,W
+10,True,9,TBD TBD,117.14,11,Dez (Bryant) Nuts,False,W
+10,True,10,Maitland Tiburon,125.5,8,SCLSU Mud Dogs,False,L
+10,True,11,Dez (Bryant) Nuts,94.04,9,TBD TBD,False,L
+10,True,12,Rule  #76,66.06,5,COD Lobby Kyler,False,L
+10,True,13,Christopher's Kryptonite ,104.5,3,Jim Ward's Ole Dick Necks,False,W
+11,True,1,T's Diddy ,117.34,11,Dez (Bryant) Nuts,False,W
+11,True,2,Zeke -A Virus,109.26,13,Christopher's Kryptonite ,False,L
+11,True,3,Jim Ward's Ole Dick Necks,102.8,10,Maitland Tiburon,False,L
+11,True,4,BUT kicKERs,100.74,5,COD Lobby Kyler,False,W
+11,True,5,COD Lobby Kyler,100.54,4,BUT kicKERs,False,L
+11,True,6,SWIFT Kick In The Balls ,148.8,8,SCLSU Mud Dogs,False,L
+11,True,8,SCLSU Mud Dogs,160.48,6,SWIFT Kick In The Balls ,False,W
+11,True,9,TBD TBD,126.8,12,Rule  #76,False,W
+11,True,10,Maitland Tiburon,144.1,3,Jim Ward's Ole Dick Necks,False,W
+11,True,11,Dez (Bryant) Nuts,56.5,1,T's Diddy ,False,L
+11,True,12,Rule  #76,98.16,9,TBD TBD,False,L
+11,True,13,Christopher's Kryptonite ,113.18,2,Zeke -A Virus,False,W
+12,True,1,T's Diddy ,116.84,12,Rule  #76,False,L
+12,True,2,Zeke -A Virus,94.7,10,Maitland Tiburon,False,L
+12,True,3,Jim Ward's Ole Dick Necks,106.86,6,SWIFT Kick In The Balls ,False,L
+12,True,4,BUT kicKERs,95.06,9,TBD TBD,False,L
+12,True,5,COD Lobby Kyler,170.64,8,SCLSU Mud Dogs,False,W
+12,True,6,SWIFT Kick In The Balls ,118.7,3,Jim Ward's Ole Dick Necks,False,W
+12,True,8,SCLSU Mud Dogs,110.74,5,COD Lobby Kyler,False,L
+12,True,9,TBD TBD,118.56,4,BUT kicKERs,False,W
+12,True,10,Maitland Tiburon,141.36,2,Zeke -A Virus,False,W
+12,True,11,Dez (Bryant) Nuts,99.1,13,Christopher's Kryptonite ,False,L
+12,True,12,Rule  #76,123.06,1,T's Diddy ,False,W
+12,True,13,Christopher's Kryptonite ,141.92,11,Dez (Bryant) Nuts,False,W
+13,True,1,T's Diddy ,106.86,4,BUT kicKERs,False,L
+13,True,2,Zeke -A Virus,120.82,6,SWIFT Kick In The Balls ,False,W
+13,True,3,Jim Ward's Ole Dick Necks,64.74,5,COD Lobby Kyler,False,L
+13,True,4,BUT kicKERs,140.1,1,T's Diddy ,False,W
+13,True,5,COD Lobby Kyler,143.38,3,Jim Ward's Ole Dick Necks,False,W
+13,True,6,SWIFT Kick In The Balls ,106.54,2,Zeke -A Virus,False,L
+13,True,8,SCLSU Mud Dogs,136.36,9,TBD TBD,False,W
+13,True,9,TBD TBD,89.7,8,SCLSU Mud Dogs,False,L
+13,True,10,Maitland Tiburon,153.0,11,Dez (Bryant) Nuts,False,W
+13,True,11,Dez (Bryant) Nuts,91.8,10,Maitland Tiburon,False,L
+13,True,12,Rule  #76,64.44,13,Christopher's Kryptonite ,False,L
+13,True,13,Christopher's Kryptonite ,123.82,12,Rule  #76,False,W
+14,True,1,T's Diddy ,112.12,13,Christopher's Kryptonite ,False,L
+14,True,2,Zeke -A Virus,83.68,5,COD Lobby Kyler,False,L
+14,True,3,Jim Ward's Ole Dick Necks,113.6,9,TBD TBD,False,W
+14,True,4,BUT kicKERs,121.0,8,SCLSU Mud Dogs,False,W
+14,True,5,COD Lobby Kyler,131.26,2,Zeke -A Virus,False,W
+14,True,6,SWIFT Kick In The Balls ,70.36,11,Dez (Bryant) Nuts,False,L
+14,True,8,SCLSU Mud Dogs,115.48,4,BUT kicKERs,False,L
+14,True,9,TBD TBD,89.48,3,Jim Ward's Ole Dick Necks,False,L
+14,True,10,Maitland Tiburon,122.38,12,Rule  #76,False,W
+14,True,11,Dez (Bryant) Nuts,101.4,6,SWIFT Kick In The Balls ,False,W
+14,True,12,Rule  #76,55.72,10,Maitland Tiburon,False,L
+14,True,13,Christopher's Kryptonite ,148.08,1,T's Diddy ,False,W
+15,False,1,T's Diddy ,126.82,12,Rule  #76,False,W
+15,False,2,Zeke -A Virus,143.74,9,TBD TBD,False,W
+15,False,3,Jim Ward's Ole Dick Necks,142.3,6,SWIFT Kick In The Balls ,False,W
+15,False,4,BUT kicKERs,120.86,13,Christopher's Kryptonite ,False,W
+15,False,5,COD Lobby Kyler,93.12,10,Maitland Tiburon,False,L
+15,False,6,SWIFT Kick In The Balls ,115.9,3,Jim Ward's Ole Dick Necks,False,L
+15,False,8,SCLSU Mud Dogs,124.98,11,Dez (Bryant) Nuts,False,W
+15,False,9,TBD TBD,120.02,2,Zeke -A Virus,False,L
+15,False,10,Maitland Tiburon,129.1,5,COD Lobby Kyler,False,W
+15,False,11,Dez (Bryant) Nuts,95.68,8,SCLSU Mud Dogs,False,L
+15,False,12,Rule  #76,110.1,1,T's Diddy ,False,L
+15,False,13,Christopher's Kryptonite ,112.96,4,BUT kicKERs,False,L
+16,False,1,T's Diddy ,84.36,3,Jim Ward's Ole Dick Necks,False,L
+16,False,2,Zeke -A Virus,116.26,4,BUT kicKERs,False,W
+16,False,3,Jim Ward's Ole Dick Necks,166.66,1,T's Diddy ,False,W
+16,False,4,BUT kicKERs,109.1,2,Zeke -A Virus,False,L
+16,False,5,COD Lobby Kyler,74.5,13,Christopher's Kryptonite ,False,L
+16,False,6,SWIFT Kick In The Balls ,111.6,12,Rule  #76,False,W
+16,False,8,SCLSU Mud Dogs,127.66,10,Maitland Tiburon,False,W
+16,False,9,TBD TBD,110.7,11,Dez (Bryant) Nuts,False,W
+16,False,10,Maitland Tiburon,125.5,8,SCLSU Mud Dogs,False,L
+16,False,11,Dez (Bryant) Nuts,107.8,9,TBD TBD,False,L
+16,False,12,Rule  #76,88.2,6,SWIFT Kick In The Balls ,False,L
+16,False,13,Christopher's Kryptonite ,127.18,5,COD Lobby Kyler,False,W
+17,False,1,T's Diddy ,97.08,12,Rule  #76,False,W
+17,False,2,Zeke -A Virus,88.32,8,SCLSU Mud Dogs,False,L
+17,False,3,Jim Ward's Ole Dick Necks,128.3,6,SWIFT Kick In The Balls ,False,W
+17,False,4,BUT kicKERs,74.5,10,Maitland Tiburon,False,L
+17,False,5,COD Lobby Kyler,80.42,11,Dez (Bryant) Nuts,False,L
+17,False,6,SWIFT Kick In The Balls ,87.0,3,Jim Ward's Ole Dick Necks,False,L
+17,False,8,SCLSU Mud Dogs,103.9,2,Zeke -A Virus,False,W
+17,False,9,TBD TBD,121.08,13,Christopher's Kryptonite ,False,W
+17,False,10,Maitland Tiburon,75.16,4,BUT kicKERs,False,W
+17,False,11,Dez (Bryant) Nuts,155.2,5,COD Lobby Kyler,False,W
+17,False,12,Rule  #76,53.1,1,T's Diddy ,False,L
+17,False,13,Christopher's Kryptonite ,101.6,9,TBD TBD,False,L

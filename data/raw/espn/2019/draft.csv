@@ -1,0 +1,205 @@
+overall_pick,round_num,round_pick,team_id,team_name,owner,player_id,player_name,position,bid_amount,keeper
+1,1,1,6,"Dude, Where's  My Lamar",zwthomas89; zthoma7700709,16733,Odell Beckham Jr.,WR,0,False
+2,1,2,10,High Noon,jtmurphree,3117251,Christian McCaffrey,RB,0,False
+3,1,3,13,Fuck Luck,tcspivey8,2508176,David Johnson,RB,0,False
+4,1,4,8,SCLSU Mud Dogs,jbray5,15795,DeAndre Hopkins,WR,0,False
+5,1,5,1,Below Average Joes,cjhubauer,16800,Davante Adams,WR,0,False
+6,1,6,3,Jim Ward's Ole Dick Necks,Henry Munford,15825,Le'Veon Bell,RB,0,False
+7,1,7,11,Dez (Bryant) Nuts,Gtgilbert88,3051392,Ezekiel Elliott,RB,0,False
+8,1,8,9,Tonie's Tigers,crtaylor225,3045147,James Conner,RB,0,False
+9,1,9,5,Remember the Fucking Titans,payton9218600,3054850,Alvin Kamara,RB,0,False
+10,1,10,12,Rule  #76,dcputman,3128720,Nick Chubb,RB,0,False
+11,1,11,2,Rodger  That,jmodell10,2977644,Todd Gurley II,RB,0,False
+12,1,12,4,The New Guy,Josh Swing,3929630,Saquon Barkley,RB,0,False
+13,2,1,4,The New Guy,Josh Swing,16944,Devonta Freeman,RB,0,False
+14,2,2,2,Rodger  That,jmodell10,3120348,JuJu Smith-Schuster,WR,0,False
+15,2,3,12,Rule  #76,dcputman,13982,Julio Jones,WR,0,False
+16,2,4,5,Remember the Fucking Titans,payton9218600,3139477,Patrick Mahomes,QB,0,False
+17,2,5,9,Tonie's Tigers,crtaylor225,16737,Mike Evans,WR,0,False
+18,2,6,11,Dez (Bryant) Nuts,Gtgilbert88,13934,Antonio Brown,,0,False
+19,2,7,3,Jim Ward's Ole Dick Necks,Henry Munford,2976316,Michael Thomas,WR,0,False
+20,2,8,1,Below Average Joes,cjhubauer,3116385,Joe Mixon,RB,0,False
+21,2,9,8,SCLSU Mud Dogs,jbray5,15847,Travis Kelce,TE,0,False
+22,2,10,13,Fuck Luck,tcspivey8,3116593,Dalvin Cook,RB,0,False
+23,2,11,10,High Noon,jtmurphree,3916925,Kerryon Johnson,RB,0,False
+24,2,12,6,"Dude, Where's  My Lamar",zwthomas89; zthoma7700709,3116406,Tyreek Hill,WR,0,False
+25,3,1,6,"Dude, Where's  My Lamar",zwthomas89; zthoma7700709,3040151,George Kittle,TE,0,False
+26,3,2,10,High Noon,jtmurphree,3115364,Leonard Fournette,RB,0,False
+27,3,3,13,Fuck Luck,tcspivey8,2976499,Amari Cooper,WR,0,False
+28,3,4,8,SCLSU Mud Dogs,jbray5,3042519,Aaron Jones,RB,0,False
+29,3,5,1,Below Average Joes,cjhubauer,17359,Damien Williams,,0,False
+30,3,6,3,Jim Ward's Ole Dick Necks,Henry Munford,2976212,Stefon Diggs,WR,0,False
+31,3,7,11,Dez (Bryant) Nuts,Gtgilbert88,4047365,Josh Jacobs,RB,0,False
+32,3,8,9,Tonie's Tigers,crtaylor225,3919596,Chris Carson,RB,0,False
+33,3,9,5,Remember the Fucking Titans,payton9218600,16460,Adam Thielen,WR,0,False
+34,3,10,12,Rule  #76,dcputman,4035538,David Montgomery,RB,0,False
+35,3,11,2,Rodger  That,jmodell10,8439,Aaron Rodgers,QB,0,False
+36,3,12,4,The New Guy,Josh Swing,15818,Keenan Allen,WR,0,False
+37,4,1,4,The New Guy,Josh Swing,2977187,Cooper Kupp,WR,0,False
+38,4,2,2,Rodger  That,jmodell10,13981,Mark Ingram II,RB,0,False
+39,4,3,12,Rule  #76,dcputman,3139605,Marlon Mack,RB,0,False
+40,4,4,5,Remember the Fucking Titans,payton9218600,3052117,Phillip Lindsay,RB,0,False
+41,4,5,9,Tonie's Tigers,crtaylor225,14924,T.Y. Hilton,WR,0,False
+42,4,6,11,Dez (Bryant) Nuts,Gtgilbert88,12649,Julian Edelman,WR,0,False
+43,4,7,3,Jim Ward's Ole Dick Necks,Henry Munford,3043078,Derrick Henry,RB,0,False
+44,4,8,1,Below Average Joes,cjhubauer,15880,Robert Woods,WR,0,False
+45,4,9,8,SCLSU Mud Dogs,jbray5,16731,Brandin Cooks,WR,0,False
+46,4,10,13,Fuck Luck,tcspivey8,15835,Zach Ertz,TE,0,False
+47,4,11,10,High Noon,jtmurphree,14912,Alshon Jeffery,,0,False
+48,4,12,6,"Dude, Where's  My Lamar",zwthomas89; zthoma7700709,2576434,Melvin Gordon,RB,0,False
+49,5,1,6,"Dude, Where's  My Lamar",zwthomas89; zthoma7700709,3915416,DJ Moore,WR,0,False
+50,5,2,10,High Noon,jtmurphree,3116165,Chris Godwin,,0,False
+51,5,3,13,Fuck Luck,tcspivey8,2577327,Tyler Lockett,WR,0,False
+52,5,4,8,SCLSU Mud Dogs,jbray5,3122840,Deshaun Watson,QB,0,False
+53,5,5,1,Below Average Joes,cjhubauer,3045138,Mike Williams,WR,0,False
+54,5,6,3,Jim Ward's Ole Dick Necks,Henry Munford,4045163,Miles Sanders,RB,0,False
+55,5,7,11,Dez (Bryant) Nuts,Gtgilbert88,16913,James White,RB,0,False
+56,5,8,9,Tonie's Tigers,crtaylor225,2574808,Robby Anderson,WR,0,False
+57,5,9,5,Remember the Fucking Titans,payton9218600,3925357,Calvin Ridley,,0,False
+58,5,10,12,Rule  #76,dcputman,16790,Jarvis Landry,WR,0,False
+59,5,11,2,Rodger  That,jmodell10,3045144,Tyler Boyd,WR,0,False
+60,5,12,4,The New Guy,Josh Swing,2974858,Kenny Golladay,WR,0,False
+61,6,1,4,The New Guy,Josh Swing,2979843,Kenyan Drake,RB,0,False
+62,6,2,2,Rodger  That,jmodell10,3051876,Evan Engram,TE,0,False
+63,6,3,12,Rule  #76,dcputman,13983,A.J. Green,,0,False
+64,6,4,5,Remember the Fucking Titans,payton9218600,3043275,Austin Hooper,TE,0,False
+65,6,5,9,Tonie's Tigers,crtaylor225,3043080,O.J. Howard,TE,0,False
+66,6,6,11,Dez (Bryant) Nuts,Gtgilbert88,12537,Jared Cook,TE,0,False
+67,6,7,3,Jim Ward's Ole Dick Necks,Henry Munford,2979477,Tevin Coleman,,0,False
+68,6,8,1,Below Average Joes,cjhubauer,3046439,Hunter Henry,TE,0,False
+69,6,9,8,SCLSU Mud Dogs,jbray5,3128721,Sony Michel,RB,0,False
+70,6,10,13,Fuck Luck,tcspivey8,3052876,Will Fuller V,WR,0,False
+71,6,11,10,High Noon,jtmurphree,15705,Josh Gordon,,0,False
+72,6,12,6,"Dude, Where's  My Lamar",zwthomas89; zthoma7700709,11237,Matt Ryan,QB,0,False
+73,7,1,6,"Dude, Where's  My Lamar",zwthomas89; zthoma7700709,3892889,Dede Westbrook,WR,0,False
+74,7,2,10,High Noon,jtmurphree,13994,Cam Newton,,0,False
+75,7,3,13,Fuck Luck,tcspivey8,14874,Andrew Luck,,0,False
+76,7,4,8,SCLSU Mud Dogs,jbray5,3895856,Christian Kirk,WR,0,False
+77,7,5,1,Below Average Joes,cjhubauer,3066158,Tarik Cohen,RB,0,False
+78,7,6,3,Jim Ward's Ole Dick Necks,Henry Munford,2976592,Sterling Shepard,WR,0,False
+79,7,7,11,Dez (Bryant) Nuts,Gtgilbert88,16799,Allen Robinson II,WR,0,False
+80,7,8,9,Tonie's Tigers,crtaylor225,2580,Drew Brees,QB,0,False
+81,7,9,5,Remember the Fucking Titans,payton9218600,14886,Lamar Miller,,0,False
+82,7,10,12,Rule  #76,dcputman,15853,Vance McDonald,TE,0,False
+83,7,11,2,Rodger  That,jmodell10,16725,Sammy Watkins,WR,0,False
+84,7,12,4,The New Guy,Josh Swing,3052587,Baker Mayfield,QB,0,False
+85,8,1,4,The New Guy,Josh Swing,3915823,Keke Coutee,WR,0,False
+86,8,2,2,Rodger  That,jmodell10,3042778,Corey Davis,,0,False
+87,8,3,12,Rule  #76,dcputman,2573079,Carson Wentz,QB,0,False
+88,8,4,5,Remember the Fucking Titans,payton9218600,3115913,Geronimo Allison,,0,False
+89,8,5,9,Tonie's Tigers,crtaylor225,3843750,Derrius Guice,RB,0,False
+90,8,6,11,Dez (Bryant) Nuts,Gtgilbert88,2577417,Dak Prescott,QB,0,False
+91,8,7,3,Jim Ward's Ole Dick Necks,Henry Munford,3128429,Courtland Sutton,WR,0,False
+92,8,8,1,Below Average Joes,cjhubauer,3068267,Austin Ekeler,RB,0,False
+93,8,9,8,SCLSU Mud Dogs,jbray5,15920,Latavius Murray,RB,0,False
+94,8,10,13,Fuck Luck,tcspivey8,3139925,Rashaad Penny,RB,0,False
+95,8,11,10,High Noon,jtmurphree,3121427,Curtis Samuel,WR,0,False
+96,8,12,6,"Dude, Where's  My Lamar",zwthomas89; zthoma7700709,15072,Marvin Jones Jr.,WR,0,False
+97,9,1,6,"Dude, Where's  My Lamar",zwthomas89; zthoma7700709,2969962,Duke Johnson,RB,0,False
+98,9,2,10,High Noon,jtmurphree,9761,Delanie Walker,,0,False
+99,9,3,13,Fuck Luck,tcspivey8,3127306,Dante Pettis,,0,False
+100,9,4,8,SCLSU Mud Dogs,jbray5,3122672,Royce Freeman,RB,0,False
+101,9,5,1,Below Average Joes,cjhubauer,3046779,Jared Goff,,0,False
+102,9,6,3,Jim Ward's Ole Dick Necks,Henry Munford,3059915,Kareem Hunt,RB,0,False
+103,9,7,11,Dez (Bryant) Nuts,Gtgilbert88,13295,Emmanuel Sanders,WR,0,False
+104,9,8,9,Tonie's Tigers,crtaylor225,3051902,Peyton Barber,RB,0,False
+105,9,9,5,Remember the Fucking Titans,payton9218600,-16003,Bears D/ST,D/ST,0,False
+106,9,10,12,Rule  #76,dcputman,4039359,Darrell Henderson Jr.,,0,False
+107,9,11,2,Rodger  That,jmodell10,3060022,Jordan Howard,RB,0,False
+108,9,12,4,The New Guy,Josh Swing,3123076,David Njoku,,0,False
+109,10,1,4,The New Guy,Josh Swing,16732,Eric Ebron,TE,0,False
+110,10,2,2,Rodger  That,jmodell10,2576716,Jamison Crowder,WR,0,False
+111,10,3,12,Rule  #76,dcputman,2969939,Jameis Winston,QB,0,False
+112,10,4,5,Remember the Fucking Titans,payton9218600,16791,Donte Moncrief,,0,False
+113,10,5,9,Tonie's Tigers,crtaylor225,5528,Larry Fitzgerald,WR,0,False
+114,10,6,11,Dez (Bryant) Nuts,Gtgilbert88,3916430,Nyheim Hines,,0,False
+115,10,7,3,Jim Ward's Ole Dick Necks,Henry Munford,2330,Tom Brady,QB,0,False
+116,10,8,1,Below Average Joes,cjhubauer,2576491,Adam Humphries,,0,False
+117,10,9,8,SCLSU Mud Dogs,jbray5,3049916,Matt Breida,RB,0,False
+118,10,10,13,Fuck Luck,tcspivey8,14881,Russell Wilson,QB,0,False
+119,10,11,10,High Noon,jtmurphree,4036348,Michael Gallup,WR,0,False
+120,10,12,6,"Dude, Where's  My Lamar",zwthomas89; zthoma7700709,12514,LeSean McCoy,RB,0,False
+121,11,1,6,"Dude, Where's  My Lamar",zwthomas89; zthoma7700709,3050487,Anthony Miller,WR,0,False
+122,11,2,10,High Noon,jtmurphree,4361606,Darwin Thompson,,0,False
+123,11,3,13,Fuck Luck,tcspivey8,3128774,Kalen Ballage,,0,False
+124,11,4,8,SCLSU Mud Dogs,jbray5,3051738,Marquez Valdes-Scantling,,0,False
+125,11,5,1,Below Average Joes,cjhubauer,13217,Golden Tate,WR,0,False
+126,11,6,3,Jim Ward's Ole Dick Necks,Henry Munford,3917315,Kyler Murray,QB,0,False
+127,11,7,11,Dez (Bryant) Nuts,Gtgilbert88,5536,Ben Roethlisberger,,0,False
+128,11,8,9,Tonie's Tigers,crtaylor225,-16014,Rams D/ST,D/ST,0,False
+129,11,9,5,Remember the Fucking Titans,payton9218600,11283,DeSean Jackson,,0,False
+130,11,10,12,Rule  #76,dcputman,2587819,Tyrell Williams,WR,0,False
+131,11,11,2,Rodger  That,jmodell10,10452,Adrian Peterson,RB,0,False
+132,11,12,4,The New Guy,Josh Swing,-16030,Jaguars D/ST,,0,False
+133,12,1,4,The New Guy,Josh Swing,16716,Aaron Donald,,0,False
+134,12,2,2,Rodger  That,jmodell10,3122449,James Washington,WR,0,False
+135,12,3,12,Rule  #76,dcputman,3116721,Jaylen Samuels,RB,0,False
+136,12,4,5,Remember the Fucking Titans,payton9218600,14938,Luke Kuechly,LB,0,False
+137,12,5,9,Tonie's Tigers,crtaylor225,15860,Jordan Reed,,0,False
+138,12,6,11,Dez (Bryant) Nuts,Gtgilbert88,-16033,Ravens D/ST,D/ST,0,False
+139,12,7,3,Jim Ward's Ole Dick Necks,Henry Munford,3123050,Chris Herndon,,0,False
+140,12,8,1,Below Average Joes,cjhubauer,14979,Bobby Wagner,LB,0,False
+141,12,9,8,SCLSU Mud Dogs,jbray5,14198,Dion Lewis,,0,False
+142,12,10,13,Fuck Luck,tcspivey8,2976545,Deion Jones,,0,False
+143,12,11,10,High Noon,jtmurphree,16804,John Brown,WR,0,False
+144,12,12,6,"Dude, Where's  My Lamar",zwthomas89; zthoma7700709,3056362,Darius Leonard,LB,0,False
+145,13,1,6,"Dude, Where's  My Lamar",zwthomas89; zthoma7700709,3912550,Ronald Jones II,RB,0,False
+146,13,2,10,High Noon,jtmurphree,16760,Jimmy Garoppolo,,0,False
+147,13,3,13,Fuck Luck,tcspivey8,-16016,Vikings D/ST,D/ST,0,False
+148,13,4,8,SCLSU Mud Dogs,jbray5,14993,Greg Zuerlein,K,0,False
+149,13,5,1,Below Average Joes,cjhubauer,14880,Kirk Cousins,QB,0,False
+150,13,6,3,Jim Ward's Ole Dick Necks,Henry Munford,4036131,Noah Fant,,0,False
+151,13,7,11,Dez (Bryant) Nuts,Gtgilbert88,3138677,Leighton Vander Esch,,0,False
+152,13,8,9,Tonie's Tigers,crtaylor225,16757,Derek Carr,QB,0,False
+153,13,9,5,Remember the Fucking Titans,payton9218600,3039707,Mitchell Trubisky,,0,False
+154,13,10,12,Rule  #76,dcputman,15683,Justin Tucker,K,0,False
+155,13,11,2,Rodger  That,jmodell10,5529,Philip Rivers,QB,0,False
+156,13,12,4,The New Guy,Josh Swing,2977609,Devin Funchess,,0,False
+157,14,1,4,The New Guy,Josh Swing,2985659,Wil Lutz,K,0,False
+158,14,2,2,Rodger  That,jmodell10,2978273,Blake Martinez,LB,0,False
+159,14,3,12,Rule  #76,dcputman,-16002,Bills D/ST,,0,False
+160,14,4,5,Remember the Fucking Titans,payton9218600,9704,Stephen Gostkowski,,0,False
+161,14,5,9,Tonie's Tigers,crtaylor225,16720,C.J. Mosley,,0,False
+162,14,6,11,Dez (Bryant) Nuts,Gtgilbert88,3116365,Mark Andrews,TE,0,False
+163,14,7,3,Jim Ward's Ole Dick Necks,Henry Munford,3055899,Harrison Butker,K,0,False
+164,14,8,1,Below Average Joes,cjhubauer,4038441,Justice Hill,,0,False
+165,14,9,8,SCLSU Mud Dogs,jbray5,-16024,Chargers D/ST,,0,False
+166,14,10,13,Fuck Luck,tcspivey8,16974,Trey Burton,,0,False
+167,14,11,10,High Noon,jtmurphree,16504,Jack Doyle,TE,0,False
+168,14,12,6,"Dude, Where's  My Lamar",zwthomas89; zthoma7700709,3916387,Lamar Jackson,QB,0,False
+169,15,1,6,"Dude, Where's  My Lamar",zwthomas89; zthoma7700709,16486,Brett Maher,,0,False
+170,15,2,10,High Noon,jtmurphree,10636,Mason Crosby,K,0,False
+171,15,3,13,Fuck Luck,tcspivey8,3916148,Tony Pollard,,0,False
+172,15,4,8,SCLSU Mud Dogs,jbray5,3915189,Roquan Smith,LB,0,False
+173,15,5,1,Below Average Joes,cjhubauer,16040,C.J. Anderson,,0,False
+174,15,6,3,Jim Ward's Ole Dick Necks,Henry Munford,3115373,Jamal Adams,,0,False
+175,15,7,11,Dez (Bryant) Nuts,Gtgilbert88,2971573,Ka'imi Fairbairn,K,0,False
+176,15,8,9,Tonie's Tigers,crtaylor225,3050478,Jake Elliott,,0,False
+177,15,9,5,Remember the Fucking Titans,payton9218600,14922,Mohamed Sanu Sr.,WR,0,False
+178,15,10,12,Rule  #76,dcputman,2978304,Cory Littleton,LB,0,False
+179,15,11,2,Rodger  That,jmodell10,9354,Robbie Gould,K,0,False
+180,15,12,4,The New Guy,Josh Swing,2576980,Marcus Mariota,,0,False
+181,16,1,4,The New Guy,Josh Swing,4040761,Devin Singletary,RB,0,False
+182,16,2,2,Rodger  That,jmodell10,14054,Kyle Rudolph,,0,False
+183,16,3,12,Rule  #76,dcputman,4047839,N'Keal Harry,,0,False
+184,16,4,5,Remember the Fucking Titans,payton9218600,15826,Giovani Bernard,,0,False
+185,16,5,9,Tonie's Tigers,crtaylor225,2972091,Jalen Richard,,0,False
+186,16,6,11,Dez (Bryant) Nuts,Gtgilbert88,10453,Ted Ginn Jr.,WR,0,False
+187,16,7,3,Jim Ward's Ole Dick Necks,Henry Munford,17051,Albert Wilson,,0,False
+188,16,8,1,Below Average Joes,cjhubauer,3123052,Michael Badgley,,0,False
+189,16,9,8,SCLSU Mud Dogs,jbray5,3918298,Josh Allen,QB,0,False
+190,16,10,13,Fuck Luck,tcspivey8,16016,Kenny Stills,,0,False
+191,16,11,10,High Noon,jtmurphree,-16006,Cowboys D/ST,D/ST,0,False
+192,16,12,6,"Dude, Where's  My Lamar",zwthomas89; zthoma7700709,8479,Frank Gore,,0,False
+193,17,1,6,"Dude, Where's  My Lamar",zwthomas89; zthoma7700709,-16020,Jets D/ST,,0,False
+194,17,2,10,High Noon,jtmurphree,3929950,Tremaine Edmunds,,0,False
+195,17,3,13,Fuck Luck,tcspivey8,11122,Matt Prater,K,0,False
+196,17,4,8,SCLSU Mud Dogs,jbray5,3057987,DaeSean Hamilton,,0,False
+197,17,5,1,Below Average Joes,cjhubauer,-16021,Eagles D/ST,D/ST,0,False
+198,17,6,3,Jim Ward's Ole Dick Necks,Henry Munford,-16018,Saints D/ST,D/ST,0,False
+199,17,7,11,Dez (Bryant) Nuts,Gtgilbert88,3925347,Damien Harris,,0,False
+200,17,8,9,Tonie's Tigers,crtaylor225,15839,Marquise Goodwin,WR,0,False
+201,17,9,5,Remember the Fucking Titans,payton9218600,10475,Greg Olsen,TE,0,False
+202,17,10,12,Rule  #76,dcputman,2576925,Darren Waller,TE,0,False
+203,17,11,2,Rodger  That,jmodell10,-16034,Texans D/ST,D/ST,0,False
+204,17,12,4,The New Guy,Josh Swing,15966,Chris Thompson,,0,False

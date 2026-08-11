@@ -1,0 +1,832 @@
+{
+  "league_name": "Derek Jeter's Taco Hole",
+  "team_count": 12,
+  "scoring_type": "H2H_POINTS",
+  "reg_season_count": 13,
+  "playoff_team_count": 8,
+  "playoff_matchup_period_length": 1,
+  "final_scoring_period": 16,
+  "faab": false,
+  "keeper_count": 0,
+  "starting_slots": {
+    "QB": 1,
+    "RB": 2,
+    "WR": 2,
+    "TE": 1,
+    "DP": 1,
+    "D/ST": 1,
+    "K": 1,
+    "BE": 7,
+    "RB/WR/TE": 1
+  },
+  "lineup_slot_counts_raw": {
+    "0": 1,
+    "1": 0,
+    "2": 2,
+    "3": 0,
+    "4": 2,
+    "5": 0,
+    "6": 1,
+    "7": 0,
+    "8": 0,
+    "9": 0,
+    "10": 0,
+    "11": 0,
+    "12": 0,
+    "13": 0,
+    "14": 0,
+    "15": 1,
+    "16": 1,
+    "17": 1,
+    "18": 0,
+    "19": 0,
+    "20": 7,
+    "21": 0,
+    "22": 0,
+    "23": 1
+  },
+  "position_slot_counts_espnapi": {
+    "QB": 1,
+    "TQB": 0,
+    "RB": 2,
+    "RB/WR": 0,
+    "WR": 2,
+    "WR/TE": 0,
+    "TE": 1,
+    "OP": 0,
+    "DT": 0,
+    "DE": 0,
+    "LB": 0,
+    "DL": 0,
+    "CB": 0,
+    "S": 0,
+    "DB": 0,
+    "DP": 1,
+    "D/ST": 1,
+    "K": 1,
+    "P": 0,
+    "HC": 0,
+    "BE": 7,
+    "IR": 0,
+    "": 0,
+    "RB/WR/TE": 1
+  },
+  "scoring_by_stat_id": {
+    "93": {
+      "16": 6.0
+    },
+    "8": 1.0,
+    "123": {
+      "16": -1.0
+    },
+    "124": {
+      "16": -3.0
+    },
+    "125": {
+      "16": -5.0
+    },
+    "128": {
+      "16": 5.0
+    },
+    "25": 6.0,
+    "129": {
+      "16": 3.0
+    },
+    "130": {
+      "16": 2.0
+    },
+    "132": {
+      "16": -1.0
+    },
+    "133": {
+      "16": -3.0
+    },
+    "134": {
+      "16": -5.0
+    },
+    "135": {
+      "16": -6.0
+    },
+    "72": -2.0,
+    "136": {
+      "16": -7.0
+    },
+    "101": {
+      "16": 6.0
+    },
+    "102": {
+      "16": 6.0
+    },
+    "103": {
+      "16": 6.0
+    },
+    "104": {
+      "16": 6.0
+    },
+    "19": 2.0,
+    "43": 6.0,
+    "4": 4.0,
+    "20": -2.0,
+    "63": 6.0,
+    "80": 3.0,
+    "89": {
+      "16": 5.0
+    },
+    "26": 2.0,
+    "106": 1.0,
+    "90": {
+      "16": 4.0
+    },
+    "91": {
+      "16": 3.0
+    },
+    "92": {
+      "16": 1.0
+    },
+    "77": 4.0,
+    "109": 1.0,
+    "48": 1.0,
+    "97": {
+      "16": 2.0
+    },
+    "98": {
+      "16": 2.0
+    },
+    "85": -1.0,
+    "86": 1.0,
+    "28": 1.0,
+    "44": 2.0,
+    "74": 5.0,
+    "95": {
+      "16": 2.0
+    },
+    "96": {
+      "16": 2.0
+    },
+    "99": {
+      "16": 1.0
+    }
+  },
+  "scoring_format": [
+    {
+      "abbr": "BLKKRTD",
+      "label": "Blocked Punt or FG return for TD",
+      "id": 93,
+      "points": 6.0
+    },
+    {
+      "abbr": "PY25",
+      "label": "Every 25 passing yards",
+      "id": 8,
+      "points": 1.0
+    },
+    {
+      "abbr": "PA28",
+      "label": "28-34 points allowed",
+      "id": 123,
+      "points": -1.0
+    },
+    {
+      "abbr": "PA35",
+      "label": "35-45 points allowed",
+      "id": 124,
+      "points": -3.0
+    },
+    {
+      "abbr": "PA46",
+      "label": "46+ points allowed",
+      "id": 125,
+      "points": -5.0
+    },
+    {
+      "abbr": "YA100",
+      "label": "Less than 100 total yards allowed",
+      "id": 128,
+      "points": 5.0
+    },
+    {
+      "abbr": "RTD",
+      "label": "TD Rush",
+      "id": 25,
+      "points": 6.0
+    },
+    {
+      "abbr": "YA199",
+      "label": "100-199 total yards allowed",
+      "id": 129,
+      "points": 3.0
+    },
+    {
+      "abbr": "YA299",
+      "label": "200-299 total yards allowed",
+      "id": 130,
+      "points": 2.0
+    },
+    {
+      "abbr": "YA399",
+      "label": "350-399 total yards allowed",
+      "id": 132,
+      "points": -1.0
+    },
+    {
+      "abbr": "YA449",
+      "label": "400-449 total yards allowed",
+      "id": 133,
+      "points": -3.0
+    },
+    {
+      "abbr": "YA499",
+      "label": "450-499 total yards allowed",
+      "id": 134,
+      "points": -5.0
+    },
+    {
+      "abbr": "YA549",
+      "label": "500-549 total yards allowed",
+      "id": 135,
+      "points": -6.0
+    },
+    {
+      "abbr": "FUML",
+      "label": "Total Fumbles Lost",
+      "id": 72,
+      "points": -2.0
+    },
+    {
+      "abbr": "YA550",
+      "label": "550+ total yards allowed",
+      "id": 136,
+      "points": -7.0
+    },
+    {
+      "abbr": "KRTD",
+      "label": "Kickoff Return TD",
+      "id": 101,
+      "points": 6.0
+    },
+    {
+      "abbr": "PRTD",
+      "label": "Punt Return TD",
+      "id": 102,
+      "points": 6.0
+    },
+    {
+      "abbr": "INTTD",
+      "label": "Interception Return TD",
+      "id": 103,
+      "points": 6.0
+    },
+    {
+      "abbr": "FRTD",
+      "label": "Fumble Return TD",
+      "id": 104,
+      "points": 6.0
+    },
+    {
+      "abbr": "2PC",
+      "label": "2pt Passing Conversion",
+      "id": 19,
+      "points": 2.0
+    },
+    {
+      "abbr": "RETD",
+      "label": "TD Reception",
+      "id": 43,
+      "points": 6.0
+    },
+    {
+      "abbr": "PTD",
+      "label": "TD Pass",
+      "id": 4,
+      "points": 4.0
+    },
+    {
+      "abbr": "INTT",
+      "label": "Interceptions Thrown",
+      "id": 20,
+      "points": -2.0
+    },
+    {
+      "abbr": "FTD",
+      "label": "Fumble Recovered for TD",
+      "id": 63,
+      "points": 6.0
+    },
+    {
+      "abbr": "FG0",
+      "label": "FG Made (0-39 yards)",
+      "id": 80,
+      "points": 3.0
+    },
+    {
+      "abbr": "PA0",
+      "label": "0 points allowed",
+      "id": 89,
+      "points": 5.0
+    },
+    {
+      "abbr": "2PR",
+      "label": "2pt Rushing Conversion",
+      "id": 26,
+      "points": 2.0
+    },
+    {
+      "abbr": "FF",
+      "label": "Each Fumble Forced",
+      "id": 106,
+      "points": 1.0
+    },
+    {
+      "abbr": "PA1",
+      "label": "1-6 points allowed",
+      "id": 90,
+      "points": 4.0
+    },
+    {
+      "abbr": "PA7",
+      "label": "7-13 points allowed",
+      "id": 91,
+      "points": 3.0
+    },
+    {
+      "abbr": "PA14",
+      "label": "14-17 points allowed",
+      "id": 92,
+      "points": 1.0
+    },
+    {
+      "abbr": "FG40",
+      "label": "FG Made (40-49 yards)",
+      "id": 77,
+      "points": 4.0
+    },
+    {
+      "abbr": "TK",
+      "label": "Total Tackles",
+      "id": 109,
+      "points": 1.0
+    },
+    {
+      "abbr": "REY10",
+      "label": "Every 10 receiving yards",
+      "id": 48,
+      "points": 1.0
+    },
+    {
+      "abbr": "BLKK",
+      "label": "Blocked Punt, PAT or FG",
+      "id": 97,
+      "points": 2.0
+    },
+    {
+      "abbr": "SF",
+      "label": "Each Safety",
+      "id": 98,
+      "points": 2.0
+    },
+    {
+      "abbr": "FGM",
+      "label": "Total FG Missed",
+      "id": 85,
+      "points": -1.0
+    },
+    {
+      "abbr": "PAT",
+      "label": "Each PAT Made",
+      "id": 86,
+      "points": 1.0
+    },
+    {
+      "abbr": "RY10",
+      "label": "Every 10 rushing yards",
+      "id": 28,
+      "points": 1.0
+    },
+    {
+      "abbr": "2PRE",
+      "label": "2pt Receiving Conversion",
+      "id": 44,
+      "points": 2.0
+    },
+    {
+      "abbr": "FG50P",
+      "label": "FG Made (50+ yards)",
+      "id": 74,
+      "points": 5.0
+    },
+    {
+      "abbr": "INT",
+      "label": "Each Interception",
+      "id": 95,
+      "points": 2.0
+    },
+    {
+      "abbr": "FR",
+      "label": "Each Fumble Recovered",
+      "id": 96,
+      "points": 2.0
+    },
+    {
+      "abbr": "SK",
+      "label": "Each Sack",
+      "id": 99,
+      "points": 1.0
+    }
+  ],
+  "raw_scoring_settings": {
+    "allowOutOfPositionScoring": false,
+    "homeTeamBonus": 0,
+    "matchupTieRule": "NONE",
+    "matchupTieRuleBy": -1,
+    "playerRankType": "STANDARD",
+    "playoffHomeTeamBonus": 0,
+    "playoffMatchupTieRule": "NONE",
+    "playoffMatchupTieRuleBy": 0,
+    "scoringItems": [
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 6.0,
+        "pointsOverrides": {
+          "16": 6.0
+        },
+        "statId": 93
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 1.0,
+        "statId": 8
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 0.0,
+        "pointsOverrides": {
+          "16": -1.0
+        },
+        "statId": 123
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 0.0,
+        "pointsOverrides": {
+          "16": -3.0
+        },
+        "statId": 124
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 0.0,
+        "pointsOverrides": {
+          "16": -5.0
+        },
+        "statId": 125
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 0.0,
+        "pointsOverrides": {
+          "16": 5.0
+        },
+        "statId": 128
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 6.0,
+        "statId": 25
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 0.0,
+        "pointsOverrides": {
+          "16": 3.0
+        },
+        "statId": 129
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 0.0,
+        "pointsOverrides": {
+          "16": 2.0
+        },
+        "statId": 130
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 0.0,
+        "pointsOverrides": {
+          "16": -1.0
+        },
+        "statId": 132
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 0.0,
+        "pointsOverrides": {
+          "16": -3.0
+        },
+        "statId": 133
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 0.0,
+        "pointsOverrides": {
+          "16": -5.0
+        },
+        "statId": 134
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 0.0,
+        "pointsOverrides": {
+          "16": -6.0
+        },
+        "statId": 135
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": -2.0,
+        "statId": 72
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 0.0,
+        "pointsOverrides": {
+          "16": -7.0
+        },
+        "statId": 136
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 6.0,
+        "pointsOverrides": {
+          "16": 6.0
+        },
+        "statId": 101
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 6.0,
+        "pointsOverrides": {
+          "16": 6.0
+        },
+        "statId": 102
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 6.0,
+        "pointsOverrides": {
+          "16": 6.0
+        },
+        "statId": 103
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 6.0,
+        "pointsOverrides": {
+          "16": 6.0
+        },
+        "statId": 104
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 2.0,
+        "statId": 19
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 6.0,
+        "statId": 43
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 4.0,
+        "statId": 4
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": -2.0,
+        "statId": 20
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 6.0,
+        "statId": 63
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 3.0,
+        "statId": 80
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 0.0,
+        "pointsOverrides": {
+          "16": 5.0
+        },
+        "statId": 89
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 2.0,
+        "statId": 26
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 1.0,
+        "statId": 106
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 0.0,
+        "pointsOverrides": {
+          "16": 4.0
+        },
+        "statId": 90
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 0.0,
+        "pointsOverrides": {
+          "16": 3.0
+        },
+        "statId": 91
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 0.0,
+        "pointsOverrides": {
+          "16": 1.0
+        },
+        "statId": 92
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 4.0,
+        "statId": 77
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 1.0,
+        "statId": 109
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 1.0,
+        "statId": 48
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 0.0,
+        "pointsOverrides": {
+          "16": 2.0
+        },
+        "statId": 97
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 0.0,
+        "pointsOverrides": {
+          "16": 2.0
+        },
+        "statId": 98
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": -1.0,
+        "statId": 85
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 1.0,
+        "statId": 86
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 1.0,
+        "statId": 28
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 2.0,
+        "statId": 44
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 5.0,
+        "statId": 74
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 1.0,
+        "pointsOverrides": {
+          "16": 2.0
+        },
+        "statId": 95
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 1.0,
+        "pointsOverrides": {
+          "16": 2.0
+        },
+        "statId": 96
+      },
+      {
+        "isReverseItem": false,
+        "leagueRanking": 0.0,
+        "leagueTotal": 0.0,
+        "points": 1.0,
+        "pointsOverrides": {
+          "16": 1.0
+        },
+        "statId": 99
+      }
+    ],
+    "scoringType": "H2H_POINTS"
+  }
+}

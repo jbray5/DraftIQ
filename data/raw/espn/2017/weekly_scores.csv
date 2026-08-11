@@ -1,0 +1,193 @@
+week,is_regular,team_id,team_name,points,opp_team_id,opp_team_name,is_bye,outcome
+1,True,1,You like  That?,140.2,9,Tonie's Tigers,False,L
+1,True,2,Rodger  That,90.14,13,Dumpster Fire,False,W
+1,True,3,Jim Ward's Allstars,104.96,12,Rule #76,False,L
+1,True,4,Bell yeah,109.34,5,Send Points,False,W
+1,True,5,Send Points,98.28,4,Bell yeah,False,L
+1,True,6,"Dude, Where's  My Carr ",93.28,10,High Noon,False,L
+1,True,8,Free Pimp  Zeke ,81.82,11,Dez (Bryant) Nuts,False,W
+1,True,9,Tonie's Tigers,141.24,1,You like  That?,False,W
+1,True,10,High Noon,142.34,6,"Dude, Where's  My Carr ",False,W
+1,True,11,Dez (Bryant) Nuts,73.42,8,Free Pimp  Zeke ,False,L
+1,True,12,Rule #76,113.74,3,Jim Ward's Allstars,False,W
+1,True,13,Dumpster Fire,54.82,2,Rodger  That,False,L
+2,True,1,You like  That?,98.26,4,Bell yeah,False,L
+2,True,2,Rodger  That,118.42,3,Jim Ward's Allstars,False,L
+2,True,3,Jim Ward's Allstars,129.06,2,Rodger  That,False,W
+2,True,4,Bell yeah,106.38,1,You like  That?,False,W
+2,True,5,Send Points,94.78,6,"Dude, Where's  My Carr ",False,L
+2,True,6,"Dude, Where's  My Carr ",119.6,5,Send Points,False,W
+2,True,8,Free Pimp  Zeke ,111.62,12,Rule #76,False,W
+2,True,9,Tonie's Tigers,143.94,10,High Noon,False,W
+2,True,10,High Noon,106.64,9,Tonie's Tigers,False,L
+2,True,11,Dez (Bryant) Nuts,120.92,13,Dumpster Fire,False,W
+2,True,12,Rule #76,99.9,8,Free Pimp  Zeke ,False,L
+2,True,13,Dumpster Fire,82.22,11,Dez (Bryant) Nuts,False,L
+3,True,1,You like  That?,148.6,5,Send Points,False,W
+3,True,2,Rodger  That,125.02,12,Rule #76,False,W
+3,True,3,Jim Ward's Allstars,81.32,11,Dez (Bryant) Nuts,False,L
+3,True,4,Bell yeah,106.96,10,High Noon,False,W
+3,True,5,Send Points,119.62,1,You like  That?,False,L
+3,True,6,"Dude, Where's  My Carr ",76.72,9,Tonie's Tigers,False,L
+3,True,8,Free Pimp  Zeke ,126.6,13,Dumpster Fire,False,W
+3,True,9,Tonie's Tigers,103.5,6,"Dude, Where's  My Carr ",False,W
+3,True,10,High Noon,91.48,4,Bell yeah,False,L
+3,True,11,Dez (Bryant) Nuts,87.22,3,Jim Ward's Allstars,False,W
+3,True,12,Rule #76,124.2,2,Rodger  That,False,L
+3,True,13,Dumpster Fire,108.36,8,Free Pimp  Zeke ,False,L
+4,True,1,You like  That?,103.0,6,"Dude, Where's  My Carr ",False,L
+4,True,2,Rodger  That,108.56,8,Free Pimp  Zeke ,False,L
+4,True,3,Jim Ward's Allstars,93.06,13,Dumpster Fire,False,L
+4,True,4,Bell yeah,86.98,9,Tonie's Tigers,False,L
+4,True,5,Send Points,82.68,10,High Noon,False,L
+4,True,6,"Dude, Where's  My Carr ",111.82,1,You like  That?,False,W
+4,True,8,Free Pimp  Zeke ,123.48,2,Rodger  That,False,W
+4,True,9,Tonie's Tigers,94.92,4,Bell yeah,False,W
+4,True,10,High Noon,120.58,5,Send Points,False,W
+4,True,11,Dez (Bryant) Nuts,94.48,12,Rule #76,False,L
+4,True,12,Rule #76,94.54,11,Dez (Bryant) Nuts,False,W
+4,True,13,Dumpster Fire,117.8,3,Jim Ward's Allstars,False,W
+5,True,1,You like  That?,113.46,10,High Noon,False,W
+5,True,2,Rodger  That,93.84,11,Dez (Bryant) Nuts,False,L
+5,True,3,Jim Ward's Allstars,130.86,8,Free Pimp  Zeke ,False,W
+5,True,4,Bell yeah,151.9,6,"Dude, Where's  My Carr ",False,W
+5,True,5,Send Points,85.02,9,Tonie's Tigers,False,W
+5,True,6,"Dude, Where's  My Carr ",122.24,4,Bell yeah,False,L
+5,True,8,Free Pimp  Zeke ,64.78,3,Jim Ward's Allstars,False,L
+5,True,9,Tonie's Tigers,59.8,5,Send Points,False,L
+5,True,10,High Noon,107.32,1,You like  That?,False,L
+5,True,11,Dez (Bryant) Nuts,140.44,2,Rodger  That,False,W
+5,True,12,Rule #76,124.46,13,Dumpster Fire,False,W
+5,True,13,Dumpster Fire,71.12,12,Rule #76,False,L
+6,True,1,You like  That?,131.0,2,Rodger  That,False,W
+6,True,2,Rodger  That,79.92,1,You like  That?,False,L
+6,True,3,Jim Ward's Allstars,115.44,4,Bell yeah,False,W
+6,True,4,Bell yeah,111.62,3,Jim Ward's Allstars,False,L
+6,True,5,Send Points,93.88,12,Rule #76,False,L
+6,True,6,"Dude, Where's  My Carr ",111.0,8,Free Pimp  Zeke ,False,L
+6,True,8,Free Pimp  Zeke ,113.52,6,"Dude, Where's  My Carr ",False,W
+6,True,9,Tonie's Tigers,100.98,13,Dumpster Fire,False,W
+6,True,10,High Noon,138.82,11,Dez (Bryant) Nuts,False,W
+6,True,11,Dez (Bryant) Nuts,94.26,10,High Noon,False,L
+6,True,12,Rule #76,94.24,5,Send Points,False,W
+6,True,13,Dumpster Fire,90.88,9,Tonie's Tigers,False,L
+7,True,1,You like  That?,125.12,13,Dumpster Fire,False,W
+7,True,2,Rodger  That,95.88,4,Bell yeah,False,W
+7,True,3,Jim Ward's Allstars,89.46,6,"Dude, Where's  My Carr ",False,L
+7,True,4,Bell yeah,84.42,2,Rodger  That,False,L
+7,True,5,Send Points,106.66,11,Dez (Bryant) Nuts,False,L
+7,True,6,"Dude, Where's  My Carr ",130.48,3,Jim Ward's Allstars,False,W
+7,True,8,Free Pimp  Zeke ,120.98,10,High Noon,False,W
+7,True,9,Tonie's Tigers,101.94,12,Rule #76,False,L
+7,True,10,High Noon,119.22,8,Free Pimp  Zeke ,False,L
+7,True,11,Dez (Bryant) Nuts,108.76,5,Send Points,False,W
+7,True,12,Rule #76,106.02,9,Tonie's Tigers,False,W
+7,True,13,Dumpster Fire,104.76,1,You like  That?,False,L
+8,True,1,You like  That?,100.04,12,Rule #76,False,L
+8,True,2,Rodger  That,101.62,6,"Dude, Where's  My Carr ",False,W
+8,True,3,Jim Ward's Allstars,103.8,10,High Noon,False,L
+8,True,4,Bell yeah,94.76,13,Dumpster Fire,False,L
+8,True,5,Send Points,79.52,8,Free Pimp  Zeke ,False,L
+8,True,6,"Dude, Where's  My Carr ",98.08,2,Rodger  That,False,L
+8,True,8,Free Pimp  Zeke ,137.78,5,Send Points,False,W
+8,True,9,Tonie's Tigers,106.26,11,Dez (Bryant) Nuts,False,W
+8,True,10,High Noon,110.48,3,Jim Ward's Allstars,False,W
+8,True,11,Dez (Bryant) Nuts,97.42,9,Tonie's Tigers,False,L
+8,True,12,Rule #76,115.78,1,You like  That?,False,W
+8,True,13,Dumpster Fire,149.58,4,Bell yeah,False,W
+9,True,1,You like  That?,109.76,11,Dez (Bryant) Nuts,False,L
+9,True,2,Rodger  That,136.24,10,High Noon,False,W
+9,True,3,Jim Ward's Allstars,64.98,5,Send Points,False,L
+9,True,4,Bell yeah,88.38,12,Rule #76,False,L
+9,True,5,Send Points,95.94,3,Jim Ward's Allstars,False,W
+9,True,6,"Dude, Where's  My Carr ",114.6,13,Dumpster Fire,False,W
+9,True,8,Free Pimp  Zeke ,123.44,9,Tonie's Tigers,False,W
+9,True,9,Tonie's Tigers,106.32,8,Free Pimp  Zeke ,False,L
+9,True,10,High Noon,89.1,2,Rodger  That,False,L
+9,True,11,Dez (Bryant) Nuts,112.86,1,You like  That?,False,W
+9,True,12,Rule #76,125.02,4,Bell yeah,False,W
+9,True,13,Dumpster Fire,113.28,6,"Dude, Where's  My Carr ",False,L
+10,True,1,You like  That?,125.58,8,Free Pimp  Zeke ,False,W
+10,True,2,Rodger  That,91.16,5,Send Points,False,L
+10,True,3,Jim Ward's Allstars,88.82,9,Tonie's Tigers,False,W
+10,True,4,Bell yeah,102.0,11,Dez (Bryant) Nuts,False,W
+10,True,5,Send Points,108.04,2,Rodger  That,False,W
+10,True,6,"Dude, Where's  My Carr ",102.18,12,Rule #76,False,L
+10,True,8,Free Pimp  Zeke ,95.74,1,You like  That?,False,L
+10,True,9,Tonie's Tigers,70.56,3,Jim Ward's Allstars,False,L
+10,True,10,High Noon,111.72,13,Dumpster Fire,False,L
+10,True,11,Dez (Bryant) Nuts,90.04,4,Bell yeah,False,L
+10,True,12,Rule #76,105.66,6,"Dude, Where's  My Carr ",False,W
+10,True,13,Dumpster Fire,143.92,10,High Noon,False,W
+11,True,1,You like  That?,105.42,3,Jim Ward's Allstars,False,W
+11,True,2,Rodger  That,61.26,9,Tonie's Tigers,False,L
+11,True,3,Jim Ward's Allstars,100.1,1,You like  That?,False,L
+11,True,4,Bell yeah,137.7,8,Free Pimp  Zeke ,False,W
+11,True,5,Send Points,115.5,13,Dumpster Fire,False,L
+11,True,6,"Dude, Where's  My Carr ",91.48,11,Dez (Bryant) Nuts,False,W
+11,True,8,Free Pimp  Zeke ,126.06,4,Bell yeah,False,L
+11,True,9,Tonie's Tigers,132.8,2,Rodger  That,False,W
+11,True,10,High Noon,117.0,12,Rule #76,False,W
+11,True,11,Dez (Bryant) Nuts,77.0,6,"Dude, Where's  My Carr ",False,L
+11,True,12,Rule #76,116.2,10,High Noon,False,L
+11,True,13,Dumpster Fire,157.02,5,Send Points,False,W
+12,True,1,You like  That?,97.28,2,Rodger  That,False,L
+12,True,2,Rodger  That,107.3,1,You like  That?,False,W
+12,True,3,Jim Ward's Allstars,78.56,4,Bell yeah,False,L
+12,True,4,Bell yeah,124.02,3,Jim Ward's Allstars,False,W
+12,True,5,Send Points,106.22,12,Rule #76,False,L
+12,True,6,"Dude, Where's  My Carr ",113.42,8,Free Pimp  Zeke ,False,L
+12,True,8,Free Pimp  Zeke ,153.34,6,"Dude, Where's  My Carr ",False,W
+12,True,9,Tonie's Tigers,175.84,13,Dumpster Fire,False,W
+12,True,10,High Noon,110.36,11,Dez (Bryant) Nuts,False,L
+12,True,11,Dez (Bryant) Nuts,114.56,10,High Noon,False,W
+12,True,12,Rule #76,124.16,5,Send Points,False,W
+12,True,13,Dumpster Fire,90.42,9,Tonie's Tigers,False,L
+13,True,1,You like  That?,118.34,13,Dumpster Fire,False,L
+13,True,2,Rodger  That,103.84,4,Bell yeah,False,L
+13,True,3,Jim Ward's Allstars,76.6,6,"Dude, Where's  My Carr ",False,L
+13,True,4,Bell yeah,114.32,2,Rodger  That,False,W
+13,True,5,Send Points,56.22,11,Dez (Bryant) Nuts,False,L
+13,True,6,"Dude, Where's  My Carr ",101.18,3,Jim Ward's Allstars,False,W
+13,True,8,Free Pimp  Zeke ,135.6,10,High Noon,False,W
+13,True,9,Tonie's Tigers,121.96,12,Rule #76,False,L
+13,True,10,High Noon,108.16,8,Free Pimp  Zeke ,False,L
+13,True,11,Dez (Bryant) Nuts,116.18,5,Send Points,False,W
+13,True,12,Rule #76,154.74,9,Tonie's Tigers,False,W
+13,True,13,Dumpster Fire,123.98,1,You like  That?,False,W
+14,False,1,You like  That?,122.14,12,Rule #76,False,L
+14,False,2,Rodger  That,134.74,9,Tonie's Tigers,False,W
+14,False,3,Jim Ward's Allstars,103.06,5,Send Points,False,W
+14,False,4,Bell yeah,89.84,11,Dez (Bryant) Nuts,False,L
+14,False,5,Send Points,82.92,3,Jim Ward's Allstars,False,L
+14,False,6,"Dude, Where's  My Carr ",63.3,8,Free Pimp  Zeke ,False,L
+14,False,8,Free Pimp  Zeke ,143.84,6,"Dude, Where's  My Carr ",False,W
+14,False,9,Tonie's Tigers,78.24,2,Rodger  That,False,L
+14,False,10,High Noon,130.56,13,Dumpster Fire,False,L
+14,False,11,Dez (Bryant) Nuts,129.78,4,Bell yeah,False,W
+14,False,12,Rule #76,132.42,1,You like  That?,False,W
+14,False,13,Dumpster Fire,140.04,10,High Noon,False,W
+15,False,1,You like  That?,108.24,6,"Dude, Where's  My Carr ",False,L
+15,False,2,Rodger  That,107.98,12,Rule #76,False,L
+15,False,3,Jim Ward's Allstars,109.84,13,Dumpster Fire,False,L
+15,False,4,Bell yeah,118.28,9,Tonie's Tigers,False,W
+15,False,5,Send Points,52.82,10,High Noon,False,L
+15,False,6,"Dude, Where's  My Carr ",139.56,1,You like  That?,False,W
+15,False,8,Free Pimp  Zeke ,112.74,11,Dez (Bryant) Nuts,False,W
+15,False,9,Tonie's Tigers,93.04,4,Bell yeah,False,L
+15,False,10,High Noon,161.58,5,Send Points,False,W
+15,False,11,Dez (Bryant) Nuts,94.88,8,Free Pimp  Zeke ,False,L
+15,False,12,Rule #76,115.94,2,Rodger  That,False,W
+15,False,13,Dumpster Fire,127.48,3,Jim Ward's Allstars,False,W
+16,False,1,You like  That?,84.42,9,Tonie's Tigers,False,L
+16,False,2,Rodger  That,79.22,11,Dez (Bryant) Nuts,False,W
+16,False,3,Jim Ward's Allstars,99.88,5,Send Points,False,W
+16,False,4,Bell yeah,113.32,6,"Dude, Where's  My Carr ",False,W
+16,False,5,Send Points,58.06,3,Jim Ward's Allstars,False,L
+16,False,6,"Dude, Where's  My Carr ",89.68,4,Bell yeah,False,L
+16,False,8,Free Pimp  Zeke ,135.84,12,Rule #76,False,W
+16,False,9,Tonie's Tigers,93.56,1,You like  That?,False,W
+16,False,10,High Noon,169.64,13,Dumpster Fire,False,W
+16,False,11,Dez (Bryant) Nuts,69.04,2,Rodger  That,False,L
+16,False,12,Rule #76,82.06,8,Free Pimp  Zeke ,False,L
+16,False,13,Dumpster Fire,122.92,10,High Noon,False,L

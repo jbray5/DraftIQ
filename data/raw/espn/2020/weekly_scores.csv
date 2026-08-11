@@ -1,0 +1,193 @@
+week,is_regular,team_id,team_name,points,opp_team_id,opp_team_name,is_bye,outcome
+1,True,1,"Jim, Tannehill, Laundry ",111.42,6,This Year Will  Be A Brees ,False,W
+1,True,2,Lamar  The Merrier!,90.9,13,Kamara Virus,False,L
+1,True,3,Jim Ward's Ole Dick Necks,123.54,12,Rule  #76,False,L
+1,True,4,Thunder Thighs,123.7,11,Dez (Bryant) Nuts,False,L
+1,True,5,Russ Finna Cuck,110.8,8,SCLSU Mud Dogs,False,W
+1,True,6,This Year Will  Be A Brees ,105.6,1,"Jim, Tannehill, Laundry ",False,L
+1,True,8,SCLSU Mud Dogs,100.04,5,Russ Finna Cuck,False,L
+1,True,9,Tonie's Tigers,114.66,10,Maitland Tiburon,False,W
+1,True,10,Maitland Tiburon,90.9,9,Tonie's Tigers,False,L
+1,True,11,Dez (Bryant) Nuts,146.96,4,Thunder Thighs,False,W
+1,True,12,Rule  #76,146.2,3,Jim Ward's Ole Dick Necks,False,W
+1,True,13,Kamara Virus,160.08,2,Lamar  The Merrier!,False,W
+2,True,1,"Jim, Tannehill, Laundry ",117.1,8,SCLSU Mud Dogs,False,L
+2,True,2,Lamar  The Merrier!,140.86,3,Jim Ward's Ole Dick Necks,False,W
+2,True,3,Jim Ward's Ole Dick Necks,137.48,2,Lamar  The Merrier!,False,L
+2,True,4,Thunder Thighs,110.22,13,Kamara Virus,False,L
+2,True,5,Russ Finna Cuck,106.18,10,Maitland Tiburon,False,W
+2,True,6,This Year Will  Be A Brees ,108.48,9,Tonie's Tigers,False,L
+2,True,8,SCLSU Mud Dogs,122.9,1,"Jim, Tannehill, Laundry ",False,W
+2,True,9,Tonie's Tigers,119.18,6,This Year Will  Be A Brees ,False,W
+2,True,10,Maitland Tiburon,93.58,5,Russ Finna Cuck,False,L
+2,True,11,Dez (Bryant) Nuts,154.2,12,Rule  #76,False,W
+2,True,12,Rule  #76,150.04,11,Dez (Bryant) Nuts,False,L
+2,True,13,Kamara Virus,177.2,4,Thunder Thighs,False,W
+3,True,1,"Jim, Tannehill, Laundry ",143.66,10,Maitland Tiburon,False,W
+3,True,2,Lamar  The Merrier!,69.78,11,Dez (Bryant) Nuts,False,L
+3,True,3,Jim Ward's Ole Dick Necks,101.8,13,Kamara Virus,False,L
+3,True,4,Thunder Thighs,100.92,12,Rule  #76,False,W
+3,True,5,Russ Finna Cuck,179.5,9,Tonie's Tigers,False,W
+3,True,6,This Year Will  Be A Brees ,153.72,8,SCLSU Mud Dogs,False,W
+3,True,8,SCLSU Mud Dogs,88.08,6,This Year Will  Be A Brees ,False,L
+3,True,9,Tonie's Tigers,176.88,5,Russ Finna Cuck,False,L
+3,True,10,Maitland Tiburon,142.1,1,"Jim, Tannehill, Laundry ",False,L
+3,True,11,Dez (Bryant) Nuts,133.42,2,Lamar  The Merrier!,False,W
+3,True,12,Rule  #76,80.3,4,Thunder Thighs,False,L
+3,True,13,Kamara Virus,142.74,3,Jim Ward's Ole Dick Necks,False,W
+4,True,1,"Jim, Tannehill, Laundry ",131.6,5,Russ Finna Cuck,False,W
+4,True,2,Lamar  The Merrier!,128.82,12,Rule  #76,False,W
+4,True,3,Jim Ward's Ole Dick Necks,119.24,4,Thunder Thighs,False,W
+4,True,4,Thunder Thighs,98.7,3,Jim Ward's Ole Dick Necks,False,L
+4,True,5,Russ Finna Cuck,121.7,1,"Jim, Tannehill, Laundry ",False,L
+4,True,6,This Year Will  Be A Brees ,89.84,10,Maitland Tiburon,False,L
+4,True,8,SCLSU Mud Dogs,126.38,9,Tonie's Tigers,False,W
+4,True,9,Tonie's Tigers,118.36,8,SCLSU Mud Dogs,False,L
+4,True,10,Maitland Tiburon,118.2,6,This Year Will  Be A Brees ,False,W
+4,True,11,Dez (Bryant) Nuts,137.18,13,Kamara Virus,False,L
+4,True,12,Rule  #76,91.72,2,Lamar  The Merrier!,False,L
+4,True,13,Kamara Virus,143.42,11,Dez (Bryant) Nuts,False,W
+5,True,1,"Jim, Tannehill, Laundry ",136.46,9,Tonie's Tigers,False,W
+5,True,2,Lamar  The Merrier!,90.52,4,Thunder Thighs,False,L
+5,True,3,Jim Ward's Ole Dick Necks,96.2,11,Dez (Bryant) Nuts,False,L
+5,True,4,Thunder Thighs,133.04,2,Lamar  The Merrier!,False,W
+5,True,5,Russ Finna Cuck,129.78,6,This Year Will  Be A Brees ,False,W
+5,True,6,This Year Will  Be A Brees ,116.1,5,Russ Finna Cuck,False,L
+5,True,8,SCLSU Mud Dogs,107.14,10,Maitland Tiburon,False,L
+5,True,9,Tonie's Tigers,112.22,1,"Jim, Tannehill, Laundry ",False,L
+5,True,10,Maitland Tiburon,122.12,8,SCLSU Mud Dogs,False,W
+5,True,11,Dez (Bryant) Nuts,116.62,3,Jim Ward's Ole Dick Necks,False,W
+5,True,12,Rule  #76,113.0,13,Kamara Virus,False,L
+5,True,13,Kamara Virus,145.92,12,Rule  #76,False,W
+6,True,1,"Jim, Tannehill, Laundry ",107.3,2,Lamar  The Merrier!,False,W
+6,True,2,Lamar  The Merrier!,90.54,1,"Jim, Tannehill, Laundry ",False,L
+6,True,3,Jim Ward's Ole Dick Necks,112.8,8,SCLSU Mud Dogs,False,W
+6,True,4,Thunder Thighs,146.74,9,Tonie's Tigers,False,W
+6,True,5,Russ Finna Cuck,98.58,12,Rule  #76,False,L
+6,True,6,This Year Will  Be A Brees ,105.44,13,Kamara Virus,False,L
+6,True,8,SCLSU Mud Dogs,103.62,3,Jim Ward's Ole Dick Necks,False,L
+6,True,9,Tonie's Tigers,82.44,4,Thunder Thighs,False,L
+6,True,10,Maitland Tiburon,113.04,11,Dez (Bryant) Nuts,False,W
+6,True,11,Dez (Bryant) Nuts,91.0,10,Maitland Tiburon,False,L
+6,True,12,Rule  #76,136.22,5,Russ Finna Cuck,False,W
+6,True,13,Kamara Virus,119.98,6,This Year Will  Be A Brees ,False,W
+7,True,1,"Jim, Tannehill, Laundry ",123.46,3,Jim Ward's Ole Dick Necks,False,W
+7,True,2,Lamar  The Merrier!,85.22,9,Tonie's Tigers,False,L
+7,True,3,Jim Ward's Ole Dick Necks,95.1,1,"Jim, Tannehill, Laundry ",False,L
+7,True,4,Thunder Thighs,93.92,10,Maitland Tiburon,False,L
+7,True,5,Russ Finna Cuck,176.02,13,Kamara Virus,False,W
+7,True,6,This Year Will  Be A Brees ,122.36,11,Dez (Bryant) Nuts,False,W
+7,True,8,SCLSU Mud Dogs,125.72,12,Rule  #76,False,L
+7,True,9,Tonie's Tigers,137.96,2,Lamar  The Merrier!,False,W
+7,True,10,Maitland Tiburon,98.9,4,Thunder Thighs,False,W
+7,True,11,Dez (Bryant) Nuts,115.26,6,This Year Will  Be A Brees ,False,L
+7,True,12,Rule  #76,138.6,8,SCLSU Mud Dogs,False,W
+7,True,13,Kamara Virus,128.38,5,Russ Finna Cuck,False,L
+8,True,1,"Jim, Tannehill, Laundry ",142.02,12,Rule  #76,False,W
+8,True,2,Lamar  The Merrier!,69.32,10,Maitland Tiburon,False,L
+8,True,3,Jim Ward's Ole Dick Necks,80.24,9,Tonie's Tigers,False,L
+8,True,4,Thunder Thighs,114.94,6,This Year Will  Be A Brees ,False,W
+8,True,5,Russ Finna Cuck,127.84,11,Dez (Bryant) Nuts,False,W
+8,True,6,This Year Will  Be A Brees ,98.94,4,Thunder Thighs,False,L
+8,True,8,SCLSU Mud Dogs,104.2,13,Kamara Virus,False,L
+8,True,9,Tonie's Tigers,131.76,3,Jim Ward's Ole Dick Necks,False,W
+8,True,10,Maitland Tiburon,100.34,2,Lamar  The Merrier!,False,W
+8,True,11,Dez (Bryant) Nuts,89.44,5,Russ Finna Cuck,False,L
+8,True,12,Rule  #76,88.02,1,"Jim, Tannehill, Laundry ",False,L
+8,True,13,Kamara Virus,108.66,8,SCLSU Mud Dogs,False,W
+9,True,1,"Jim, Tannehill, Laundry ",149.44,13,Kamara Virus,False,W
+9,True,2,Lamar  The Merrier!,83.04,6,This Year Will  Be A Brees ,False,L
+9,True,3,Jim Ward's Ole Dick Necks,121.38,10,Maitland Tiburon,False,W
+9,True,4,Thunder Thighs,97.86,5,Russ Finna Cuck,False,W
+9,True,5,Russ Finna Cuck,87.3,4,Thunder Thighs,False,L
+9,True,6,This Year Will  Be A Brees ,106.8,2,Lamar  The Merrier!,False,W
+9,True,8,SCLSU Mud Dogs,102.82,11,Dez (Bryant) Nuts,False,L
+9,True,9,Tonie's Tigers,83.46,12,Rule  #76,False,L
+9,True,10,Maitland Tiburon,90.14,3,Jim Ward's Ole Dick Necks,False,L
+9,True,11,Dez (Bryant) Nuts,117.5,8,SCLSU Mud Dogs,False,W
+9,True,12,Rule  #76,115.42,9,Tonie's Tigers,False,W
+9,True,13,Kamara Virus,132.1,1,"Jim, Tannehill, Laundry ",False,L
+10,True,1,"Jim, Tannehill, Laundry ",99.52,11,Dez (Bryant) Nuts,False,L
+10,True,2,Lamar  The Merrier!,111.46,5,Russ Finna Cuck,False,W
+10,True,3,Jim Ward's Ole Dick Necks,83.68,6,This Year Will  Be A Brees ,False,L
+10,True,4,Thunder Thighs,72.16,8,SCLSU Mud Dogs,False,L
+10,True,5,Russ Finna Cuck,103.92,2,Lamar  The Merrier!,False,L
+10,True,6,This Year Will  Be A Brees ,99.74,3,Jim Ward's Ole Dick Necks,False,W
+10,True,8,SCLSU Mud Dogs,81.38,4,Thunder Thighs,False,W
+10,True,9,Tonie's Tigers,92.08,13,Kamara Virus,False,L
+10,True,10,Maitland Tiburon,87.34,12,Rule  #76,False,L
+10,True,11,Dez (Bryant) Nuts,112.2,1,"Jim, Tannehill, Laundry ",False,W
+10,True,12,Rule  #76,142.1,10,Maitland Tiburon,False,W
+10,True,13,Kamara Virus,140.76,9,Tonie's Tigers,False,W
+11,True,1,"Jim, Tannehill, Laundry ",138.16,4,Thunder Thighs,False,W
+11,True,2,Lamar  The Merrier!,81.94,8,SCLSU Mud Dogs,False,L
+11,True,3,Jim Ward's Ole Dick Necks,94.62,5,Russ Finna Cuck,False,L
+11,True,4,Thunder Thighs,90.68,1,"Jim, Tannehill, Laundry ",False,L
+11,True,5,Russ Finna Cuck,113.88,3,Jim Ward's Ole Dick Necks,False,W
+11,True,6,This Year Will  Be A Brees ,105.4,12,Rule  #76,False,L
+11,True,8,SCLSU Mud Dogs,126.76,2,Lamar  The Merrier!,False,W
+11,True,9,Tonie's Tigers,117.54,11,Dez (Bryant) Nuts,False,W
+11,True,10,Maitland Tiburon,116.62,13,Kamara Virus,False,W
+11,True,11,Dez (Bryant) Nuts,114.94,9,Tonie's Tigers,False,L
+11,True,12,Rule  #76,125.48,6,This Year Will  Be A Brees ,False,W
+11,True,13,Kamara Virus,111.24,10,Maitland Tiburon,False,L
+12,True,1,"Jim, Tannehill, Laundry ",132.32,2,Lamar  The Merrier!,False,W
+12,True,2,Lamar  The Merrier!,100.24,1,"Jim, Tannehill, Laundry ",False,L
+12,True,3,Jim Ward's Ole Dick Necks,118.6,8,SCLSU Mud Dogs,False,L
+12,True,4,Thunder Thighs,81.9,9,Tonie's Tigers,False,L
+12,True,5,Russ Finna Cuck,129.2,12,Rule  #76,False,W
+12,True,6,This Year Will  Be A Brees ,113.3,13,Kamara Virus,False,L
+12,True,8,SCLSU Mud Dogs,150.84,3,Jim Ward's Ole Dick Necks,False,W
+12,True,9,Tonie's Tigers,92.8,4,Thunder Thighs,False,W
+12,True,10,Maitland Tiburon,157.8,11,Dez (Bryant) Nuts,False,W
+12,True,11,Dez (Bryant) Nuts,114.74,10,Maitland Tiburon,False,L
+12,True,12,Rule  #76,102.9,5,Russ Finna Cuck,False,L
+12,True,13,Kamara Virus,116.18,6,This Year Will  Be A Brees ,False,W
+13,True,1,"Jim, Tannehill, Laundry ",138.74,3,Jim Ward's Ole Dick Necks,False,W
+13,True,2,Lamar  The Merrier!,93.4,9,Tonie's Tigers,False,L
+13,True,3,Jim Ward's Ole Dick Necks,107.52,1,"Jim, Tannehill, Laundry ",False,L
+13,True,4,Thunder Thighs,83.12,10,Maitland Tiburon,False,W
+13,True,5,Russ Finna Cuck,141.02,13,Kamara Virus,False,W
+13,True,6,This Year Will  Be A Brees ,83.04,11,Dez (Bryant) Nuts,False,L
+13,True,8,SCLSU Mud Dogs,161.36,12,Rule  #76,False,W
+13,True,9,Tonie's Tigers,103.84,2,Lamar  The Merrier!,False,W
+13,True,10,Maitland Tiburon,78.66,4,Thunder Thighs,False,L
+13,True,11,Dez (Bryant) Nuts,117.0,6,This Year Will  Be A Brees ,False,W
+13,True,12,Rule  #76,75.62,8,SCLSU Mud Dogs,False,L
+13,True,13,Kamara Virus,127.1,5,Russ Finna Cuck,False,L
+14,False,1,"Jim, Tannehill, Laundry ",135.06,8,SCLSU Mud Dogs,False,L
+14,False,2,Lamar  The Merrier!,87.38,3,Jim Ward's Ole Dick Necks,False,L
+14,False,3,Jim Ward's Ole Dick Necks,89.72,2,Lamar  The Merrier!,False,W
+14,False,4,Thunder Thighs,101.54,6,This Year Will  Be A Brees ,False,L
+14,False,5,Russ Finna Cuck,121.74,10,Maitland Tiburon,False,L
+14,False,6,This Year Will  Be A Brees ,148.94,4,Thunder Thighs,False,W
+14,False,8,SCLSU Mud Dogs,149.58,1,"Jim, Tannehill, Laundry ",False,W
+14,False,9,Tonie's Tigers,95.04,13,Kamara Virus,False,L
+14,False,10,Maitland Tiburon,122.96,5,Russ Finna Cuck,False,W
+14,False,11,Dez (Bryant) Nuts,119.9,12,Rule  #76,False,L
+14,False,12,Rule  #76,130.06,11,Dez (Bryant) Nuts,False,W
+14,False,13,Kamara Virus,115.32,9,Tonie's Tigers,False,W
+15,False,1,"Jim, Tannehill, Laundry ",155.02,11,Dez (Bryant) Nuts,False,W
+15,False,2,Lamar  The Merrier!,131.32,4,Thunder Thighs,False,W
+15,False,3,Jim Ward's Ole Dick Necks,138.56,6,This Year Will  Be A Brees ,False,W
+15,False,4,Thunder Thighs,87.1,2,Lamar  The Merrier!,False,L
+15,False,5,Russ Finna Cuck,102.34,9,Tonie's Tigers,False,W
+15,False,6,This Year Will  Be A Brees ,90.12,3,Jim Ward's Ole Dick Necks,False,L
+15,False,8,SCLSU Mud Dogs,114.32,13,Kamara Virus,False,L
+15,False,9,Tonie's Tigers,83.8,5,Russ Finna Cuck,False,L
+15,False,10,Maitland Tiburon,119.98,12,Rule  #76,False,W
+15,False,11,Dez (Bryant) Nuts,95.52,1,"Jim, Tannehill, Laundry ",False,L
+15,False,12,Rule  #76,119.24,10,Maitland Tiburon,False,L
+15,False,13,Kamara Virus,171.36,8,SCLSU Mud Dogs,False,W
+16,False,1,"Jim, Tannehill, Laundry ",126.36,5,Russ Finna Cuck,False,W
+16,False,2,Lamar  The Merrier!,120.92,3,Jim Ward's Ole Dick Necks,False,L
+16,False,3,Jim Ward's Ole Dick Necks,130.32,2,Lamar  The Merrier!,False,W
+16,False,4,Thunder Thighs,103.46,6,This Year Will  Be A Brees ,False,L
+16,False,5,Russ Finna Cuck,118.36,1,"Jim, Tannehill, Laundry ",False,L
+16,False,6,This Year Will  Be A Brees ,161.94,4,Thunder Thighs,False,W
+16,False,8,SCLSU Mud Dogs,135.94,12,Rule  #76,False,W
+16,False,9,Tonie's Tigers,104.12,11,Dez (Bryant) Nuts,False,W
+16,False,10,Maitland Tiburon,155.68,13,Kamara Virus,False,L
+16,False,11,Dez (Bryant) Nuts,97.04,9,Tonie's Tigers,False,L
+16,False,12,Rule  #76,68.78,8,SCLSU Mud Dogs,False,L
+16,False,13,Kamara Virus,172.8,10,Maitland Tiburon,False,W

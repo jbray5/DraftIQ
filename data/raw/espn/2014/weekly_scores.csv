@@ -1,0 +1,193 @@
+week,is_regular,team_id,team_name,points,opp_team_id,opp_team_name,is_bye,outcome
+1,True,1,Jaquizz Onyourface,116.0,2,Team O'Dell,False,W
+1,True,2,Team O'Dell,103.0,1,Jaquizz Onyourface,False,L
+1,True,3,Team Munford,96.0,6,LUCK isonmyside,False,L
+1,True,4,Team Cornelius,105.0,5,And god said I  hate you Tebow,False,W
+1,True,5,And god said I  hate you Tebow,78.0,4,Team Cornelius,False,L
+1,True,6,LUCK isonmyside,99.0,3,Team Munford,False,W
+1,True,8,Beats by Ray,90.0,9,Schaub on my Knob,False,W
+1,True,9,Schaub on my Knob,85.0,8,Beats by Ray,False,L
+1,True,10,High Noon,113.0,13,Rice Beater,False,L
+1,True,11,Peyton  Man-thing,75.0,12,Rule #76,False,W
+1,True,12,Rule #76,73.0,11,Peyton  Man-thing,False,L
+1,True,13,Rice Beater,118.0,10,High Noon,False,W
+2,True,1,Jaquizz Onyourface,87.0,3,Team Munford,False,L
+2,True,2,Team O'Dell,103.0,4,Team Cornelius,False,W
+2,True,3,Team Munford,111.0,1,Jaquizz Onyourface,False,W
+2,True,4,Team Cornelius,62.0,2,Team O'Dell,False,L
+2,True,5,And god said I  hate you Tebow,74.0,6,LUCK isonmyside,False,L
+2,True,6,LUCK isonmyside,101.0,5,And god said I  hate you Tebow,False,W
+2,True,8,Beats by Ray,117.0,10,High Noon,False,W
+2,True,9,Schaub on my Knob,132.0,11,Peyton  Man-thing,False,W
+2,True,10,High Noon,70.0,8,Beats by Ray,False,L
+2,True,11,Peyton  Man-thing,98.0,9,Schaub on my Knob,False,L
+2,True,12,Rule #76,93.0,13,Rice Beater,False,W
+2,True,13,Rice Beater,92.0,12,Rule #76,False,L
+3,True,1,Jaquizz Onyourface,113.0,4,Team Cornelius,False,W
+3,True,2,Team O'Dell,50.0,6,LUCK isonmyside,False,L
+3,True,3,Team Munford,116.0,5,And god said I  hate you Tebow,False,W
+3,True,4,Team Cornelius,80.0,1,Jaquizz Onyourface,False,L
+3,True,5,And god said I  hate you Tebow,89.0,3,Team Munford,False,L
+3,True,6,LUCK isonmyside,89.0,2,Team O'Dell,False,W
+3,True,8,Beats by Ray,83.0,11,Peyton  Man-thing,False,L
+3,True,9,Schaub on my Knob,77.0,13,Rice Beater,False,L
+3,True,10,High Noon,110.0,12,Rule #76,False,W
+3,True,11,Peyton  Man-thing,100.0,8,Beats by Ray,False,W
+3,True,12,Rule #76,82.0,10,High Noon,False,L
+3,True,13,Rice Beater,84.0,9,Schaub on my Knob,False,W
+4,True,1,Jaquizz Onyourface,76.0,5,And god said I  hate you Tebow,False,L
+4,True,2,Team O'Dell,73.0,3,Team Munford,False,L
+4,True,3,Team Munford,85.0,2,Team O'Dell,False,W
+4,True,4,Team Cornelius,67.0,6,LUCK isonmyside,False,L
+4,True,5,And god said I  hate you Tebow,113.0,1,Jaquizz Onyourface,False,W
+4,True,6,LUCK isonmyside,112.0,4,Team Cornelius,False,W
+4,True,8,Beats by Ray,108.0,12,Rule #76,False,W
+4,True,9,Schaub on my Knob,107.0,10,High Noon,False,W
+4,True,10,High Noon,97.0,9,Schaub on my Knob,False,L
+4,True,11,Peyton  Man-thing,93.0,13,Rice Beater,False,L
+4,True,12,Rule #76,107.0,8,Beats by Ray,False,L
+4,True,13,Rice Beater,125.0,11,Peyton  Man-thing,False,W
+5,True,1,Jaquizz Onyourface,115.0,6,LUCK isonmyside,False,L
+5,True,2,Team O'Dell,88.0,5,And god said I  hate you Tebow,False,W
+5,True,3,Team Munford,112.0,4,Team Cornelius,False,W
+5,True,4,Team Cornelius,87.0,3,Team Munford,False,L
+5,True,5,And god said I  hate you Tebow,58.0,2,Team O'Dell,False,L
+5,True,6,LUCK isonmyside,132.0,1,Jaquizz Onyourface,False,W
+5,True,8,Beats by Ray,67.0,13,Rice Beater,False,L
+5,True,9,Schaub on my Knob,86.0,12,Rule #76,False,L
+5,True,10,High Noon,99.0,11,Peyton  Man-thing,False,W
+5,True,11,Peyton  Man-thing,62.0,10,High Noon,False,L
+5,True,12,Rule #76,135.0,9,Schaub on my Knob,False,W
+5,True,13,Rice Beater,76.0,8,Beats by Ray,False,W
+6,True,1,Jaquizz Onyourface,104.0,8,Beats by Ray,False,W
+6,True,2,Team O'Dell,112.0,9,Schaub on my Knob,False,W
+6,True,3,Team Munford,107.0,10,High Noon,False,W
+6,True,4,Team Cornelius,91.0,11,Peyton  Man-thing,False,L
+6,True,5,And god said I  hate you Tebow,87.0,12,Rule #76,False,W
+6,True,6,LUCK isonmyside,114.0,13,Rice Beater,False,W
+6,True,8,Beats by Ray,84.0,1,Jaquizz Onyourface,False,L
+6,True,9,Schaub on my Knob,101.0,2,Team O'Dell,False,L
+6,True,10,High Noon,100.0,3,Team Munford,False,L
+6,True,11,Peyton  Man-thing,92.0,4,Team Cornelius,False,W
+6,True,12,Rule #76,83.0,5,And god said I  hate you Tebow,False,L
+6,True,13,Rice Beater,89.0,6,LUCK isonmyside,False,L
+7,True,1,Jaquizz Onyourface,80.0,13,Rice Beater,False,L
+7,True,2,Team O'Dell,95.0,8,Beats by Ray,False,L
+7,True,3,Team Munford,90.0,9,Schaub on my Knob,False,W
+7,True,4,Team Cornelius,80.0,10,High Noon,False,L
+7,True,5,And god said I  hate you Tebow,68.0,11,Peyton  Man-thing,False,L
+7,True,6,LUCK isonmyside,91.0,12,Rule #76,False,T
+7,True,8,Beats by Ray,99.0,2,Team O'Dell,False,W
+7,True,9,Schaub on my Knob,75.0,3,Team Munford,False,L
+7,True,10,High Noon,88.0,4,Team Cornelius,False,W
+7,True,11,Peyton  Man-thing,108.0,5,And god said I  hate you Tebow,False,W
+7,True,12,Rule #76,91.0,6,LUCK isonmyside,False,T
+7,True,13,Rice Beater,138.0,1,Jaquizz Onyourface,False,W
+8,True,1,Jaquizz Onyourface,122.0,12,Rule #76,False,L
+8,True,2,Team O'Dell,92.0,13,Rice Beater,False,L
+8,True,3,Team Munford,117.0,8,Beats by Ray,False,W
+8,True,4,Team Cornelius,57.0,9,Schaub on my Knob,False,L
+8,True,5,And god said I  hate you Tebow,116.0,10,High Noon,False,W
+8,True,6,LUCK isonmyside,73.0,11,Peyton  Man-thing,False,L
+8,True,8,Beats by Ray,65.0,3,Team Munford,False,L
+8,True,9,Schaub on my Knob,111.0,4,Team Cornelius,False,W
+8,True,10,High Noon,80.0,5,And god said I  hate you Tebow,False,L
+8,True,11,Peyton  Man-thing,96.0,6,LUCK isonmyside,False,W
+8,True,12,Rule #76,163.0,1,Jaquizz Onyourface,False,W
+8,True,13,Rice Beater,142.0,2,Team O'Dell,False,W
+9,True,1,Jaquizz Onyourface,91.0,11,Peyton  Man-thing,False,L
+9,True,2,Team O'Dell,67.0,12,Rule #76,False,L
+9,True,3,Team Munford,125.0,13,Rice Beater,False,W
+9,True,4,Team Cornelius,62.0,8,Beats by Ray,False,L
+9,True,5,And god said I  hate you Tebow,74.0,9,Schaub on my Knob,False,L
+9,True,6,LUCK isonmyside,108.0,10,High Noon,False,W
+9,True,8,Beats by Ray,114.0,4,Team Cornelius,False,W
+9,True,9,Schaub on my Knob,118.0,5,And god said I  hate you Tebow,False,W
+9,True,10,High Noon,84.0,6,LUCK isonmyside,False,L
+9,True,11,Peyton  Man-thing,93.0,1,Jaquizz Onyourface,False,W
+9,True,12,Rule #76,87.0,2,Team O'Dell,False,W
+9,True,13,Rice Beater,116.0,3,Team Munford,False,L
+10,True,1,Jaquizz Onyourface,150.0,10,High Noon,False,W
+10,True,2,Team O'Dell,125.0,11,Peyton  Man-thing,False,W
+10,True,3,Team Munford,99.0,12,Rule #76,False,L
+10,True,4,Team Cornelius,112.0,13,Rice Beater,False,L
+10,True,5,And god said I  hate you Tebow,92.0,8,Beats by Ray,False,L
+10,True,6,LUCK isonmyside,75.0,9,Schaub on my Knob,False,L
+10,True,8,Beats by Ray,99.0,5,And god said I  hate you Tebow,False,W
+10,True,9,Schaub on my Knob,81.0,6,LUCK isonmyside,False,W
+10,True,10,High Noon,63.0,1,Jaquizz Onyourface,False,L
+10,True,11,Peyton  Man-thing,83.0,2,Team O'Dell,False,L
+10,True,12,Rule #76,110.0,3,Team Munford,False,W
+10,True,13,Rice Beater,133.0,4,Team Cornelius,False,W
+11,True,1,Jaquizz Onyourface,88.0,9,Schaub on my Knob,False,L
+11,True,2,Team O'Dell,90.0,10,High Noon,False,L
+11,True,3,Team Munford,82.0,11,Peyton  Man-thing,False,W
+11,True,4,Team Cornelius,75.0,12,Rule #76,False,L
+11,True,5,And god said I  hate you Tebow,48.0,13,Rice Beater,False,L
+11,True,6,LUCK isonmyside,67.0,8,Beats by Ray,False,L
+11,True,8,Beats by Ray,86.0,6,LUCK isonmyside,False,W
+11,True,9,Schaub on my Knob,116.0,1,Jaquizz Onyourface,False,W
+11,True,10,High Noon,100.0,2,Team O'Dell,False,W
+11,True,11,Peyton  Man-thing,70.0,3,Team Munford,False,L
+11,True,12,Rule #76,91.0,4,Team Cornelius,False,W
+11,True,13,Rice Beater,143.0,5,And god said I  hate you Tebow,False,W
+12,True,1,Jaquizz Onyourface,103.0,8,Beats by Ray,False,W
+12,True,2,Team O'Dell,88.0,9,Schaub on my Knob,False,L
+12,True,3,Team Munford,91.0,10,High Noon,False,L
+12,True,4,Team Cornelius,98.0,11,Peyton  Man-thing,False,T
+12,True,5,And god said I  hate you Tebow,53.0,12,Rule #76,False,L
+12,True,6,LUCK isonmyside,94.0,13,Rice Beater,False,T
+12,True,8,Beats by Ray,78.0,1,Jaquizz Onyourface,False,L
+12,True,9,Schaub on my Knob,110.0,2,Team O'Dell,False,W
+12,True,10,High Noon,134.0,3,Team Munford,False,W
+12,True,11,Peyton  Man-thing,98.0,4,Team Cornelius,False,T
+12,True,12,Rule #76,92.0,5,And god said I  hate you Tebow,False,W
+12,True,13,Rice Beater,94.0,6,LUCK isonmyside,False,T
+13,True,1,Jaquizz Onyourface,133.0,13,Rice Beater,False,L
+13,True,2,Team O'Dell,108.0,8,Beats by Ray,False,L
+13,True,3,Team Munford,86.0,9,Schaub on my Knob,False,L
+13,True,4,Team Cornelius,78.0,10,High Noon,False,W
+13,True,5,And god said I  hate you Tebow,62.0,11,Peyton  Man-thing,False,L
+13,True,6,LUCK isonmyside,104.0,12,Rule #76,False,W
+13,True,8,Beats by Ray,113.0,2,Team O'Dell,False,W
+13,True,9,Schaub on my Knob,102.0,3,Team Munford,False,W
+13,True,10,High Noon,72.0,4,Team Cornelius,False,L
+13,True,11,Peyton  Man-thing,107.0,5,And god said I  hate you Tebow,False,W
+13,True,12,Rule #76,102.0,6,LUCK isonmyside,False,L
+13,True,13,Rice Beater,151.0,1,Jaquizz Onyourface,False,W
+14,False,1,Jaquizz Onyourface,107.0,13,Rice Beater,False,L
+14,False,2,Team O'Dell,90.0,10,High Noon,False,L
+14,False,3,Team Munford,130.0,11,Peyton  Man-thing,False,W
+14,False,4,Team Cornelius,71.0,5,And god said I  hate you Tebow,False,L
+14,False,5,And god said I  hate you Tebow,89.0,4,Team Cornelius,False,W
+14,False,6,LUCK isonmyside,85.0,12,Rule #76,False,L
+14,False,8,Beats by Ray,116.0,9,Schaub on my Knob,False,W
+14,False,9,Schaub on my Knob,93.0,8,Beats by Ray,False,L
+14,False,10,High Noon,108.0,2,Team O'Dell,False,W
+14,False,11,Peyton  Man-thing,126.0,3,Team Munford,False,L
+14,False,12,Rule #76,103.0,6,LUCK isonmyside,False,W
+14,False,13,Rice Beater,145.0,1,Jaquizz Onyourface,False,W
+15,False,1,Jaquizz Onyourface,104.0,11,Peyton  Man-thing,False,L
+15,False,2,Team O'Dell,79.0,4,Team Cornelius,False,W
+15,False,3,Team Munford,70.0,12,Rule #76,False,L
+15,False,4,Team Cornelius,70.0,2,Team O'Dell,False,L
+15,False,5,And god said I  hate you Tebow,88.0,10,High Noon,False,L
+15,False,6,LUCK isonmyside,105.0,9,Schaub on my Knob,False,W
+15,False,8,Beats by Ray,82.0,13,Rice Beater,False,L
+15,False,9,Schaub on my Knob,92.0,6,LUCK isonmyside,False,L
+15,False,10,High Noon,92.0,5,And god said I  hate you Tebow,False,W
+15,False,11,Peyton  Man-thing,134.0,1,Jaquizz Onyourface,False,W
+15,False,12,Rule #76,85.0,3,Team Munford,False,W
+15,False,13,Rice Beater,96.0,8,Beats by Ray,False,W
+16,False,1,Jaquizz Onyourface,96.0,9,Schaub on my Knob,False,W
+16,False,2,Team O'Dell,110.0,10,High Noon,False,W
+16,False,3,Team Munford,85.0,8,Beats by Ray,False,W
+16,False,4,Team Cornelius,70.0,5,And god said I  hate you Tebow,False,W
+16,False,5,And god said I  hate you Tebow,63.0,4,Team Cornelius,False,L
+16,False,6,LUCK isonmyside,83.0,11,Peyton  Man-thing,False,L
+16,False,8,Beats by Ray,58.0,3,Team Munford,False,L
+16,False,9,Schaub on my Knob,87.0,1,Jaquizz Onyourface,False,L
+16,False,10,High Noon,82.0,2,Team O'Dell,False,L
+16,False,11,Peyton  Man-thing,131.0,6,LUCK isonmyside,False,W
+16,False,12,Rule #76,100.0,13,Rice Beater,False,L
+16,False,13,Rice Beater,113.0,12,Rule #76,False,W

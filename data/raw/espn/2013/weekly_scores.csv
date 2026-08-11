@@ -1,0 +1,193 @@
+week,is_regular,team_id,team_name,points,opp_team_id,opp_team_name,is_bye,outcome
+1,True,1,Toomer's Coroners,127.0,2,Team O'Dell,False,W
+1,True,2,Team O'Dell,112.0,1,Toomer's Coroners,False,L
+1,True,3,Team Munford,90.0,6,LUCK isonmyside,False,L
+1,True,4,Medulla Amendola,115.0,5,And god said I  hate you Tebow,False,L
+1,True,5,And god said I  hate you Tebow,131.0,4,Medulla Amendola,False,W
+1,True,6,LUCK isonmyside,122.0,3,Team Munford,False,W
+1,True,8,Slumber Lumber,111.0,9,Schaub on my Knob,False,W
+1,True,9,Schaub on my Knob,86.0,8,Slumber Lumber,False,L
+1,True,10,High Noon,92.0,13,Shake Them Dreads,False,L
+1,True,11,Peyton  Man-thing,79.0,12,Rule #76,False,L
+1,True,12,Rule #76,88.0,11,Peyton  Man-thing,False,W
+1,True,13,Shake Them Dreads,114.5,10,High Noon,False,W
+2,True,1,Toomer's Coroners,97.0,3,Team Munford,False,W
+2,True,2,Team O'Dell,98.0,4,Medulla Amendola,False,W
+2,True,3,Team Munford,85.0,1,Toomer's Coroners,False,L
+2,True,4,Medulla Amendola,84.0,2,Team O'Dell,False,L
+2,True,5,And god said I  hate you Tebow,60.0,6,LUCK isonmyside,False,L
+2,True,6,LUCK isonmyside,134.0,5,And god said I  hate you Tebow,False,W
+2,True,8,Slumber Lumber,88.0,10,High Noon,False,L
+2,True,9,Schaub on my Knob,97.0,11,Peyton  Man-thing,False,W
+2,True,10,High Noon,145.0,8,Slumber Lumber,False,W
+2,True,11,Peyton  Man-thing,87.0,9,Schaub on my Knob,False,L
+2,True,12,Rule #76,110.0,13,Shake Them Dreads,False,W
+2,True,13,Shake Them Dreads,80.0,12,Rule #76,False,L
+3,True,1,Toomer's Coroners,91.0,4,Medulla Amendola,False,W
+3,True,2,Team O'Dell,74.0,6,LUCK isonmyside,False,L
+3,True,3,Team Munford,69.0,5,And god said I  hate you Tebow,False,W
+3,True,4,Medulla Amendola,78.0,1,Toomer's Coroners,False,L
+3,True,5,And god said I  hate you Tebow,64.0,3,Team Munford,False,L
+3,True,6,LUCK isonmyside,112.0,2,Team O'Dell,False,W
+3,True,8,Slumber Lumber,78.0,11,Peyton  Man-thing,False,L
+3,True,9,Schaub on my Knob,86.0,13,Shake Them Dreads,False,W
+3,True,10,High Noon,74.0,12,Rule #76,False,L
+3,True,11,Peyton  Man-thing,139.5,8,Slumber Lumber,False,W
+3,True,12,Rule #76,119.0,10,High Noon,False,W
+3,True,13,Shake Them Dreads,80.0,9,Schaub on my Knob,False,L
+4,True,1,Toomer's Coroners,121.0,5,And god said I  hate you Tebow,False,L
+4,True,2,Team O'Dell,104.0,3,Team Munford,False,W
+4,True,3,Team Munford,85.0,2,Team O'Dell,False,L
+4,True,4,Medulla Amendola,76.0,6,LUCK isonmyside,False,L
+4,True,5,And god said I  hate you Tebow,132.5,1,Toomer's Coroners,False,W
+4,True,6,LUCK isonmyside,142.0,4,Medulla Amendola,False,W
+4,True,8,Slumber Lumber,85.0,12,Rule #76,False,L
+4,True,9,Schaub on my Knob,94.0,10,High Noon,False,T
+4,True,10,High Noon,94.0,9,Schaub on my Knob,False,T
+4,True,11,Peyton  Man-thing,129.0,13,Shake Them Dreads,False,W
+4,True,12,Rule #76,100.0,8,Slumber Lumber,False,W
+4,True,13,Shake Them Dreads,96.0,11,Peyton  Man-thing,False,L
+5,True,1,Toomer's Coroners,107.0,6,LUCK isonmyside,False,L
+5,True,2,Team O'Dell,82.0,5,And god said I  hate you Tebow,False,W
+5,True,3,Team Munford,66.0,4,Medulla Amendola,False,L
+5,True,4,Medulla Amendola,71.5,3,Team Munford,False,W
+5,True,5,And god said I  hate you Tebow,57.0,2,Team O'Dell,False,L
+5,True,6,LUCK isonmyside,113.0,1,Toomer's Coroners,False,W
+5,True,8,Slumber Lumber,75.0,13,Shake Them Dreads,False,L
+5,True,9,Schaub on my Knob,116.0,12,Rule #76,False,L
+5,True,10,High Noon,141.0,11,Peyton  Man-thing,False,W
+5,True,11,Peyton  Man-thing,99.0,10,High Noon,False,L
+5,True,12,Rule #76,136.0,9,Schaub on my Knob,False,W
+5,True,13,Shake Them Dreads,83.0,8,Slumber Lumber,False,W
+6,True,1,Toomer's Coroners,87.0,8,Slumber Lumber,False,W
+6,True,2,Team O'Dell,94.0,9,Schaub on my Knob,False,W
+6,True,3,Team Munford,62.0,10,High Noon,False,L
+6,True,4,Medulla Amendola,86.0,11,Peyton  Man-thing,False,L
+6,True,5,And god said I  hate you Tebow,108.0,12,Rule #76,False,W
+6,True,6,LUCK isonmyside,84.0,13,Shake Them Dreads,False,W
+6,True,8,Slumber Lumber,55.0,1,Toomer's Coroners,False,L
+6,True,9,Schaub on my Knob,79.0,2,Team O'Dell,False,L
+6,True,10,High Noon,147.0,3,Team Munford,False,W
+6,True,11,Peyton  Man-thing,88.0,4,Medulla Amendola,False,W
+6,True,12,Rule #76,87.0,5,And god said I  hate you Tebow,False,L
+6,True,13,Shake Them Dreads,60.0,6,LUCK isonmyside,False,L
+7,True,1,Toomer's Coroners,94.0,13,Shake Them Dreads,False,L
+7,True,2,Team O'Dell,88.0,8,Slumber Lumber,False,W
+7,True,3,Team Munford,105.0,9,Schaub on my Knob,False,W
+7,True,4,Medulla Amendola,104.0,10,High Noon,False,L
+7,True,5,And god said I  hate you Tebow,85.0,11,Peyton  Man-thing,False,W
+7,True,6,LUCK isonmyside,109.0,12,Rule #76,False,W
+7,True,8,Slumber Lumber,86.0,2,Team O'Dell,False,L
+7,True,9,Schaub on my Knob,81.0,3,Team Munford,False,L
+7,True,10,High Noon,116.0,4,Medulla Amendola,False,W
+7,True,11,Peyton  Man-thing,76.0,5,And god said I  hate you Tebow,False,L
+7,True,12,Rule #76,96.0,6,LUCK isonmyside,False,L
+7,True,13,Shake Them Dreads,110.0,1,Toomer's Coroners,False,W
+8,True,1,Toomer's Coroners,77.0,12,Rule #76,False,L
+8,True,2,Team O'Dell,99.0,13,Shake Them Dreads,False,W
+8,True,3,Team Munford,79.0,8,Slumber Lumber,False,W
+8,True,4,Medulla Amendola,99.0,9,Schaub on my Knob,False,L
+8,True,5,And god said I  hate you Tebow,80.0,10,High Noon,False,L
+8,True,6,LUCK isonmyside,121.0,11,Peyton  Man-thing,False,W
+8,True,8,Slumber Lumber,74.0,3,Team Munford,False,L
+8,True,9,Schaub on my Knob,110.0,4,Medulla Amendola,False,W
+8,True,10,High Noon,98.0,5,And god said I  hate you Tebow,False,W
+8,True,11,Peyton  Man-thing,111.0,6,LUCK isonmyside,False,L
+8,True,12,Rule #76,86.0,1,Toomer's Coroners,False,W
+8,True,13,Shake Them Dreads,51.0,2,Team O'Dell,False,L
+9,True,1,Toomer's Coroners,148.0,11,Peyton  Man-thing,False,W
+9,True,2,Team O'Dell,78.0,12,Rule #76,False,L
+9,True,3,Team Munford,106.0,13,Shake Them Dreads,False,L
+9,True,4,Medulla Amendola,53.0,8,Slumber Lumber,False,W
+9,True,5,And god said I  hate you Tebow,107.0,9,Schaub on my Knob,False,W
+9,True,6,LUCK isonmyside,108.0,10,High Noon,False,L
+9,True,8,Slumber Lumber,39.0,4,Medulla Amendola,False,L
+9,True,9,Schaub on my Knob,90.0,5,And god said I  hate you Tebow,False,L
+9,True,10,High Noon,111.0,6,LUCK isonmyside,False,W
+9,True,11,Peyton  Man-thing,85.0,1,Toomer's Coroners,False,L
+9,True,12,Rule #76,115.0,2,Team O'Dell,False,W
+9,True,13,Shake Them Dreads,116.0,3,Team Munford,False,W
+10,True,1,Toomer's Coroners,80.0,10,High Noon,False,L
+10,True,2,Team O'Dell,95.0,11,Peyton  Man-thing,False,W
+10,True,3,Team Munford,63.0,12,Rule #76,False,L
+10,True,4,Medulla Amendola,123.0,13,Shake Them Dreads,False,W
+10,True,5,And god said I  hate you Tebow,72.0,8,Slumber Lumber,False,W
+10,True,6,LUCK isonmyside,92.0,9,Schaub on my Knob,False,W
+10,True,8,Slumber Lumber,25.0,5,And god said I  hate you Tebow,False,L
+10,True,9,Schaub on my Knob,87.0,6,LUCK isonmyside,False,L
+10,True,10,High Noon,96.0,1,Toomer's Coroners,False,W
+10,True,11,Peyton  Man-thing,89.0,2,Team O'Dell,False,L
+10,True,12,Rule #76,101.0,3,Team Munford,False,W
+10,True,13,Shake Them Dreads,95.0,4,Medulla Amendola,False,L
+11,True,1,Toomer's Coroners,89.0,9,Schaub on my Knob,False,L
+11,True,2,Team O'Dell,115.0,10,High Noon,False,W
+11,True,3,Team Munford,118.0,11,Peyton  Man-thing,False,W
+11,True,4,Medulla Amendola,108.0,12,Rule #76,False,W
+11,True,5,And god said I  hate you Tebow,67.0,13,Shake Them Dreads,False,L
+11,True,6,LUCK isonmyside,119.0,8,Slumber Lumber,False,W
+11,True,8,Slumber Lumber,39.0,6,LUCK isonmyside,False,L
+11,True,9,Schaub on my Knob,111.0,1,Toomer's Coroners,False,W
+11,True,10,High Noon,110.0,2,Team O'Dell,False,L
+11,True,11,Peyton  Man-thing,89.0,3,Team Munford,False,L
+11,True,12,Rule #76,78.0,4,Medulla Amendola,False,L
+11,True,13,Shake Them Dreads,96.0,5,And god said I  hate you Tebow,False,W
+12,True,1,Toomer's Coroners,56.0,8,Slumber Lumber,False,W
+12,True,2,Team O'Dell,77.0,9,Schaub on my Knob,False,L
+12,True,3,Team Munford,83.0,10,High Noon,False,L
+12,True,4,Medulla Amendola,81.0,11,Peyton  Man-thing,False,L
+12,True,5,And god said I  hate you Tebow,91.0,12,Rule #76,False,W
+12,True,6,LUCK isonmyside,118.0,13,Shake Them Dreads,False,W
+12,True,8,Slumber Lumber,54.0,1,Toomer's Coroners,False,L
+12,True,9,Schaub on my Knob,105.0,2,Team O'Dell,False,W
+12,True,10,High Noon,105.0,3,Team Munford,False,W
+12,True,11,Peyton  Man-thing,99.0,4,Medulla Amendola,False,W
+12,True,12,Rule #76,78.0,5,And god said I  hate you Tebow,False,L
+12,True,13,Shake Them Dreads,75.0,6,LUCK isonmyside,False,L
+13,True,1,Toomer's Coroners,120.0,13,Shake Them Dreads,False,T
+13,True,2,Team O'Dell,75.0,8,Slumber Lumber,False,L
+13,True,3,Team Munford,67.0,9,Schaub on my Knob,False,L
+13,True,4,Medulla Amendola,88.0,10,High Noon,False,W
+13,True,5,And god said I  hate you Tebow,112.5,11,Peyton  Man-thing,False,W
+13,True,6,LUCK isonmyside,160.0,12,Rule #76,False,W
+13,True,8,Slumber Lumber,92.0,2,Team O'Dell,False,W
+13,True,9,Schaub on my Knob,82.0,3,Team Munford,False,W
+13,True,10,High Noon,79.0,4,Medulla Amendola,False,L
+13,True,11,Peyton  Man-thing,62.0,5,And god said I  hate you Tebow,False,L
+13,True,12,Rule #76,91.0,6,LUCK isonmyside,False,L
+13,True,13,Shake Them Dreads,120.0,1,Toomer's Coroners,False,T
+14,False,1,Toomer's Coroners,145.0,10,High Noon,False,W
+14,False,2,Team O'Dell,102.0,5,And god said I  hate you Tebow,False,L
+14,False,3,Team Munford,79.0,4,Medulla Amendola,False,W
+14,False,4,Medulla Amendola,70.0,3,Team Munford,False,L
+14,False,5,And god said I  hate you Tebow,115.0,2,Team O'Dell,False,W
+14,False,6,LUCK isonmyside,123.0,13,Shake Them Dreads,False,W
+14,False,8,Slumber Lumber,63.0,11,Peyton  Man-thing,False,L
+14,False,9,Schaub on my Knob,81.0,12,Rule #76,False,W
+14,False,10,High Noon,94.0,1,Toomer's Coroners,False,L
+14,False,11,Peyton  Man-thing,130.0,8,Slumber Lumber,False,W
+14,False,12,Rule #76,71.0,9,Schaub on my Knob,False,L
+14,False,13,Shake Them Dreads,99.0,6,LUCK isonmyside,False,L
+15,False,1,Toomer's Coroners,74.0,9,Schaub on my Knob,False,L
+15,False,2,Team O'Dell,74.0,13,Shake Them Dreads,False,L
+15,False,3,Team Munford,86.0,11,Peyton  Man-thing,False,L
+15,False,4,Medulla Amendola,67.0,8,Slumber Lumber,False,L
+15,False,5,And god said I  hate you Tebow,86.0,6,LUCK isonmyside,False,L
+15,False,6,LUCK isonmyside,92.0,5,And god said I  hate you Tebow,False,W
+15,False,8,Slumber Lumber,92.0,4,Medulla Amendola,False,W
+15,False,9,Schaub on my Knob,111.0,1,Toomer's Coroners,False,W
+15,False,10,High Noon,111.0,12,Rule #76,False,L
+15,False,11,Peyton  Man-thing,129.0,3,Team Munford,False,W
+15,False,12,Rule #76,117.0,10,High Noon,False,W
+15,False,13,Shake Them Dreads,98.0,2,Team O'Dell,False,W
+16,False,1,Toomer's Coroners,115.0,5,And god said I  hate you Tebow,False,W
+16,False,2,Team O'Dell,94.0,10,High Noon,False,W
+16,False,3,Team Munford,83.5,4,Medulla Amendola,False,W
+16,False,4,Medulla Amendola,78.0,3,Team Munford,False,L
+16,False,5,And god said I  hate you Tebow,87.5,1,Toomer's Coroners,False,L
+16,False,6,LUCK isonmyside,102.0,9,Schaub on my Knob,False,W
+16,False,8,Slumber Lumber,74.0,11,Peyton  Man-thing,False,L
+16,False,9,Schaub on my Knob,80.0,6,LUCK isonmyside,False,L
+16,False,10,High Noon,56.0,2,Team O'Dell,False,L
+16,False,11,Peyton  Man-thing,93.5,8,Slumber Lumber,False,W
+16,False,12,Rule #76,101.0,13,Shake Them Dreads,False,L
+16,False,13,Shake Them Dreads,110.0,12,Rule #76,False,W

@@ -1,0 +1,205 @@
+week,is_regular,team_id,team_name,points,opp_team_id,opp_team_name,is_bye,outcome
+1,True,1,Garretteed Satisfaction ,98.22,9,Men of Will,False,L
+1,True,2,Pour One Out For Mahomies!!,84.34,3,Jim Ward's Ole Dick Necks,False,L
+1,True,3,Jim Ward's Ole Dick Necks,121.7,2,Pour One Out For Mahomies!!,False,W
+1,True,4,King Me,103.96,12,Rule  #76,False,W
+1,True,5,You Can Chuck the Tubb,90.46,13,Christopher's Kryptonite ,False,W
+1,True,6,Thom-ASS,127.76,10,Amon-Ra Dog,False,W
+1,True,8,SCLSU Mud Dogs,114.78,11,Bijan mustard,False,W
+1,True,9,Men of Will,110.24,1,Garretteed Satisfaction ,False,W
+1,True,10,Amon-Ra Dog,124.82,6,Thom-ASS,False,L
+1,True,11,Bijan mustard,92.56,8,SCLSU Mud Dogs,False,L
+1,True,12,Rule  #76,90.54,4,King Me,False,L
+1,True,13,Christopher's Kryptonite ,76.24,5,You Can Chuck the Tubb,False,L
+2,True,1,Garretteed Satisfaction ,115.9,13,Christopher's Kryptonite ,False,L
+2,True,2,Pour One Out For Mahomies!!,106.5,8,SCLSU Mud Dogs,False,L
+2,True,3,Jim Ward's Ole Dick Necks,86.92,4,King Me,False,L
+2,True,4,King Me,136.7,3,Jim Ward's Ole Dick Necks,False,W
+2,True,5,You Can Chuck the Tubb,103.16,10,Amon-Ra Dog,False,L
+2,True,6,Thom-ASS,135.58,9,Men of Will,False,W
+2,True,8,SCLSU Mud Dogs,113.38,2,Pour One Out For Mahomies!!,False,W
+2,True,9,Men of Will,102.26,6,Thom-ASS,False,L
+2,True,10,Amon-Ra Dog,118.64,5,You Can Chuck the Tubb,False,W
+2,True,11,Bijan mustard,109.56,12,Rule  #76,False,W
+2,True,12,Rule  #76,101.24,11,Bijan mustard,False,L
+2,True,13,Christopher's Kryptonite ,133.94,1,Garretteed Satisfaction ,False,W
+3,True,1,Garretteed Satisfaction ,110.36,5,You Can Chuck the Tubb,False,L
+3,True,2,Pour One Out For Mahomies!!,96.58,4,King Me,False,L
+3,True,3,Jim Ward's Ole Dick Necks,113.28,11,Bijan mustard,False,W
+3,True,4,King Me,193.56,2,Pour One Out For Mahomies!!,False,W
+3,True,5,You Can Chuck the Tubb,114.68,1,Garretteed Satisfaction ,False,W
+3,True,6,Thom-ASS,145.18,13,Christopher's Kryptonite ,False,W
+3,True,8,SCLSU Mud Dogs,113.54,12,Rule  #76,False,L
+3,True,9,Men of Will,129.22,10,Amon-Ra Dog,False,W
+3,True,10,Amon-Ra Dog,109.6,9,Men of Will,False,L
+3,True,11,Bijan mustard,81.36,3,Jim Ward's Ole Dick Necks,False,L
+3,True,12,Rule  #76,153.56,8,SCLSU Mud Dogs,False,W
+3,True,13,Christopher's Kryptonite ,94.36,6,Thom-ASS,False,L
+4,True,1,Garretteed Satisfaction ,103.64,10,Amon-Ra Dog,False,L
+4,True,2,Pour One Out For Mahomies!!,92.22,12,Rule  #76,False,L
+4,True,3,Jim Ward's Ole Dick Necks,135.56,8,SCLSU Mud Dogs,False,W
+4,True,4,King Me,109.66,11,Bijan mustard,False,W
+4,True,5,You Can Chuck the Tubb,109.46,6,Thom-ASS,False,L
+4,True,6,Thom-ASS,156.14,5,You Can Chuck the Tubb,False,W
+4,True,8,SCLSU Mud Dogs,94.3,3,Jim Ward's Ole Dick Necks,False,L
+4,True,9,Men of Will,134.8,13,Christopher's Kryptonite ,False,W
+4,True,10,Amon-Ra Dog,145.3,1,Garretteed Satisfaction ,False,W
+4,True,11,Bijan mustard,87.82,4,King Me,False,L
+4,True,12,Rule  #76,112.68,2,Pour One Out For Mahomies!!,False,W
+4,True,13,Christopher's Kryptonite ,95.68,9,Men of Will,False,L
+5,True,1,Garretteed Satisfaction ,86.88,6,Thom-ASS,False,L
+5,True,2,Pour One Out For Mahomies!!,163.84,11,Bijan mustard,False,W
+5,True,3,Jim Ward's Ole Dick Necks,111.82,12,Rule  #76,False,L
+5,True,4,King Me,156.98,8,SCLSU Mud Dogs,False,W
+5,True,5,You Can Chuck the Tubb,73.34,9,Men of Will,False,L
+5,True,6,Thom-ASS,97.94,1,Garretteed Satisfaction ,False,W
+5,True,8,SCLSU Mud Dogs,124.88,4,King Me,False,L
+5,True,9,Men of Will,145.06,5,You Can Chuck the Tubb,False,W
+5,True,10,Amon-Ra Dog,98.72,13,Christopher's Kryptonite ,False,W
+5,True,11,Bijan mustard,131.32,2,Pour One Out For Mahomies!!,False,L
+5,True,12,Rule  #76,160.3,3,Jim Ward's Ole Dick Necks,False,W
+5,True,13,Christopher's Kryptonite ,78.72,10,Amon-Ra Dog,False,L
+6,True,1,Garretteed Satisfaction ,121.58,12,Rule  #76,False,W
+6,True,2,Pour One Out For Mahomies!!,104.04,10,Amon-Ra Dog,False,W
+6,True,3,Jim Ward's Ole Dick Necks,78.9,6,Thom-ASS,False,L
+6,True,4,King Me,137.98,9,Men of Will,False,W
+6,True,5,You Can Chuck the Tubb,82.94,8,SCLSU Mud Dogs,False,L
+6,True,6,Thom-ASS,94.12,3,Jim Ward's Ole Dick Necks,False,W
+6,True,8,SCLSU Mud Dogs,153.9,5,You Can Chuck the Tubb,False,W
+6,True,9,Men of Will,99.46,4,King Me,False,L
+6,True,10,Amon-Ra Dog,94.2,2,Pour One Out For Mahomies!!,False,L
+6,True,11,Bijan mustard,90.04,13,Christopher's Kryptonite ,False,L
+6,True,12,Rule  #76,116.64,1,Garretteed Satisfaction ,False,L
+6,True,13,Christopher's Kryptonite ,100.32,11,Bijan mustard,False,W
+7,True,1,Garretteed Satisfaction ,128.5,4,King Me,False,W
+7,True,2,Pour One Out For Mahomies!!,103.36,6,Thom-ASS,False,L
+7,True,3,Jim Ward's Ole Dick Necks,104.46,5,You Can Chuck the Tubb,False,L
+7,True,4,King Me,108.06,1,Garretteed Satisfaction ,False,L
+7,True,5,You Can Chuck the Tubb,120.62,3,Jim Ward's Ole Dick Necks,False,W
+7,True,6,Thom-ASS,133.38,2,Pour One Out For Mahomies!!,False,W
+7,True,8,SCLSU Mud Dogs,96.36,9,Men of Will,False,W
+7,True,9,Men of Will,78.8,8,SCLSU Mud Dogs,False,L
+7,True,10,Amon-Ra Dog,104.78,11,Bijan mustard,False,W
+7,True,11,Bijan mustard,95.36,10,Amon-Ra Dog,False,L
+7,True,12,Rule  #76,127.96,13,Christopher's Kryptonite ,False,W
+7,True,13,Christopher's Kryptonite ,98.54,12,Rule  #76,False,L
+8,True,1,Garretteed Satisfaction ,118.86,8,SCLSU Mud Dogs,False,L
+8,True,2,Pour One Out For Mahomies!!,108.3,5,You Can Chuck the Tubb,False,L
+8,True,3,Jim Ward's Ole Dick Necks,126.46,9,Men of Will,False,L
+8,True,4,King Me,117.32,13,Christopher's Kryptonite ,False,L
+8,True,5,You Can Chuck the Tubb,121.66,2,Pour One Out For Mahomies!!,False,W
+8,True,6,Thom-ASS,85.18,11,Bijan mustard,False,L
+8,True,8,SCLSU Mud Dogs,124.18,1,Garretteed Satisfaction ,False,W
+8,True,9,Men of Will,141.56,3,Jim Ward's Ole Dick Necks,False,W
+8,True,10,Amon-Ra Dog,138.1,12,Rule  #76,False,L
+8,True,11,Bijan mustard,137.28,6,Thom-ASS,False,W
+8,True,12,Rule  #76,158.58,10,Amon-Ra Dog,False,W
+8,True,13,Christopher's Kryptonite ,154.56,4,King Me,False,W
+9,True,1,Garretteed Satisfaction ,112.08,3,Jim Ward's Ole Dick Necks,False,W
+9,True,2,Pour One Out For Mahomies!!,102.0,9,Men of Will,False,L
+9,True,3,Jim Ward's Ole Dick Necks,92.78,1,Garretteed Satisfaction ,False,L
+9,True,4,King Me,96.44,10,Amon-Ra Dog,False,L
+9,True,5,You Can Chuck the Tubb,85.78,11,Bijan mustard,False,L
+9,True,6,Thom-ASS,99.58,12,Rule  #76,False,W
+9,True,8,SCLSU Mud Dogs,117.62,13,Christopher's Kryptonite ,False,L
+9,True,9,Men of Will,112.02,2,Pour One Out For Mahomies!!,False,W
+9,True,10,Amon-Ra Dog,103.48,4,King Me,False,W
+9,True,11,Bijan mustard,102.0,5,You Can Chuck the Tubb,False,W
+9,True,12,Rule  #76,85.04,6,Thom-ASS,False,L
+9,True,13,Christopher's Kryptonite ,131.52,8,SCLSU Mud Dogs,False,W
+10,True,1,Garretteed Satisfaction ,141.36,2,Pour One Out For Mahomies!!,False,W
+10,True,2,Pour One Out For Mahomies!!,134.1,1,Garretteed Satisfaction ,False,L
+10,True,3,Jim Ward's Ole Dick Necks,114.0,13,Christopher's Kryptonite ,False,L
+10,True,4,King Me,119.82,6,Thom-ASS,False,W
+10,True,5,You Can Chuck the Tubb,127.02,12,Rule  #76,False,W
+10,True,6,Thom-ASS,90.62,4,King Me,False,L
+10,True,8,SCLSU Mud Dogs,102.38,10,Amon-Ra Dog,False,L
+10,True,9,Men of Will,88.68,11,Bijan mustard,False,L
+10,True,10,Amon-Ra Dog,118.14,8,SCLSU Mud Dogs,False,W
+10,True,11,Bijan mustard,118.38,9,Men of Will,False,W
+10,True,12,Rule  #76,101.8,5,You Can Chuck the Tubb,False,L
+10,True,13,Christopher's Kryptonite ,159.46,3,Jim Ward's Ole Dick Necks,False,W
+11,True,1,Garretteed Satisfaction ,116.36,11,Bijan mustard,False,W
+11,True,2,Pour One Out For Mahomies!!,107.58,13,Christopher's Kryptonite ,False,L
+11,True,3,Jim Ward's Ole Dick Necks,89.4,10,Amon-Ra Dog,False,L
+11,True,4,King Me,133.2,5,You Can Chuck the Tubb,False,W
+11,True,5,You Can Chuck the Tubb,127.34,4,King Me,False,L
+11,True,6,Thom-ASS,110.76,8,SCLSU Mud Dogs,False,W
+11,True,8,SCLSU Mud Dogs,107.54,6,Thom-ASS,False,L
+11,True,9,Men of Will,123.9,12,Rule  #76,False,W
+11,True,10,Amon-Ra Dog,137.82,3,Jim Ward's Ole Dick Necks,False,W
+11,True,11,Bijan mustard,97.14,1,Garretteed Satisfaction ,False,L
+11,True,12,Rule  #76,105.38,9,Men of Will,False,L
+11,True,13,Christopher's Kryptonite ,147.9,2,Pour One Out For Mahomies!!,False,W
+12,True,1,Garretteed Satisfaction ,133.04,12,Rule  #76,False,W
+12,True,2,Pour One Out For Mahomies!!,102.52,10,Amon-Ra Dog,False,L
+12,True,3,Jim Ward's Ole Dick Necks,109.5,6,Thom-ASS,False,L
+12,True,4,King Me,132.78,9,Men of Will,False,W
+12,True,5,You Can Chuck the Tubb,114.44,8,SCLSU Mud Dogs,False,L
+12,True,6,Thom-ASS,117.68,3,Jim Ward's Ole Dick Necks,False,W
+12,True,8,SCLSU Mud Dogs,148.58,5,You Can Chuck the Tubb,False,W
+12,True,9,Men of Will,119.56,4,King Me,False,L
+12,True,10,Amon-Ra Dog,111.66,2,Pour One Out For Mahomies!!,False,W
+12,True,11,Bijan mustard,145.0,13,Christopher's Kryptonite ,False,W
+12,True,12,Rule  #76,98.36,1,Garretteed Satisfaction ,False,L
+12,True,13,Christopher's Kryptonite ,111.38,11,Bijan mustard,False,L
+13,True,1,Garretteed Satisfaction ,179.76,4,King Me,False,W
+13,True,2,Pour One Out For Mahomies!!,88.5,6,Thom-ASS,False,L
+13,True,3,Jim Ward's Ole Dick Necks,98.42,5,You Can Chuck the Tubb,False,L
+13,True,4,King Me,108.48,1,Garretteed Satisfaction ,False,L
+13,True,5,You Can Chuck the Tubb,168.6,3,Jim Ward's Ole Dick Necks,False,W
+13,True,6,Thom-ASS,97.56,2,Pour One Out For Mahomies!!,False,W
+13,True,8,SCLSU Mud Dogs,124.62,9,Men of Will,False,W
+13,True,9,Men of Will,75.54,8,SCLSU Mud Dogs,False,L
+13,True,10,Amon-Ra Dog,157.06,11,Bijan mustard,False,W
+13,True,11,Bijan mustard,128.88,10,Amon-Ra Dog,False,L
+13,True,12,Rule  #76,135.94,13,Christopher's Kryptonite ,False,W
+13,True,13,Christopher's Kryptonite ,120.2,12,Rule  #76,False,L
+14,True,1,Garretteed Satisfaction ,112.64,13,Christopher's Kryptonite ,False,W
+14,True,2,Pour One Out For Mahomies!!,107.54,5,You Can Chuck the Tubb,False,L
+14,True,3,Jim Ward's Ole Dick Necks,72.78,9,Men of Will,False,L
+14,True,4,King Me,119.84,8,SCLSU Mud Dogs,False,W
+14,True,5,You Can Chuck the Tubb,127.02,2,Pour One Out For Mahomies!!,False,W
+14,True,6,Thom-ASS,118.74,11,Bijan mustard,False,L
+14,True,8,SCLSU Mud Dogs,81.74,4,King Me,False,L
+14,True,9,Men of Will,105.02,3,Jim Ward's Ole Dick Necks,False,W
+14,True,10,Amon-Ra Dog,118.82,12,Rule  #76,False,L
+14,True,11,Bijan mustard,155.56,6,Thom-ASS,False,W
+14,True,12,Rule  #76,119.7,10,Amon-Ra Dog,False,W
+14,True,13,Christopher's Kryptonite ,111.4,1,Garretteed Satisfaction ,False,L
+15,False,1,Garretteed Satisfaction ,117.06,9,Men of Will,False,W
+15,False,2,Pour One Out For Mahomies!!,48.5,3,Jim Ward's Ole Dick Necks,False,L
+15,False,3,Jim Ward's Ole Dick Necks,121.48,2,Pour One Out For Mahomies!!,False,W
+15,False,4,King Me,138.24,8,SCLSU Mud Dogs,False,L
+15,False,5,You Can Chuck the Tubb,109.04,6,Thom-ASS,False,W
+15,False,6,Thom-ASS,95.04,5,You Can Chuck the Tubb,False,L
+15,False,8,SCLSU Mud Dogs,140.02,4,King Me,False,W
+15,False,9,Men of Will,93.56,1,Garretteed Satisfaction ,False,L
+15,False,10,Amon-Ra Dog,172.58,12,Rule  #76,False,W
+15,False,11,Bijan mustard,79.98,13,Christopher's Kryptonite ,False,L
+15,False,12,Rule  #76,112.06,10,Amon-Ra Dog,False,L
+15,False,13,Christopher's Kryptonite ,93.24,11,Bijan mustard,False,W
+16,False,1,Garretteed Satisfaction ,99.92,5,You Can Chuck the Tubb,False,L
+16,False,2,Pour One Out For Mahomies!!,124.3,11,Bijan mustard,False,W
+16,False,3,Jim Ward's Ole Dick Necks,128.14,13,Christopher's Kryptonite ,False,W
+16,False,4,King Me,109.8,6,Thom-ASS,False,L
+16,False,5,You Can Chuck the Tubb,164.2,1,Garretteed Satisfaction ,False,W
+16,False,6,Thom-ASS,133.88,4,King Me,False,W
+16,False,8,SCLSU Mud Dogs,79.68,10,Amon-Ra Dog,False,L
+16,False,9,Men of Will,127.88,12,Rule  #76,False,W
+16,False,10,Amon-Ra Dog,119.6,8,SCLSU Mud Dogs,False,W
+16,False,11,Bijan mustard,103.32,2,Pour One Out For Mahomies!!,False,L
+16,False,12,Rule  #76,93.2,9,Men of Will,False,L
+16,False,13,Christopher's Kryptonite ,125.7,3,Jim Ward's Ole Dick Necks,False,L
+17,False,1,Garretteed Satisfaction ,105.0,8,SCLSU Mud Dogs,False,L
+17,False,2,Pour One Out For Mahomies!!,119.3,3,Jim Ward's Ole Dick Necks,False,L
+17,False,3,Jim Ward's Ole Dick Necks,121.08,2,Pour One Out For Mahomies!!,False,W
+17,False,4,King Me,105.16,12,Rule  #76,False,L
+17,False,5,You Can Chuck the Tubb,114.28,10,Amon-Ra Dog,False,W
+17,False,6,Thom-ASS,130.94,9,Men of Will,False,W
+17,False,8,SCLSU Mud Dogs,140.28,1,Garretteed Satisfaction ,False,W
+17,False,9,Men of Will,111.16,6,Thom-ASS,False,L
+17,False,10,Amon-Ra Dog,95.4,5,You Can Chuck the Tubb,False,L
+17,False,11,Bijan mustard,101.86,13,Christopher's Kryptonite ,False,L
+17,False,12,Rule  #76,105.78,4,King Me,False,W
+17,False,13,Christopher's Kryptonite ,153.32,11,Bijan mustard,False,W

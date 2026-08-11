@@ -1,0 +1,207 @@
+team_id,team_name,player_id,player_name,position,pro_team,total_points,projected_total_points
+1,Garretteed Satisfaction ,3916148,Tony Pollard,RB,TEN,195.1,0.0
+1,Garretteed Satisfaction ,4569618,Garrett Wilson,WR,NYJ,169.7,208.99
+1,Garretteed Satisfaction ,4361370,Chris Olave,WR,NO,188.8,182.66
+1,Garretteed Satisfaction ,4047650,DK Metcalf,WR,SEA,194.4,0.0
+1,Garretteed Satisfaction ,4379399,James Cook,RB,BUF,211.7,0.0
+1,Garretteed Satisfaction ,3054850,Alvin Kamara,RB,NO,196.5,0.0
+1,Garretteed Satisfaction ,2577417,Dak Prescott,QB,DAL,343.84,0.0
+1,Garretteed Satisfaction ,4258173,Nico Collins,WR,HOU,223.4,0.0
+1,Garretteed Satisfaction ,3117253,Bobby Okereke,LB,NYG,166.0,0.0
+1,Garretteed Satisfaction ,4372019,Jerome Ford,RB,CLE,189.2,0.0
+1,Garretteed Satisfaction ,4036378,Jordan Love,QB,GB,319.06,0.0
+1,Garretteed Satisfaction ,2468609,Taysom Hill,TE,NO,129.02,0.0
+1,Garretteed Satisfaction ,-16030,Jaguars D/ST,D/ST,JAX,105.0,0.0
+1,Garretteed Satisfaction ,4362851,Ernest Jones,LB,LAR,154.0,0.0
+1,Garretteed Satisfaction ,17427,Cairo Santos,K,CHI,155.0,139.29
+1,Garretteed Satisfaction ,4361050,Isaiah Likely,TE,BAL,88.1,48.48
+1,Garretteed Satisfaction ,-16007,Broncos D/ST,D/ST,DEN,98.0,0.0
+2,Pour One Out For Mahomies!!,4241457,Najee Harris,RB,PIT,181.0,0.0
+2,Pour One Out For Mahomies!!,3139477,Patrick Mahomes,QB,KC,281.22,0.0
+2,Pour One Out For Mahomies!!,4239993,Tee Higgins,WR,CIN,116.6,0.0
+2,Pour One Out For Mahomies!!,4427366,Breece Hall,RB,NYJ,254.5,0.0
+2,Pour One Out For Mahomies!!,3915416,DJ Moore,WR,CHI,243.5,0.0
+2,Pour One Out For Mahomies!!,3040151,George Kittle,TE,SF,171.7,0.0
+2,Pour One Out For Mahomies!!,2577327,Tyler Lockett,WR,SEA,165.9,0.0
+2,Pour One Out For Mahomies!!,4239934,AJ Dillon,RB,GB,106.6,0.0
+2,Pour One Out For Mahomies!!,3120348,JuJu Smith-Schuster,WR,NE,48.5,0.0
+2,Pour One Out For Mahomies!!,-16020,Jets D/ST,D/ST,NYJ,159.0,0.0
+2,Pour One Out For Mahomies!!,3915189,Roquan Smith,LB,BAL,165.0,0.0
+2,Pour One Out For Mahomies!!,3122976,Jeff Wilson Jr.,RB,MIA,34.3,0.0
+2,Pour One Out For Mahomies!!,3117256,Dalton Schultz,TE,HOU,121.0,0.0
+2,Pour One Out For Mahomies!!,4685720,Bryce Young,QB,CAR,156.38,0.0
+2,Pour One Out For Mahomies!!,4361432,Romeo Doubs,WR,GB,146.9,0.0
+2,Pour One Out For Mahomies!!,4243371,Riley Patterson,K,JAX,91.0,0.0
+2,Pour One Out For Mahomies!!,3116187,Ja'Whaun Bentley,LB,NE,125.0,0.0
+3,Jim Ward's Ole Dick Necks,4262921,Justin Jefferson,WR,MIN,170.2,0.0
+3,Jim Ward's Ole Dick Necks,3042519,Aaron Jones,RB,MIN,119.9,0.0
+3,Jim Ward's Ole Dick Necks,4040715,Jalen Hurts,QB,PHI,357.82,0.0
+3,Jim Ward's Ole Dick Necks,4048244,Alexander Mattison,RB,LV,119.2,0.0
+3,Jim Ward's Ole Dick Necks,15795,DeAndre Hopkins,WR,TEN,189.1,0.0
+3,Jim Ward's Ole Dick Necks,4361529,Isiah Pacheco,RB,KC,191.9,0.0
+3,Jim Ward's Ole Dick Necks,4361409,Jahan Dotson,WR,WSH,100.3,143.17
+3,Jim Ward's Ole Dick Necks,4385690,Dalton Kincaid,TE,BUF,115.8,0.0
+3,Jim Ward's Ole Dick Necks,4258595,Cole Kmet,TE,CHI,147.6,0.0
+3,Jim Ward's Ole Dick Necks,4688813,Josh Downs,WR,IND,125.1,0.0
+3,Jim Ward's Ole Dick Necks,3124679,Jason Sanders,K,MIA,143.0,133.72
+3,Jim Ward's Ole Dick Necks,3121409,Noah Brown,WR,HOU,86.1,0.0
+3,Jim Ward's Ole Dick Necks,-16034,Texans D/ST,D/ST,HOU,118.0,0.0
+3,Jim Ward's Ole Dick Necks,3121427,Curtis Samuel,WR,BUF,129.2,0.0
+3,Jim Ward's Ole Dick Necks,4259166,Terrel Bernard,LB,BUF,168.0,0.0
+3,Jim Ward's Ole Dick Necks,16782,Jerick McKinnon,RB,KC,71.86,117.43
+3,Jim Ward's Ole Dick Necks,3049916,Matt Breida,RB,NYG,41.4,52.25
+4,King Me,3043078,Derrick Henry,RB,BAL,232.66,0.0
+4,King Me,16800,Davante Adams,WR,LV,214.9,0.0
+4,King Me,4239996,Travis Etienne Jr.,RB,JAX,255.4,0.0
+4,King Me,15818,Keenan Allen,WR,CHI,224.86,0.0
+4,King Me,3121023,Dallas Goedert,TE,PHI,106.8,0.0
+4,King Me,3045138,Mike Williams,WR,NYJ,40.7,0.0
+4,King Me,16731,Brandin Cooks,WR,DAL,146.2,0.0
+4,King Me,3115394,DJ Chark Jr.,WR,CAR,99.0,117.15
+4,King Me,3916433,Jakobi Meyers,WR,LV,184.08,0.0
+4,King Me,2576414,Raheem Mostert,RB,MIA,255.2,0.0
+4,King Me,-16015,Dolphins D/ST,D/ST,MIA,139.0,0.0
+4,King Me,3050478,Jake Elliott,K,PHI,154.0,142.38
+4,King Me,3123076,David Njoku,TE,CLE,162.7,0.0
+4,King Me,4372576,Jack Sanborn,LB,CHI,69.0,0.0
+4,King Me,4362081,Cameron Dicker,K,LAC,150.0,141.1
+4,King Me,4239086,Desmond Ridder,QB,ARI,178.64,0.0
+4,King Me,11252,Joe Flacco,QB,IND,100.84,0.0
+4,King Me,4035817,Krys Barnes,LB,ARI,57.0,0.0
+5,You Can Chuck the Tubb,3116385,Joe Mixon,RB,HOU,241.0,0.0
+5,You Can Chuck the Tubb,3126486,Deebo Samuel,WR,SF,213.7,0.0
+5,You Can Chuck the Tubb,2976499,Amari Cooper,WR,CLE,192.0,0.0
+5,You Can Chuck the Tubb,4035687,Michael Pittman Jr.,WR,IND,196.7,0.0
+5,You Can Chuck the Tubb,15683,Justin Tucker,K,BAL,155.0,146.18
+5,You Can Chuck the Tubb,4426515,Puka Nacua,WR,LAR,247.0,0.0
+5,You Can Chuck the Tubb,4361307,Trey McBride,TE,ARI,144.0,54.82
+5,You Can Chuck the Tubb,4040761,Devin Singletary,RB,NYG,154.34,0.0
+5,You Can Chuck the Tubb,3917315,Kyler Murray,QB,ARI,147.36,0.0
+5,You Can Chuck the Tubb,4242431,Ty Chandler,RB,MIN,93.5,0.0
+5,You Can Chuck the Tubb,-16027,Buccaneers D/ST,D/ST,TB,108.0,0.0
+5,You Can Chuck the Tubb,3120590,Easton Stick,QB,LAC,67.56,0.0
+5,You Can Chuck the Tubb,2576925,Darren Waller,TE,NYG,88.2,0.0
+5,You Can Chuck the Tubb,3919117,Azeez Al-Shaair,LB,HOU,169.0,0.0
+5,You Can Chuck the Tubb,15864,Geno Smith,QB,SEA,226.76,0.0
+5,You Can Chuck the Tubb,-16013,Raiders D/ST,D/ST,LV,135.0,0.0
+6,Thom-ASS,15847,Travis Kelce,TE,KC,173.9,0.0
+6,Thom-ASS,2976212,Stefon Diggs,WR,BUF,223.3,0.0
+6,Thom-ASS,3916387,Lamar Jackson,QB,BAL,332.22,0.0
+6,Thom-ASS,3045147,James Conner,RB,ARI,188.0,0.0
+6,Thom-ASS,16737,Mike Evans,WR,TB,244.0,0.0
+6,Thom-ASS,4241372,Marquise Brown,WR,KC,111.2,0.0
+6,Thom-ASS,4429615,Zay Flowers,WR,BAL,168.9,0.0
+6,Thom-ASS,-16006,Cowboys D/ST,D/ST,DAL,172.0,0.0
+6,Thom-ASS,3121544,T.J. Edwards,LB,CHI,172.0,0.0
+6,Thom-ASS,4432577,C.J. Stroud,QB,HOU,275.52,0.0
+6,Thom-ASS,3051392,Ezekiel Elliott,RB,NE,150.0,115.85
+6,Thom-ASS,-16005,Browns D/ST,D/ST,CLE,166.0,0.0
+6,Thom-ASS,10621,Nick Folk,K,TEN,130.0,133.89
+6,Thom-ASS,4039359,Darrell Henderson Jr.,RB,None,38.5,0.0
+6,Thom-ASS,4362249,Jayden Reed,WR,GB,186.2,0.0
+6,Thom-ASS,3116389,Samaje Perine,RB,DEN,97.3,0.0
+6,Thom-ASS,4426386,Roschon Johnson,RB,CHI,88.1,0.0
+8,SCLSU Mud Dogs,2977187,Cooper Kupp,WR,LAR,136.9,0.0
+8,SCLSU Mud Dogs,3116406,Tyreek Hill,WR,MIA,321.9,0.0
+8,SCLSU Mud Dogs,4569173,Rhamondre Stevenson,RB,NE,126.7,0.0
+8,SCLSU Mud Dogs,4241474,Brian Robinson Jr.,RB,WSH,181.1,0.0
+8,SCLSU Mud Dogs,3932905,Diontae Johnson,WR,CAR,128.2,0.0
+8,SCLSU Mud Dogs,16720,C.J. Mosley,LB,NYJ,160.0,0.0
+8,SCLSU Mud Dogs,4430737,Kyren Williams,RB,LAR,240.0,0.0
+8,SCLSU Mud Dogs,4430027,Sam LaPorta,TE,DET,200.3,0.0
+8,SCLSU Mud Dogs,-16012,Chiefs D/ST,D/ST,KC,140.0,0.0
+8,SCLSU Mud Dogs,3046779,Jared Goff,QB,DET,290.1,0.0
+8,SCLSU Mud Dogs,16339,Brandon McManus,K,WSH,140.0,137.74
+8,SCLSU Mud Dogs,4569987,Jaylen Warren,RB,PIT,165.9,0.0
+8,SCLSU Mud Dogs,4426385,Zach Charbonnet,RB,SEA,90.6,0.0
+8,SCLSU Mud Dogs,3059722,Zay Jones,WR,JAX,63.1,0.0
+8,SCLSU Mud Dogs,4428557,Tyjae Spears,RB,TEN,129.8,0.0
+8,SCLSU Mud Dogs,12483,Matthew Stafford,QB,LAR,243.1,0.0
+8,SCLSU Mud Dogs,4430878,Jaxon Smith-Njigba,WR,SEA,120.3,0.0
+9,Men of Will,3068267,Austin Ekeler,RB,WSH,160.9,0.0
+9,Men of Will,4047365,Josh Jacobs,RB,GB,164.6,0.0
+9,Men of Will,3918298,Josh Allen,QB,BUF,392.64,0.0
+9,Men of Will,3925357,Calvin Ridley,WR,TEN,192.9,0.0
+9,Men of Will,4248528,Christian Watson,WR,GB,88.3,0.0
+9,Men of Will,3116165,Chris Godwin,WR,TB,169.7,0.0
+9,Men of Will,4259545,D'Andre Swift,RB,CHI,179.8,0.0
+9,Men of Will,3128429,Courtland Sutton,WR,DEN,160.7,0.0
+9,Men of Will,16460,Adam Thielen,WR,CAR,179.5,0.0
+9,Men of Will,-16002,Bills D/ST,D/ST,BUF,158.0,0.0
+9,Men of Will,3124005,Zaire Franklin,LB,IND,186.0,0.0
+9,Men of Will,14881,Russell Wilson,QB,PIT,257.9,0.0
+9,Men of Will,16813,Logan Thomas,TE,WSH,101.3,77.09
+9,Men of Will,4372066,Jake Moody,K,SF,127.0,0.0
+9,Men of Will,2612151,Alex Singleton,LB,DEN,185.0,0.0
+9,Men of Will,4360635,Chigoziem Okonkwo,TE,TEN,87.4,0.0
+9,Men of Will,4361777,Zamir White,RB,LV,68.4,0.0
+10,Amon-Ra Dog,3117251,Christian McCaffrey,RB,SF,359.8,0.0
+10,Amon-Ra Dog,4374302,Amon-Ra St. Brown,WR,DET,277.4,194.41
+10,Amon-Ra Dog,4241478,DeVonta Smith,WR,PHI,189.1,0.0
+10,Amon-Ra Dog,4241463,Jerry Jeudy,WR,CLE,115.8,0.0
+10,Amon-Ra Dog,4697815,Rachaad White,RB,TB,236.9,0.0
+10,Amon-Ra Dog,4360248,Kyle Pitts,TE,ATL,112.8,0.0
+10,Amon-Ra Dog,4426354,George Pickens,WR,PIT,178.3,0.0
+10,Amon-Ra Dog,3051926,Gus Edwards,RB,LAC,182.0,0.0
+10,Amon-Ra Dog,4361741,Brock Purdy,QB,SF,297.6,0.0
+10,Amon-Ra Dog,-16018,Saints D/ST,D/ST,NO,129.0,0.0
+10,Amon-Ra Dog,4427095,DeMario Douglas,WR,NE,83.7,0.0
+10,Amon-Ra Dog,2473037,Jason Myers,K,SEA,151.0,138.22
+10,Amon-Ra Dog,3929950,Tremaine Edmunds,LB,CHI,131.0,0.0
+10,Amon-Ra Dog,-16011,Colts D/ST,D/ST,IND,123.0,0.0
+10,Amon-Ra Dog,4032473,Rashid Shaheed,WR,NO,132.6,0.0
+10,Amon-Ra Dog,3918639,Gerald Everett,TE,CHI,85.6,0.0
+10,Amon-Ra Dog,16757,Derek Carr,QB,NO,242.12,0.0
+11,Bijan mustard,4430807,Bijan Robinson,RB,ATL,219.3,0.0
+11,Bijan mustard,4242335,Jonathan Taylor,RB,IND,146.9,0.0
+11,Bijan mustard,4372016,Jaylen Waddle,WR,MIA,165.6,0.0
+11,Bijan mustard,3895856,Christian Kirk,WR,JAX,122.76,0.0
+11,Bijan mustard,4035538,David Montgomery,RB,DET,200.2,0.0
+11,Bijan mustard,-16025,49ers D/ST,D/ST,SF,136.0,0.0
+11,Bijan mustard,16733,Odell Beckham Jr.,WR,None,91.0,125.19
+11,Bijan mustard,4429160,De'Von Achane,RB,MIA,177.2,0.0
+11,Bijan mustard,4429205,Jordan Addison,WR,MIN,191.3,0.0
+11,Bijan mustard,3051876,Evan Engram,TE,JAX,176.3,0.0
+11,Bijan mustard,4426875,Sam Howell,QB,SEA,257.04,0.0
+11,Bijan mustard,3052587,Baker Mayfield,QB,TB,274.06,0.0
+11,Bijan mustard,3138826,Fred Warner,LB,SF,153.0,0.0
+11,Bijan mustard,3953687,Brandon Aubrey,K,DAL,179.0,131.9
+11,Bijan mustard,-16001,Falcons D/ST,D/ST,ATL,92.0,0.0
+11,Bijan mustard,4360238,Dameon Pierce,RB,HOU,76.2,0.0
+11,Bijan mustard,4241401,Trey Sermon,RB,IND,18.8,0.0
+12,Rule  #76,4362628,Ja'Marr Chase,WR,CIN,214.72,0.0
+12,Rule  #76,4047646,A.J. Brown,WR,PHI,237.6,0.0
+12,Rule  #76,4429795,Jahmyr Gibbs,RB,DET,216.1,0.0
+12,Rule  #76,4360310,Trevor Lawrence,QB,JAX,263.54,0.0
+12,Rule  #76,4567048,Kenneth Walker III,RB,SEA,185.9,0.0
+12,Rule  #76,3121422,Terry McLaurin,WR,WSH,174.7,0.0
+12,Rule  #76,14979,Bobby Wagner,LB,WSH,192.0,0.0
+12,Rule  #76,4242355,Jake Ferguson,TE,DAL,141.6,0.0
+12,Rule  #76,4035676,Zack Moss,RB,CIN,156.1,0.0
+12,Rule  #76,3059915,Kareem Hunt,RB,CLE,111.0,0.0
+12,Rule  #76,3916566,K.J. Osborn,WR,NE,100.0,0.0
+12,Rule  #76,3116365,Mark Andrews,TE,BAL,112.9,0.0
+12,Rule  #76,4428331,Rashee Rice,WR,KC,176.0,0.0
+12,Rule  #76,3122672,Royce Freeman,RB,LAR,50.7,0.0
+12,Rule  #76,-16016,Vikings D/ST,D/ST,MIN,111.0,0.0
+12,Rule  #76,-16024,Chargers D/ST,D/ST,LAC,86.0,0.0
+12,Rule  #76,4360234,Evan McPherson,K,CIN,135.0,0.0
+12,Rule  #76,3886812,Jake Browning,QB,CIN,143.94,0.0
+13,Christopher's Kryptonite ,3929630,Saquon Barkley,RB,PHI,202.7,0.0
+13,Christopher's Kryptonite ,4241389,CeeDee Lamb,WR,DAL,336.7,0.0
+13,Christopher's Kryptonite ,4362887,Justin Fields,QB,PIT,230.18,0.0
+13,Christopher's Kryptonite ,4045163,Miles Sanders,RB,CAR,74.1,0.0
+13,Christopher's Kryptonite ,4426502,Drake London,WR,ATL,142.88,0.0
+13,Christopher's Kryptonite ,4360438,Brandon Aiyuk,WR,SF,212.7,0.0
+13,Christopher's Kryptonite ,4243537,Gabe Davis,WR,JAX,142.9,0.0
+13,Christopher's Kryptonite ,3050073,Foyesade Oluokun,LB,JAX,192.0,0.0
+13,Christopher's Kryptonite ,4241479,Tua Tagovailoa,QB,MIA,270.36,0.0
+13,Christopher's Kryptonite ,4241416,Chuba Hubbard,RB,CAR,163.0,0.0
+13,Christopher's Kryptonite ,4366031,Tank Dell,WR,HOU,142.5,0.0
+13,Christopher's Kryptonite ,4361579,Javonte Williams,RB,DEN,155.7,0.0
+13,Christopher's Kryptonite ,4036133,T.J. Hockenson,TE,MIN,172.5,0.0
+13,Christopher's Kryptonite ,3055899,Harrison Butker,K,KC,152.0,142.22
+13,Christopher's Kryptonite ,4361411,Pat Freiermuth,TE,PIT,65.8,119.01
+13,Christopher's Kryptonite ,-16021,Eagles D/ST,D/ST,PHI,80.0,0.0
+13,Christopher's Kryptonite ,-16003,Bears D/ST,D/ST,CHI,110.0,0.0
+13,Christopher's Kryptonite ,4572680,Tucker Kraft,TE,GB,68.0,36.87

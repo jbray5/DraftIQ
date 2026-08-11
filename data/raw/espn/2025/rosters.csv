@@ -1,0 +1,208 @@
+team_id,team_name,player_id,player_name,position,pro_team,total_points,projected_total_points
+1,Nico Suave,4258173,Nico Collins,WR,HOU,190.7,239.0
+1,Nico Suave,4685382,Omarion Hampton,RB,LAC,120.7,239.01
+1,Nico Suave,4426354,George Pickens,WR,DAL,247.4,185.27
+1,Nico Suave,3916433,Jakobi Meyers,WR,JAX,139.3,175.66
+1,Nico Suave,3116365,Mark Andrews,TE,BAL,109.0,142.72
+1,Nico Suave,2577417,Dak Prescott,QB,DAL,315.78,285.8
+1,Nico Suave,3929645,Juwan Johnson,TE,NO,141.4,91.39
+1,Nico Suave,4371733,Kenneth Gainwell,RB,PIT,190.8,177.08
+1,Nico Suave,-16005,Browns D/ST,D/ST,CLE,143.0,68.61
+1,Nico Suave,4688813,Josh Downs,WR,IND,109.4,141.75
+1,Nico Suave,4430968,Kimani Vidal,RB,LAC,112.9,0.0
+1,Nico Suave,4431299,Rome Odunze,WR,CHI,124.1,181.31
+1,Nico Suave,4567048,Kenneth Walker III,RB,SEA,178.4,216.01
+1,Nico Suave,4568490,RJ Harvey,RB,DEN,183.1,184.27
+1,Nico Suave,4034949,Eddy Pineiro,K,SF,139.0,0.0
+1,Nico Suave,-16008,Lions D/ST,D/ST,DET,91.0,122.53
+1,Nico Suave,2612151,Alex Singleton,LB,DEN,139.0,178.76
+3,Jim Ward's Ole Dick Necks,4429160,De'Von Achane,RB,MIA,292.3,270.33
+3,Jim Ward's Ole Dick Necks,4047646,A.J. Brown,WR,PHI,181.3,230.05
+3,Jim Ward's Ole Dick Necks,4569618,Garrett Wilson,WR,NYJ,82.5,196.7
+3,Jim Ward's Ole Dick Necks,4259545,D'Andre Swift,RB,CHI,211.6,208.19
+3,Jim Ward's Ole Dick Necks,4372016,Jaylen Waddle,WR,MIA,167.12,182.74
+3,Jim Ward's Ole Dick Necks,4036378,Jordan Love,QB,GB,236.14,264.55
+3,Jim Ward's Ole Dick Necks,3121023,Dallas Goedert,TE,PHI,157.1,124.44
+3,Jim Ward's Ole Dick Necks,4038941,Justin Herbert,QB,LAC,288.88,284.48
+3,Jim Ward's Ole Dick Necks,4043130,Jordyn Brooks,LB,MIA,194.0,154.34
+3,Jim Ward's Ole Dick Necks,-16009,Packers D/ST,D/ST,GB,77.0,100.77
+3,Jim Ward's Ole Dick Necks,3117256,Dalton Schultz,TE,HOU,138.7,99.79
+3,Jim Ward's Ole Dick Necks,3043078,Derrick Henry,RB,BAL,273.0,272.8
+3,Jim Ward's Ole Dick Necks,4569923,Andy Borregales,K,NE,145.0,128.88
+3,Jim Ward's Ole Dick Necks,-16024,Chargers D/ST,D/ST,LAC,119.0,72.66
+3,Jim Ward's Ole Dick Necks,4567096,John Metchie III,WR,NYJ,56.4,1.09
+3,Jim Ward's Ole Dick Necks,4433970,J.J. McCarthy,QB,MIN,125.38,282.57
+3,Jim Ward's Ole Dick Necks,3116724,Germaine Pratt,LB,IND,134.0,129.51
+3,Jim Ward's Ole Dick Necks,-16023,Steelers D/ST,D/ST,PIT,113.0,132.67
+4,Injured Reserve ,4374302,Amon-Ra St. Brown,WR,DET,270.5,232.27
+4,Injured Reserve ,4047365,Josh Jacobs,RB,GB,219.1,262.2
+4,Injured Reserve ,4361370,Chris Olave,WR,NO,219.0,168.18
+4,Injured Reserve ,4430027,Sam LaPorta,TE,DET,87.9,154.47
+4,Injured Reserve ,4569173,Rhamondre Stevenson,RB,NE,162.8,158.39
+4,Injured Reserve ,3052587,Baker Mayfield,QB,TB,271.92,310.96
+4,Injured Reserve ,3126486,Deebo Samuel,WR,WSH,157.2,171.47
+4,Injured Reserve ,4569987,Jaylen Warren,RB,PIT,197.1,220.23
+4,Injured Reserve ,4429096,Blake Corum,RB,LAR,120.2,67.77
+4,Injured Reserve ,4432577,C.J. Stroud,QB,HOU,208.54,280.36
+4,Injured Reserve ,3915189,Roquan Smith,LB,BAL,138.0,168.29
+4,Injured Reserve ,15835,Zach Ertz,TE,WSH,102.4,112.98
+4,Injured Reserve ,4429022,Kayshon Boutte,WR,NE,108.6,89.88
+4,Injured Reserve ,4430871,Sean Tucker,RB,TB,87.4,26.22
+4,Injured Reserve ,4035232,Tyrel Dodson,LB,MIA,145.0,135.96
+4,Injured Reserve ,-16013,Raiders D/ST,D/ST,LV,75.0,58.3
+4,Injured Reserve ,4574716,Harrison Mevis,K,LAR,81.0,0.0
+5,Flowers for Allgeiernon,4362628,Ja'Marr Chase,WR,CIN,256.1,281.68
+5,Flowers for Allgeiernon,4430737,Kyren Williams,RB,LAR,245.3,266.29
+5,Flowers for Allgeiernon,4361307,Trey McBride,TE,ARI,252.9,202.67
+5,Flowers for Allgeiernon,4239996,Travis Etienne Jr.,RB,JAX,236.9,164.06
+5,Flowers for Allgeiernon,4241478,DeVonta Smith,WR,PHI,163.3,178.91
+5,Flowers for Allgeiernon,4429615,Zay Flowers,WR,BAL,202.3,195.72
+5,Flowers for Allgeiernon,4373626,Tyler Allgeier,RB,ATL,121.0,98.24
+5,Flowers for Allgeiernon,12483,Matthew Stafford,QB,LAR,351.38,274.08
+5,Flowers for Allgeiernon,4431280,Troy Franklin,WR,DEN,146.6,66.85
+5,Flowers for Allgeiernon,-16030,Jaguars D/ST,D/ST,JAX,139.0,87.31
+5,Flowers for Allgeiernon,4608686,Kyle Monangai,RB,CHI,137.7,47.46
+5,Flowers for Allgeiernon,4248528,Christian Watson,WR,GB,115.9,43.12
+5,Flowers for Allgeiernon,2473037,Jason Myers,K,SEA,197.0,136.51
+5,Flowers for Allgeiernon,4887558,Emanuel Wilson,RB,GB,88.0,29.25
+5,Flowers for Allgeiernon,4876017,Carson Schwesinger,LB,CLE,165.0,124.04
+5,Flowers for Allgeiernon,4360310,Trevor Lawrence,QB,JAX,338.18,279.32
+5,Flowers for Allgeiernon,-16002,Bills D/ST,D/ST,BUF,117.0,100.27
+6,Thom-ASS,3117251,Christian McCaffrey,RB,SF,369.6,282.63
+6,Thom-ASS,4242335,Jonathan Taylor,RB,IND,340.3,272.45
+6,Thom-ASS,4040715,Jalen Hurts,QB,PHI,301.06,365.49
+6,Thom-ASS,3128429,Courtland Sutton,WR,DEN,184.7,190.02
+6,Thom-ASS,15847,Travis Kelce,TE,KC,158.2,142.76
+6,Thom-ASS,4360516,Tyrone Tracy Jr.,RB,NYG,142.8,187.15
+6,Thom-ASS,2976212,Stefon Diggs,WR,NE,169.8,127.81
+6,Thom-ASS,4362249,Jayden Reed,WR,GB,39.0,147.35
+6,Thom-ASS,4689936,Jake Bates,K,DET,149.0,146.36
+6,Thom-ASS,4569587,Wan'Dale Robinson,WR,NYG,172.9,118.26
+6,Thom-ASS,14979,Bobby Wagner,LB,WSH,175.0,146.67
+6,Thom-ASS,-16014,Rams D/ST,D/ST,LAR,125.0,87.74
+6,Thom-ASS,3916148,Tony Pollard,RB,TEN,169.3,198.95
+6,Thom-ASS,4597500,Adonai Mitchell,WR,NYJ,74.4,70.66
+6,Thom-ASS,4032473,Rashid Shaheed,WR,SEA,128.1,149.63
+6,Thom-ASS,-16016,Vikings D/ST,D/ST,MIN,131.0,120.67
+6,Thom-ASS,4362851,Ernest Jones IV,LB,SEA,143.0,160.36
+8,SCLSU Mud Dogs,4429795,Jahmyr Gibbs,RB,DET,328.4,287.11
+8,SCLSU Mud Dogs,4432665,Brock Bowers,TE,LV,146.2,207.33
+8,SCLSU Mud Dogs,4426348,Jayden Daniels,QB,WSH,115.28,371.59
+8,SCLSU Mud Dogs,16800,Davante Adams,WR,LAR,193.9,214.54
+8,SCLSU Mud Dogs,3915416,DJ Moore,WR,CHI,146.18,193.93
+8,SCLSU Mud Dogs,4428331,Rashee Rice,WR,KC,123.6,131.65
+8,SCLSU Mud Dogs,4360569,Jordan Mason,RB,MIN,122.9,126.38
+8,SCLSU Mud Dogs,4429205,Jordan Addison,WR,MIN,115.1,137.95
+8,SCLSU Mud Dogs,4360248,Kyle Pitts Sr.,TE,ATL,168.8,118.17
+8,SCLSU Mud Dogs,4689114,Jaxson Dart,QB,NYG,241.58,132.17
+8,SCLSU Mud Dogs,3059915,Kareem Hunt,RB,KC,137.4,88.63
+8,SCLSU Mud Dogs,4595342,Oronde Gadsden,TE,LAC,107.9,0.0
+8,SCLSU Mud Dogs,4697745,Tyler Loop,K,BAL,142.0,140.26
+8,SCLSU Mud Dogs,3121422,Terry McLaurin,WR,WSH,96.2,204.74
+8,SCLSU Mud Dogs,4360423,Michael Penix Jr.,QB,ATL,120.28,251.13
+8,SCLSU Mud Dogs,2578570,Jacoby Brissett,QB,ARI,227.44,2.24
+8,SCLSU Mud Dogs,-16027,Buccaneers D/ST,D/ST,TB,89.0,106.06
+8,SCLSU Mud Dogs,4243181,Nate Landman,LB,LAR,151.0,136.56
+9,Men of Will,4262921,Justin Jefferson,WR,MIN,161.5,259.72
+9,Men of Will,4432773,Brian Thomas Jr.,WR,JAX,115.8,222.38
+9,Men of Will,3918298,Josh Allen,QB,BUF,364.62,367.87
+9,Men of Will,3042519,Aaron Jones Sr.,RB,MIN,106.7,190.81
+9,Men of Will,4426338,Bo Nix,QB,DEN,304.84,301.89
+9,Men of Will,4373678,Khalil Shakir,WR,BUF,132.4,156.8
+9,Men of Will,4686361,Cam Little,K,JAX,161.0,135.84
+9,Men of Will,15818,Keenan Allen,WR,LAC,145.2,172.08
+9,Men of Will,4429059,Woody Marks,RB,HOU,139.1,61.54
+9,Men of Will,-16017,Patriots D/ST,D/ST,NE,133.0,101.44
+9,Men of Will,4360761,Michael Wilson,WR,ARI,183.6,92.55
+9,Men of Will,4877706,Jayden Higgins,WR,HOU,110.0,133.03
+9,Men of Will,2576925,Darren Waller,TE,MIA,76.7,105.62
+9,Men of Will,14958,Demario Davis,LB,NO,150.0,139.98
+9,Men of Will,4241416,Chuba Hubbard,RB,CAR,111.4,234.16
+9,Men of Will,-16021,Eagles D/ST,D/ST,PHI,126.0,97.75
+9,Men of Will,4258595,Cole Kmet,TE,CHI,64.7,33.8
+10,Silence of the Lamb,4241389,CeeDee Lamb,WR,DAL,164.4,258.55
+10,Silence of the Lamb,4426502,Drake London,WR,ATL,169.9,218.72
+10,Silence of the Lamb,3916387,Lamar Jackson,QB,BAL,216.86,363.8
+10,Silence of the Lamb,3054850,Alvin Kamara,RB,NO,85.2,231.07
+10,Silence of the Lamb,4047650,DK Metcalf,WR,PIT,161.7,199.76
+10,Silence of the Lamb,4361529,Isiah Pacheco,RB,KC,77.8,192.43
+10,Silence of the Lamb,4426388,Jameson Williams,WR,DET,188.4,185.78
+10,Silence of the Lamb,4361579,Javonte Williams,RB,DAL,226.3,196.87
+10,Silence of the Lamb,3953687,Brandon Aubrey,K,DAL,182.6,142.15
+10,Silence of the Lamb,-16007,Broncos D/ST,D/ST,DEN,144.0,130.13
+10,Silence of the Lamb,4431452,Drake Maye,QB,NE,351.46,285.26
+10,Silence of the Lamb,4361432,Romeo Doubs,WR,GB,137.9,103.18
+10,Silence of the Lamb,4429148,Theo Johnson,TE,NYG,105.3,96.65
+10,Silence of the Lamb,4040761,Devin Singletary,RB,NYG,100.8,17.69
+10,Silence of the Lamb,4361331,Jamien Sherwood,LB,NYJ,158.0,155.39
+10,Silence of the Lamb,4569682,Audric Estime,RB,NO,43.1,0.0
+10,Silence of the Lamb,4259147,Jake Tonges,TE,SF,86.3,0.0
+11,ConcreteJungleWet DreamTomato,4890973,Ashton Jeanty,RB,LV,218.6,270.68
+11,ConcreteJungleWet DreamTomato,4379399,James Cook III,RB,BUF,285.7,251.61
+11,ConcreteJungleWet DreamTomato,3139477,Patrick Mahomes,QB,KC,286.18,324.92
+11,ConcreteJungleWet DreamTomato,4036133,T.J. Hockenson,TE,MIN,88.3,144.35
+11,ConcreteJungleWet DreamTomato,4241463,Jerry Jeudy,WR,CLE,98.7,186.37
+11,ConcreteJungleWet DreamTomato,4685702,Quinshon Judkins,RB,CLE,156.8,43.44
+11,ConcreteJungleWet DreamTomato,-16034,Texans D/ST,D/ST,HOU,173.0,128.82
+11,ConcreteJungleWet DreamTomato,4035687,Michael Pittman Jr.,WR,IND,163.4,157.86
+11,ConcreteJungleWet DreamTomato,3046439,Hunter Henry,TE,NE,148.8,120.23
+11,ConcreteJungleWet DreamTomato,4040655,Darnell Mooney,WR,ATL,66.3,132.0
+11,ConcreteJungleWet DreamTomato,3055899,Harrison Butker,K,KC,146.0,138.62
+11,ConcreteJungleWet DreamTomato,4686472,Marvin Mims Jr.,WR,DEN,74.5,127.21
+11,ConcreteJungleWet DreamTomato,3129446,Robert Spillane,LB,NE,105.0,156.07
+11,ConcreteJungleWet DreamTomato,4243389,Calvin Austin III,WR,PIT,70.7,87.96
+11,ConcreteJungleWet DreamTomato,4431268,Chimere Dike,WR,TEN,102.1,30.97
+11,ConcreteJungleWet DreamTomato,2576980,Marcus Mariota,QB,WSH,125.5,2.69
+11,ConcreteJungleWet DreamTomato,4379416,Quay Walker,LB,GB,133.0,145.49
+11,ConcreteJungleWet DreamTomato,4360689,Tyler Shough,QB,NO,158.96,99.94
+12,Blake's Holographic Charizard,3929630,Saquon Barkley,RB,PHI,214.8,302.19
+12,Blake's Holographic Charizard,4612826,Ladd McConkey,WR,LAC,148.9,197.15
+12,Blake's Holographic Charizard,4239993,Tee Higgins,WR,CIN,182.1,218.23
+12,Blake's Holographic Charizard,4683062,Xavier Worthy,WR,KC,89.9,140.73
+12,Blake's Holographic Charizard,4241474,Brian Robinson Jr.,RB,SF,58.5,73.23
+12,Blake's Holographic Charizard,4431611,Caleb Williams,QB,CHI,318.18,279.79
+12,Blake's Holographic Charizard,4362081,Cameron Dicker,K,LAC,171.0,143.93
+12,Blake's Holographic Charizard,4575131,Jacory Croskey-Merritt,RB,WSH,135.8,151.27
+12,Blake's Holographic Charizard,5083076,Harold Fannin Jr.,TE,CLE,151.4,41.68
+12,Blake's Holographic Charizard,-16011,Colts D/ST,D/ST,IND,81.0,111.49
+12,Blake's Holographic Charizard,4430539,Brenton Strange,TE,JAX,96.0,108.99
+12,Blake's Holographic Charizard,4038815,Rico Dowdle,RB,CAR,199.8,73.19
+12,Blake's Holographic Charizard,3912547,Sam Darnold,QB,SEA,239.42,241.69
+12,Blake's Holographic Charizard,4569465,Jack Campbell,LB,DET,196.0,152.42
+12,Blake's Holographic Charizard,4428718,Tre Tucker,WR,LV,135.2,108.63
+12,Blake's Holographic Charizard,-16006,Cowboys D/ST,D/ST,DAL,37.0,60.15
+12,Blake's Holographic Charizard,4240657,Michael Carter,RB,ARI,83.5,0.0
+13,Christopher's Kryptonite ,4430807,Bijan Robinson,RB,ATL,331.3,308.13
+13,Christopher's Kryptonite ,4362238,Chase Brown,RB,CIN,251.1,249.03
+13,Christopher's Kryptonite ,4430878,Jaxon Smith-Njigba,WR,SEA,303.4,196.67
+13,Christopher's Kryptonite ,4035538,David Montgomery,RB,HOU,154.92,195.38
+13,Christopher's Kryptonite ,4428209,Ricky Pearsall,WR,SF,71.6,163.96
+13,Christopher's Kryptonite ,3116165,Chris Godwin Jr.,WR,TB,66.5,151.76
+13,Christopher's Kryptonite ,4242355,Jake Ferguson,TE,DAL,149.1,117.04
+13,Christopher's Kryptonite ,-16026,Seahawks D/ST,D/ST,SEA,185.0,121.19
+13,Christopher's Kryptonite ,4685472,Tetairoa McMillan,WR,CAR,179.4,193.83
+13,Christopher's Kryptonite ,4723086,Colston Loveland,TE,CHI,137.1,124.94
+13,Christopher's Kryptonite ,3915511,Joe Burrow,QB,CIN,134.46,330.46
+13,Christopher's Kryptonite ,4361741,Brock Purdy,QB,SF,177.38,306.21
+13,Christopher's Kryptonite ,4035434,Devin White,LB,LV,183.0,27.24
+13,Christopher's Kryptonite ,16737,Mike Evans,WR,TB,71.8,195.33
+13,Christopher's Kryptonite ,2971573,Ka'imi Fairbairn,K,HOU,191.0,135.89
+13,Christopher's Kryptonite ,-16018,Saints D/ST,D/ST,NO,123.0,62.14
+13,Christopher's Kryptonite ,4242557,Colby Parkinson,TE,LAR,109.3,11.84
+14,Deston's Ride or Dies ,4426515,Puka Nacua,WR,LAR,310.5,246.01
+14,Deston's Ride or Dies ,4596448,Bucky Irving,RB,TB,123.5,256.74
+14,Deston's Ride or Dies ,4432708,Marvin Harrison Jr.,WR,ARI,107.3,198.75
+14,Deston's Ride or Dies ,4427366,Breece Hall,RB,NYJ,189.66,203.58
+14,Deston's Ride or Dies ,4432710,TreVeyon Henderson,RB,NE,188.7,202.25
+14,Deston's Ride or Dies ,4567750,Emeka Egbuka,WR,TB,164.2,147.25
+14,Deston's Ride or Dies ,4431459,Tyler Warren,TE,IND,151.5,133.69
+14,Deston's Ride or Dies ,4426385,Zach Charbonnet,RB,SEA,172.4,122.04
+14,Deston's Ride or Dies ,4429025,Quentin Johnston,WR,LAC,146.7,136.98
+14,Deston's Ride or Dies ,3886598,Jauan Jennings,WR,SF,146.8,157.65
+14,Deston's Ride or Dies ,4569603,Malik Washington,WR,MIA,95.7,45.99
+14,Deston's Ride or Dies ,17372,Chris Boswell,K,PIT,148.0,138.42
+14,Deston's Ride or Dies ,3728281,Blake Cashman,LB,MIN,150.0,151.64
+14,Deston's Ride or Dies ,4427728,Bam Knight,RB,ARI,83.9,5.58
+14,Deston's Ride or Dies ,3046779,Jared Goff,QB,DET,297.06,260.45
+14,Deston's Ride or Dies ,4682652,Devin Neal,RB,NO,52.5,47.84
+14,Deston's Ride or Dies ,-16012,Chiefs D/ST,D/ST,KC,88.0,96.97

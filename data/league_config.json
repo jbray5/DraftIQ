@@ -1,0 +1,68 @@
+{
+  "_comment": "DraftIQ league structure. 'historical' = the 12-team/1-FLEX setup ESPN data covers (2019-2025). '2026' = this year's planned setup; the model uses this for the live draft board.",
+  "historical": {
+    "teams": 12,
+    "starters": {
+      "QB": 1,
+      "RB": 2,
+      "WR": 2,
+      "TE": 1,
+      "DP": 1,
+      "D/ST": 1,
+      "K": 1
+    },
+    "flex_slots": 1,
+    "flex_eligible": [
+      "RB",
+      "WR",
+      "TE"
+    ],
+    "flex_share": {
+      "RB": 0.42,
+      "WR": 0.55,
+      "TE": 0.03
+    },
+    "bench": 7,
+    "scoring": "half-PPR (rec 0.5), passTD 4, rush/recTD 6, includes IDP via DP slot",
+    "_flex_share_note": "flex_share MEASURED from 1,151 started FLEX slots 2019-2025: WR .586 / RB .401 / TE .014 (was an assumed .45/.45/.10). TE floored at .03 so an elite TE2 stays flexable in theory."
+  },
+  "2026": {
+    "teams": 10,
+    "starters": {
+      "QB": 1,
+      "RB": 2,
+      "WR": 2,
+      "TE": 1,
+      "DP": 1,
+      "D/ST": 1,
+      "K": 1
+    },
+    "flex_slots": 2,
+    "flex_eligible": [
+      "RB",
+      "WR",
+      "TE"
+    ],
+    "flex_share": {
+      "RB": 0.42,
+      "WR": 0.55,
+      "TE": 0.03
+    },
+    "bench": 7,
+    "changes_from_2025": [
+      "Zach Thomas (owner zwthomas89, team 6, 'Thom-ASS') leaving",
+      "Josh Jones (owner 'Make Bama Champions Again', team 4, 'Injured Reserve') leaving -> 10 teams total",
+      "adding a 2nd FLEX slot"
+    ],
+    "departing_owners": [
+      "zwthomas89",
+      "Make Bama Champions Again"
+    ],
+    "active_managers_final": true,
+    "note": "Final 10 confirmed by user 2026-06-27. Re-pull when the 2026 league activates to lock exact slots/rosters.",
+    "_scoring_overrides_REMOVED_2026-08-09": {
+      "_why": "This block used to zero Assisted Tackles (107), Solo Tackles (108) and Passes Defensed (113) because the commish said he changed no IDP scoring. That was WRONG and it cost IDP ~54% of its value. Pulling ESPN's LIVE 2026 config shows all three are active with real points (0.75 / 1.5 / 1.5) stacking on top of TOTAL tackles (109, 1.0) \u2014 so a solo tackle really is worth 2.5. They carry pointsOverrides {'16': 0.0}, i.e. they score for individual defenders and NOT for team D/ST, which is why the export looked contradictory. ESPN's settings are the system of record for what actually scores, so the model now follows them. Do not re-add a blanket override; use load_scoring(year, slot=) instead."
+    },
+    "_flex_share_note": "flex_share MEASURED from 1,151 started FLEX slots 2019-2025: WR .586 / RB .401 / TE .014 (was an assumed .45/.45/.10). TE floored at .03 so an elite TE2 stays flexable in theory."
+  }
+}

@@ -1,0 +1,205 @@
+week,is_regular,team_id,team_name,points,opp_team_id,opp_team_name,is_bye,outcome
+1,True,1,Nico Suave,77.72,13,Christopher's Kryptonite ,False,L
+1,True,3,Jim Ward's Ole Dick Necks,96.02,4,Injured Reserve ,False,L
+1,True,4,Injured Reserve ,105.18,3,Jim Ward's Ole Dick Necks,False,W
+1,True,5,Flowers for Allgeiernon,115.5,9,Men of Will,False,L
+1,True,6,Thom-ASS,113.28,10,Silence of the Lamb,False,L
+1,True,8,SCLSU Mud Dogs,93.72,11,ConcreteJungleWet DreamTomato,False,L
+1,True,9,Men of Will,116.66,5,Flowers for Allgeiernon,False,W
+1,True,10,Silence of the Lamb,114.66,6,Thom-ASS,False,W
+1,True,11,ConcreteJungleWet DreamTomato,108.42,8,SCLSU Mud Dogs,False,W
+1,True,12,Blake's Holographic Charizard,90.4,14,Deston's Ride or Dies ,False,L
+1,True,13,Christopher's Kryptonite ,87.82,1,Nico Suave,False,W
+1,True,14,Deston's Ride or Dies ,132.12,12,Blake's Holographic Charizard,False,W
+2,True,1,Nico Suave,85.74,6,Thom-ASS,False,L
+2,True,3,Jim Ward's Ole Dick Necks,124.98,8,SCLSU Mud Dogs,False,W
+2,True,4,Injured Reserve ,141.8,12,Blake's Holographic Charizard,False,W
+2,True,5,Flowers for Allgeiernon,134.9,13,Christopher's Kryptonite ,False,W
+2,True,6,Thom-ASS,108.34,1,Nico Suave,False,W
+2,True,8,SCLSU Mud Dogs,109.6,3,Jim Ward's Ole Dick Necks,False,L
+2,True,9,Men of Will,76.82,10,Silence of the Lamb,False,L
+2,True,10,Silence of the Lamb,130.9,9,Men of Will,False,W
+2,True,11,ConcreteJungleWet DreamTomato,131.88,14,Deston's Ride or Dies ,False,W
+2,True,12,Blake's Holographic Charizard,110.98,4,Injured Reserve ,False,L
+2,True,13,Christopher's Kryptonite ,96.64,5,Flowers for Allgeiernon,False,L
+2,True,14,Deston's Ride or Dies ,94.88,11,ConcreteJungleWet DreamTomato,False,L
+3,True,1,Nico Suave,123.74,10,Silence of the Lamb,False,W
+3,True,3,Jim Ward's Ole Dick Necks,103.52,11,ConcreteJungleWet DreamTomato,False,W
+3,True,4,Injured Reserve ,94.32,14,Deston's Ride or Dies ,False,L
+3,True,5,Flowers for Allgeiernon,96.36,6,Thom-ASS,False,L
+3,True,6,Thom-ASS,167.14,5,Flowers for Allgeiernon,False,W
+3,True,8,SCLSU Mud Dogs,127.38,12,Blake's Holographic Charizard,False,W
+3,True,9,Men of Will,99.72,13,Christopher's Kryptonite ,False,L
+3,True,10,Silence of the Lamb,98.02,1,Nico Suave,False,L
+3,True,11,ConcreteJungleWet DreamTomato,96.06,3,Jim Ward's Ole Dick Necks,False,L
+3,True,12,Blake's Holographic Charizard,99.52,8,SCLSU Mud Dogs,False,L
+3,True,13,Christopher's Kryptonite ,151.82,9,Men of Will,False,W
+3,True,14,Deston's Ride or Dies ,98.96,4,Injured Reserve ,False,W
+4,True,1,Nico Suave,100.78,9,Men of Will,False,L
+4,True,3,Jim Ward's Ole Dick Necks,117.02,12,Blake's Holographic Charizard,False,W
+4,True,4,Injured Reserve ,107.06,11,ConcreteJungleWet DreamTomato,False,L
+4,True,5,Flowers for Allgeiernon,91.3,10,Silence of the Lamb,False,L
+4,True,6,Thom-ASS,121.7,13,Christopher's Kryptonite ,False,W
+4,True,8,SCLSU Mud Dogs,108.72,14,Deston's Ride or Dies ,False,L
+4,True,9,Men of Will,127.06,1,Nico Suave,False,W
+4,True,10,Silence of the Lamb,137.38,5,Flowers for Allgeiernon,False,W
+4,True,11,ConcreteJungleWet DreamTomato,152.9,4,Injured Reserve ,False,W
+4,True,12,Blake's Holographic Charizard,69.58,3,Jim Ward's Ole Dick Necks,False,L
+4,True,13,Christopher's Kryptonite ,114.38,6,Thom-ASS,False,L
+4,True,14,Deston's Ride or Dies ,170.64,8,SCLSU Mud Dogs,False,W
+5,True,1,Nico Suave,112.38,5,Flowers for Allgeiernon,False,L
+5,True,3,Jim Ward's Ole Dick Necks,124.74,14,Deston's Ride or Dies ,False,L
+5,True,4,Injured Reserve ,107.36,8,SCLSU Mud Dogs,False,L
+5,True,5,Flowers for Allgeiernon,123.4,1,Nico Suave,False,W
+5,True,6,Thom-ASS,158.7,9,Men of Will,False,W
+5,True,8,SCLSU Mud Dogs,123.34,4,Injured Reserve ,False,W
+5,True,9,Men of Will,92.92,6,Thom-ASS,False,L
+5,True,10,Silence of the Lamb,112.42,13,Christopher's Kryptonite ,False,L
+5,True,11,ConcreteJungleWet DreamTomato,99.82,12,Blake's Holographic Charizard,False,L
+5,True,12,Blake's Holographic Charizard,130.12,11,ConcreteJungleWet DreamTomato,False,W
+5,True,13,Christopher's Kryptonite ,119.5,10,Silence of the Lamb,False,W
+5,True,14,Deston's Ride or Dies ,131.22,3,Jim Ward's Ole Dick Necks,False,W
+6,True,1,Nico Suave,135.04,4,Injured Reserve ,False,W
+6,True,3,Jim Ward's Ole Dick Necks,115.08,13,Christopher's Kryptonite ,False,L
+6,True,4,Injured Reserve ,110.84,1,Nico Suave,False,L
+6,True,5,Flowers for Allgeiernon,103.34,8,SCLSU Mud Dogs,False,W
+6,True,6,Thom-ASS,121.32,12,Blake's Holographic Charizard,False,L
+6,True,8,SCLSU Mud Dogs,71.14,5,Flowers for Allgeiernon,False,L
+6,True,9,Men of Will,62.4,11,ConcreteJungleWet DreamTomato,False,L
+6,True,10,Silence of the Lamb,130.74,14,Deston's Ride or Dies ,False,W
+6,True,11,ConcreteJungleWet DreamTomato,85.58,9,Men of Will,False,W
+6,True,12,Blake's Holographic Charizard,128.78,6,Thom-ASS,False,W
+6,True,13,Christopher's Kryptonite ,122.58,3,Jim Ward's Ole Dick Necks,False,W
+6,True,14,Deston's Ride or Dies ,67.2,10,Silence of the Lamb,False,L
+7,True,1,Nico Suave,109.86,3,Jim Ward's Ole Dick Necks,False,L
+7,True,3,Jim Ward's Ole Dick Necks,113.4,1,Nico Suave,False,W
+7,True,4,Injured Reserve ,113.12,6,Thom-ASS,False,L
+7,True,5,Flowers for Allgeiernon,150.78,11,ConcreteJungleWet DreamTomato,False,W
+7,True,6,Thom-ASS,140.74,4,Injured Reserve ,False,W
+7,True,8,SCLSU Mud Dogs,160.44,10,Silence of the Lamb,False,W
+7,True,9,Men of Will,124.06,12,Blake's Holographic Charizard,False,W
+7,True,10,Silence of the Lamb,111.98,8,SCLSU Mud Dogs,False,L
+7,True,11,ConcreteJungleWet DreamTomato,115.74,5,Flowers for Allgeiernon,False,L
+7,True,12,Blake's Holographic Charizard,79.58,9,Men of Will,False,L
+7,True,13,Christopher's Kryptonite ,101.04,14,Deston's Ride or Dies ,False,W
+7,True,14,Deston's Ride or Dies ,98.04,13,Christopher's Kryptonite ,False,L
+8,True,1,Nico Suave,92.22,14,Deston's Ride or Dies ,False,L
+8,True,3,Jim Ward's Ole Dick Necks,161.18,6,Thom-ASS,False,W
+8,True,4,Injured Reserve ,78.08,9,Men of Will,False,L
+8,True,5,Flowers for Allgeiernon,89.92,12,Blake's Holographic Charizard,False,L
+8,True,6,Thom-ASS,138.06,3,Jim Ward's Ole Dick Necks,False,L
+8,True,8,SCLSU Mud Dogs,122.02,13,Christopher's Kryptonite ,False,W
+8,True,9,Men of Will,119.52,4,Injured Reserve ,False,W
+8,True,10,Silence of the Lamb,100.58,11,ConcreteJungleWet DreamTomato,False,L
+8,True,11,ConcreteJungleWet DreamTomato,115.06,10,Silence of the Lamb,False,W
+8,True,12,Blake's Holographic Charizard,123.1,5,Flowers for Allgeiernon,False,W
+8,True,13,Christopher's Kryptonite ,111.38,8,SCLSU Mud Dogs,False,L
+8,True,14,Deston's Ride or Dies ,122.02,1,Nico Suave,False,W
+9,True,1,Nico Suave,107.8,8,SCLSU Mud Dogs,False,L
+9,True,3,Jim Ward's Ole Dick Necks,95.0,9,Men of Will,False,L
+9,True,4,Injured Reserve ,102.26,5,Flowers for Allgeiernon,False,L
+9,True,5,Flowers for Allgeiernon,124.54,4,Injured Reserve ,False,W
+9,True,6,Thom-ASS,107.64,14,Deston's Ride or Dies ,False,L
+9,True,8,SCLSU Mud Dogs,136.32,1,Nico Suave,False,W
+9,True,9,Men of Will,102.02,3,Jim Ward's Ole Dick Necks,False,W
+9,True,10,Silence of the Lamb,114.96,12,Blake's Holographic Charizard,False,L
+9,True,11,ConcreteJungleWet DreamTomato,101.1,13,Christopher's Kryptonite ,False,L
+9,True,12,Blake's Holographic Charizard,142.1,10,Silence of the Lamb,False,W
+9,True,13,Christopher's Kryptonite ,119.68,11,ConcreteJungleWet DreamTomato,False,W
+9,True,14,Deston's Ride or Dies ,117.72,6,Thom-ASS,False,W
+10,True,1,Nico Suave,97.92,11,ConcreteJungleWet DreamTomato,False,W
+10,True,3,Jim Ward's Ole Dick Necks,127.9,5,Flowers for Allgeiernon,False,L
+10,True,4,Injured Reserve ,99.2,10,Silence of the Lamb,False,L
+10,True,5,Flowers for Allgeiernon,152.7,3,Jim Ward's Ole Dick Necks,False,W
+10,True,6,Thom-ASS,145.62,8,SCLSU Mud Dogs,False,W
+10,True,8,SCLSU Mud Dogs,110.28,6,Thom-ASS,False,L
+10,True,9,Men of Will,105.14,14,Deston's Ride or Dies ,False,L
+10,True,10,Silence of the Lamb,103.94,4,Injured Reserve ,False,W
+10,True,11,ConcreteJungleWet DreamTomato,84.92,1,Nico Suave,False,L
+10,True,12,Blake's Holographic Charizard,118.5,13,Christopher's Kryptonite ,False,L
+10,True,13,Christopher's Kryptonite ,132.4,12,Blake's Holographic Charizard,False,W
+10,True,14,Deston's Ride or Dies ,147.04,9,Men of Will,False,W
+11,True,1,Nico Suave,153.02,12,Blake's Holographic Charizard,False,W
+11,True,3,Jim Ward's Ole Dick Necks,104.04,10,Silence of the Lamb,False,W
+11,True,4,Injured Reserve ,109.12,13,Christopher's Kryptonite ,False,L
+11,True,5,Flowers for Allgeiernon,107.7,14,Deston's Ride or Dies ,False,W
+11,True,6,Thom-ASS,128.4,11,ConcreteJungleWet DreamTomato,False,W
+11,True,8,SCLSU Mud Dogs,88.8,9,Men of Will,False,L
+11,True,9,Men of Will,117.68,8,SCLSU Mud Dogs,False,W
+11,True,10,Silence of the Lamb,98.24,3,Jim Ward's Ole Dick Necks,False,L
+11,True,11,ConcreteJungleWet DreamTomato,81.64,6,Thom-ASS,False,L
+11,True,12,Blake's Holographic Charizard,100.22,1,Nico Suave,False,L
+11,True,13,Christopher's Kryptonite ,145.2,4,Injured Reserve ,False,W
+11,True,14,Deston's Ride or Dies ,100.44,5,Flowers for Allgeiernon,False,L
+12,True,1,Nico Suave,136.36,4,Injured Reserve ,False,W
+12,True,3,Jim Ward's Ole Dick Necks,115.36,13,Christopher's Kryptonite ,False,W
+12,True,4,Injured Reserve ,67.84,1,Nico Suave,False,L
+12,True,5,Flowers for Allgeiernon,136.52,8,SCLSU Mud Dogs,False,L
+12,True,6,Thom-ASS,145.16,12,Blake's Holographic Charizard,False,W
+12,True,8,SCLSU Mud Dogs,173.88,5,Flowers for Allgeiernon,False,W
+12,True,9,Men of Will,104.12,11,ConcreteJungleWet DreamTomato,False,L
+12,True,10,Silence of the Lamb,71.16,14,Deston's Ride or Dies ,False,L
+12,True,11,ConcreteJungleWet DreamTomato,158.08,9,Men of Will,False,W
+12,True,12,Blake's Holographic Charizard,88.56,6,Thom-ASS,False,L
+12,True,13,Christopher's Kryptonite ,106.42,3,Jim Ward's Ole Dick Necks,False,L
+12,True,14,Deston's Ride or Dies ,104.16,10,Silence of the Lamb,False,W
+13,True,1,Nico Suave,119.9,3,Jim Ward's Ole Dick Necks,False,L
+13,True,3,Jim Ward's Ole Dick Necks,128.64,1,Nico Suave,False,W
+13,True,4,Injured Reserve ,70.24,6,Thom-ASS,False,L
+13,True,5,Flowers for Allgeiernon,111.02,11,ConcreteJungleWet DreamTomato,False,W
+13,True,6,Thom-ASS,97.9,4,Injured Reserve ,False,W
+13,True,8,SCLSU Mud Dogs,113.86,10,Silence of the Lamb,False,L
+13,True,9,Men of Will,68.62,12,Blake's Holographic Charizard,False,L
+13,True,10,Silence of the Lamb,115.48,8,SCLSU Mud Dogs,False,W
+13,True,11,ConcreteJungleWet DreamTomato,94.74,5,Flowers for Allgeiernon,False,L
+13,True,12,Blake's Holographic Charizard,95.76,9,Men of Will,False,W
+13,True,13,Christopher's Kryptonite ,143.84,14,Deston's Ride or Dies ,False,W
+13,True,14,Deston's Ride or Dies ,108.34,13,Christopher's Kryptonite ,False,L
+14,True,1,Nico Suave,115.54,14,Deston's Ride or Dies ,False,W
+14,True,3,Jim Ward's Ole Dick Necks,123.06,6,Thom-ASS,False,W
+14,True,4,Injured Reserve ,86.92,9,Men of Will,False,L
+14,True,5,Flowers for Allgeiernon,137.94,12,Blake's Holographic Charizard,False,W
+14,True,6,Thom-ASS,99.5,3,Jim Ward's Ole Dick Necks,False,L
+14,True,8,SCLSU Mud Dogs,112.04,13,Christopher's Kryptonite ,False,L
+14,True,9,Men of Will,129.24,4,Injured Reserve ,False,W
+14,True,10,Silence of the Lamb,146.06,11,ConcreteJungleWet DreamTomato,False,W
+14,True,11,ConcreteJungleWet DreamTomato,87.1,10,Silence of the Lamb,False,L
+14,True,12,Blake's Holographic Charizard,111.34,5,Flowers for Allgeiernon,False,L
+14,True,13,Christopher's Kryptonite ,154.96,8,SCLSU Mud Dogs,False,W
+14,True,14,Deston's Ride or Dies ,107.86,1,Nico Suave,False,L
+15,False,1,Nico Suave,83.66,11,ConcreteJungleWet DreamTomato,False,W
+15,False,3,Jim Ward's Ole Dick Necks,135.9,9,Men of Will,False,W
+15,False,4,Injured Reserve ,121.3,12,Blake's Holographic Charizard,False,W
+15,False,5,Flowers for Allgeiernon,180.12,14,Deston's Ride or Dies ,False,W
+15,False,6,Thom-ASS,129.4,10,Silence of the Lamb,False,W
+15,False,8,SCLSU Mud Dogs,85.34,13,Christopher's Kryptonite ,False,L
+15,False,9,Men of Will,109.82,3,Jim Ward's Ole Dick Necks,False,L
+15,False,10,Silence of the Lamb,123.1,6,Thom-ASS,False,L
+15,False,11,ConcreteJungleWet DreamTomato,76.96,1,Nico Suave,False,L
+15,False,12,Blake's Holographic Charizard,105.68,4,Injured Reserve ,False,L
+15,False,13,Christopher's Kryptonite ,116.4,8,SCLSU Mud Dogs,False,W
+15,False,14,Deston's Ride or Dies ,126.12,5,Flowers for Allgeiernon,False,L
+16,False,1,Nico Suave,129.86,4,Injured Reserve ,False,W
+16,False,3,Jim Ward's Ole Dick Necks,140.9,6,Thom-ASS,False,W
+16,False,4,Injured Reserve ,86.08,1,Nico Suave,False,L
+16,False,5,Flowers for Allgeiernon,133.48,13,Christopher's Kryptonite ,False,L
+16,False,6,Thom-ASS,117.6,3,Jim Ward's Ole Dick Necks,False,L
+16,False,8,SCLSU Mud Dogs,97.82,9,Men of Will,False,W
+16,False,9,Men of Will,89.7,8,SCLSU Mud Dogs,False,L
+16,False,10,Silence of the Lamb,77.9,14,Deston's Ride or Dies ,False,L
+16,False,11,ConcreteJungleWet DreamTomato,133.7,12,Blake's Holographic Charizard,False,W
+16,False,12,Blake's Holographic Charizard,114.9,11,ConcreteJungleWet DreamTomato,False,L
+16,False,13,Christopher's Kryptonite ,186.1,5,Flowers for Allgeiernon,False,W
+16,False,14,Deston's Ride or Dies ,119.06,10,Silence of the Lamb,False,W
+17,False,1,Nico Suave,108.58,11,ConcreteJungleWet DreamTomato,False,W
+17,False,3,Jim Ward's Ole Dick Necks,133.64,13,Christopher's Kryptonite ,False,L
+17,False,4,Injured Reserve ,57.86,12,Blake's Holographic Charizard,False,L
+17,False,5,Flowers for Allgeiernon,121.06,6,Thom-ASS,False,W
+17,False,6,Thom-ASS,106.3,5,Flowers for Allgeiernon,False,L
+17,False,8,SCLSU Mud Dogs,71.78,14,Deston's Ride or Dies ,False,L
+17,False,9,Men of Will,102.88,10,Silence of the Lamb,False,L
+17,False,10,Silence of the Lamb,117.04,9,Men of Will,False,W
+17,False,11,ConcreteJungleWet DreamTomato,99.12,1,Nico Suave,False,L
+17,False,12,Blake's Holographic Charizard,84.8,4,Injured Reserve ,False,W
+17,False,13,Christopher's Kryptonite ,174.62,3,Jim Ward's Ole Dick Necks,False,W
+17,False,14,Deston's Ride or Dies ,88.48,8,SCLSU Mud Dogs,False,W

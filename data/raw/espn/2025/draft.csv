@@ -1,0 +1,205 @@
+overall_pick,round_num,round_pick,team_id,team_name,owner,player_id,player_name,position,bid_amount,keeper
+1,1,1,4,Injured Reserve ,Make Bama Champions Again,4374302,Amon-Ra St. Brown,WR,0,False
+2,1,2,9,Men of Will,wdsx5,4262921,Justin Jefferson,WR,0,False
+3,1,3,12,Blake's Holographic Charizard,dcputman; espnfan0780082387,3929630,Saquon Barkley,RB,0,False
+4,1,4,3,Jim Ward's Ole Dick Necks,Henry Munford,4429160,De'Von Achane,RB,0,False
+5,1,5,5,Flowers for Allgeiernon,payton9218600,4362628,Ja'Marr Chase,WR,0,False
+6,1,6,6,Thom-ASS,zwthomas89; zthoma7700709,3117251,Christian McCaffrey,RB,0,False
+7,1,7,10,Silence of the Lamb,espnfan1709357526,4241389,CeeDee Lamb,WR,0,False
+8,1,8,13,Christopher's Kryptonite ,tcspivey8,4430807,Bijan Robinson,RB,0,False
+9,1,9,1,Nico Suave,cjhubauer,4258173,Nico Collins,WR,0,False
+10,1,10,11,ConcreteJungleWet DreamTomato,Gtgilbert88,4890973,Ashton Jeanty,RB,0,False
+11,1,11,8,SCLSU Mud Dogs,jbray5,4429795,Jahmyr Gibbs,RB,0,False
+12,1,12,14,Deston's Ride or Dies ,wbbollinger08,4426515,Puka Nacua,WR,0,False
+13,2,1,14,Deston's Ride or Dies ,wbbollinger08,4596448,Bucky Irving,RB,0,False
+14,2,2,8,SCLSU Mud Dogs,jbray5,4432665,Brock Bowers,TE,0,False
+15,2,3,11,ConcreteJungleWet DreamTomato,Gtgilbert88,4595348,Malik Nabers,,0,False
+16,2,4,1,Nico Suave,cjhubauer,3043078,Derrick Henry,RB,0,False
+17,2,5,13,Christopher's Kryptonite ,tcspivey8,4362238,Chase Brown,RB,0,False
+18,2,6,10,Silence of the Lamb,espnfan1709357526,4426502,Drake London,WR,0,False
+19,2,7,6,Thom-ASS,zwthomas89; zthoma7700709,4242335,Jonathan Taylor,RB,0,False
+20,2,8,5,Flowers for Allgeiernon,payton9218600,4430737,Kyren Williams,RB,0,False
+21,2,9,3,Jim Ward's Ole Dick Necks,Henry Munford,4047646,A.J. Brown,WR,0,False
+22,2,10,12,Blake's Holographic Charizard,dcputman; espnfan0780082387,4612826,Ladd McConkey,WR,0,False
+23,2,11,9,Men of Will,wdsx5,4432773,Brian Thomas Jr.,WR,0,False
+24,2,12,4,Injured Reserve ,Make Bama Champions Again,4047365,Josh Jacobs,RB,0,False
+25,3,1,4,Injured Reserve ,Make Bama Champions Again,4361370,Chris Olave,WR,0,False
+26,3,2,9,Men of Will,wdsx5,3918298,Josh Allen,QB,0,False
+27,3,3,12,Blake's Holographic Charizard,dcputman; espnfan0780082387,4239993,Tee Higgins,WR,0,False
+28,3,4,3,Jim Ward's Ole Dick Necks,Henry Munford,4567048,Kenneth Walker III,RB,0,False
+29,3,5,5,Flowers for Allgeiernon,payton9218600,4361307,Trey McBride,TE,0,False
+30,3,6,6,Thom-ASS,zwthomas89; zthoma7700709,4040715,Jalen Hurts,QB,0,False
+31,3,7,10,Silence of the Lamb,espnfan1709357526,3916387,Lamar Jackson,QB,0,False
+32,3,8,13,Christopher's Kryptonite ,tcspivey8,4430878,Jaxon Smith-Njigba,WR,0,False
+33,3,9,1,Nico Suave,cjhubauer,16737,Mike Evans,WR,0,False
+34,3,10,11,ConcreteJungleWet DreamTomato,Gtgilbert88,4379399,James Cook III,RB,0,False
+35,3,11,8,SCLSU Mud Dogs,jbray5,4426348,Jayden Daniels,QB,0,False
+36,3,12,14,Deston's Ride or Dies ,wbbollinger08,4432708,Marvin Harrison Jr.,WR,0,False
+37,4,1,14,Deston's Ride or Dies ,wbbollinger08,4427366,Breece Hall,RB,0,False
+38,4,2,8,SCLSU Mud Dogs,jbray5,16800,Davante Adams,WR,0,False
+39,4,3,11,ConcreteJungleWet DreamTomato,Gtgilbert88,3116406,Tyreek Hill,,0,False
+40,4,4,1,Nico Suave,cjhubauer,4685382,Omarion Hampton,RB,0,False
+41,4,5,13,Christopher's Kryptonite ,tcspivey8,3915511,Joe Burrow,QB,0,False
+42,4,6,10,Silence of the Lamb,espnfan1709357526,3054850,Alvin Kamara,RB,0,False
+43,4,7,6,Thom-ASS,zwthomas89; zthoma7700709,3121422,Terry McLaurin,WR,0,False
+44,4,8,5,Flowers for Allgeiernon,payton9218600,4239996,Travis Etienne Jr.,RB,0,False
+45,4,9,3,Jim Ward's Ole Dick Necks,Henry Munford,4569618,Garrett Wilson,WR,0,False
+46,4,10,12,Blake's Holographic Charizard,dcputman; espnfan0780082387,3045147,James Conner,,0,False
+47,4,11,9,Men of Will,wdsx5,3040151,George Kittle,,0,False
+48,4,12,4,Injured Reserve ,Make Bama Champions Again,4430027,Sam LaPorta,TE,0,False
+49,5,1,4,Injured Reserve ,Make Bama Champions Again,4569173,Rhamondre Stevenson,RB,0,False
+50,5,2,9,Men of Will,wdsx5,4568490,RJ Harvey,RB,0,False
+51,5,3,12,Blake's Holographic Charizard,dcputman; espnfan0780082387,4241416,Chuba Hubbard,RB,0,False
+52,5,4,3,Jim Ward's Ole Dick Necks,Henry Munford,4259545,D'Andre Swift,RB,0,False
+53,5,5,5,Flowers for Allgeiernon,payton9218600,4241478,DeVonta Smith,WR,0,False
+54,5,6,6,Thom-ASS,zwthomas89; zthoma7700709,3128429,Courtland Sutton,WR,0,False
+55,5,7,10,Silence of the Lamb,espnfan1709357526,4047650,DK Metcalf,WR,0,False
+56,5,8,13,Christopher's Kryptonite ,tcspivey8,3925357,Calvin Ridley,,0,False
+57,5,9,1,Nico Suave,cjhubauer,4685472,Tetairoa McMillan,WR,0,False
+58,5,10,11,ConcreteJungleWet DreamTomato,Gtgilbert88,3139477,Patrick Mahomes,QB,0,False
+59,5,11,8,SCLSU Mud Dogs,jbray5,3915416,DJ Moore,WR,0,False
+60,5,12,14,Deston's Ride or Dies ,wbbollinger08,4432710,TreVeyon Henderson,RB,0,False
+61,6,1,14,Deston's Ride or Dies ,wbbollinger08,4685415,Travis Hunter,,0,False
+62,6,2,8,SCLSU Mud Dogs,jbray5,3916148,Tony Pollard,RB,0,False
+63,6,3,11,ConcreteJungleWet DreamTomato,Gtgilbert88,4036133,T.J. Hockenson,TE,0,False
+64,6,4,1,Nico Suave,cjhubauer,4426354,George Pickens,WR,0,False
+65,6,5,13,Christopher's Kryptonite ,tcspivey8,4035538,David Montgomery,RB,0,False
+66,6,6,10,Silence of the Lamb,espnfan1709357526,4361529,Isiah Pacheco,RB,0,False
+67,6,7,6,Thom-ASS,zwthomas89; zthoma7700709,15847,Travis Kelce,TE,0,False
+68,6,8,5,Flowers for Allgeiernon,payton9218600,3917315,Kyler Murray,,0,False
+69,6,9,3,Jim Ward's Ole Dick Necks,Henry Munford,4372016,Jaylen Waddle,WR,0,False
+70,6,10,12,Blake's Holographic Charizard,dcputman; espnfan0780082387,4683062,Xavier Worthy,WR,0,False
+71,6,11,9,Men of Will,wdsx5,3042519,Aaron Jones Sr.,RB,0,False
+72,6,12,4,Injured Reserve ,Make Bama Champions Again,3052587,Baker Mayfield,QB,0,False
+73,7,1,4,Injured Reserve ,Make Bama Champions Again,3126486,Deebo Samuel,WR,0,False
+74,7,2,9,Men of Will,wdsx5,2977187,Cooper Kupp,,0,False
+75,7,3,12,Blake's Holographic Charizard,dcputman; espnfan0780082387,4241474,Brian Robinson Jr.,RB,0,False
+76,7,4,3,Jim Ward's Ole Dick Necks,Henry Munford,4431299,Rome Odunze,WR,0,False
+77,7,5,5,Flowers for Allgeiernon,payton9218600,4429615,Zay Flowers,WR,0,False
+78,7,6,6,Thom-ASS,zwthomas89; zthoma7700709,4360516,Tyrone Tracy Jr.,RB,0,False
+79,7,7,10,Silence of the Lamb,espnfan1709357526,4426388,Jameson Williams,WR,0,False
+80,7,8,13,Christopher's Kryptonite ,tcspivey8,4819231,Kaleb Johnson,,0,False
+81,7,9,1,Nico Suave,cjhubauer,3916433,Jakobi Meyers,WR,0,False
+82,7,10,11,ConcreteJungleWet DreamTomato,Gtgilbert88,3116385,Joe Mixon,,0,False
+83,7,11,8,SCLSU Mud Dogs,jbray5,4428331,Rashee Rice,WR,0,False
+84,7,12,14,Deston's Ride or Dies ,wbbollinger08,4567750,Emeka Egbuka,WR,0,False
+85,8,1,14,Deston's Ride or Dies ,wbbollinger08,4431459,Tyler Warren,TE,0,False
+86,8,2,8,SCLSU Mud Dogs,jbray5,4360569,Jordan Mason,RB,0,False
+87,8,3,11,ConcreteJungleWet DreamTomato,Gtgilbert88,4241463,Jerry Jeudy,WR,0,False
+88,8,4,1,Nico Suave,cjhubauer,3116365,Mark Andrews,TE,0,False
+89,8,5,13,Christopher's Kryptonite ,tcspivey8,4701936,Matthew Golden,,0,False
+90,8,6,10,Silence of the Lamb,espnfan1709357526,3123076,David Njoku,,0,False
+91,8,7,6,Thom-ASS,zwthomas89; zthoma7700709,2976212,Stefon Diggs,WR,0,False
+92,8,8,5,Flowers for Allgeiernon,payton9218600,3895856,Christian Kirk,,0,False
+93,8,9,3,Jim Ward's Ole Dick Necks,Henry Munford,4572680,Tucker Kraft,,0,False
+94,8,10,12,Blake's Holographic Charizard,dcputman; espnfan0780082387,4723086,Colston Loveland,TE,0,False
+95,8,11,9,Men of Will,wdsx5,4241457,Najee Harris,,0,False
+96,8,12,4,Injured Reserve ,Make Bama Champions Again,4569987,Jaylen Warren,RB,0,False
+97,9,1,4,Injured Reserve ,Make Bama Champions Again,4429096,Blake Corum,RB,0,False
+98,9,2,9,Men of Will,wdsx5,4426338,Bo Nix,QB,0,False
+99,9,3,12,Blake's Holographic Charizard,dcputman; espnfan0780082387,3886598,Jauan Jennings,WR,0,False
+100,9,4,3,Jim Ward's Ole Dick Necks,Henry Munford,4241985,J.K. Dobbins,,0,False
+101,9,5,5,Flowers for Allgeiernon,payton9218600,4361777,Zamir White,,0,False
+102,9,6,6,Thom-ASS,zwthomas89; zthoma7700709,4635008,Keon Coleman,,0,False
+103,9,7,10,Silence of the Lamb,espnfan1709357526,4361579,Javonte Williams,RB,0,False
+104,9,8,13,Christopher's Kryptonite ,tcspivey8,4428209,Ricky Pearsall,WR,0,False
+105,9,9,1,Nico Suave,cjhubauer,4696981,Cam Skattebo,,0,False
+106,9,10,11,ConcreteJungleWet DreamTomato,Gtgilbert88,4685702,Quinshon Judkins,RB,0,False
+107,9,11,8,SCLSU Mud Dogs,jbray5,4429205,Jordan Addison,WR,0,False
+108,9,12,14,Deston's Ride or Dies ,wbbollinger08,4362887,Justin Fields,,0,False
+109,10,1,14,Deston's Ride or Dies ,wbbollinger08,4426385,Zach Charbonnet,RB,0,False
+110,10,2,8,SCLSU Mud Dogs,jbray5,4429013,Tank Bigsby,,0,False
+111,10,3,11,ConcreteJungleWet DreamTomato,Gtgilbert88,-16034,Texans D/ST,D/ST,0,False
+112,10,4,1,Nico Suave,cjhubauer,2577417,Dak Prescott,QB,0,False
+113,10,5,13,Christopher's Kryptonite ,tcspivey8,3116165,Chris Godwin Jr.,WR,0,False
+114,10,6,10,Silence of the Lamb,espnfan1709357526,3953687,Brandon Aubrey,K,0,False
+115,10,7,6,Thom-ASS,zwthomas89; zthoma7700709,4362249,Jayden Reed,WR,0,False
+116,10,8,5,Flowers for Allgeiernon,payton9218600,4373626,Tyler Allgeier,RB,0,False
+117,10,9,3,Jim Ward's Ole Dick Necks,Henry Munford,4036378,Jordan Love,QB,0,False
+118,10,10,12,Blake's Holographic Charizard,dcputman; espnfan0780082387,4431611,Caleb Williams,QB,0,False
+119,10,11,9,Men of Will,wdsx5,4373678,Khalil Shakir,WR,0,False
+120,10,12,4,Injured Reserve ,Make Bama Champions Again,4432577,C.J. Stroud,QB,0,False
+121,11,1,4,Injured Reserve ,Make Bama Champions Again,3915189,Roquan Smith,LB,0,False
+122,11,2,9,Men of Will,wdsx5,4686361,Cam Little,K,0,False
+123,11,3,12,Blake's Holographic Charizard,dcputman; espnfan0780082387,4428557,Tyjae Spears,,0,False
+124,11,4,3,Jim Ward's Ole Dick Necks,Henry Munford,4032473,Rashid Shaheed,WR,0,False
+125,11,5,5,Flowers for Allgeiernon,payton9218600,3050073,Foyesade Oluokun,,0,False
+126,11,6,6,Thom-ASS,zwthomas89; zthoma7700709,4697815,Rachaad White,,0,False
+127,11,7,10,Silence of the Lamb,espnfan1709357526,-16007,Broncos D/ST,D/ST,0,False
+128,11,8,13,Christopher's Kryptonite ,tcspivey8,3051876,Evan Engram,,0,False
+129,11,9,1,Nico Suave,cjhubauer,4372019,Jerome Ford,,0,False
+130,11,10,11,ConcreteJungleWet DreamTomato,Gtgilbert88,4035687,Michael Pittman Jr.,WR,0,False
+131,11,11,8,SCLSU Mud Dogs,jbray5,4688813,Josh Downs,WR,0,False
+132,11,12,14,Deston's Ride or Dies ,wbbollinger08,4385690,Dalton Kincaid,,0,False
+133,12,1,14,Deston's Ride or Dies ,wbbollinger08,4685278,Luther Burden III,,0,False
+134,12,2,8,SCLSU Mud Dogs,jbray5,4360423,Michael Penix Jr.,QB,0,False
+135,12,3,11,ConcreteJungleWet DreamTomato,Gtgilbert88,4361741,Brock Purdy,QB,0,False
+136,12,4,1,Nico Suave,cjhubauer,3068267,Austin Ekeler,,0,False
+137,12,5,13,Christopher's Kryptonite ,tcspivey8,4685279,Jaydon Blue,,0,False
+138,12,6,10,Silence of the Lamb,espnfan1709357526,4431452,Drake Maye,QB,0,False
+139,12,7,6,Thom-ASS,zwthomas89; zthoma7700709,4689936,Jake Bates,K,0,False
+140,12,8,5,Flowers for Allgeiernon,payton9218600,-16033,Ravens D/ST,,0,False
+141,12,9,3,Jim Ward's Ole Dick Necks,Henry Munford,3121023,Dallas Goedert,TE,0,False
+142,12,10,12,Blake's Holographic Charizard,dcputman; espnfan0780082387,4877706,Jayden Higgins,WR,0,False
+143,12,11,9,Men of Will,wdsx5,-16023,Steelers D/ST,D/ST,0,False
+144,12,12,4,Injured Reserve ,Make Bama Champions Again,3050478,Jake Elliott,,0,False
+145,13,1,4,Injured Reserve ,Make Bama Champions Again,-16006,Cowboys D/ST,D/ST,0,False
+146,13,2,9,Men of Will,wdsx5,2612151,Alex Singleton,LB,0,False
+147,13,3,12,Blake's Holographic Charizard,dcputman; espnfan0780082387,4429275,Trey Benson,,0,False
+148,13,4,3,Jim Ward's Ole Dick Necks,Henry Munford,4038941,Justin Herbert,QB,0,False
+149,13,5,5,Flowers for Allgeiernon,payton9218600,16731,Brandin Cooks,,0,False
+150,13,6,6,Thom-ASS,zwthomas89; zthoma7700709,-16016,Vikings D/ST,D/ST,0,False
+151,13,7,10,Silence of the Lamb,espnfan1709357526,3138826,Fred Warner,,0,False
+152,13,8,13,Christopher's Kryptonite ,tcspivey8,4242355,Jake Ferguson,TE,0,False
+153,13,9,1,Nico Suave,cjhubauer,4685720,Bryce Young,,0,False
+154,13,10,11,ConcreteJungleWet DreamTomato,Gtgilbert88,4567104,Will Reichard,,0,False
+155,13,11,8,SCLSU Mud Dogs,jbray5,-16021,Eagles D/ST,D/ST,0,False
+156,13,12,14,Deston's Ride or Dies ,wbbollinger08,4685247,Braelon Allen,,0,False
+157,14,1,14,Deston's Ride or Dies ,wbbollinger08,4882093,Bhayshul Tuten,,0,False
+158,14,2,8,SCLSU Mud Dogs,jbray5,4360248,Kyle Pitts Sr.,TE,0,False
+159,14,3,11,ConcreteJungleWet DreamTomato,Gtgilbert88,3046439,Hunter Henry,TE,0,False
+160,14,4,1,Nico Suave,cjhubauer,3124005,Zaire Franklin,,0,False
+161,14,5,13,Christopher's Kryptonite ,tcspivey8,4360234,Evan McPherson,,0,False
+162,14,6,10,Silence of the Lamb,espnfan1709357526,4360939,Rashod Bateman,,0,False
+163,14,7,6,Thom-ASS,zwthomas89; zthoma7700709,3128720,Nick Chubb,,0,False
+164,14,8,5,Flowers for Allgeiernon,payton9218600,3049899,Younghoe Koo,,0,False
+165,14,9,3,Jim Ward's Ole Dick Necks,Henry Munford,-16002,Bills D/ST,D/ST,0,False
+166,14,10,12,Blake's Holographic Charizard,dcputman; espnfan0780082387,3917657,Zack Baun,,0,False
+167,14,11,9,Men of Will,wdsx5,2976499,Amari Cooper,,0,False
+168,14,12,4,Injured Reserve ,Make Bama Champions Again,3120348,JuJu Smith-Schuster,,0,False
+169,15,1,4,Injured Reserve ,Make Bama Champions Again,15835,Zach Ertz,TE,0,False
+170,15,2,9,Men of Will,wdsx5,4430034,Xavier Legette,,0,False
+171,15,3,12,Blake's Holographic Charizard,dcputman; espnfan0780082387,4433970,J.J. McCarthy,QB,0,False
+172,15,4,3,Jim Ward's Ole Dick Necks,Henry Munford,4599739,Kendre Miller,,0,False
+173,15,5,5,Flowers for Allgeiernon,payton9218600,4360238,Dameon Pierce,,0,False
+174,15,6,6,Thom-ASS,zwthomas89; zthoma7700709,4362851,Ernest Jones IV,LB,0,False
+175,15,7,10,Silence of the Lamb,espnfan1709357526,4241372,Hollywood Brown,,0,False
+176,15,8,13,Christopher's Kryptonite ,tcspivey8,-16022,Cardinals D/ST,,0,False
+177,15,9,1,Nico Suave,cjhubauer,4360438,Brandon Aiyuk,,0,False
+178,15,10,11,ConcreteJungleWet DreamTomato,Gtgilbert88,4372561,Isaac Guerendo,,0,False
+179,15,11,8,SCLSU Mud Dogs,jbray5,4685597,Jalon Walker,,0,False
+180,15,12,14,Deston's Ride or Dies ,wbbollinger08,4429501,Ray Davis,,0,False
+181,16,1,14,Deston's Ride or Dies ,wbbollinger08,4372066,Jake Moody,,0,False
+182,16,2,8,SCLSU Mud Dogs,jbray5,4369863,Cedric Tillman,,0,False
+183,16,3,11,ConcreteJungleWet DreamTomato,Gtgilbert88,4040655,Darnell Mooney,WR,0,False
+184,16,4,1,Nico Suave,cjhubauer,-16025,49ers D/ST,,0,False
+185,16,5,13,Christopher's Kryptonite ,tcspivey8,16460,Adam Thielen,,0,False
+186,16,6,10,Silence of the Lamb,espnfan1709357526,5081397,Dylan Sampson,,0,False
+187,16,7,6,Thom-ASS,zwthomas89; zthoma7700709,4686472,Marvin Mims Jr.,WR,0,False
+188,16,8,5,Flowers for Allgeiernon,payton9218600,4567096,John Metchie III,WR,0,False
+189,16,9,3,Jim Ward's Ole Dick Necks,Henry Munford,3917232,Tyler Bass,,0,False
+190,16,10,12,Blake's Holographic Charizard,dcputman; espnfan0780082387,-16012,Chiefs D/ST,D/ST,0,False
+191,16,11,9,Men of Will,wdsx5,15807,Cordarrelle Patterson,,0,False
+192,16,12,4,Injured Reserve ,Make Bama Champions Again,4429022,Kayshon Boutte,WR,0,False
+193,17,1,4,Injured Reserve ,Make Bama Champions Again,4431545,Will Shipley,,0,False
+194,17,2,9,Men of Will,wdsx5,15795,DeAndre Hopkins,,0,False
+195,17,3,12,Blake's Holographic Charizard,dcputman; espnfan0780082387,4362081,Cameron Dicker,K,0,False
+196,17,4,3,Jim Ward's Ole Dick Necks,Henry Munford,4046537,Joshua Metellus,,0,False
+197,17,5,5,Flowers for Allgeiernon,payton9218600,12483,Matthew Stafford,QB,0,False
+198,17,6,6,Thom-ASS,zwthomas89; zthoma7700709,4241479,Tua Tagovailoa,,0,False
+199,17,7,10,Silence of the Lamb,espnfan1709357526,4242433,Joshua Palmer,,0,False
+200,17,8,13,Christopher's Kryptonite ,tcspivey8,3121544,T.J. Edwards,,0,False
+201,17,9,1,Nico Suave,cjhubauer,4249087,Matt Gay,,0,False
+202,17,10,11,ConcreteJungleWet DreamTomato,Gtgilbert88,3045282,T.J. Watt,,0,False
+203,17,11,8,SCLSU Mud Dogs,jbray5,2985659,Wil Lutz,,0,False
+204,17,12,14,Deston's Ride or Dies ,wbbollinger08,-1,,,0,False

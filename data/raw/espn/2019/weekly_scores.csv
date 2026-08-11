@@ -1,0 +1,193 @@
+week,is_regular,team_id,team_name,points,opp_team_id,opp_team_name,is_bye,outcome
+1,True,1,Below Average Joes,104.24,6,"Dude, Where's  My Lamar",False,W
+1,True,2,Rodger  That,151.72,13,Fuck Luck,False,W
+1,True,3,Jim Ward's Ole Dick Necks,131.72,12,Rule  #76,False,L
+1,True,4,The New Guy,81.7,11,Dez (Bryant) Nuts,False,L
+1,True,5,Remember the Fucking Titans,154.52,8,SCLSU Mud Dogs,False,W
+1,True,6,"Dude, Where's  My Lamar",103.56,1,Below Average Joes,False,L
+1,True,8,SCLSU Mud Dogs,108.22,5,Remember the Fucking Titans,False,L
+1,True,9,Tonie's Tigers,119.8,10,High Noon,False,L
+1,True,10,High Noon,122.46,9,Tonie's Tigers,False,W
+1,True,11,Dez (Bryant) Nuts,146.88,4,The New Guy,False,W
+1,True,12,Rule  #76,145.02,3,Jim Ward's Ole Dick Necks,False,W
+1,True,13,Fuck Luck,115.6,2,Rodger  That,False,L
+2,True,1,Below Average Joes,86.02,8,SCLSU Mud Dogs,False,L
+2,True,2,Rodger  That,115.06,3,Jim Ward's Ole Dick Necks,False,W
+2,True,3,Jim Ward's Ole Dick Necks,110.56,2,Rodger  That,False,L
+2,True,4,The New Guy,102.1,13,Fuck Luck,False,L
+2,True,5,Remember the Fucking Titans,105.82,10,High Noon,False,L
+2,True,6,"Dude, Where's  My Lamar",114.98,9,Tonie's Tigers,False,W
+2,True,8,SCLSU Mud Dogs,132.66,1,Below Average Joes,False,W
+2,True,9,Tonie's Tigers,77.42,6,"Dude, Where's  My Lamar",False,L
+2,True,10,High Noon,112.42,5,Remember the Fucking Titans,False,W
+2,True,11,Dez (Bryant) Nuts,121.16,12,Rule  #76,False,L
+2,True,12,Rule  #76,131.44,11,Dez (Bryant) Nuts,False,W
+2,True,13,Fuck Luck,129.2,4,The New Guy,False,W
+3,True,1,Below Average Joes,102.42,10,High Noon,False,L
+3,True,2,Rodger  That,139.7,11,Dez (Bryant) Nuts,False,W
+3,True,3,Jim Ward's Ole Dick Necks,97.14,13,Fuck Luck,False,L
+3,True,4,The New Guy,124.0,12,Rule  #76,False,L
+3,True,5,Remember the Fucking Titans,171.16,9,Tonie's Tigers,False,W
+3,True,6,"Dude, Where's  My Lamar",112.88,8,SCLSU Mud Dogs,False,L
+3,True,8,SCLSU Mud Dogs,123.74,6,"Dude, Where's  My Lamar",False,W
+3,True,9,Tonie's Tigers,118.58,5,Remember the Fucking Titans,False,L
+3,True,10,High Noon,129.92,1,Below Average Joes,False,W
+3,True,11,Dez (Bryant) Nuts,73.54,2,Rodger  That,False,L
+3,True,12,Rule  #76,136.96,4,The New Guy,False,W
+3,True,13,Fuck Luck,167.84,3,Jim Ward's Ole Dick Necks,False,W
+4,True,1,Below Average Joes,140.68,5,Remember the Fucking Titans,False,W
+4,True,2,Rodger  That,100.68,12,Rule  #76,False,L
+4,True,3,Jim Ward's Ole Dick Necks,110.64,4,The New Guy,False,L
+4,True,4,The New Guy,144.28,3,Jim Ward's Ole Dick Necks,False,W
+4,True,5,Remember the Fucking Titans,76.7,1,Below Average Joes,False,L
+4,True,6,"Dude, Where's  My Lamar",114.58,10,High Noon,False,L
+4,True,8,SCLSU Mud Dogs,90.7,9,Tonie's Tigers,False,W
+4,True,9,Tonie's Tigers,85.36,8,SCLSU Mud Dogs,False,L
+4,True,10,High Noon,162.5,6,"Dude, Where's  My Lamar",False,W
+4,True,11,Dez (Bryant) Nuts,79.02,13,Fuck Luck,False,L
+4,True,12,Rule  #76,116.8,2,Rodger  That,False,W
+4,True,13,Fuck Luck,92.4,11,Dez (Bryant) Nuts,False,W
+5,True,1,Below Average Joes,118.5,9,Tonie's Tigers,False,W
+5,True,2,Rodger  That,104.72,4,The New Guy,False,W
+5,True,3,Jim Ward's Ole Dick Necks,133.02,11,Dez (Bryant) Nuts,False,L
+5,True,4,The New Guy,76.12,2,Rodger  That,False,L
+5,True,5,Remember the Fucking Titans,133.56,6,"Dude, Where's  My Lamar",False,W
+5,True,6,"Dude, Where's  My Lamar",66.34,5,Remember the Fucking Titans,False,L
+5,True,8,SCLSU Mud Dogs,170.94,10,High Noon,False,W
+5,True,9,Tonie's Tigers,62.78,1,Below Average Joes,False,L
+5,True,10,High Noon,151.64,8,SCLSU Mud Dogs,False,L
+5,True,11,Dez (Bryant) Nuts,163.52,3,Jim Ward's Ole Dick Necks,False,W
+5,True,12,Rule  #76,110.36,13,Fuck Luck,False,L
+5,True,13,Fuck Luck,207.12,12,Rule  #76,False,W
+6,True,1,Below Average Joes,59.02,2,Rodger  That,False,L
+6,True,2,Rodger  That,103.62,1,Below Average Joes,False,W
+6,True,3,Jim Ward's Ole Dick Necks,113.1,8,SCLSU Mud Dogs,False,W
+6,True,4,The New Guy,88.92,9,Tonie's Tigers,False,L
+6,True,5,Remember the Fucking Titans,118.62,12,Rule  #76,False,L
+6,True,6,"Dude, Where's  My Lamar",136.34,13,Fuck Luck,False,W
+6,True,8,SCLSU Mud Dogs,103.5,3,Jim Ward's Ole Dick Necks,False,L
+6,True,9,Tonie's Tigers,118.24,4,The New Guy,False,W
+6,True,10,High Noon,132.92,11,Dez (Bryant) Nuts,False,W
+6,True,11,Dez (Bryant) Nuts,117.52,10,High Noon,False,L
+6,True,12,Rule  #76,120.24,5,Remember the Fucking Titans,False,W
+6,True,13,Fuck Luck,107.9,6,"Dude, Where's  My Lamar",False,L
+7,True,1,Below Average Joes,134.32,3,Jim Ward's Ole Dick Necks,False,W
+7,True,2,Rodger  That,107.76,9,Tonie's Tigers,False,W
+7,True,3,Jim Ward's Ole Dick Necks,112.66,1,Below Average Joes,False,L
+7,True,4,The New Guy,88.96,10,High Noon,False,L
+7,True,5,Remember the Fucking Titans,66.94,13,Fuck Luck,False,L
+7,True,6,"Dude, Where's  My Lamar",105.82,11,Dez (Bryant) Nuts,False,W
+7,True,8,SCLSU Mud Dogs,116.22,12,Rule  #76,False,W
+7,True,9,Tonie's Tigers,82.92,2,Rodger  That,False,L
+7,True,10,High Noon,104.64,4,The New Guy,False,W
+7,True,11,Dez (Bryant) Nuts,105.46,6,"Dude, Where's  My Lamar",False,L
+7,True,12,Rule  #76,101.94,8,SCLSU Mud Dogs,False,L
+7,True,13,Fuck Luck,95.24,5,Remember the Fucking Titans,False,W
+8,True,1,Below Average Joes,123.28,12,Rule  #76,False,L
+8,True,2,Rodger  That,136.6,10,High Noon,False,L
+8,True,3,Jim Ward's Ole Dick Necks,97.56,9,Tonie's Tigers,False,L
+8,True,4,The New Guy,143.28,6,"Dude, Where's  My Lamar",False,W
+8,True,5,Remember the Fucking Titans,103.54,11,Dez (Bryant) Nuts,False,L
+8,True,6,"Dude, Where's  My Lamar",103.64,4,The New Guy,False,L
+8,True,8,SCLSU Mud Dogs,157.16,13,Fuck Luck,False,W
+8,True,9,Tonie's Tigers,145.98,3,Jim Ward's Ole Dick Necks,False,W
+8,True,10,High Noon,146.42,2,Rodger  That,False,W
+8,True,11,Dez (Bryant) Nuts,106.76,5,Remember the Fucking Titans,False,W
+8,True,12,Rule  #76,139.78,1,Below Average Joes,False,W
+8,True,13,Fuck Luck,102.58,8,SCLSU Mud Dogs,False,L
+9,True,1,Below Average Joes,106.4,13,Fuck Luck,False,L
+9,True,2,Rodger  That,103.14,6,"Dude, Where's  My Lamar",False,L
+9,True,3,Jim Ward's Ole Dick Necks,129.3,10,High Noon,False,W
+9,True,4,The New Guy,144.34,5,Remember the Fucking Titans,False,W
+9,True,5,Remember the Fucking Titans,66.54,4,The New Guy,False,L
+9,True,6,"Dude, Where's  My Lamar",145.7,2,Rodger  That,False,W
+9,True,8,SCLSU Mud Dogs,82.24,11,Dez (Bryant) Nuts,False,L
+9,True,9,Tonie's Tigers,87.1,12,Rule  #76,False,L
+9,True,10,High Noon,107.16,3,Jim Ward's Ole Dick Necks,False,L
+9,True,11,Dez (Bryant) Nuts,97.68,8,SCLSU Mud Dogs,False,W
+9,True,12,Rule  #76,98.46,9,Tonie's Tigers,False,W
+9,True,13,Fuck Luck,154.62,1,Below Average Joes,False,W
+10,True,1,Below Average Joes,124.28,11,Dez (Bryant) Nuts,False,W
+10,True,2,Rodger  That,96.32,5,Remember the Fucking Titans,False,W
+10,True,3,Jim Ward's Ole Dick Necks,147.86,6,"Dude, Where's  My Lamar",False,W
+10,True,4,The New Guy,82.72,8,SCLSU Mud Dogs,False,L
+10,True,5,Remember the Fucking Titans,96.24,2,Rodger  That,False,L
+10,True,6,"Dude, Where's  My Lamar",134.02,3,Jim Ward's Ole Dick Necks,False,L
+10,True,8,SCLSU Mud Dogs,133.34,4,The New Guy,False,W
+10,True,9,Tonie's Tigers,114.08,13,Fuck Luck,False,L
+10,True,10,High Noon,126.04,12,Rule  #76,False,W
+10,True,11,Dez (Bryant) Nuts,106.58,1,Below Average Joes,False,L
+10,True,12,Rule  #76,83.98,10,High Noon,False,L
+10,True,13,Fuck Luck,134.48,9,Tonie's Tigers,False,W
+11,True,1,Below Average Joes,96.94,4,The New Guy,False,L
+11,True,2,Rodger  That,86.5,8,SCLSU Mud Dogs,False,L
+11,True,3,Jim Ward's Ole Dick Necks,146.16,5,Remember the Fucking Titans,False,W
+11,True,4,The New Guy,102.12,1,Below Average Joes,False,W
+11,True,5,Remember the Fucking Titans,107.98,3,Jim Ward's Ole Dick Necks,False,L
+11,True,6,"Dude, Where's  My Lamar",110.08,12,Rule  #76,False,W
+11,True,8,SCLSU Mud Dogs,91.06,2,Rodger  That,False,W
+11,True,9,Tonie's Tigers,79.22,11,Dez (Bryant) Nuts,False,L
+11,True,10,High Noon,120.44,13,Fuck Luck,False,W
+11,True,11,Dez (Bryant) Nuts,137.86,9,Tonie's Tigers,False,W
+11,True,12,Rule  #76,98.72,6,"Dude, Where's  My Lamar",False,L
+11,True,13,Fuck Luck,94.46,10,High Noon,False,L
+12,True,1,Below Average Joes,95.64,2,Rodger  That,False,W
+12,True,2,Rodger  That,75.96,1,Below Average Joes,False,L
+12,True,3,Jim Ward's Ole Dick Necks,114.7,8,SCLSU Mud Dogs,False,W
+12,True,4,The New Guy,96.08,9,Tonie's Tigers,False,W
+12,True,5,Remember the Fucking Titans,110.2,12,Rule  #76,False,W
+12,True,6,"Dude, Where's  My Lamar",146.96,13,Fuck Luck,False,W
+12,True,8,SCLSU Mud Dogs,82.82,3,Jim Ward's Ole Dick Necks,False,L
+12,True,9,Tonie's Tigers,78.54,4,The New Guy,False,L
+12,True,10,High Noon,158.76,11,Dez (Bryant) Nuts,False,W
+12,True,11,Dez (Bryant) Nuts,82.78,10,High Noon,False,L
+12,True,12,Rule  #76,95.34,5,Remember the Fucking Titans,False,L
+12,True,13,Fuck Luck,82.6,6,"Dude, Where's  My Lamar",False,L
+13,True,1,Below Average Joes,122.24,3,Jim Ward's Ole Dick Necks,False,W
+13,True,2,Rodger  That,106.32,9,Tonie's Tigers,False,L
+13,True,3,Jim Ward's Ole Dick Necks,110.46,1,Below Average Joes,False,L
+13,True,4,The New Guy,105.64,10,High Noon,False,W
+13,True,5,Remember the Fucking Titans,106.8,13,Fuck Luck,False,W
+13,True,6,"Dude, Where's  My Lamar",107.1,11,Dez (Bryant) Nuts,False,L
+13,True,8,SCLSU Mud Dogs,111.5,12,Rule  #76,False,W
+13,True,9,Tonie's Tigers,138.16,2,Rodger  That,False,W
+13,True,10,High Noon,104.52,4,The New Guy,False,L
+13,True,11,Dez (Bryant) Nuts,118.0,6,"Dude, Where's  My Lamar",False,W
+13,True,12,Rule  #76,110.3,8,SCLSU Mud Dogs,False,L
+13,True,13,Fuck Luck,82.5,5,Remember the Fucking Titans,False,L
+14,False,1,Below Average Joes,140.58,8,SCLSU Mud Dogs,False,W
+14,False,2,Rodger  That,61.4,12,Rule  #76,False,L
+14,False,3,Jim Ward's Ole Dick Necks,128.06,4,The New Guy,False,W
+14,False,4,The New Guy,107.88,3,Jim Ward's Ole Dick Necks,False,L
+14,False,5,Remember the Fucking Titans,100.92,9,Tonie's Tigers,False,L
+14,False,6,"Dude, Where's  My Lamar",117.5,13,Fuck Luck,False,L
+14,False,8,SCLSU Mud Dogs,128.18,1,Below Average Joes,False,L
+14,False,9,Tonie's Tigers,127.26,5,Remember the Fucking Titans,False,W
+14,False,10,High Noon,103.94,11,Dez (Bryant) Nuts,False,W
+14,False,11,Dez (Bryant) Nuts,103.16,10,High Noon,False,L
+14,False,12,Rule  #76,93.4,2,Rodger  That,False,W
+14,False,13,Fuck Luck,136.4,6,"Dude, Where's  My Lamar",False,W
+15,False,1,Below Average Joes,113.8,13,Fuck Luck,False,W
+15,False,2,Rodger  That,136.12,8,SCLSU Mud Dogs,False,W
+15,False,3,Jim Ward's Ole Dick Necks,126.16,9,Tonie's Tigers,False,W
+15,False,4,The New Guy,128.88,5,Remember the Fucking Titans,False,W
+15,False,5,Remember the Fucking Titans,111.8,4,The New Guy,False,L
+15,False,6,"Dude, Where's  My Lamar",150.68,11,Dez (Bryant) Nuts,False,W
+15,False,8,SCLSU Mud Dogs,95.72,2,Rodger  That,False,L
+15,False,9,Tonie's Tigers,96.48,3,Jim Ward's Ole Dick Necks,False,L
+15,False,10,High Noon,138.96,12,Rule  #76,False,W
+15,False,11,Dez (Bryant) Nuts,131.88,6,"Dude, Where's  My Lamar",False,L
+15,False,12,Rule  #76,137.04,10,High Noon,False,L
+15,False,13,Fuck Luck,100.64,1,Below Average Joes,False,L
+16,False,1,Below Average Joes,119.56,10,High Noon,False,L
+16,False,2,Rodger  That,132.84,6,"Dude, Where's  My Lamar",False,W
+16,False,3,Jim Ward's Ole Dick Necks,116.82,4,The New Guy,False,L
+16,False,4,The New Guy,190.18,3,Jim Ward's Ole Dick Necks,False,W
+16,False,5,Remember the Fucking Titans,128.44,9,Tonie's Tigers,False,W
+16,False,6,"Dude, Where's  My Lamar",130.12,2,Rodger  That,False,L
+16,False,8,SCLSU Mud Dogs,111.66,11,Dez (Bryant) Nuts,False,W
+16,False,9,Tonie's Tigers,87.36,5,Remember the Fucking Titans,False,L
+16,False,10,High Noon,130.28,1,Below Average Joes,False,W
+16,False,11,Dez (Bryant) Nuts,97.3,8,SCLSU Mud Dogs,False,L
+16,False,12,Rule  #76,122.66,13,Fuck Luck,False,W
+16,False,13,Fuck Luck,65.56,12,Rule  #76,False,L

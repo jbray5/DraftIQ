@@ -1,0 +1,225 @@
+week,is_regular,team_id,team_name,points,opp_team_id,opp_team_name,is_bye,outcome
+1,True,1,Show ME Your TD's,184.0,8,Team Ray,False,W
+1,True,2,Team O'Dell,120.0,7,Team Merrill,False,L
+1,True,3,Team Munford,181.0,6,Team Thomas,False,L
+1,True,4,Yellow Egg Roll,114.0,5,Team Wester,False,L
+1,True,5,Team Wester,225.0,4,Yellow Egg Roll,False,W
+1,True,6,Team Thomas,236.0,3,Team Munford,False,W
+1,True,7,Team Merrill,139.0,2,Team O'Dell,False,W
+1,True,8,Team Ray,181.0,1,Show ME Your TD's,False,L
+1,True,9,Danny Woodheads,214.0,14,Team O'Dell,False,W
+1,True,10,High Noon,105.0,13,Shake Them Dreads,False,W
+1,True,11,Peyton  Man-thing,179.0,12,Rule #76,False,L
+1,True,12,Rule #76,203.0,11,Peyton  Man-thing,False,W
+1,True,13,Shake Them Dreads,92.0,10,High Noon,False,L
+1,True,14,Team O'Dell,147.0,9,Danny Woodheads,False,L
+2,True,1,Show ME Your TD's,137.0,3,Team Munford,False,L
+2,True,2,Team O'Dell,169.0,9,Danny Woodheads,False,L
+2,True,3,Team Munford,148.0,1,Show ME Your TD's,False,W
+2,True,4,Yellow Egg Roll,148.0,7,Team Merrill,False,L
+2,True,5,Team Wester,182.0,6,Team Thomas,False,W
+2,True,6,Team Thomas,169.0,5,Team Wester,False,L
+2,True,7,Team Merrill,185.0,4,Yellow Egg Roll,False,W
+2,True,8,Team Ray,230.0,10,High Noon,False,W
+2,True,9,Danny Woodheads,188.0,2,Team O'Dell,False,W
+2,True,10,High Noon,188.0,8,Team Ray,False,L
+2,True,11,Peyton  Man-thing,121.0,14,Team O'Dell,False,W
+2,True,12,Rule #76,149.0,13,Shake Them Dreads,False,W
+2,True,13,Shake Them Dreads,144.0,12,Rule #76,False,L
+2,True,14,Team O'Dell,110.0,11,Peyton  Man-thing,False,L
+3,True,1,Show ME Your TD's,122.0,5,Team Wester,False,W
+3,True,2,Team O'Dell,167.0,4,Yellow Egg Roll,False,W
+3,True,3,Team Munford,143.0,10,High Noon,False,W
+3,True,4,Yellow Egg Roll,98.0,2,Team O'Dell,False,L
+3,True,5,Team Wester,120.0,1,Show ME Your TD's,False,L
+3,True,6,Team Thomas,203.0,7,Team Merrill,False,W
+3,True,7,Team Merrill,122.0,6,Team Thomas,False,L
+3,True,8,Team Ray,192.0,12,Rule #76,False,W
+3,True,9,Danny Woodheads,169.0,11,Peyton  Man-thing,False,L
+3,True,10,High Noon,105.0,3,Team Munford,False,L
+3,True,11,Peyton  Man-thing,189.0,9,Danny Woodheads,False,W
+3,True,12,Rule #76,122.0,8,Team Ray,False,L
+3,True,13,Shake Them Dreads,169.0,14,Team O'Dell,False,L
+3,True,14,Team O'Dell,183.0,13,Shake Them Dreads,False,W
+4,True,1,Show ME Your TD's,206.0,7,Team Merrill,False,W
+4,True,2,Team O'Dell,170.0,6,Team Thomas,False,W
+4,True,3,Team Munford,186.0,5,Team Wester,False,W
+4,True,4,Yellow Egg Roll,128.0,11,Peyton  Man-thing,False,L
+4,True,5,Team Wester,160.0,3,Team Munford,False,L
+4,True,6,Team Thomas,137.0,2,Team O'Dell,False,L
+4,True,7,Team Merrill,151.0,1,Show ME Your TD's,False,L
+4,True,8,Team Ray,172.0,14,Team O'Dell,False,W
+4,True,9,Danny Woodheads,163.0,13,Shake Them Dreads,False,L
+4,True,10,High Noon,193.0,12,Rule #76,False,W
+4,True,11,Peyton  Man-thing,206.0,4,Yellow Egg Roll,False,W
+4,True,12,Rule #76,162.0,10,High Noon,False,L
+4,True,13,Shake Them Dreads,175.0,9,Danny Woodheads,False,W
+4,True,14,Team O'Dell,123.0,8,Team Ray,False,L
+5,True,1,Show ME Your TD's,109.0,2,Team O'Dell,False,L
+5,True,2,Team O'Dell,164.0,1,Show ME Your TD's,False,W
+5,True,3,Team Munford,112.0,7,Team Merrill,False,L
+5,True,4,Yellow Egg Roll,126.0,6,Team Thomas,False,L
+5,True,5,Team Wester,171.0,12,Rule #76,False,L
+5,True,6,Team Thomas,162.0,4,Yellow Egg Roll,False,W
+5,True,7,Team Merrill,139.0,3,Team Munford,False,W
+5,True,8,Team Ray,120.0,9,Danny Woodheads,False,L
+5,True,9,Danny Woodheads,204.0,8,Team Ray,False,W
+5,True,10,High Noon,191.0,14,Team O'Dell,False,W
+5,True,11,Peyton  Man-thing,162.0,13,Shake Them Dreads,False,W
+5,True,12,Rule #76,255.0,5,Team Wester,False,W
+5,True,13,Shake Them Dreads,107.0,11,Peyton  Man-thing,False,L
+5,True,14,Team O'Dell,108.0,10,High Noon,False,L
+6,True,1,Show ME Your TD's,150.0,4,Yellow Egg Roll,False,L
+6,True,2,Team O'Dell,144.0,3,Team Munford,False,L
+6,True,3,Team Munford,175.0,2,Team O'Dell,False,W
+6,True,4,Yellow Egg Roll,177.0,1,Show ME Your TD's,False,W
+6,True,5,Team Wester,119.0,7,Team Merrill,False,L
+6,True,6,Team Thomas,176.0,13,Shake Them Dreads,False,W
+6,True,7,Team Merrill,187.0,5,Team Wester,False,W
+6,True,8,Team Ray,163.0,11,Peyton  Man-thing,False,W
+6,True,9,Danny Woodheads,131.0,10,High Noon,False,W
+6,True,10,High Noon,100.0,9,Danny Woodheads,False,L
+6,True,11,Peyton  Man-thing,144.0,8,Team Ray,False,L
+6,True,12,Rule #76,151.0,14,Team O'Dell,False,L
+6,True,13,Shake Them Dreads,132.0,6,Team Thomas,False,L
+6,True,14,Team O'Dell,167.0,12,Rule #76,False,W
+7,True,1,Show ME Your TD's,142.0,6,Team Thomas,False,L
+7,True,2,Team O'Dell,173.0,5,Team Wester,False,W
+7,True,3,Team Munford,156.0,4,Yellow Egg Roll,False,W
+7,True,4,Yellow Egg Roll,136.0,3,Team Munford,False,L
+7,True,5,Team Wester,71.0,2,Team O'Dell,False,L
+7,True,6,Team Thomas,166.0,1,Show ME Your TD's,False,W
+7,True,7,Team Merrill,207.0,14,Team O'Dell,False,W
+7,True,8,Team Ray,169.0,13,Shake Them Dreads,False,L
+7,True,9,Danny Woodheads,177.0,12,Rule #76,False,W
+7,True,10,High Noon,99.0,11,Peyton  Man-thing,False,L
+7,True,11,Peyton  Man-thing,140.0,10,High Noon,False,W
+7,True,12,Rule #76,148.0,9,Danny Woodheads,False,L
+7,True,13,Shake Them Dreads,171.0,8,Team Ray,False,W
+7,True,14,Team O'Dell,64.0,7,Team Merrill,False,L
+8,True,1,Show ME Your TD's,139.0,14,Team O'Dell,False,L
+8,True,2,Team O'Dell,171.0,8,Team Ray,False,W
+8,True,3,Team Munford,137.0,9,Danny Woodheads,False,L
+8,True,4,Yellow Egg Roll,118.0,10,High Noon,False,L
+8,True,5,Team Wester,207.0,11,Peyton  Man-thing,False,W
+8,True,6,Team Thomas,169.0,12,Rule #76,False,W
+8,True,7,Team Merrill,148.0,13,Shake Them Dreads,False,W
+8,True,8,Team Ray,109.0,2,Team O'Dell,False,L
+8,True,9,Danny Woodheads,198.0,3,Team Munford,False,W
+8,True,10,High Noon,176.0,4,Yellow Egg Roll,False,W
+8,True,11,Peyton  Man-thing,153.0,5,Team Wester,False,L
+8,True,12,Rule #76,119.0,6,Team Thomas,False,L
+8,True,13,Shake Them Dreads,136.0,7,Team Merrill,False,L
+8,True,14,Team O'Dell,155.0,1,Show ME Your TD's,False,W
+9,True,1,Show ME Your TD's,219.0,13,Shake Them Dreads,False,W
+9,True,2,Team O'Dell,195.0,14,Team O'Dell,False,W
+9,True,3,Team Munford,115.0,8,Team Ray,False,L
+9,True,4,Yellow Egg Roll,68.0,9,Danny Woodheads,False,L
+9,True,5,Team Wester,177.0,10,High Noon,False,W
+9,True,6,Team Thomas,172.0,11,Peyton  Man-thing,False,W
+9,True,7,Team Merrill,220.0,12,Rule #76,False,W
+9,True,8,Team Ray,161.0,3,Team Munford,False,W
+9,True,9,Danny Woodheads,161.0,4,Yellow Egg Roll,False,W
+9,True,10,High Noon,151.0,5,Team Wester,False,L
+9,True,11,Peyton  Man-thing,103.0,6,Team Thomas,False,L
+9,True,12,Rule #76,183.0,7,Team Merrill,False,L
+9,True,13,Shake Them Dreads,142.0,1,Show ME Your TD's,False,L
+9,True,14,Team O'Dell,151.0,2,Team O'Dell,False,L
+10,True,1,Show ME Your TD's,100.0,12,Rule #76,False,L
+10,True,2,Team O'Dell,138.0,13,Shake Them Dreads,False,L
+10,True,3,Team Munford,177.0,14,Team O'Dell,False,W
+10,True,4,Yellow Egg Roll,108.0,8,Team Ray,False,W
+10,True,5,Team Wester,195.0,9,Danny Woodheads,False,W
+10,True,6,Team Thomas,207.0,10,High Noon,False,W
+10,True,7,Team Merrill,186.0,11,Peyton  Man-thing,False,W
+10,True,8,Team Ray,44.0,4,Yellow Egg Roll,False,L
+10,True,9,Danny Woodheads,146.0,5,Team Wester,False,L
+10,True,10,High Noon,146.0,6,Team Thomas,False,L
+10,True,11,Peyton  Man-thing,169.0,7,Team Merrill,False,L
+10,True,12,Rule #76,142.0,1,Show ME Your TD's,False,W
+10,True,13,Shake Them Dreads,160.0,2,Team O'Dell,False,W
+10,True,14,Team O'Dell,101.0,3,Team Munford,False,L
+11,True,1,Show ME Your TD's,209.0,11,Peyton  Man-thing,False,W
+11,True,2,Team O'Dell,119.0,12,Rule #76,False,W
+11,True,3,Team Munford,141.0,13,Shake Them Dreads,False,L
+11,True,4,Yellow Egg Roll,124.0,14,Team O'Dell,False,W
+11,True,5,Team Wester,188.0,8,Team Ray,False,W
+11,True,6,Team Thomas,126.0,9,Danny Woodheads,False,L
+11,True,7,Team Merrill,151.0,10,High Noon,False,L
+11,True,8,Team Ray,126.0,5,Team Wester,False,L
+11,True,9,Danny Woodheads,173.0,6,Team Thomas,False,W
+11,True,10,High Noon,181.0,7,Team Merrill,False,W
+11,True,11,Peyton  Man-thing,151.0,1,Show ME Your TD's,False,L
+11,True,12,Rule #76,94.0,2,Team O'Dell,False,L
+11,True,13,Shake Them Dreads,181.0,3,Team Munford,False,W
+11,True,14,Team O'Dell,98.0,4,Yellow Egg Roll,False,L
+12,True,1,Show ME Your TD's,233.0,10,High Noon,False,W
+12,True,2,Team O'Dell,143.0,11,Peyton  Man-thing,False,L
+12,True,3,Team Munford,148.0,12,Rule #76,False,W
+12,True,4,Yellow Egg Roll,149.0,13,Shake Them Dreads,False,W
+12,True,5,Team Wester,178.0,14,Team O'Dell,False,W
+12,True,6,Team Thomas,183.0,8,Team Ray,False,W
+12,True,7,Team Merrill,144.0,9,Danny Woodheads,False,L
+12,True,8,Team Ray,160.0,6,Team Thomas,False,L
+12,True,9,Danny Woodheads,162.0,7,Team Merrill,False,W
+12,True,10,High Noon,162.0,1,Show ME Your TD's,False,L
+12,True,11,Peyton  Man-thing,160.0,2,Team O'Dell,False,W
+12,True,12,Rule #76,122.0,3,Team Munford,False,L
+12,True,13,Shake Them Dreads,142.0,4,Yellow Egg Roll,False,L
+12,True,14,Team O'Dell,109.0,5,Team Wester,False,L
+13,True,1,Show ME Your TD's,232.0,8,Team Ray,False,W
+13,True,2,Team O'Dell,141.0,9,Danny Woodheads,False,L
+13,True,3,Team Munford,151.0,10,High Noon,False,W
+13,True,4,Yellow Egg Roll,151.0,11,Peyton  Man-thing,False,L
+13,True,5,Team Wester,163.0,12,Rule #76,False,L
+13,True,6,Team Thomas,253.0,13,Shake Them Dreads,False,W
+13,True,7,Team Merrill,228.0,14,Team O'Dell,False,W
+13,True,8,Team Ray,121.0,1,Show ME Your TD's,False,L
+13,True,9,Danny Woodheads,164.0,2,Team O'Dell,False,W
+13,True,10,High Noon,149.0,3,Team Munford,False,L
+13,True,11,Peyton  Man-thing,205.0,4,Yellow Egg Roll,False,W
+13,True,12,Rule #76,179.0,5,Team Wester,False,W
+13,True,13,Shake Them Dreads,148.0,6,Team Thomas,False,L
+13,True,14,Team O'Dell,104.0,7,Team Merrill,False,L
+14,False,1,Show ME Your TD's,190.0,3,Team Munford,False,W
+14,False,2,Team O'Dell,206.0,9,Danny Woodheads,False,W
+14,False,3,Team Munford,124.0,1,Show ME Your TD's,False,L
+14,False,4,Yellow Egg Roll,90.0,12,Rule #76,False,L
+14,False,5,Team Wester,175.0,7,Team Merrill,False,L
+14,False,6,Team Thomas,147.0,11,Peyton  Man-thing,False,L
+14,False,7,Team Merrill,178.0,5,Team Wester,False,W
+14,False,8,Team Ray,99.0,10,High Noon,False,L
+14,False,9,Danny Woodheads,203.0,2,Team O'Dell,False,L
+14,False,10,High Noon,142.0,8,Team Ray,False,W
+14,False,11,Peyton  Man-thing,192.0,6,Team Thomas,False,W
+14,False,12,Rule #76,171.0,4,Yellow Egg Roll,False,W
+14,False,13,Shake Them Dreads,145.0,14,Team O'Dell,False,W
+14,False,14,Team O'Dell,108.0,13,Shake Them Dreads,False,L
+15,False,1,Show ME Your TD's,259.0,2,Team O'Dell,False,W
+15,False,2,Team O'Dell,194.0,1,Show ME Your TD's,False,L
+15,False,3,Team Munford,120.0,5,Team Wester,False,W
+15,False,4,Yellow Egg Roll,160.0,14,Team O'Dell,False,W
+15,False,5,Team Wester,75.0,3,Team Munford,False,L
+15,False,6,Team Thomas,155.0,9,Danny Woodheads,False,L
+15,False,7,Team Merrill,226.0,11,Peyton  Man-thing,False,W
+15,False,8,Team Ray,67.0,13,Shake Them Dreads,False,L
+15,False,9,Danny Woodheads,169.0,6,Team Thomas,False,W
+15,False,10,High Noon,151.0,12,Rule #76,False,W
+15,False,11,Peyton  Man-thing,162.0,7,Team Merrill,False,L
+15,False,12,Rule #76,107.0,10,High Noon,False,L
+15,False,13,Shake Them Dreads,187.0,8,Team Ray,False,W
+15,False,14,Team O'Dell,74.0,4,Yellow Egg Roll,False,L
+16,False,1,Show ME Your TD's,154.0,7,Team Merrill,False,L
+16,False,2,Team O'Dell,182.0,11,Peyton  Man-thing,False,L
+16,False,3,Team Munford,154.0,9,Danny Woodheads,False,W
+16,False,4,Yellow Egg Roll,153.0,12,Rule #76,False,L
+16,False,5,Team Wester,161.0,6,Team Thomas,False,L
+16,False,6,Team Thomas,216.0,5,Team Wester,False,W
+16,False,7,Team Merrill,160.0,1,Show ME Your TD's,False,W
+16,False,8,Team Ray,129.0,14,Team O'Dell,False,W
+16,False,9,Danny Woodheads,143.0,3,Team Munford,False,L
+16,False,10,High Noon,136.0,13,Shake Them Dreads,False,L
+16,False,11,Peyton  Man-thing,223.0,2,Team O'Dell,False,W
+16,False,12,Rule #76,153.0,4,Yellow Egg Roll,False,W
+16,False,13,Shake Them Dreads,151.0,10,High Noon,False,W
+16,False,14,Team O'Dell,111.0,8,Team Ray,False,L

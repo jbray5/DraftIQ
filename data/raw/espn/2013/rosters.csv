@@ -1,0 +1,205 @@
+team_id,team_name,player_id,player_name,position,pro_team,total_points,projected_total_points
+1,Toomer's Coroners,1428,Peyton Manning,QB,DEN,408.0,0
+1,Toomer's Coroners,4461,Andre Johnson,WR,HOU,167.0,0
+1,Toomer's Coroners,9592,Vernon Davis,TE,SF,156.0,0
+1,Toomer's Coroners,14886,Lamar Miller,RB,MIA,87.0,0
+1,Toomer's Coroners,15826,Giovani Bernard,RB,CIN,150.0,0
+1,Toomer's Coroners,12568,Brian Hartline,WR,MIA,119.0,0
+1,Toomer's Coroners,11122,Matt Prater,K,DEN,169.0,0
+1,Toomer's Coroners,14145,Charles Clay,TE,MIA,115.0,0
+1,Toomer's Coroners,13271,Eric Decker,WR,NYJ,191.0,0
+1,Toomer's Coroners,15818,Keenan Allen,WR,LAC,144.0,0
+1,Toomer's Coroners,13203,C.J. Spiller,RB,BUF,109.0,0
+1,Toomer's Coroners,15501,Bobby Rainey,RB,TB,88.0,0
+1,Toomer's Coroners,9603,Chad Greenway,LB,MIN,140.0,0
+1,Toomer's Coroners,1231,Tony Gonzalez,TE,ATL,130.0,0
+1,Toomer's Coroners,-16017,Patriots D/ST,D/ST,NE,1256.0,0
+1,Toomer's Coroners,13211,Toby Gerhart,RB,JAX,39.0,0
+1,Toomer's Coroners,-16010,Titans D/ST,D/ST,TEN,1129.0,0
+2,Team O'Dell,9705,Brandon Marshall,WR,CHI,198.0,0
+2,Team O'Dell,9646,Maurice Jones-Drew,RB,LV,133.0,0
+2,Team O'Dell,8544,Darren Sproles,RB,PHI,91.0,0
+2,Team O'Dell,11270,Jordy Nelson,WR,GB,174.0,0
+2,Team O'Dell,9704,Stephen Gostkowski,K,NE,177.0,0
+2,Team O'Dell,13217,Golden Tate,WR,DET,113.0,0
+2,Team O'Dell,12649,Julian Edelman,WR,NE,137.0,0
+2,Team O'Dell,15795,DeAndre Hopkins,WR,HOU,85.0,0
+2,Team O'Dell,13371,Garrett Graham,TE,HOU,76.0,0
+2,Team O'Dell,-16002,Bills D/ST,D/ST,BUF,1339.0,0
+2,Team O'Dell,5536,Ben Roethlisberger,QB,PIT,248.0,0
+2,Team O'Dell,9611,Santonio Holmes,WR,NYJ,50.0,0
+2,Team O'Dell,14985,Lavonte David,LB,TB,159.0,0
+2,Team O'Dell,15807,Cordarrelle Patterson,WR,MIN,107.0,0
+2,Team O'Dell,15823,Montee Ball,RB,DEN,86.0,0
+2,Team O'Dell,8664,Ryan Fitzpatrick,QB,TEN,158.0,0
+2,Team O'Dell,13207,Dexter McCluster,WR,TEN,71.0,0
+3,Team Munford,11237,Matt Ryan,QB,ATL,239.0,0
+3,Team Munford,11278,Matt Forte,RB,CHI,255.0,0
+3,Team Munford,8442,Roddy White,WR,ATL,82.0,0
+3,Team Munford,13587,Chris Ivory,RB,NYJ,94.0,0
+3,Team Munford,5526,Eli Manning,QB,NYG,162.0,0
+3,Team Munford,12454,James Laurinaitis,LB,LAR,124.5,0
+3,Team Munford,11257,Rashard Mendenhall,RB,ARI,116.0,0
+3,Team Munford,10713,Pierre Thomas,RB,NO,121.0,0
+3,Team Munford,14322,Dan Bailey,K,DAL,153.0,0
+3,Team Munford,9620,D'Qwell Jackson,LB,IND,144.5,0
+3,Team Munford,-16006,Cowboys D/ST,D/ST,DAL,1170.0,0
+3,Team Munford,11318,Harry Douglas,WR,ATL,112.0,0
+3,Team Munford,12576,Brandon LaFell,WR,NE,88.0,0
+3,Team Munford,15893,Andre Ellington,RB,ARI,116.0,0
+3,Team Munford,9761,Delanie Walker,TE,TEN,89.0,0
+3,Team Munford,-16007,Broncos D/ST,D/ST,DEN,1132.0,0
+3,Team Munford,11543,Garrett Hartley,K,None,110.0,0
+4,Medulla Amendola,15009,Alfred Morris,RB,WSH,161.0,0
+4,Medulla Amendola,2330,Tom Brady,QB,NE,241.0,0
+4,Medulla Amendola,13994,Cam Newton,QB,CAR,284.0,0
+4,Medulla Amendola,13216,Demaryius Thomas,WR,DEN,222.0,0
+4,Medulla Amendola,13204,Ryan Mathews,RB,LAC,176.0,0
+4,Medulla Amendola,10522,James Jones,WR,LV,92.0,0
+4,Medulla Amendola,15246,Vontaze Burfict,LB,CIN,183.0,0
+4,Medulla Amendola,12705,Brandon Myers,TE,TB,72.0,0
+4,Medulla Amendola,12489,Donald Brown,RB,LAC,118.0,0
+4,Medulla Amendola,15860,Jordan Reed,TE,WSH,65.0,0
+4,Medulla Amendola,11280,Jerome Simpson,WR,MIN,71.0,0
+4,Medulla Amendola,12682,DeAndre Levy,LB,DET,130.0,0
+4,Medulla Amendola,11461,Peyton Hillis,RB,NYG,42.0,0
+4,Medulla Amendola,15834,Aaron Dobson,WR,NE,73.0,0
+4,Medulla Amendola,16381,Kenbrell Thompkins,WR,NE,66.0,0
+4,Medulla Amendola,15918,Caleb Sturgis,K,MIA,120.0,0
+4,Medulla Amendola,-16003,Bears D/ST,D/ST,CHI,1090.0,0
+5,And god said I  hate you Tebow,10452,Adrian Peterson,RB,MIN,196.0,0
+5,And god said I  hate you Tebow,8479,Frank Gore,RB,SF,166.0,0
+5,And god said I  hate you Tebow,5528,Larry Fitzgerald,WR,ARI,150.0,0
+5,And god said I  hate you Tebow,11252,Joe Flacco,QB,BAL,195.0,0
+5,And god said I  hate you Tebow,13553,Victor Cruz,WR,NYG,119.0,0
+5,And god said I  hate you Tebow,-16022,Cardinals D/ST,D/ST,ARI,1129.0,0
+5,And god said I  hate you Tebow,-16012,Chiefs D/ST,D/ST,KC,1145.0,0
+5,And god said I  hate you Tebow,15358,Jarrett Boykin,WR,GB,91.0,0
+5,And god said I  hate you Tebow,2148,Sebastian Janikowski,K,LV,105.0,0
+5,And god said I  hate you Tebow,12503,Rashad Jennings,RB,NYG,131.0,0
+5,And god said I  hate you Tebow,10478,Paul Posluszny,LB,JAX,174.0,0
+5,And god said I  hate you Tebow,13228,Jermaine Gresham,TE,CIN,59.0,0
+5,And god said I  hate you Tebow,8439,Aaron Rodgers,QB,GB,162.0,0
+5,And god said I  hate you Tebow,10605,Brent Celek,TE,PHI,76.0,0
+5,And god said I  hate you Tebow,9597,Jay Cutler,QB,CHI,160.0,0
+5,And god said I  hate you Tebow,11458,Steve Johnson,WR,BUF,75.0,0
+5,And god said I  hate you Tebow,11688,Dan Carpenter,K,BUF,147.0,0
+6,LUCK isonmyside,12514,LeSean McCoy,RB,PHI,263.0,0
+6,LUCK isonmyside,10447,Calvin Johnson,WR,DET,213.0,0
+6,LUCK isonmyside,13232,Jimmy Graham,TE,NO,214.0,0
+6,LUCK isonmyside,9588,Reggie Bush,RB,DET,175.0,0
+6,LUCK isonmyside,14874,Andrew Luck,QB,IND,281.0,0
+6,LUCK isonmyside,12586,Hakeem Nicks,WR,IND,87.0,0
+6,LUCK isonmyside,15825,Le'Veon Bell,RB,PIT,160.0,0
+6,LUCK isonmyside,15705,Josh Gordon,WR,CLE,222.0,0
+6,LUCK isonmyside,14900,Coby Fleener,TE,IND,83.0,0
+6,LUCK isonmyside,14129,Bilal Powell,RB,NYJ,92.0,0
+6,LUCK isonmyside,13262,NaVorro Bowman,LB,SF,164.0,0
+6,LUCK isonmyside,5529,Philip Rivers,QB,LAC,278.0,0
+6,LUCK isonmyside,1097,Adam Vinatieri,K,IND,157.0,0
+6,LUCK isonmyside,16581,Marlon Brown,WR,BAL,97.0,0
+6,LUCK isonmyside,-16005,Browns D/ST,D/ST,CLE,1228.0,0
+6,LUCK isonmyside,14979,Bobby Wagner,LB,SEA,128.0,0
+6,LUCK isonmyside,14123,Alex Henery,K,PHI,119.0,0
+8,Slumber Lumber,14885,Doug Martin,RB,TB,52.0,0
+8,Slumber Lumber,5549,Steven Jackson,RB,ATL,106.0,0
+8,Slumber Lumber,14001,Colin Kaepernick,QB,SF,254.0,0
+8,Slumber Lumber,2622,Steve Smith,WR,BAL,94.0,0
+8,Slumber Lumber,8426,DeMarcus Ware,DE,DEN,48.0,0
+8,Slumber Lumber,11295,Martellus Bennett,TE,CHI,97.0,0
+8,Slumber Lumber,1716,David Akers,K,DET,104.0,0
+8,Slumber Lumber,14932,Mark Barron,S,TB,93.0,0
+8,Slumber Lumber,-16016,Vikings D/ST,D/ST,MIN,1222.0,0
+8,Slumber Lumber,9307,Nate Washington,WR,TEN,109.0,0
+8,Slumber Lumber,8416,Alex Smith,QB,KC,239.0,0
+8,Slumber Lumber,13213,LeGarrette Blount,RB,PIT,111.0,0
+8,Slumber Lumber,-16001,Falcons D/ST,D/ST,ATL,1125.0,0
+8,Slumber Lumber,10195,Fred Jackson,RB,BUF,177.0,0
+8,Slumber Lumber,14851,Terrelle Pryor,QB,SEA,132.0,0
+8,Slumber Lumber,15878,Terrance Williams,WR,DAL,97.0,0
+8,Slumber Lumber,14151,Jeremy Kerley,WR,NYJ,65.0,0
+9,Schaub on my Knob,13215,Dez Bryant,WR,DAL,196.0,0
+9,Schaub on my Knob,15848,Eddie Lacy,RB,GB,200.0,0
+9,Schaub on my Knob,14881,Russell Wilson,QB,SEA,259.0,0
+9,Schaub on my Knob,4527,Jason Witten,TE,DAL,129.0,0
+9,Schaub on my Knob,10467,Dwayne Bowe,WR,KC,91.0,0
+9,Schaub on my Knob,4512,Anquan Boldin,WR,SF,155.0,0
+9,Schaub on my Knob,14024,Greg Little,WR,CLE,54.0,0
+9,Schaub on my Knob,14204,Julius Thomas,TE,DEN,144.0,0
+9,Schaub on my Knob,1440,Phil Dawson,K,SF,154.0,0
+9,Schaub on my Knob,14876,Ryan Tannehill,QB,MIA,227.0,0
+9,Schaub on my Knob,5633,Jerricho Cotchery,WR,CAR,115.0,0
+9,Schaub on my Knob,14056,Daniel Thomas,RB,MIA,77.0,0
+9,Schaub on my Knob,15058,Blair Walsh,K,MIN,128.0,0
+9,Schaub on my Knob,9638,Greg Jennings,WR,MIN,100.0,0
+9,Schaub on my Knob,-16008,Lions D/ST,D/ST,DET,1056.0,0
+9,Schaub on my Knob,5558,Karlos Dansby,LB,CLE,145.0,0
+9,Schaub on my Knob,16495,Dennis Johnson,RB,HOU,18.0,0
+10,High Noon,10456,Marshawn Lynch,RB,SEA,228.0,0
+10,High Noon,14028,Stevan Ridley,RB,NE,108.0,0
+10,High Noon,12483,Matthew Stafford,QB,DET,271.0,0
+10,High Noon,8475,Vincent Jackson,WR,TB,161.0,0
+10,High Noon,11283,DeSean Jackson,WR,WSH,183.0,0
+10,High Noon,-16026,Seahawks D/ST,D/ST,SEA,1255.0,0
+10,High Noon,14912,Alshon Jeffery,WR,CHI,190.0,0
+10,High Noon,12516,Knowshon Moreno,RB,MIA,221.0,0
+10,High Noon,12569,Percy Harvin,WR,SEA,1.0,0
+10,High Noon,12490,Andre Brown,RB,HOU,68.0,0
+10,High Noon,10572,Scott Chandler,TE,BUF,70.0,0
+10,High Noon,16243,Paul Worrilow,LB,ATL,129.0,0
+10,High Noon,4529,Nate Burleson,WR,CLE,50.0,0
+10,High Noon,12537,Jared Cook,TE,LAR,89.0,0
+10,High Noon,14904,Ladarius Green,TE,LAC,64.0,0
+10,High Noon,11923,Steven Hauschka,K,SEA,158.0,0
+10,High Noon,8440,Jason Campbell,QB,CIN,107.0,0
+11,Peyton  Man-thing,11307,Jamaal Charles,RB,KC,299.0,0
+11,Peyton  Man-thing,2580,Drew Brees,QB,NO,348.0,0
+11,Peyton  Man-thing,5941,Wes Welker,WR,DEN,132.0,0
+11,Peyton  Man-thing,-16025,49ers D/ST,D/ST,SF,1171.0,0
+11,Peyton  Man-thing,12601,Mike Wallace,WR,MIA,122.0,0
+11,Peyton  Man-thing,13934,Antonio Brown,WR,PIT,199.0,0
+11,Peyton  Man-thing,11754,BenJarvus Green-Ellis,RB,CIN,110.0,0
+11,Peyton  Man-thing,9613,DeAngelo Williams,RB,CAR,129.0,0
+11,Peyton  Man-thing,14184,Cecil Shorts,WR,JAX,93.0,0
+11,Peyton  Man-thing,5362,Antonio Gates,TE,LAC,104.0,0
+11,Peyton  Man-thing,-16014,Rams D/ST,D/ST,LAR,1155.0,0
+11,Peyton  Man-thing,13536,Joique Bell,RB,DET,157.0,0
+11,Peyton  Man-thing,10636,Mason Crosby,K,GB,155.0,0
+11,Peyton  Man-thing,5564,Daryl Smith,LB,BAL,139.0,0
+11,Peyton  Man-thing,11636,Erin Henderson,LB,MIN,119.0,0
+11,Peyton  Man-thing,14009,Rob Housler,TE,ARI,50.0,0
+11,Peyton  Man-thing,13225,Riley Cooper,WR,PHI,129.0,0
+12,Rule #76,11289,Ray Rice,RB,BAL,107.0,0
+12,Rule #76,11238,Darren McFadden,RB,LV,71.0,0
+12,Rule #76,5209,Tony Romo,QB,DAL,252.0,0
+12,Rule #76,14005,DeMarco Murray,RB,DAL,190.0,0
+12,Rule #76,11439,Pierre Garcon,WR,WSH,161.0,0
+12,Rule #76,10475,Greg Olsen,TE,CAR,110.0,0
+12,Rule #76,14924,T.Y. Hilton,WR,IND,134.0,0
+12,Rule #76,14012,Andy Dalton,QB,CIN,279.0,0
+12,Rule #76,14189,Jordan Cameron,TE,CLE,128.0,0
+12,Rule #76,-16029,Panthers D/ST,D/ST,CAR,1201.0,0
+12,Rule #76,14153,Denarius Moore,WR,LV,96.0,0
+12,Rule #76,13284,Sean Lee,LB,DAL,110.0,0
+12,Rule #76,15996,Zac Stacy,RB,LAR,150.0,0
+12,Rule #76,16171,Joplo Bartu,LB,ATL,87.5,0
+12,Rule #76,13981,Mark Ingram,RB,NO,45.0,0
+12,Rule #76,14908,Michael Floyd,WR,ARI,129.0,0
+12,Rule #76,12731,Ryan Succop,K,KC,121.0,0
+13,Shake Them Dreads,13983,A.J. Green,WR,CIN,206.0,0
+13,Shake Them Dreads,11258,Chris Johnson,RB,NYJ,190.0,0
+13,Shake Them Dreads,14875,Robert Griffin III,QB,WSH,202.0,0
+13,Shake Them Dreads,9838,Marques Colston,WR,NO,120.0,0
+13,Shake Them Dreads,14032,Torrey Smith,WR,BAL,133.0,0
+13,Shake Them Dreads,13251,Earl Thomas,S,SEA,112.0,0
+13,Shake Them Dreads,11788,Danny Woodhead,RB,LAC,134.0,0
+13,Shake Them Dreads,9354,Robbie Gould,K,CHI,132.0,0
+13,Shake Them Dreads,14884,Trent Richardson,RB,IND,99.0,0
+13,Shake Them Dreads,-16018,Saints D/ST,D/ST,NO,1063.0,0
+13,Shake Them Dreads,14017,Shane Vereen,RB,NE,80.0,0
+13,Shake Them Dreads,14877,Nick Foles,QB,PHI,252.0,0
+13,Shake Them Dreads,14938,Luke Kuechly,LB,CAR,162.0,0
+13,Shake Them Dreads,12563,Michael Crabtree,WR,SF,32.0,0
+13,Shake Them Dreads,14909,Kendall Wright,WR,TEN,115.0,0
+13,Shake Them Dreads,-16033,Ravens D/ST,D/ST,BAL,1201.0,0
+13,Shake Them Dreads,8444,Heath Miller,TE,PIT,56.0,0

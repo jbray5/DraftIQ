@@ -1,0 +1,205 @@
+overall_pick,round_num,round_pick,team_id,team_name,owner,player_id,player_name,position,bid_amount,keeper
+1,1,1,5,Be Gentle,payton9218600,3116593,Dalvin Cook,RB,0,False
+2,1,2,3,Jim Ward's Ole Dick Necks,Henry Munford,3115364,Leonard Fournette,RB,0,False
+3,1,3,13,Afternoon TE Time,tcspivey8,3051392,Ezekiel Elliott,RB,0,False
+4,1,4,10,High Noon,jtmurphree,3054850,Alvin Kamara,RB,0,False
+5,1,5,1,Thielen and Dealin,cjhubauer,13934,Antonio Brown,WR,0,False
+6,1,6,9,Tonie's Tigers,crtaylor225,3059915,Kareem Hunt,,0,False
+7,1,7,6,"Dude, Where's  My Carr ",zwthomas89; zthoma7700709,15795,DeAndre Hopkins,WR,0,False
+8,1,8,4,Bell yeah,bcornelius2,2508176,David Johnson,RB,0,False
+9,1,9,11,Dez (Bryant) Nuts,Gtgilbert88,2576434,Melvin Gordon,RB,0,False
+10,1,10,2,Rodger  That,jmodell10,15825,Le'Veon Bell,,0,False
+11,1,11,12,Rule #76,dcputman,2977644,Todd Gurley II,RB,0,False
+12,1,12,8,SCLSU Mud Dogs,jbray5,3929630,Saquon Barkley,RB,0,False
+13,2,1,8,SCLSU Mud Dogs,jbray5,15818,Keenan Allen,WR,0,False
+14,2,2,12,Rule #76,dcputman,3060022,Jordan Howard,RB,0,False
+15,2,3,2,Rodger  That,jmodell10,13229,Rob Gronkowski,TE,0,False
+16,2,4,11,Dez (Bryant) Nuts,Gtgilbert88,2976316,Michael Thomas,WR,0,False
+17,2,5,4,Bell yeah,bcornelius2,13983,A.J. Green,,0,False
+18,2,6,6,"Dude, Where's  My Carr ",zwthomas89; zthoma7700709,3117251,Christian McCaffrey,RB,0,False
+19,2,7,9,Tonie's Tigers,crtaylor225,16733,Odell Beckham Jr.,WR,0,False
+20,2,8,1,Thielen and Dealin,cjhubauer,12514,LeSean McCoy,RB,0,False
+21,2,9,10,High Noon,jtmurphree,3116385,Joe Mixon,RB,0,False
+22,2,10,13,Afternoon TE Time,tcspivey8,16800,Davante Adams,WR,0,False
+23,2,11,3,Jim Ward's Ole Dick Necks,Henry Munford,13982,Julio Jones,WR,0,False
+24,2,12,5,Be Gentle,payton9218600,16944,Devonta Freeman,,0,False
+25,3,1,5,Be Gentle,payton9218600,5528,Larry Fitzgerald,WR,0,False
+26,3,2,3,Jim Ward's Ole Dick Necks,Henry Munford,3116406,Tyreek Hill,WR,0,False
+27,3,3,13,Afternoon TE Time,tcspivey8,16737,Mike Evans,WR,0,False
+28,3,4,10,High Noon,jtmurphree,2976212,Stefon Diggs,WR,0,False
+29,3,5,1,Thielen and Dealin,cjhubauer,16460,Adam Thielen,WR,0,False
+30,3,6,9,Tonie's Tigers,crtaylor225,2976499,Amari Cooper,WR,0,False
+31,3,7,6,"Dude, Where's  My Carr ",zwthomas89; zthoma7700709,15847,Travis Kelce,TE,0,False
+32,3,8,4,Bell yeah,bcornelius2,2979843,Kenyan Drake,RB,0,False
+33,3,9,11,Dez (Bryant) Nuts,Gtgilbert88,3046409,Alex Collins,,0,False
+34,3,10,2,Rodger  That,jmodell10,8439,Aaron Rodgers,QB,0,False
+35,3,11,12,Rule #76,dcputman,16782,Jerick McKinnon,,0,False
+36,3,12,8,SCLSU Mud Dogs,jbray5,14924,T.Y. Hilton,WR,0,False
+37,4,1,8,SCLSU Mud Dogs,jbray5,15835,Zach Ertz,TE,0,False
+38,4,2,12,Rule #76,dcputman,16799,Allen Robinson,WR,0,False
+39,4,3,2,Rodger  That,jmodell10,13295,Emmanuel Sanders,WR,0,False
+40,4,4,11,Dez (Bryant) Nuts,Gtgilbert88,16731,Brandin Cooks,WR,0,False
+41,4,5,4,Bell yeah,bcornelius2,13216,Demaryius Thomas,WR,0,False
+42,4,6,6,"Dude, Where's  My Carr ",zwthomas89; zthoma7700709,2573300,Jay Ajayi,,0,False
+43,4,7,9,Tonie's Tigers,crtaylor225,14886,Lamar Miller,RB,0,False
+44,4,8,1,Thielen and Dealin,cjhubauer,10456,Marshawn Lynch,,0,False
+45,4,9,10,High Noon,jtmurphree,13217,Golden Tate,,0,False
+46,4,10,13,Afternoon TE Time,tcspivey8,16790,Jarvis Landry,WR,0,False
+47,4,11,3,Jim Ward's Ole Dick Necks,Henry Munford,3043078,Derrick Henry,RB,0,False
+48,4,12,5,Be Gentle,payton9218600,14221,Doug Baldwin,WR,0,False
+49,5,1,5,Be Gentle,payton9218600,14054,Kyle Rudolph,TE,0,False
+50,5,2,3,Jim Ward's Ole Dick Necks,Henry Munford,15705,Josh Gordon,WR,0,False
+51,5,3,13,Afternoon TE Time,tcspivey8,3122840,Deshaun Watson,QB,0,False
+52,5,4,10,High Noon,jtmurphree,14912,Alshon Jeffery,WR,0,False
+53,5,5,1,Thielen and Dealin,cjhubauer,12563,Michael Crabtree,,0,False
+54,5,6,9,Tonie's Tigers,crtaylor225,14402,Chris Hogan,,0,False
+55,5,7,6,"Dude, Where's  My Carr ",zwthomas89; zthoma7700709,12649,Julian Edelman,WR,0,False
+56,5,8,4,Bell yeah,bcornelius2,10475,Greg Olsen,,0,False
+57,5,9,11,Dez (Bryant) Nuts,Gtgilbert88,15072,Marvin Jones Jr.,,0,False
+58,5,10,2,Rodger  That,jmodell10,3122672,Royce Freeman,RB,0,False
+59,5,11,12,Rule #76,dcputman,3120348,JuJu Smith-Schuster,WR,0,False
+60,5,12,8,SCLSU Mud Dogs,jbray5,14881,Russell Wilson,QB,0,False
+61,6,1,8,SCLSU Mud Dogs,jbray5,14198,Dion Lewis,RB,0,False
+62,6,2,12,Rule #76,dcputman,15860,Jordan Reed,TE,0,False
+63,6,3,2,Rodger  That,jmodell10,14053,Randall Cobb,,0,False
+64,6,4,11,Dez (Bryant) Nuts,Gtgilbert88,3051876,Evan Engram,TE,0,False
+65,6,5,4,Bell yeah,bcornelius2,2330,Tom Brady,QB,0,False
+66,6,6,6,"Dude, Where's  My Carr ",zwthomas89; zthoma7700709,3042778,Corey Davis,WR,0,False
+67,6,7,9,Tonie's Tigers,crtaylor225,13232,Jimmy Graham,TE,0,False
+68,6,8,1,Thielen and Dealin,cjhubauer,9761,Delanie Walker,,0,False
+69,6,9,10,High Noon,jtmurphree,17133,Isaiah Crowell,,0,False
+70,6,10,13,Afternoon TE Time,tcspivey8,13981,Mark Ingram II,RB,0,False
+71,6,11,3,Jim Ward's Ole Dick Necks,Henry Munford,3912550,Ronald Jones,,0,False
+72,6,12,5,Be Gentle,payton9218600,13994,Cam Newton,QB,0,False
+73,7,1,5,Be Gentle,payton9218600,17258,Willie Snead IV,WR,0,False
+74,7,2,3,Jim Ward's Ole Dick Necks,Henry Munford,2980453,Jamaal Williams,RB,0,False
+75,7,3,13,Afternoon TE Time,tcspivey8,16974,Trey Burton,TE,0,False
+76,7,4,10,High Noon,jtmurphree,15971,Rex Burkhead,,0,False
+77,7,5,1,Thielen and Dealin,cjhubauer,14880,Kirk Cousins,QB,0,False
+78,7,6,9,Tonie's Tigers,crtaylor225,2580,Drew Brees,QB,0,False
+79,7,7,6,"Dude, Where's  My Carr ",zwthomas89; zthoma7700709,2573079,Carson Wentz,,0,False
+80,7,8,4,Bell yeah,bcornelius2,15966,Chris Thompson,RB,0,False
+81,7,9,11,Dez (Bryant) Nuts,Gtgilbert88,15839,Marquise Goodwin,WR,0,False
+82,7,10,2,Rodger  That,jmodell10,16725,Sammy Watkins,WR,0,False
+83,7,11,12,Rule #76,dcputman,2977609,Devin Funchess,WR,0,False
+84,7,12,8,SCLSU Mud Dogs,jbray5,11439,Pierre Garcon,,0,False
+85,8,1,8,SCLSU Mud Dogs,jbray5,3139925,Rashaad Penny,,0,False
+86,8,2,12,Rule #76,dcputman,3139605,Marlon Mack,RB,0,False
+87,8,3,2,Rodger  That,jmodell10,15880,Robert Woods,WR,0,False
+88,8,4,11,Dez (Bryant) Nuts,Gtgilbert88,2577417,Dak Prescott,QB,0,False
+89,8,5,4,Bell yeah,bcornelius2,16730,Kelvin Benjamin,,0,False
+90,8,6,6,"Dude, Where's  My Carr ",zwthomas89; zthoma7700709,3128721,Sony Michel,RB,0,False
+91,8,7,9,Tonie's Tigers,crtaylor225,2574808,Robby Anderson,WR,0,False
+92,8,8,1,Thielen and Dealin,cjhubauer,2979477,Tevin Coleman,RB,0,False
+93,8,9,10,High Noon,jtmurphree,12483,Matthew Stafford,,0,False
+94,8,10,13,Afternoon TE Time,tcspivey8,2576716,Jamison Crowder,,0,False
+95,8,11,3,Jim Ward's Ole Dick Necks,Henry Munford,3052876,Will Fuller V,,0,False
+96,8,12,5,Be Gentle,payton9218600,15826,Giovani Bernard,,0,False
+97,9,1,5,Be Gentle,payton9218600,8479,Frank Gore,RB,0,False
+98,9,2,3,Jim Ward's Ole Dick Necks,Henry Munford,14874,Andrew Luck,QB,0,False
+99,9,3,13,Afternoon TE Time,tcspivey8,3066158,Tarik Cohen,RB,0,False
+100,9,4,10,High Noon,jtmurphree,3123076,David Njoku,TE,0,False
+101,9,5,1,Thielen and Dealin,cjhubauer,16787,Marqise Lee,,0,False
+102,9,6,9,Tonie's Tigers,crtaylor225,2971618,Nelson Agholor,,0,False
+103,9,7,6,"Dude, Where's  My Carr ",zwthomas89; zthoma7700709,2576623,DeVante Parker,,0,False
+104,9,8,4,Bell yeah,bcornelius2,16504,Jack Doyle,,0,False
+105,9,9,11,Dez (Bryant) Nuts,Gtgilbert88,16777,Carlos Hyde,RB,0,False
+106,9,10,2,Rodger  That,jmodell10,2969962,Duke Johnson Jr.,RB,0,False
+107,9,11,12,Rule #76,dcputman,16760,Jimmy Garoppolo,,0,False
+108,9,12,8,SCLSU Mud Dogs,jbray5,3916925,Kerryon Johnson,RB,0,False
+109,10,1,8,SCLSU Mud Dogs,jbray5,2977187,Cooper Kupp,,0,False
+110,10,2,12,Rule #76,dcputman,3040151,George Kittle,TE,0,False
+111,10,3,2,Rodger  That,jmodell10,16913,James White,RB,0,False
+112,10,4,11,Dez (Bryant) Nuts,Gtgilbert88,16016,Kenny Stills,,0,False
+113,10,5,4,Bell yeah,bcornelius2,14922,Mohamed Sanu,WR,0,False
+114,10,6,6,"Dude, Where's  My Carr ",zwthomas89; zthoma7700709,16040,C.J. Anderson,,0,False
+115,10,7,9,Tonie's Tigers,crtaylor225,2577134,Ty Montgomery,,0,False
+116,10,8,1,Thielen and Dealin,cjhubauer,3919596,Chris Carson,RB,0,False
+117,10,9,10,High Noon,jtmurphree,2520698,Cameron Meredith,,0,False
+118,10,10,13,Afternoon TE Time,tcspivey8,-16030,Jaguars D/ST,D/ST,0,False
+119,10,11,3,Jim Ward's Ole Dick Necks,Henry Munford,11237,Matt Ryan,QB,0,False
+120,10,12,5,Be Gentle,payton9218600,16757,Derek Carr,QB,0,False
+121,11,1,5,Be Gentle,payton9218600,15683,Justin Tucker,K,0,False
+122,11,2,3,Jim Ward's Ole Dick Necks,Henry Munford,3925357,Calvin Ridley,WR,0,False
+123,11,3,13,Afternoon TE Time,tcspivey8,17177,Allen Hurns,,0,False
+124,11,4,10,High Noon,jtmurphree,2576019,Josh Doctson,,0,False
+125,11,5,1,Thielen and Dealin,cjhubauer,14885,Doug Martin,RB,0,False
+126,11,6,9,Tonie's Tigers,crtaylor225,3046779,Jared Goff,QB,0,False
+127,11,7,6,"Dude, Where's  My Carr ",zwthomas89; zthoma7700709,15102,Rishard Matthews,,0,False
+128,11,8,4,Bell yeah,bcornelius2,8416,Alex Smith,,0,False
+129,11,9,11,Dez (Bryant) Nuts,Gtgilbert88,5536,Ben Roethlisberger,QB,0,False
+130,11,10,2,Rodger  That,jmodell10,11283,DeSean Jackson,WR,0,False
+131,11,11,12,Rule #76,dcputman,5529,Philip Rivers,QB,0,False
+132,11,12,8,SCLSU Mud Dogs,jbray5,3042519,Aaron Jones,RB,0,False
+133,12,1,8,SCLSU Mud Dogs,jbray5,3915416,DJ Moore,WR,0,False
+134,12,2,12,Rule #76,dcputman,3892889,Dede Westbrook,WR,0,False
+135,12,3,2,Rodger  That,jmodell10,9592,Vernon Davis,TE,0,False
+136,12,4,11,Dez (Bryant) Nuts,Gtgilbert88,2976592,Sterling Shepard,WR,0,False
+137,12,5,4,Bell yeah,bcornelius2,-16021,Eagles D/ST,D/ST,0,False
+138,12,6,6,"Dude, Where's  My Carr ",zwthomas89; zthoma7700709,16781,Paul Richardson,,0,False
+139,12,7,9,Tonie's Tigers,crtaylor225,2587819,Tyrell Williams,WR,0,False
+140,12,8,1,Thielen and Dealin,cjhubauer,4036348,Michael Gallup,,0,False
+141,12,9,10,High Noon,jtmurphree,2974858,Kenny Golladay,,0,False
+142,12,10,13,Afternoon TE Time,tcspivey8,2576980,Marcus Mariota,,0,False
+143,12,11,3,Jim Ward's Ole Dick Necks,Henry Munford,17453,Cameron Brate,TE,0,False
+144,12,12,5,Be Gentle,payton9218600,16720,C.J. Mosley,LB,0,False
+145,13,1,5,Be Gentle,payton9218600,8544,Darren Sproles,,0,False
+146,13,2,3,Jim Ward's Ole Dick Necks,Henry Munford,-16016,Vikings D/ST,D/ST,0,False
+147,13,3,13,Afternoon TE Time,tcspivey8,3122866,Devontae Booker,,0,False
+148,13,4,10,High Noon,jtmurphree,3116389,Samaje Perine,,0,False
+149,13,5,1,Thielen and Dealin,cjhubauer,2575408,Rob Kelley,,0,False
+150,13,6,9,Tonie's Tigers,crtaylor225,14129,Bilal Powell,,0,False
+151,13,7,6,"Dude, Where's  My Carr ",zwthomas89; zthoma7700709,14938,Luke Kuechly,LB,0,False
+152,13,8,4,Bell yeah,bcornelius2,11674,Danny Amendola,WR,0,False
+153,13,9,11,Dez (Bryant) Nuts,Gtgilbert88,15994,Theo Riddick,RB,0,False
+154,13,10,2,Rodger  That,jmodell10,2976516,T.J. Yeldon,RB,0,False
+155,13,11,12,Rule #76,dcputman,-16014,Rams D/ST,D/ST,0,False
+156,13,12,8,SCLSU Mud Dogs,jbray5,9704,Stephen Gostkowski,K,0,False
+157,14,1,8,SCLSU Mud Dogs,jbray5,3139477,Patrick Mahomes,QB,0,False
+158,14,2,12,Rule #76,dcputman,3051909,Daniel Carlson,,0,False
+159,14,3,2,Rodger  That,jmodell10,10636,Mason Crosby,K,0,False
+160,14,4,11,Dez (Bryant) Nuts,Gtgilbert88,12537,Jared Cook,TE,0,False
+161,14,5,4,Bell yeah,bcornelius2,16710,Khalil Mack,,0,False
+162,14,6,6,"Dude, Where's  My Carr ",zwthomas89; zthoma7700709,14993,Greg Zuerlein,K,0,False
+163,14,7,9,Tonie's Tigers,crtaylor225,14979,Bobby Wagner,LB,0,False
+164,14,8,1,Thielen and Dealin,cjhubauer,14163,Tyrod Taylor,,0,False
+165,14,9,10,High Noon,jtmurphree,2969939,Jameis Winston,QB,0,False
+166,14,10,13,Afternoon TE Time,tcspivey8,2976545,Deion Jones,LB,0,False
+167,14,11,3,Jim Ward's Ole Dick Necks,Henry Munford,3125116,D'Onta Foreman,,0,False
+168,14,12,5,Be Gentle,payton9218600,15009,Alfred Morris,,0,False
+169,15,1,5,Be Gentle,payton9218600,-16023,Steelers D/ST,D/ST,0,False
+170,15,2,3,Jim Ward's Ole Dick Necks,Henry Munford,3128774,Kalen Ballage,RB,0,False
+171,15,3,13,Afternoon TE Time,tcspivey8,15788,Tyler Eifert,,0,False
+172,15,4,10,High Noon,jtmurphree,-16033,Ravens D/ST,D/ST,0,False
+173,15,5,1,Thielen and Dealin,cjhubauer,14973,Zach Brown,,0,False
+174,15,6,9,Tonie's Tigers,crtaylor225,-16034,Texans D/ST,,0,False
+175,15,7,6,"Dude, Where's  My Carr ",zwthomas89; zthoma7700709,3916430,Nyheim Hines,RB,0,False
+176,15,8,4,Bell yeah,bcornelius2,17372,Chris Boswell,,0,False
+177,15,9,11,Dez (Bryant) Nuts,Gtgilbert88,-16007,Broncos D/ST,D/ST,0,False
+178,15,10,2,Rodger  That,jmodell10,15349,Cole Beasley,WR,0,False
+179,15,11,12,Rule #76,dcputman,3128720,Nick Chubb,RB,0,False
+180,15,12,8,SCLSU Mud Dogs,jbray5,-16024,Chargers D/ST,D/ST,0,False
+181,16,1,8,SCLSU Mud Dogs,jbray5,16891,Telvin Smith,LB,0,False
+182,16,2,12,Rule #76,dcputman,3915189,Roquan Smith,,0,False
+183,16,3,2,Rodger  That,jmodell10,-16017,Patriots D/ST,D/ST,0,False
+184,16,4,11,Dez (Bryant) Nuts,Gtgilbert88,2979841,Landon Collins,,0,False
+185,16,5,4,Bell yeah,bcornelius2,2978929,Corey Coleman,,0,False
+186,16,6,6,"Dude, Where's  My Carr ",zwthomas89; zthoma7700709,-16018,Saints D/ST,D/ST,0,False
+187,16,7,9,Tonie's Tigers,crtaylor225,3043080,O.J. Howard,,0,False
+188,16,8,1,Thielen and Dealin,cjhubauer,14322,Dan Bailey,,0,False
+189,16,9,10,High Noon,jtmurphree,2976541,Kwon Alexander,,0,False
+190,16,10,13,Afternoon TE Time,tcspivey8,13587,Chris Ivory,RB,0,False
+191,16,11,3,Jim Ward's Ole Dick Necks,Henry Munford,3054962,Keanu Neal,,0,False
+192,16,12,5,Be Gentle,payton9218600,14145,Charles Clay,,0,False
+193,17,1,5,Be Gentle,payton9218600,11270,Jordy Nelson,WR,0,False
+194,17,2,3,Jim Ward's Ole Dick Necks,Henry Munford,3055899,Harrison Butker,K,0,False
+195,17,3,13,Afternoon TE Time,tcspivey8,2985659,Wil Lutz,K,0,False
+196,17,4,10,High Noon,jtmurphree,3050478,Jake Elliott,,0,False
+197,17,5,1,Thielen and Dealin,cjhubauer,-16029,Panthers D/ST,D/ST,0,False
+198,17,6,9,Tonie's Tigers,crtaylor225,4333,Matt Bryant,,0,False
+199,17,7,6,"Dude, Where's  My Carr ",zwthomas89; zthoma7700709,3052587,Baker Mayfield,QB,0,False
+200,17,8,4,Bell yeah,bcornelius2,14012,Andy Dalton,,0,False
+201,17,9,11,Dez (Bryant) Nuts,Gtgilbert88,11122,Matt Prater,K,0,False
+202,17,10,2,Rodger  That,jmodell10,13284,Sean Lee,,0,False
+203,17,11,12,Rule #76,dcputman,15786,Tavon Austin,,0,False
+204,17,12,8,SCLSU Mud Dogs,jbray5,3051902,Peyton Barber,RB,0,False
