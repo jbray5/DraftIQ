@@ -145,6 +145,25 @@ def build(season: str = "2026REG", scoring_year: int = 2026,
         if n_ecr:
             print(f"FantasyPros ECR annotated: {n_ecr} players (expert rank / tier / SOS)")
 
+    # News overrides (data/manual_overrides.json): feeds lag real news by days —
+    # Pearsall was IR'd Aug 1 and SportsData still projected him ~30 pts on Aug 11.
+    # out_for_season names are removed entirely so the board can never recommend them.
+    try:
+        ov = json.loads((ROOT / "data" / "manual_overrides.json").read_text(encoding="utf-8"))
+        out_names = {n.lower() for n in ov.get("out_for_season", [])}
+        if out_names:
+            before = len(players)
+            players = [p for p in players if str(p.get("name", "")).lower() not in out_names]
+            if before - len(players):
+                print(f"news overrides: removed {before - len(players)} out-for-season "
+                      f"player(s): {sorted(ov.get('out_for_season', []))}")
+        for nm in ov.get("watch", []):
+            if not any(str(p.get("name", "")).lower() == nm.lower() for p in players):
+                print(f"⚠ WATCH: '{nm}' is still missing from the feed "
+                      f"(see manual_overrides.json note)")
+    except FileNotFoundError:
+        pass
+
     # IDP comes from ESPN, not SportsData. SportsData's IDP projections have been
     # broken since 2026-07-28 (starting LBs at 0.0 tackles), and ESPN hands us points
     # already evaluated under this league's position-scoped IDP scoring — which our
