@@ -41,3 +41,4 @@ data/processed/*.broken_idp.csv
 data/processed/*.buffed_idp.csv
 data/processed/*.pre_idpfix.csv
 data/processed/*.pre2012.json
+data/processed/*.prev_refresh.csv
