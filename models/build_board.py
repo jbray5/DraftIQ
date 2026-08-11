@@ -157,8 +157,16 @@ def build(season: str = "2026REG", scoring_year: int = 2026,
             if before - len(players):
                 print(f"news overrides: removed {before - len(players)} out-for-season "
                       f"player(s): {sorted(ov.get('out_for_season', []))}")
+        # watch-list matching is SUFFIX-INSENSITIVE: SportsData renames players
+        # ('Brian Robinson Jr.' -> 'Brian Robinson'), and an exact match reads a
+        # rename as a disappearance (that false alarm shipped once — not again).
+        try:
+            from scoring import norm_name as _nn
+        except ImportError:
+            from models.scoring import norm_name as _nn
+        have = {_nn(str(p.get("name", ""))) for p in players}
         for nm in ov.get("watch", []):
-            if not any(str(p.get("name", "")).lower() == nm.lower() for p in players):
+            if _nn(nm) not in have:
                 print(f"⚠ WATCH: '{nm}' is still missing from the feed "
                       f"(see manual_overrides.json note)")
     except FileNotFoundError:

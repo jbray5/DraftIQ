@@ -6,10 +6,8 @@
   "_out_for_season_sources": {
     "Ricky Pearsall": "IR 2026-08-01, season-ending PCL surgery (nfl.com/news/niners-wr-ricky-pearsall-knee-surgery-will-miss-2026-season)"
   },
-  "watch": [
-    "Brian Robinson Jr."
-  ],
+  "watch": [],
   "_watch_notes": {
-    "Brian Robinson Jr.": "Bijan's handcuff in ATL, healthy and in camp — but SportsData's feed dropped his row 2026-08-11 (artifact, not news). If still missing Saturday, add him manually."
+    "_resolved 2026-08-11": "Brian Robinson Jr. was never missing — SportsData renamed him 'Brian Robinson' (no Jr.), still ATL/RB. The name-keyed board diff misread the rename as a vanish. Diff now keys by playerId; watch matching is suffix-insensitive."
   }
 }

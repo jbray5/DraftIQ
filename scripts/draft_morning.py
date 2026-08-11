@@ -109,31 +109,44 @@ def main() -> int:
 
     stage(5, "Board diff vs previous (news check)")
     if pre_board:
-        post = {r["name"] + "|" + r["pos"]: r
-                for r in csv.DictReader(open(board, encoding="utf-8"))}
-        movers = []
-        for k in set(pre_board) & set(post):
+        # key by playerId FIRST — feeds rename players ('Brian Robinson Jr.' ->
+        # 'Brian Robinson'), and a name-keyed diff misreports a rename as a
+        # disappearance + appearance. Fall back to name|pos only when id is blank.
+        def keyed(rows_by_namepos):
+            out = {}
+            for r in rows_by_namepos.values():
+                pid = str(r.get("playerId") or "").strip()
+                out[pid if pid else r["name"] + "|" + r["pos"]] = r
+            return out
+        post_np = {r["name"] + "|" + r["pos"]: r
+                   for r in csv.DictReader(open(board, encoding="utf-8"))}
+        pre, post = keyed(pre_board), keyed(post_np)
+        movers, renames = [], []
+        for k in set(pre) & set(post):
             if post[k]["pos"] not in ("QB", "RB", "WR", "TE"):
                 continue
+            if pre[k]["name"] != post[k]["name"]:
+                renames.append(f"{pre[k]['name']} -> {post[k]['name']}")
             try:
-                d = float(post[k]["league_pts"]) - float(pre_board[k]["league_pts"])
+                d = float(post[k]["league_pts"]) - float(pre[k]["league_pts"])
             except ValueError:
                 continue
             if abs(d) >= 5:
-                movers.append((d, k))
+                movers.append((d, post[k]["name"], post[k]["pos"]))
         movers.sort(key=lambda x: -abs(x[0]))
-        print(f"   {len(post)} rows ({len(set(post) - set(pre_board))} new, "
-              f"{len(set(pre_board) - set(post))} gone)")
+        print(f"   {len(post)} rows ({len(set(post) - set(pre))} new ids, "
+              f"{len(set(pre) - set(post))} gone)")
+        if renames:
+            print(f"   renamed (same player, cosmetic): {renames[:4]}")
         if movers:
             print("   biggest movers (check for injury/depth-chart news!):")
-            for d, k in movers[:8]:
-                nm, pos = k.split("|")
+            for d, nm, pos in movers[:8]:
                 print(f"     {nm:<24}{pos:<4}{d:+7.1f}")
-        gone = [k.split("|")[0] for k in set(pre_board) - set(post)
-                if pre_board[k]["pos"] in ("QB", "RB", "WR", "TE")
-                and float(pre_board[k]["league_pts"] or 0) > 40]
+        gone = [pre[k]["name"] for k in set(pre) - set(post)
+                if pre[k]["pos"] in ("QB", "RB", "WR", "TE")
+                and float(pre[k]["league_pts"] or 0) > 40]
         if gone:
-            print(f"   ⚠ notable players VANISHED from the feed: {gone[:6]} — verify manually")
+            print(f"   ⚠ players truly GONE from the feed (id-matched): {gone[:6]} — verify manually")
     else:
         print("   (no previous board to diff)")
 
