@@ -138,6 +138,15 @@ and `settings.json → scoring_format` FLATTENS that away. `load_scoring(year, s
 reads the raw `scoringItems`: base values for offense/IDP, `slot=DST_SLOT (16)` for the
 D/ST column (tackles/PD zeroed, sacks 1.0 not 2.0). This also fixed IDP sacks, which had
 silently been scored at half value. **Never re-add a blanket scoring override.**
+**TACKLES STACK — verified against ESPN's own engine (2026-08-10).** A tackle is either
+solo or assisted (total = solo + asst as COUNTS), but the config pays all THREE
+categories, and ESPN multiplies each configured stat id independently → one solo tackle
+= 1.0 (total) + 1.5 (solo) = 2.5 pts. Proven by reproducing Cashman's ESPN-computed
+appliedTotal (411.71) from his raw projected counts to within 0.83 pts; the no-stack
+hypothesis misses by 182. This is the classic ESPN IDP double-pay misconfiguration
+(user asked the commish to confirm intent). Whatever the commish decides, a rebuild
+re-reads the live config and re-prices IDP automatically — and the draft strategy
+(IDP at the ~pick-90 market window) is invariant to the outcome.
 
 **IDP is MARKET-TIMED, not value-discounted (2026-08-09, user's framing).** An elite
 IDP would be held all year (weekly persistence 0.158 ≈ TE), so streaming logic doesn't
