@@ -737,6 +737,7 @@ def board():
             "ecr": int(num(r.get("ecr"))) if num(r.get("ecr")) is not None else None,
             "ecrTier": int(num(r.get("ecr_tier"))) if num(r.get("ecr_tier")) is not None else None,
             "sos": int(num(r.get("sos"))) if num(r.get("sos")) is not None else None,
+            "fpAdp": num(r.get("fp_adp")),
             # week-1 matchup (D/ST + K only; None everywhere else)
             "w1Rank": w1.get("w1Rank") if w1 else None,
             "w1Tier": w1.get("w1Tier") if w1 else None,

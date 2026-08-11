@@ -1845,10 +1845,15 @@ function setAvailSort(key){
 (function(){document.querySelectorAll('.ptable thead th.sortable').forEach(th=>{
   th.onclick=()=>setAvailSort(th.dataset.sort);});})();
 
+// browsing depth per position — SEARCH always bypasses these and sees the full pool
+const BROWSE_CAP={QB:32,RB:100,WR:110,TE:40,IDP:80,K:32,DST:32};
 function renderAvail(filterPos="ALL", search=""){
   const body=document.getElementById('availBody');
   const s=search.trim().toLowerCase();
-  const rows=POOL.filter(p=>(filterPos==="ALL"||p.pos===filterPos)&&(!s||p.nm.toLowerCase().includes(s)));
+  let rows=POOL.filter(p=>(filterPos==="ALL"||p.pos===filterPos)&&(!s||p.nm.toLowerCase().includes(s)));
+  const total=rows.length;
+  if(!s)rows=rows.filter(p=>(p.posRank||1)<=(BROWSE_CAP[p.pos]||60));
+  const shown=rows.length;
   if(availSort.key){
     const k=availSort.key,d=availSort.dir;
     rows.sort((a,b)=>{
@@ -1887,7 +1892,9 @@ function renderAvail(filterPos="ALL", search=""){
     </tr>`;
   });
   body.innerHTML=html||`<tr><td colspan="11" style="text-align:center;padding:20px;color:var(--grey-dk)">no players match — clear /search</td></tr>`;
-  document.getElementById('availCount').textContent=POOL.length+" left";
+  document.getElementById('availCount').textContent=
+    (shown<total? `showing ${shown} of ${total} — /search sees everyone` : `${total} shown`)
+    + ` · ${POOL.length} in pool`;
   // wire rows
   body.querySelectorAll('tr[data-nm]').forEach(tr=>{
     tr.addEventListener('click',e=>{
@@ -2690,10 +2697,47 @@ function renderGrade(){
   if(lists[0]) lists[0].innerHTML = strong.length
     ? strong.map(p=>`<li><span class="m">+</span><span><b style="color:#fff">${p} edge:</b> your starters project ${Math.round(you[p])} vs league avg ${avg[p]||0}.</span></li>`).join('')
     : '<li><span class="m">+</span><span>draft your team to see strengths</span></li>';
-  if(lists[1]) lists[1].innerHTML = weak.length
-    ? weak.map(p=> holes.includes(p)
+  // bye stacks (FantasyPros-style callout — 3+ starters sharing a week is a real hole)
+  const byeLines=[];
+  {
+    const wkMap={};
+    ROSTER.forEach(sl=>{if(sl.player&&sl.player.bye)
+      (wkMap[sl.player.bye]=wkMap[sl.player.bye]||[]).push(sl.player.nm);});
+    Object.entries(wkMap).filter(([,names])=>names.length>=3)
+      .sort((a,b)=>b[1].length-a[1].length)
+      .forEach(([wk,names])=>byeLines.push(
+        `<li><span class="m">!</span><span><b style="color:#fff">Week ${wk} bye stack:</b> `
+        +`${names.slice(0,4).join(', ')}${names.length>4?` +${names.length-4}`:''} all out — `
+        +`line up fill-ins before that week.</span></li>`));
+  }
+  // bench depth vs the room (our grade used to ignore the bench entirely)
+  let benchLine='';
+  {
+    const t=teamsFromHistory(), totals=[];
+    for(let s=1;s<=NT;s++){
+      const ps=t[s]||[]; if(!ps.length)continue;
+      const starterPts=starterTotal(startersByPos(ps));
+      const allPts=ps.reduce((sum,p)=>sum+(p.proj||0),0);
+      totals.push({s,bench:allPts-starterPts});
+    }
+    if(totals.length>=6){
+      totals.sort((a,b)=>b.bench-a.bench);
+      const myIdx=totals.findIndex(x=>x.s===MY_SLOT);
+      if(myIdx>=0){
+        const rank=myIdx+1;
+        if(rank>totals.length*0.6)benchLine=
+          `<li><span class="m">!</span><span><b style="color:#fff">Bench depth:</b> `
+          +`${rank}th of ${totals.length} — one injury from starting waiver fodder. `
+          +`Prefer RB/WR depth over 2nd TE/QB with mid picks.</span></li>`;
+      }
+    }
+  }
+  const weakLines = weak.map(p=> holes.includes(p)
         ? `<li><span class="m">!</span><span><b style="color:var(--red)">${p}: EMPTY starting slot</b> — no ${p} rostered; you start 0 here. Draft or stream one before Week 1.</span></li>`
-        : `<li><span class="m">!</span><span><b style="color:#fff">${p} gap:</b> ${Math.round(you[p]||0)} vs league avg ${avg[p]||0} — target an upgrade.</span></li>`).join('')
+        : `<li><span class="m">!</span><span><b style="color:#fff">${p} gap:</b> ${Math.round(you[p]||0)} vs league avg ${avg[p]||0} — target an upgrade.</span></li>`)
+    .concat(byeLines).concat(benchLine?[benchLine]:[]);
+  if(lists[1]) lists[1].innerHTML = weakLines.length
+    ? weakLines.join('')
     : '<li><span class="m">!</span><span>no glaring holes yet — keep stacking value.</span></li>';
 
   // ---- report-card narrative: composed from the ACTUAL draft, never canned ----
@@ -2840,14 +2884,15 @@ const NFL_DSTS=[
   {nm:"Raiders D/ST",tm:"LV"},{nm:"Giants D/ST",tm:"NYG"},{nm:"Jaguars D/ST",tm:"JAX"},{nm:"Panthers D/ST",tm:"CAR"}];
 let MKT_SRC='ADP';   // where the market reference comes from ('ADP' | 'ECR') — see below
 function mapBoardToPool(rows){
-  // Surface a sensible depth per position; cap K/DST/IDP so streamers don't flood
-  // the board, and SINK them below skill players (you stream them, not draft them early).
-  const CAP={QB:24,RB:72,WR:84,TE:24,IDP:40,K:16,DST:16};   // caps must exceed the 10 teams so every team can still draft a K/DST/IDP late
+  // THE WHOLE BOARD lives in POOL — no construction-time caps. Caps used to hide
+  // 1,000+ real players (Myles Garrett, all 32 D/ST, deep rookies) and broke
+  // search, which read as data loss. Browsing depth is limited at RENDER time
+  // instead (renderAvail), and search always sees everyone.
   const SINK={K:3,DST:2,IDP:1};   // 0 = skill (top), higher = lower on the board
   const byPos={};
   rows.forEach(r=>{
     const pos=r.position;
-    const p={rk:r.rank,nm:r.name,tm:r.team,pos,ecr:r.ecr||null,sos:r.sos||null,
+    const p={rk:r.rank,nm:r.name,tm:r.team,pos,ecr:r.ecr||null,sos:r.sos||null,fpAdp:r.fpAdp||null,
              proj:Math.round(r.points||0),vorp:Math.round(r.vorp||0),
              adp:(r.adp!=null?Math.max(1,Math.round(r.adp)):null),   // null stays null — a missing ADP is NOT pick 1
              bye:r.bye||0,note:"",headshot:r.headshot||null,rec:false,
@@ -2870,12 +2915,13 @@ function mapBoardToPool(rows){
       // models/dst.py with a verified real-scale ADP, and K ADPs sit uncompressed in
       // the 150+ band — keep ADP for those, use ECR for skill, nothing for IDP
       // (no public market ranks IDP for this league's scoring).
-      if(!junk)p.mkt=(p.adp!=null?p.adp:(p.ecr||null));
+      if(!junk)p.mkt=(p.adp!=null?p.adp:(p.fpAdp??p.ecr??null));
       else if(p.pos==='DST'||p.pos==='K')p.mkt=(p.adp!=null?p.adp:null);
       // IDP adp is OUR league-derived market curve (first IDP goes ~pick 104-123
       // in this room), not the junk national feed — trust it.
       else if(p.pos==='IDP')p.mkt=(p.adp!=null?p.adp:null);
-      else p.mkt=p.ecr||null;
+      // skill: FantasyPros ADP (true market price) beats ECR (expert opinion)
+      else p.mkt=p.fpAdp??p.ecr??null;
     });
     if(junk)console.warn('DraftIQ: ADP feed is on a junk scale — market reference switched to FantasyPros ECR');
   }
@@ -2895,7 +2941,7 @@ function mapBoardToPool(rows){
     if(pos==='DST'&&byPos[pos].some(p=>p.w1Rank))
       byPos[pos].sort((a,b)=>(a.w1Rank||99)-(b.w1Rank||99));
     else byPos[pos].sort((a,b)=>b.vorp-a.vorp);
-    byPos[pos].slice(0,CAP[pos]||40).forEach((p,i)=>{ p.tier=tierFor(pos,i+1); pool.push(p); });
+    byPos[pos].forEach((p,i)=>{ p.tier=tierFor(pos,i+1); p.posRank=i+1; pool.push(p); });
   }
   // skill ranked by VORP first; K/DST/IDP sink to the bottom. Within D/ST keep the
   // matchup order (VORP is noise there, so it must not re-sort them).

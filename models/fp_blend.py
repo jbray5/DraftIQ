@@ -148,9 +148,10 @@ def apply(players: list[dict], scoring: dict, w_fp: float = 0.5) -> tuple[list[d
 
 def load_ecr() -> dict:
     """FP overall draft board (FantasyPros_2026_Draft_ALL_Rankings.csv) ->
-    {norm_name: {'ecr', 'ecr_tier', 'sos'}}. ECR = consensus of 100+ experts'
-    holistic ranks — an independent signal from the 3-source stat projections.
-    (No IDP in FP's board — your league's DP slot is invisible to them.)"""
+    {norm_name: {'ecr', 'ecr_tier', 'sos', 'fp_adp'}}. ECR = consensus of 100+
+    experts' holistic ranks. fp_adp is derived from the 'ECR VS. ADP' delta
+    (ADP = RK − delta) — a true market price, superseded by a dedicated ADP
+    export when one exists (load_fp_adp). (No IDP in FP's board.)"""
     out = {}
     for f in glob.glob(str(FP_DIR / "*Draft_ALL_Rankings*.csv")):
         with open(f, newline="", encoding="utf-8-sig") as fh:
@@ -161,25 +162,55 @@ def load_ecr() -> dict:
                     continue
                 sos = re.match(r"(\d)", str(r.get("SOS SEASON", "")))
                 mpos = re.match(r"([A-Z]+)", str(r.get("POS", "")))
+                delta = re.match(r"([+-]?\d+)", str(r.get("ECR VS. ADP", "")).strip())
                 out[norm_name(name)] = {
                     "ecr": int(rk),
                     "ecr_tier": int(r["TIERS"]) if str(r.get("TIERS", "")).isdigit() else None,
                     "sos": int(sos.group(1)) if sos else None,
                     "pos": mpos.group(1) if mpos else "",
+                    "fp_adp": (int(rk) - int(delta.group(1))) if delta else None,
                 }
     return out
 
 
+def load_fp_adp() -> dict:
+    """Dedicated FantasyPros ADP export (FantasyPros_2026_Overall_ADP_Rankings.csv,
+    from fantasypros.com/nfl/adp — the consensus 'AVG' across ESPN/Sleeper/etc.)
+    -> {norm_name: {'fp_adp', 'pos'}}. This is the PREFERRED market source when the
+    file exists; the ALL_Rankings delta derivation is the fallback."""
+    out = {}
+    for f in glob.glob(str(FP_DIR / "*Overall_ADP*Rankings*.csv")):
+        with open(f, newline="", encoding="utf-8-sig") as fh:
+            for r in csv.DictReader(fh):
+                name = str(r.get("Player") or r.get("PLAYER NAME") or "").strip()
+                avg = str(r.get("AVG") or r.get("Avg") or r.get("ADP") or "").strip()
+                if not name or not avg:
+                    continue
+                try:
+                    adp = float(avg.replace(",", ""))
+                except ValueError:
+                    continue
+                mpos = re.match(r"([A-Z]+)", str(r.get("POS") or r.get("Pos") or ""))
+                out[norm_name(name)] = {"fp_adp": round(adp, 1),
+                                        "pos": mpos.group(1) if mpos else ""}
+    return out
+
+
 def annotate_ecr(players: list[dict]) -> int:
-    """Attach ecr / ecr_tier / sos to matched players (no effect on points/VORP).
-    Position-guarded: an IDP sharing a name with a skill player (e.g. the
-    defensive Justin Jefferson) must not inherit the WR's expert rank."""
+    """Attach ecr / ecr_tier / sos / fp_adp to matched players (no effect on
+    points/VORP). Position-guarded: an IDP sharing a name with a skill player
+    (e.g. the defensive Justin Jefferson) must not inherit the WR's expert rank.
+    fp_adp preference: dedicated ADP export > ALL_Rankings delta derivation."""
     ecr = load_ecr()
+    adp = load_fp_adp()
     n = 0
     for p in players:
-        hit = ecr.get(norm_name(p.get("name", "")))
+        key = norm_name(p.get("name", ""))
+        hit = ecr.get(key)
         if hit and hit["pos"] == str(p.get("position", "")).upper():
             p["ecr"], p["ecr_tier"], p["sos"] = hit["ecr"], hit["ecr_tier"], hit["sos"]
+            a = adp.get(key)
+            p["fp_adp"] = (a["fp_adp"] if a and a["pos"] == hit["pos"] else hit.get("fp_adp"))
             n += 1
     return n
 
