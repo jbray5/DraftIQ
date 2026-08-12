@@ -1287,7 +1287,7 @@ body.glitch .crt-flicker{opacity:.9;background:rgba(255,85,85,.06)}
               <thead>
                 <tr>
                   <th class="l sortable" data-sort="rk">RANK</th><th class="l sortable" data-sort="nm">NAME</th><th class="l sortable" data-sort="pos">POS</th>
-                  <th class="sortable" data-sort="proj">PROJ</th><th class="sortable" data-sort="vorp">VORP</th><th class="sortable" data-sort="mkt" title="market rank — ECR fallback when the ADP feed is degraded">MKT</th><th class="sortable" data-sort="ecr">ECR</th><th class="sortable" data-sort="tier">TIER</th><th class="sortable" data-sort="bye">BYE</th><th class="sortable" data-sort="val" title="current pick minus market rank — positive = falling to you">VAL</th>
+                  <th class="sortable" data-sort="proj">PROJ</th><th class="sortable" data-sort="vorp">VORP</th><th class="sortable" data-sort="mkt" title="market rank — ECR fallback when the ADP feed is degraded">MKT</th><th class="sortable" data-sort="ecr">ECR</th><th class="sortable" data-sort="tier">TIER</th><th class="sortable" data-sort="bye">BYE</th><th class="sortable" data-sort="val" title="current pick minus market rank — positive = falling to you">VAL</th><th class="sortable" data-sort="ups" title="dart-zone upside: how many board slots EARLIER the market (FP ADP/ECR) drafts him than our projection ranks him — a tiebreaker between comparable darts, not a ranking (backtested)">UPS</th>
                   <th style="text-align:center">ACTION</th>
                 </tr>
               </thead>
@@ -1888,7 +1888,7 @@ function renderModelVerdict(r,note){
 /* column sorting for the available table — click a header, click again to flip.
    Nulls always sink to the bottom; the sort survives re-renders during a draft. */
 let availSort={key:null,dir:1};
-const AVAIL_SORT_DEFAULT={rk:1,nm:1,pos:1,proj:-1,vorp:-1,mkt:1,ecr:1,tier:1,bye:1,val:-1};
+const AVAIL_SORT_DEFAULT={rk:1,nm:1,pos:1,proj:-1,vorp:-1,mkt:1,ecr:1,tier:1,bye:1,val:-1,ups:-1};
 function availSortVal(p,key){
   if(key==='nm')return p.nm.toLowerCase();
   if(key==='pos')return p.pos;
@@ -1908,6 +1908,16 @@ function setAvailSort(key){
 (function(){document.querySelectorAll('.ptable thead th.sortable').forEach(th=>{
   th.onclick=()=>setAvailSort(th.dataset.sort);});})();
 
+// UPS cell — dart-zone upside (market premium) + expert-spread flags when the
+// FP consensus export (BEST/WORST/STD.DEV) has been dropped in data/raw/fantasypros.
+function upsCell(p){
+  if(p.ups==null)return '<span style="color:var(--grey-dk)">—</span>';
+  let flags='',tip=`market pays ${p.ups} board slots above our projection rank`;
+  if(p.fpBest!=null&&p.ecr!=null&&(p.ecr-p.fpBest)>=25){flags+='▲';tip+=` · most bullish expert: #${Math.round(p.fpBest)} (ceiling)`;}
+  if(p.fpStd!=null&&p.fpStd>=12){flags+='⚠';tip+=` · expert σ ${p.fpStd} (they disagree — bust risk)`;}
+  const hot=p.ups>=100;
+  return `<span title="${tip}" style="color:${hot?'var(--amber)':'var(--grey)'}">+${p.ups}${flags?(' '+flags):''}</span>`;
+}
 // browsing depth per position — SEARCH always bypasses these and sees the full pool
 const BROWSE_CAP={QB:32,RB:100,WR:110,TE:40,IDP:80,K:32,DST:32};
 function renderAvail(filterPos="ALL", search=""){
@@ -1932,7 +1942,7 @@ function renderAvail(filterPos="ALL", search=""){
   let lastTier=null,html="";
   rows.forEach(p=>{
     if(showTiers&&p.tier!==lastTier){
-      html+=`<tr class="tier-divider"><td colspan="11">──── ${p.pos} TIER ${p.tier} ────</td></tr>`;
+      html+=`<tr class="tier-divider"><td colspan="12">──── ${p.pos} TIER ${p.tier} ────</td></tr>`;
       lastTier=p.tier;
     }
     const vt=valueTag(p.mkt);
@@ -1948,13 +1958,14 @@ function renderAvail(filterPos="ALL", search=""){
       <td class="tier">${p.tier}</td>
       <td>${p.bye}</td>
       <td class="${vt.c}">${vt.t}</td>
+      <td>${upsCell(p)}</td>
       <td style="text-align:center"><span class="rowact">
         <button class="mini-btn draft" data-act="draft" data-nm="${p.nm}">DRAFT</button>
         <button class="mini-btn ask" data-act="ask" data-nm="${p.nm}">ASK</button>
       </span></td>
     </tr>`;
   });
-  body.innerHTML=html||`<tr><td colspan="11" style="text-align:center;padding:20px;color:var(--grey-dk)">no players match — clear /search</td></tr>`;
+  body.innerHTML=html||`<tr><td colspan="12" style="text-align:center;padding:20px;color:var(--grey-dk)">no players match — clear /search</td></tr>`;
   document.getElementById('availCount').textContent=
     (shown<total? `showing ${shown} of ${total} — /search sees everyone` : `${total} shown`)
     + ` · ${POOL.length} in pool`;
@@ -2956,6 +2967,7 @@ function mapBoardToPool(rows){
   rows.forEach(r=>{
     const pos=r.position;
     const p={rk:r.rank,nm:r.name,tm:r.team,pos,ecr:r.ecr||null,sos:r.sos||null,fpAdp:r.fpAdp||null,
+             fpBest:r.fpBest||null,fpWorst:r.fpWorst||null,fpStd:r.fpStd||null,
              proj:Math.round(r.points||0),vorp:Math.round(r.vorp||0),
              adp:(r.adp!=null?Math.max(1,Math.round(r.adp)):null),   // null stays null — a missing ADP is NOT pick 1
              bye:r.bye||0,note:"",headshot:r.headshot||null,rec:false,
@@ -2985,6 +2997,12 @@ function mapBoardToPool(rows){
       else if(p.pos==='IDP')p.mkt=(p.adp!=null?p.adp:null);
       // skill: FantasyPros ADP (true market price) beats ECR (expert opinion)
       else p.mkt=p.fpAdp??p.ecr??null;
+      // UPS — dart-zone upside: board slots the market pays ABOVE our projection
+      // rank. Display/tiebreak only (backtested 2023-24: projection order is the
+      // better primary dart ranker) — meaningful only for negative-VORP skill.
+      const m=p.fpAdp??p.ecr;
+      p.ups=(['QB','RB','WR','TE'].includes(p.pos)&&m!=null&&p.vorp<=0&&(p.rk-m)>0)
+        ?Math.round(p.rk-m):null;
     });
     if(junk)console.warn('DraftIQ: ADP feed is on a junk scale — market reference switched to FantasyPros ECR');
   }

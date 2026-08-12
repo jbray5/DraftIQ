@@ -177,6 +177,21 @@ score) with headshots; the frontend prefers these server values over the legacy
 client-side `calculateDraftMetrics` composite. The coach (`/api/ai/opinion`) gets the
 validated insights + `manager_profiles.json` (weighted by confidence) injected.
 
+**Late-round upside (backtested 2026-08-11, 2023+2024 proj-vs-actuals).** Projection
+order is the BEST primary dart ranker (top-20 darts by projection hit startable 35-50%
+vs 25% for market-premium order) — never re-rank darts by upside. But WITHIN the
+comparable-projection band, market premium (FP ADP earlier than our rank) added +12pts
+pooled hit rate (42% vs 19% in 2024 — McConkey/Worthy; flat in 2023), so it's a
+TIEBREAKER: the **UPS column** (display-only, dart-zone skill players, sortable) =
+board rank − fp_adp/ecr. `pick_engine.ceiling_proxy` now ranks market off
+fp_adp→ecr→adp (the raw `adp` column is junk-compressed for skill; it still feeds
+survival — a bigger surgery deliberately NOT done pre-draft). FP's upside/bust tags
+don't export (placeholder text), but their quantitative core does: the consensus-
+rankings export's BEST/WORST/STD.DEV columns (fp_blend.load_expert_spread, auto-
+detected by header) → fp_best/fp_worst/fp_std board columns → ▲ ceiling / ⚠ bust
+flags on UPS + coach context. Coach persona now classifies picks (SAFE FLOOR /
+CEILING DART / HANDCUFF / STREAMER) and gives price-conditioned dart verdicts.
+
 ## AI coach
 
 `/api/ai/opinion` → Anthropic Claude, **structured JSON** output

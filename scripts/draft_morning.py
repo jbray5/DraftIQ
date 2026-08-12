@@ -10,8 +10,13 @@ Runs, in order:
   5. Board diff                   — biggest movers vs the previous board (news check)
 
 Exit code 0 = every stage succeeded. Run F9 in the app afterward for the final word.
-FantasyPros exports are the one manual step: download fresh ones into
-data/raw/fantasypros/ BEFORE running this (Rankings->Draft->Export, ADP->Export).
+FantasyPros exports are the one manual step — download fresh ones into
+data/raw/fantasypros/ BEFORE running this (all while logged in):
+  1. Rankings -> Draft -> Export        (FantasyPros_2026_Draft_ALL_Rankings.csv)
+  2. ADP page -> Export                 (FantasyPros_2026_Overall_ADP_Rankings.csv)
+  3. Rankings export WITH the BEST/WORST/STD.DEV columns (the consensus-rankings
+     download) — powers the UPS column's ceiling/bust flags. Any filename works;
+     it's auto-detected by header.
 """
 from __future__ import annotations
 

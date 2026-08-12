@@ -81,7 +81,8 @@ def check_idp_feed(rows: list[dict]) -> list[str]:
 def _players_from_csv(path: Path) -> list[dict]:
     """Reuse the last good board's rows as the player pool (no upstream fetch)."""
     df = pd.read_csv(path)
-    keep = ("sd_pts", "fp_pts", "ecr", "ecr_tier", "sos", "fp_adp")
+    keep = ("sd_pts", "fp_pts", "ecr", "ecr_tier", "sos", "fp_adp",
+            "fp_best", "fp_worst", "fp_std")
     out = []
     for r in df.to_dict("records"):
         if str(r.get("pos")) == "DST":
@@ -225,11 +226,13 @@ def build(season: str = "2026REG", scoring_year: int = 2026,
         lambda r: round(r["vorp"] * STREAM_DISCOUNT.get(r["pos"], 1.0), 1), axis=1)
     df = df.sort_values("draft_value", ascending=False).reset_index(drop=True)
     df.insert(0, "rank", range(1, len(df) + 1))
-    for c in ("sd_pts", "fp_pts", "ecr", "ecr_tier", "sos", "fp_adp"):
+    for c in ("sd_pts", "fp_pts", "ecr", "ecr_tier", "sos", "fp_adp",
+              "fp_best", "fp_worst", "fp_std"):
         if c not in df.columns:
             df[c] = None
     out = df[["rank", "playerId", "name", "pos", "pos_rank", "team", "points", "vorp",
-              "draft_value", "adp", "sd_pts", "fp_pts", "ecr", "ecr_tier", "sos", "fp_adp"]] \
+              "draft_value", "adp", "sd_pts", "fp_pts", "ecr", "ecr_tier", "sos", "fp_adp",
+              "fp_best", "fp_worst", "fp_std"]] \
         .rename(columns={"points": "league_pts"})
     out.to_csv(path, index=False)
     print(f"board -> {path.relative_to(ROOT)} ({len(out)} players)")

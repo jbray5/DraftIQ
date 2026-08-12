@@ -196,13 +196,55 @@ def load_fp_adp() -> dict:
     return out
 
 
+def load_expert_spread() -> dict:
+    """FP consensus-rankings export with per-expert spread (BEST / WORST / STD.DEV
+    columns — fantasypros.com/nfl/rankings 'Export' while logged in; drop the file
+    in data/raw/fantasypros/). BEST = the most bullish expert's rank (a CEILING
+    read), STD.DEV = expert disagreement (a RISK read) — the quantitative core of
+    FP's 'High upside / High bust' tags. Auto-detected by header, any filename.
+    -> {norm_name: {'best', 'worst', 'std', 'avg', 'pos'}}"""
+    out = {}
+    for f in glob.glob(str(FP_DIR / "*.csv")):
+        try:
+            with open(f, newline="", encoding="utf-8-sig") as fh:
+                rdr = csv.DictReader(fh)
+                heads = {str(h).strip().upper().replace(" ", "").rstrip(".")
+                         for h in (rdr.fieldnames or [])}
+                if not ({"BEST", "STD.DEV"} <= heads or {"BEST", "STDDEV"} <= heads):
+                    continue
+                for r in rdr:
+                    rr = {str(k).strip().upper().replace(" ", "").rstrip("."): v
+                          for k, v in r.items() if k}
+                    name = str(rr.get("PLAYERNAME") or rr.get("PLAYER") or "").strip()
+                    if not name:
+                        continue
+                    try:
+                        best = float(str(rr.get("BEST", "")).strip() or 0)
+                        std = float(str(rr.get("STD.DEV") or rr.get("STDDEV") or 0) or 0)
+                    except ValueError:
+                        continue
+                    if best <= 0:
+                        continue
+                    worst = _num(rr.get("WORST"))
+                    avg = _num(rr.get("AVG"))
+                    mpos = re.match(r"([A-Z]+)", str(rr.get("POS", "")))
+                    out[norm_name(name)] = {"best": best, "worst": worst or None,
+                                            "std": std or None, "avg": avg or None,
+                                            "pos": mpos.group(1) if mpos else ""}
+        except OSError:
+            continue
+    return out
+
+
 def annotate_ecr(players: list[dict]) -> int:
-    """Attach ecr / ecr_tier / sos / fp_adp to matched players (no effect on
-    points/VORP). Position-guarded: an IDP sharing a name with a skill player
-    (e.g. the defensive Justin Jefferson) must not inherit the WR's expert rank.
+    """Attach ecr / ecr_tier / sos / fp_adp (+ fp_best/fp_worst/fp_std when a
+    spread export exists) to matched players (no effect on points/VORP).
+    Position-guarded: an IDP sharing a name with a skill player (e.g. the
+    defensive Justin Jefferson) must not inherit the WR's expert rank.
     fp_adp preference: dedicated ADP export > ALL_Rankings delta derivation."""
     ecr = load_ecr()
     adp = load_fp_adp()
+    spread = load_expert_spread()
     n = 0
     for p in players:
         key = norm_name(p.get("name", ""))
@@ -211,6 +253,9 @@ def annotate_ecr(players: list[dict]) -> int:
             p["ecr"], p["ecr_tier"], p["sos"] = hit["ecr"], hit["ecr_tier"], hit["sos"]
             a = adp.get(key)
             p["fp_adp"] = (a["fp_adp"] if a and a["pos"] == hit["pos"] else hit.get("fp_adp"))
+            s = spread.get(key)
+            if s and (not s["pos"] or s["pos"] == hit["pos"]):
+                p["fp_best"], p["fp_worst"], p["fp_std"] = s["best"], s["worst"], s["std"]
             n += 1
     return n
 

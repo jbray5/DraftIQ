@@ -96,6 +96,17 @@ _COACH_PERSONA = (
     "model's value) — trust them. When you cite an opponent tendency, name the team and "
     "WEIGHT IT BY CONFIDENCE (ignore 'low'-confidence / new-manager reads). Use only the "
     "data provided. Be decisive and concise — the user is on the clock.\n\n"
+    "PICK TYPES — classify every candidate you discuss: SAFE FLOOR (projection-backed "
+    "starter), CEILING DART (negative-VORP bench swing where the market/experts see a role "
+    "our projection doesn't), HANDCUFF (value gated on an injury ahead of him), or STREAMER "
+    "(K/D-ST/late IDP). For CEILING DARTS always give a PRICE-CONDITIONED verdict — name "
+    "the pick where he becomes worth it, anchored to his market cost (fp_adp/ecr), e.g. "
+    "'worth a swing at 130+, a reach at 100'. Dart upside signals, in order: market premium "
+    "(fp_adp/ecr far earlier than our projection rank = someone sees a role), and when "
+    "present fp_best (the most bullish expert's rank = perceived CEILING) vs fp_std (expert "
+    "disagreement = BUST risk). Backtested caveat: projection order is still the best "
+    "primary dart ranker (2023-24: 35-50% hit vs 25% for pure market premium) — treat "
+    "upside signals as tiebreakers among comparable projections, never as the ranking.\n\n"
 )
 
 
@@ -757,6 +768,11 @@ def board():
             "ecrTier": int(num(r.get("ecr_tier"))) if num(r.get("ecr_tier")) is not None else None,
             "sos": int(num(r.get("sos"))) if num(r.get("sos")) is not None else None,
             "fpAdp": num(r.get("fp_adp")),
+            # expert spread (from the FP consensus export when present): best = most
+            # bullish expert's rank (ceiling read), std = disagreement (bust risk)
+            "fpBest": num(r.get("fp_best")),
+            "fpWorst": num(r.get("fp_worst")),
+            "fpStd": num(r.get("fp_std")),
             # week-1 matchup (D/ST + K only; None everywhere else)
             "w1Rank": w1.get("w1Rank") if w1 else None,
             "w1Tier": w1.get("w1Tier") if w1 else None,
@@ -1055,9 +1071,39 @@ def ai_chat():
                     bucket.append({"name": r["name"], "team": r.get("team"),
                                    "proj": round(float(r.get("league_pts") or 0)),
                                    "vorp": round(float(r.get("vorp") or 0), 1),
-                                   "adp": float(r["adp"]) if r.get("adp") else None})
+                                   "adp": float(r["adp"]) if r.get("adp") else None,
+                                   "fp_adp": float(r["fp_adp"]) if r.get("fp_adp") else None,
+                                   "ecr": float(r["ecr"]) if r.get("ecr") else None})
                 except (ValueError, KeyError):
                     continue
+
+        # Any player the user NAMES gets his full board row attached — the
+        # top-6-per-position window missed deep names (KC Concepcion, Jayden
+        # Higgins) and the coach rightly refused to invent numbers for them.
+        import re as _re
+        qtext = " ".join([question] + [str(m.get("content") or "")
+                                       for m in (body.get("history") or [])]).lower()
+        mentioned = []
+        for r in rows:
+            nm = str(r.get("name") or "")
+            ln = nm.lower()
+            if not ln:
+                continue
+            last = ln.split()[-1]
+            if ln in qtext or (len(last) >= 5 and _re.search(r"\b" + _re.escape(last) + r"\b", qtext)):
+                row = {"name": nm, "pos": r.get("pos"), "team": r.get("team"),
+                       "alreadyDrafted": norm_name(nm) in gone}
+                for k in ("league_pts", "vorp", "rank", "adp", "ecr", "fp_adp",
+                          "fp_best", "fp_worst", "fp_std"):
+                    v = r.get(k)
+                    if v not in (None, ""):
+                        try:
+                            row[k] = round(float(v), 1)
+                        except ValueError:
+                            row[k] = v
+                mentioned.append(row)
+            if len(mentioned) >= 10:
+                break
 
         state = {
             "meta": {"pickNumber": overall_pick, "round": (overall_pick - 1) // teams + 1,
@@ -1066,6 +1112,7 @@ def ai_chat():
             "recentPicks": picks[-12:],
             "engine": engine,
             "bestAvailableByPosition": top_avail,
+            "mentionedPlayers": mentioned,
         }
 
         # Bounded multi-turn history from the client (keeps follow-ups coherent).
@@ -1085,7 +1132,10 @@ def ai_chat():
             "current #1, `shortlist[].survival` is each player's probability of still being "
             "available at the user's next pick, and `flatMode` means VORP is currently noise. "
             "If the question is about why the model/coach recommends something, explain using "
-            "those fields. Answer in plain prose (no headers, no markdown tables), <=160 words "
+            "those fields. `mentionedPlayers` carries the full board row (our rank/vorp + market "
+            "fp_adp/ecr + expert spread fp_best/fp_std when available) for every player named in "
+            "the conversation — use it so you never have to say a named player isn't in the data. "
+            "Answer in plain prose (no headers, no markdown tables), <=160 words "
             "unless the question genuinely needs more, and end with a clear recommendation when "
             "one is asked for.\n\nDRAFT STATE JSON:\n" + json.dumps(state)
             + "\n\nQUESTION: " + question

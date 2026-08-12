@@ -241,7 +241,19 @@ def shortlist(board_rows: list[dict], drafted_names, my_roster: dict, picks_log:
             pts_rank[id(r)] = i + 1
             nxt = _pts(by_pts[i + 1]) if i + 1 < len(by_pts) else _pts(r)
             cliff_by[id(r)] = round(_pts(r) - nxt, 2)        # drop to the next available at pos
-        for i, r in enumerate(sorted(lst, key=lambda x: (x.get("adp") is None, x.get("adp") or 9999))):
+        # ceiling_proxy's market rank comes from HONEST market data: FP consensus ADP,
+        # then expert rank, then the raw adp column LAST — SportsData's skill ADP is
+        # junk-compressed (camp bodies at "pick 60"), and ranking on it made the
+        # flatten-rescue's upside term noise exactly in the dart zone it serves.
+        # (IDP/K/DST rows have no fp_adp/ecr, so they still rank on `adp` — which for
+        # IDP is the league-derived market curve, the correct price.)
+        def _mkt(x):
+            v = x.get("fp_adp") or x.get("ecr") or x.get("adp")
+            try:
+                return (v is None, float(v) if v is not None else 1e9)
+            except (TypeError, ValueError):
+                return (True, 1e9)
+        for i, r in enumerate(sorted(lst, key=_mkt)):
             adp_rank[id(r)] = i + 1
     adp_queue = {}   # 0-indexed position in the GLOBAL ADP queue among AVAILABLE players
     for i, r in enumerate(sorted(ranked, key=lambda x: (x.get("adp") is None, x.get("adp") or 99999))):
