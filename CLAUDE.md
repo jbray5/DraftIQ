@@ -128,25 +128,23 @@ silently CORRUPTED (its own two endpoints disagree on the same game; every O/U t
 week reads ~20 vs a real ~44). Use ESPN's free API. Beware ESPN providers named
 `* - Live Odds` (they leak the result) and DraftKings' 2019 lines (contaminated).
 
-**⚠️ THE IDP BUFF IS REAL — corrected 2026-08-09.** An earlier pass zeroed solo/asst
-tackles + PD on the commish's recollection that nothing changed. That was WRONG and cost
-IDP ~54% of its value. ESPN's LIVE config (and the user's own league page) confirm:
-**SK 2, TK 1, TKA 0.75, TKS 1.5, PD 1.5, INT/FR/FF/SF/BLKK 2** — so a solo tackle is
-worth 2.5 (total + solo) and a ~110-tackle LB roughly **doubles** (114 → 254 pts).
-Root cause of the confusion: ESPN scoring is **position-scoped** via `pointsOverrides`,
-and `settings.json → scoring_format` FLATTENS that away. `load_scoring(year, slot=)` now
-reads the raw `scoringItems`: base values for offense/IDP, `slot=DST_SLOT (16)` for the
-D/ST column (tackles/PD zeroed, sacks 1.0 not 2.0). This also fixed IDP sacks, which had
-silently been scored at half value. **Never re-add a blanket scoring override.**
-**TACKLES STACK — verified against ESPN's own engine (2026-08-10).** A tackle is either
-solo or assisted (total = solo + asst as COUNTS), but the config pays all THREE
-categories, and ESPN multiplies each configured stat id independently → one solo tackle
-= 1.0 (total) + 1.5 (solo) = 2.5 pts. Proven by reproducing Cashman's ESPN-computed
-appliedTotal (411.71) from his raw projected counts to within 0.83 pts; the no-stack
-hypothesis misses by 182. This is the classic ESPN IDP double-pay misconfiguration
-(user asked the commish to confirm intent). Whatever the commish decides, a rebuild
-re-reads the live config and re-prices IDP automatically — and the draft strategy
-(IDP at the ~pick-90 market window) is invariant to the outcome.
+**✅ TACKLE SCORING RESOLVED — commish ruling 2026-08-11: 1 pt per tackle FLAT.**
+The saga, kept because each step is a trap someone will hit again:
+(1) ESPN scoring is **position-scoped** via `pointsOverrides`, and `settings.json →
+scoring_format` FLATTENS that away. `load_scoring(year, slot=)` reads the raw
+`scoringItems`: base values for offense/IDP, `slot=DST_SLOT (16)` for the D/ST column
+(tackles/PD zeroed, sacks 1.0 not 2.0). **Never re-add a blanket scoring override.**
+(2) The 2026 config initially paid Total 1.0 + Solo 1.5 + Asst 0.75 simultaneously, and
+**tackles STACK** — verified against ESPN's own engine 2026-08-10 by reproducing
+Cashman's appliedTotal (411.71) from raw projected counts to within 0.83 pts (the
+no-stack hypothesis misses by 182). One solo tackle = 2.5 pts; classic ESPN IDP
+double-pay misconfiguration. (3) User confirmed with the commish it WAS a
+misconfiguration; commish removed the solo/asst items same day. **Live config now:
+SK 2, TK 1 flat, PD 1.5, INT/FR/FF/SF/BLKK 2.** Repriced 2026-08-11: Cashman 412 → 200
+(~11.8/wk), board stays LB-dominated, mock sims still take the first IDP in rd 9 — the
+market-window strategy was invariant to the outcome, as predicted. The pipeline
+re-reads the live config on every rebuild, so any future commish change reprices
+automatically (`draft_morning.py` stage 2 diffs it loudly).
 
 **IDP is MARKET-TIMED, not value-discounted (2026-08-09, user's framing).** An elite
 IDP would be held all year (weekly persistence 0.158 ≈ TE), so streaming logic doesn't
@@ -155,8 +153,8 @@ apply — but the ROOM doesn't pay for IDPs early, so the play is to wait. Measu
 123); the season's top IDP went pick 115-185 or UNDRAFTED; **0 of 14 champions took an
 IDP by rd 8**; and the elite tier is ~5 deep, so even the old early-IDP era (2012-16,
 first IDP rds 5-7) never drained it before pick ~105. Implementation: ESPN IDP rows get
-a league-derived **market ADP** (`espn_proj.market_adp`, IDP1≈95 — shifted ~1 rd early
-as a buff hedge) which flows through survival/MKT/opponent-AI naturally, plus a
+a league-derived **market ADP** (`espn_proj.market_adp`, IDP1≈95 — kept ~1 rd early as
+a cheap hedge even after the 8/11 buff removal) which flows through survival/MKT/opponent-AI naturally, plus a
 pick_engine window trigger (best-IDP ADP within the horizon → need_mult 1.5). Validated:
 mock drafts take Cashman at the 90/91 wheel pair, right before the window. STREAM_DISCOUNT
 0.35 stays as a *display* rank; timing comes from the market model.

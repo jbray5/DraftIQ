@@ -7,9 +7,10 @@ frozen on a stale pull.
 
 ESPN is the better source here anyway. We PLAY on ESPN, and `projected_total_points`
 comes back already evaluated under our league's exact scoring config — including the
-position-scoped IDP rules (solo 1.5 + assisted 0.75 + total 1.0 + PD 1.5, sacks 2.0)
-that our own re-derivation kept getting wrong. No re-scoring, no stat mapping, no
-double-count risk.
+position-scoped IDP rules (2026-08-11 commish ruling: total tackle 1.0 FLAT — the
+solo/asst double-pay items were REMOVED from the config — PD 1.5, sacks 2.0) that our
+own re-derivation kept getting wrong. No re-scoring, no stat mapping, no double-count
+risk: whenever the commish touches scoring, a force-refresh reprices automatically.
 
 KICKERS joined the casualty list on 2026-08-10: the same SportsData feed rot zeroed
 every FG *distance split* (all kickers: 0.0 across 0-19/20-29/30-39/40-49/50+), which
@@ -128,10 +129,12 @@ def get_k(season: int = 2026, force: bool = False) -> list[dict]:
 #   first IDP off the board: picks 106-134 (rd 9-12 of 12-team), mean pick 123
 #   k-th IDP round-anchored to 10 teams: IDP1 ~pick 104 ... IDP10 ~pick 128
 #   the season's TOP IDP was drafted pick 115-185 or went entirely undrafted.
-# The 2026 solo/asst/PD buff may pull the room earlier (ESPN's draft room shows
-# the inflated projections to everyone), so the curve is shifted ~1 round early
-# as a hedge. This feeds the SAME survival/urgency machinery as every other
-# position — value stays real; the market price is what makes the engine wait.
+# (The curve was shifted ~1 round early as a hedge while the solo/asst tackle
+# double-pay was live and inflating what the room saw. The commish removed it
+# 2026-08-11 — tackles now 1.0 flat — so the room sees normal values again; the
+# early shift stays as a cheap hedge since our strike is the 90/91 wheel anyway.)
+# This feeds the SAME survival/urgency machinery as every other position —
+# value stays real; the market price is what makes the engine wait.
 _MKT_CURVE = [95, 99, 103, 105, 107, 110, 114, 118, 122, 125, 128, 131]
 
 
@@ -178,7 +181,7 @@ if __name__ == "__main__":
     pts = [r["points"] for r in rows]
     print(f"  points: max {max(pts):.0f} · median {sorted(pts)[len(pts)//2]:.0f} · min {min(pts):.0f}")
     assert len(rows) > 300, "expected several hundred projected defenders"
-    assert max(pts) > 250, "top IDP should clear 250 pts under this league's tackle scoring"
+    assert max(pts) > 150, "top IDP should clear 150 pts (1pt-flat tackles, PD 1.5, SK 2)"
     top_lb = [r for r in rows[:20] if r["position"] == "LB"]
     assert len(top_lb) >= 12, "the top of an IDP board in a tackle-heavy league must be LBs"
     print("SELF-TEST PASSED")

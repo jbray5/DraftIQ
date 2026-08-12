@@ -402,7 +402,7 @@ def shortlist(board_rows: list[dict], drafted_names, my_roster: dict, picks_log:
         # A kicker/defense's preseason VORP is fiction — you stream the best matchup weekly,
         # so replacement ≈ equal and their DRAFT value is ~zero. Their pick is pure timing
         # (need_fit × needMult in the final rounds). IDP keeps its (modest) real value —
-        # it's a required starter, but scoring is 2025 rules (no buff; commish-confirmed).
+        # required starter; tackles 1.0 flat per commish ruling 2026-08-11.
         val_used = r["val"]
         if (r["pos"] == "TE" and openStarter.get("TE", 0) == 0
                 and _rbwr_val_cap is not None):

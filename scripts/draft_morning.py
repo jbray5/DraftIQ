@@ -79,7 +79,10 @@ def main() -> int:
             print(f"   {names[sid]}: {pre_cfg.get(sid)} -> {post_cfg.get(sid)}")
         print("   The rebuild below re-prices everything under the NEW rules.")
     else:
-        print("   unchanged — tackle double-pay still live (solo tackle = 2.5)")
+        tk = next((v[0] for sid, v in post_cfg.items() if sid == 109), "?")
+        has_solo = any(sid in (107, 108) for sid in post_cfg)
+        print(f"   unchanged — tackles {tk} flat (commish ruling 2026-08-11)"
+              + ("  ⚠ solo/asst items present again — inspect!" if has_solo else ""))
 
     stage(3, "Force-refresh ESPN caches (IDP / K / week-1 odds / headshots)")
     try:
