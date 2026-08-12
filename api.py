@@ -59,6 +59,62 @@ def load_profiles_by_owner(active_only=True):
         return {}
 
 
+# Shared, VALIDATED league facts injected into every coach prompt. ONE copy — keep it
+# current (it previously drifted: three endpoints carried a stale "IDP fully streamable"
+# claim from before the market-timing model and the 2026-08-11 tackle ruling).
+LEAGUE_INSIGHTS = (
+    "VALIDATED facts from 14 seasons of THIS league's history -> results: "
+    "(1) Value over replacement (VORP) is what wins here (corr +0.56 with points-for); raw "
+    "projected points is a much weaker signal and rigid RB-early/WR-early templates do NOT "
+    "predict winning. (2) QB can WAIT — champions took their first QB ~round 6 in EVERY era; "
+    "QB replacement is flat, so the cost of waiting a round is usually 1-3 season points. "
+    "(3) D/ST and K are pure STREAMING plays: D/ST identity is nearly irrelevant (week-to-week "
+    "persistence +0.001) and the board orders D/ST by WEEK-1 matchup (implied opponent total, "
+    "r=-0.294, worth ~+55 pts/season streamed); take one D/ST late by matchup and a K in the "
+    "final round. (4) IDP is MARKET-TIMED, NOT streamed: an elite IDP is held all year "
+    "(weekly persistence ~= TE), but the room never pays early — first IDP off the board "
+    "~round 9 historically, 0 of 14 champions took an IDP by round 8, and the elite tier is "
+    "~5 deep. The play: wait until ~pick 90-95, then take the top LB (top IDP ranks ~#41 "
+    "overall). (5) RB-leaning room; with the 2nd FLEX (new 2026) both RB and WR depth matter. "
+    "TE almost never flexes here (1.4% of 1,151 real FLEX starts) — never take a 2nd TE for a "
+    "FLEX slot; the engine caps flex-only TE value at the best available RB/WR for this reason. "
+    "(6) EARLY-round VORP (rds 1-5) carries the draft signal (corr -0.43 w/ finish); champions "
+    "drafted at the 92nd pctile of value THAT year, but draft outcomes do NOT repeat "
+    "year-to-year — the repeatable owner skills are in-season streaming and waivers. "
+    "(7) Scoring ruling 2026-08-11 (commish-confirmed): tackles score 1.0 FLAT (the solo/asst "
+    "double-pay was a rollover misconfiguration, now removed), PD 1.5, sacks 2.0 — the board "
+    "is already priced under these rules (top IDP ~200 pts, ~12/wk)."
+)
+
+_COACH_PERSONA = (
+    "You are DraftIQ Coach, a sharp, league-aware fantasy football draft advisor for a "
+    "10-team, half-PPR ESPN league ('Derek Jeter's Taco Hole') that starts QB, RB, RB, "
+    "WR, WR, TE, FLEX, FLEX, IDP (the DP slot), D/ST, and K, plus bench. Reason from "
+    "value-over-replacement for THIS roster, positional scarcity/runs, ADP value, "
+    "pick-timing (who's likely gone before the user's next pick), bye conflicts, and "
+    "roster construction. The candidate may include `vorp` and `draftScore` (the DraftIQ "
+    "model's value) — trust them. When you cite an opponent tendency, name the team and "
+    "WEIGHT IT BY CONFIDENCE (ignore 'low'-confidence / new-manager reads). Use only the "
+    "data provided. Be decisive and concise — the user is on the clock.\n\n"
+)
+
+
+def coach_system_blocks():
+    """The shared coach system prompt: persona + validated insights, then the cached
+    league-config block. Byte-identical across /api/ai/opinion, /best-pick, and /chat so
+    all three read the same prompt-cache entry."""
+    return [
+        {"type": "text", "text": _COACH_PERSONA + LEAGUE_INSIGHTS},
+        {
+            "type": "text",
+            "text": ("League scoring + tendencies:\n" + json.dumps(load_tendencies())
+                     + "\n\nActive 2026 opponents (tendency sheet — respect each one's confidence):\n"
+                     + json.dumps(load_manager_profiles(active_only=True))),
+            "cache_control": {"type": "ephemeral"},
+        },
+    ]
+
+
 def load_alias_map():
     """data/team_aliases.json — live UI short name -> ESPN owner handle (manager-prior bridge)."""
     p = os.path.join(os.path.dirname(__file__), "data", "team_aliases.json")
@@ -286,46 +342,8 @@ def ai_opinion():
                 for team, slots in board.items()
             }
 
-        # Stable across picks -> cached. Coach persona + validated insights + league + opponents.
-        profiles = load_manager_profiles(active_only=True)
-        insights = (
-            "VALIDATED facts from 7 seasons of THIS league's drafts -> results: "
-            "(1) Value over replacement (VORP) is what wins here (corr +0.56 with points-for); "
-            "raw projected points is a much weaker signal and rigid RB-early/WR-early templates "
-            "do NOT predict winning. (2) QB can WAIT — champions took their first QB ~round 6, and "
-            "managers who reach for QB early finish worse. (3) IDP, K, and D/ST are largely "
-            "streamable — don't spend an early or mid pick on any of them. "
-            "(4) RB-leaning room; with the 2nd FLEX, both RB and WR depth matter. "
-            "(5) League-DNA deep dive (84 team-seasons): EARLY-round VORP (rds 1-5) carries the draft "
-            "signal (corr -0.43 w/ finish); champions drafted at the 92nd pctile of value THAT year but "
-            "draft outcomes do NOT repeat year-to-year — the only REPEATABLE owner skills are in-season: "
-            "streaming volume and waiver production. (6) IDP scoring is UNCHANGED from 2025 — the commish "
-            "confirmed the export's solo/asst/PD entries were rollover defaults, not rules. IDP is fully "
-            "streamable like K/D-ST (top IDP ranks ~#54 overall); do not spend a mid-round pick on one."
-        )
-        system_blocks = [
-            {
-                "type": "text",
-                "text": (
-                    "You are DraftIQ Coach, a sharp, league-aware fantasy football draft advisor for a "
-                    "10-team, half-PPR ESPN league ('Derek Jeter's Taco Hole') that starts QB, RB, RB, "
-                    "WR, WR, TE, FLEX, FLEX, IDP (the DP slot), D/ST, and K, plus bench. Reason from "
-                    "value-over-replacement for THIS roster, positional scarcity/runs, ADP value, "
-                    "pick-timing (who's likely gone before the user's next pick), bye conflicts, and "
-                    "roster construction. The candidate may include `vorp` and `draftScore` (the DraftIQ "
-                    "model's value) — trust them. When you cite an opponent tendency, name the team and "
-                    "WEIGHT IT BY CONFIDENCE (ignore 'low'-confidence / new-manager reads). Use only the "
-                    "data provided. Be decisive and concise — the user is on the clock.\n\n" + insights
-                ),
-            },
-            {
-                "type": "text",
-                "text": ("League scoring + tendencies:\n" + json.dumps(tendencies)
-                         + "\n\nActive 2026 opponents (tendency sheet — respect each one's confidence):\n"
-                         + json.dumps(profiles)),
-                "cache_control": {"type": "ephemeral"},
-            },
-        ]
+        # Stable across picks -> cached. Shared persona + insights + league config.
+        system_blocks = coach_system_blocks()
 
         opinion_format = {
             "type": "json_schema",
@@ -452,8 +470,9 @@ def ai_closing():
         tendencies = load_tendencies()
         profiles = load_manager_profiles(active_only=True)
         insights = (
-            "VALIDATED facts from 7 seasons of THIS league: VORP wins (corr +0.56); QB can "
-            "wait; IDP/K/D-ST are streamable; RB-leaning room. Rival to beat: tcspivey8 (4 titles)."
+            "VALIDATED facts from 14 seasons of THIS league: VORP wins (corr +0.56); QB can "
+            "wait; K/D-ST stream weekly (D/ST by matchup); IDP is held all year but bought at "
+            "the ~rd-9 market window; RB-leaning room. Rival to beat: tcspivey8 (4 titles)."
         )
         system_blocks = [
             {
@@ -845,46 +864,7 @@ def ai_best_pick():
             })
 
         # ---- LLM synthesis over the NAMED shortlist ----
-        tendencies = load_tendencies()
-        profiles = load_manager_profiles(active_only=True)
-        insights = (
-            "VALIDATED facts from 7 seasons of THIS league's drafts -> results: "
-            "(1) Value over replacement (VORP) is what wins here (corr +0.56 with points-for); "
-            "raw projected points is a much weaker signal and rigid RB-early/WR-early templates "
-            "do NOT predict winning. (2) QB can WAIT — champions took their first QB ~round 6, and "
-            "managers who reach for QB early finish worse. (3) IDP, K, and D/ST are largely "
-            "streamable — don't spend an early or mid pick on any of them. "
-            "(4) RB-leaning room; with the 2nd FLEX, both RB and WR depth matter. "
-            "(5) League-DNA deep dive (84 team-seasons): EARLY-round VORP (rds 1-5) carries the draft "
-            "signal (corr -0.43 w/ finish); champions drafted at the 92nd pctile of value THAT year but "
-            "draft outcomes do NOT repeat year-to-year — the only REPEATABLE owner skills are in-season: "
-            "streaming volume and waiver production. (6) IDP scoring is UNCHANGED from 2025 — the commish "
-            "confirmed the export's solo/asst/PD entries were rollover defaults, not rules. IDP is fully "
-            "streamable like K/D-ST (top IDP ranks ~#54 overall); do not spend a mid-round pick on one."
-        )
-        system_blocks = [
-            {
-                "type": "text",
-                "text": (
-                    "You are DraftIQ Coach, a sharp, league-aware fantasy football draft advisor for a "
-                    "10-team, half-PPR ESPN league ('Derek Jeter's Taco Hole') that starts QB, RB, RB, "
-                    "WR, WR, TE, FLEX, FLEX, IDP (the DP slot), D/ST, and K, plus bench. Reason from "
-                    "value-over-replacement for THIS roster, positional scarcity/runs, ADP value, "
-                    "pick-timing (who's likely gone before the user's next pick), bye conflicts, and "
-                    "roster construction. The candidate may include `vorp` and `draftScore` (the DraftIQ "
-                    "model's value) — trust them. When you cite an opponent tendency, name the team and "
-                    "WEIGHT IT BY CONFIDENCE (ignore 'low'-confidence / new-manager reads). Use only the "
-                    "data provided. Be decisive and concise — the user is on the clock.\n\n" + insights
-                ),
-            },
-            {
-                "type": "text",
-                "text": ("League scoring + tendencies:\n" + json.dumps(tendencies)
-                         + "\n\nActive 2026 opponents (tendency sheet — respect each one's confidence):\n"
-                         + json.dumps(profiles)),
-                "cache_control": {"type": "ephemeral"},
-            },
-        ]
+        system_blocks = coach_system_blocks()
         best_pick_format = {
             "type": "json_schema",
             "schema": {
@@ -992,6 +972,138 @@ def ai_best_pick():
             "shortlist": shortlist,
             "urgencyMeta": umeta,
         })
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/api/ai/chat", methods=["POST"])
+def ai_chat():
+    """Free-form mid-draft Q&A. The user asks anything ('why LaPorta over Pitts?',
+    'should I take a QB now or wait?') and Claude answers grounded in the LIVE draft
+    state: the pick engine's shortlist/anchor/survival at the current pick, the roster,
+    recent picks, and the best remaining players by position. Multi-turn: the client
+    sends recent chat history back so follow-ups keep their context."""
+    try:
+        from models import pick_engine
+
+        body = request.get_json(force=True)
+        if client is None:
+            return jsonify({"error": "ANTHROPIC_API_KEY not set on the server"}), 503
+        question = (body.get("question") or "").strip()
+        if not question:
+            return jsonify({"error": "empty question"}), 400
+
+        my_roster = body.get("myRoster", {}) or {}
+        drafted = body.get("drafted", []) or []
+        picks = body.get("picks", []) or []
+        meta = body.get("meta", {}) or {}
+        overall_pick = int(meta.get("pickNumber") or 1)
+        teams = int(meta.get("teams") or 10)
+        rounds = int(meta.get("rounds") or 18)
+        my_slot = body.get("mySlot")
+        bench = body.get("bench") or []
+        team_order = body.get("teamOrder") or []
+
+        rows = _load_board_rows()
+        drafted_set = set(drafted)
+
+        # The engine's live view — same machinery the verdict card runs on, so the chat
+        # can explain exactly what the model is doing. Non-fatal if it can't run.
+        engine = {}
+        try:
+            team_rosters = {}
+            for pk in picks:
+                t = pk.get("team")
+                if t:
+                    team_rosters.setdefault(t, []).append(
+                        {"name": pk.get("name"), "position": pk.get("pos")})
+            sl = pick_engine.shortlist(rows, drafted_set, my_roster, picks, overall_pick,
+                                       teams=teams, team_order=team_order,
+                                       team_rosters=team_rosters, my_slot=my_slot,
+                                       rounds=rounds, bench=bench,
+                                       profiles=load_profiles_by_owner(active_only=True),
+                                       alias_map=load_alias_map())
+            engine = {
+                "anchor": sl["anchor"],
+                "flatMode": sl["flat"],
+                "nextPick": sl["meta"]["nextPick"],
+                "picksUntilNext": sl["meta"]["picksUntilNext"],
+                "openStarters": sl["meta"].get("openStarters", []),
+                "activeRuns": sl["meta"].get("runs", []),
+                "whoPicksBeforeMe": [{"team": t["team"], "needs": t["needs"],
+                                      "tendency": t.get("profile")} for t in sl["intervening"]],
+                "shortlist": [{k: c.get(k) for k in ("name", "position", "team", "proj",
+                              "adp", "vorp", "tier", "survival", "urgency", "fits", "why",
+                              "ecr", "sos")} for c in sl["shortlist"]],
+            }
+        except Exception:
+            traceback.print_exc()
+
+        # Best remaining by position — lets the chat answer 'who's left at TE?' style
+        # questions beyond the shortlist. norm-matched against the drafted list.
+        from models.scoring import norm_name
+        gone = {norm_name(n) for n in drafted_set}
+        top_avail = {}
+        for r in rows:
+            pos = r.get("pos")
+            if norm_name(r.get("name", "")) in gone:
+                continue
+            bucket = top_avail.setdefault(pos, [])
+            if len(bucket) < 6:
+                try:
+                    bucket.append({"name": r["name"], "team": r.get("team"),
+                                   "proj": round(float(r.get("league_pts") or 0)),
+                                   "vorp": round(float(r.get("vorp") or 0), 1),
+                                   "adp": float(r["adp"]) if r.get("adp") else None})
+                except (ValueError, KeyError):
+                    continue
+
+        state = {
+            "meta": {"pickNumber": overall_pick, "round": (overall_pick - 1) // teams + 1,
+                     "teams": teams, "rounds": rounds, "mySlot": my_slot},
+            "myRoster": my_roster, "myBench": bench,
+            "recentPicks": picks[-12:],
+            "engine": engine,
+            "bestAvailableByPosition": top_avail,
+        }
+
+        # Bounded multi-turn history from the client (keeps follow-ups coherent).
+        history = []
+        for m in (body.get("history") or [])[-10:]:
+            role, content = m.get("role"), (m.get("content") or "").strip()
+            if role in ("user", "assistant") and content:
+                history.append({"role": role, "content": content})
+        while history and history[0]["role"] != "user":
+            history.pop(0)
+
+        instruction = (
+            "You are answering a free-form question from the user MID-DRAFT. Ground every claim "
+            "in the DRAFT STATE JSON below — cite the actual numbers (VORP, survival %, ADP/market, "
+            "tier, projections) that drive your answer, and never invent players or stats not in "
+            "the data. `engine` is the DraftIQ pick engine's live view: `anchor` is the model's "
+            "current #1, `shortlist[].survival` is each player's probability of still being "
+            "available at the user's next pick, and `flatMode` means VORP is currently noise. "
+            "If the question is about why the model/coach recommends something, explain using "
+            "those fields. Answer in plain prose (no headers, no markdown tables), <=160 words "
+            "unless the question genuinely needs more, and end with a clear recommendation when "
+            "one is asked for.\n\nDRAFT STATE JSON:\n" + json.dumps(state)
+            + "\n\nQUESTION: " + question
+        )
+        kwargs = {}
+        if COACH_EFFORT:
+            kwargs["output_config"] = {"effort": COACH_EFFORT}
+        resp = client.messages.create(
+            model=COACH_MODEL, max_tokens=1024, system=coach_system_blocks(),
+            messages=history + [{"role": "user", "content": instruction}], **kwargs,
+        )
+        if resp.stop_reason == "refusal":
+            return jsonify({"answer": "Coach declined that one — try rephrasing.",
+                            "refused": True})
+        answer = "".join(b.text for b in resp.content if b.type == "text").strip()
+        return jsonify({"answer": answer,
+                        "anchor": engine.get("anchor"),
+                        "pick": overall_pick})
     except Exception as e:
         traceback.print_exc()
         return jsonify({"error": str(e)}), 500

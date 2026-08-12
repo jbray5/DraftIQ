@@ -555,6 +555,20 @@ body.glitch .crt-flicker{opacity:.9;background:rgba(255,85,85,.06)}
 .take b{color:var(--amber);text-shadow:0 0 10px rgba(255,176,0,.35)}
 .dissent{border:1px dashed var(--amber);background:rgba(255,176,0,.04);padding:8px 11px;margin-top:10px;font-size:11px;line-height:1.45}
 .dissent b{color:var(--amber)}
+/* ===== ASK COACH — free-form mid-draft chat ===== */
+.chat-log{max-height:240px;overflow-y:auto;display:none;margin-bottom:8px}
+.chat-log.live{display:block}
+.chat-msg{font-size:11.5px;line-height:1.5;padding:5px 2px;border-bottom:1px dotted var(--grey-dk)}
+.chat-msg:last-child{border-bottom:none}
+.chat-msg .who{font-weight:800;letter-spacing:.05em;margin-right:6px}
+.chat-msg.u .who{color:var(--cyan)}
+.chat-msg.c .who{color:var(--amber)}
+.chat-msg.c{color:var(--white)}
+.chat-inrow{display:flex;gap:7px}
+.chat-inrow input{flex:1;background:transparent;border:1px solid var(--grey-dk);color:var(--white);
+  font:inherit;font-size:11.5px;padding:7px 10px;outline:none}
+.chat-inrow input:focus{border-color:var(--amber);box-shadow:0 0 8px rgba(255,176,0,.18)}
+.chat-inrow input::placeholder{color:var(--grey-dk)}
 /* ===== clickable team-roster modal ===== */
 .team-click{cursor:pointer}
 .team-click:hover{background:rgba(255,176,0,.06)}
@@ -1226,6 +1240,19 @@ body.glitch .crt-flicker{opacity:.9;background:rgba(255,85,85,.06)}
         </div>
       </div>
 
+      <!-- ASK COACH — free-form Q&A grounded in the live draft state (/api/ai/chat) -->
+      <div class="panel" id="chatPanel">
+        <div class="panel-h">⌨ ASK COACH · ANYTHING <span class="right">sees the live board · engine · your roster</span></div>
+        <div class="panel-body">
+          <div class="chat-log" id="chatLog"></div>
+          <div class="chat-inrow">
+            <input id="chatInput" type="text" autocomplete="off" spellcheck="false"
+              placeholder="ask anything — why Pitts over LaPorta? · QB now or at 90? · who dies before my next pick?"/>
+            <button class="btn amber" id="chatSend">ASK</button>
+          </div>
+        </div>
+      </div>
+
       <!-- THE WHEEL — two-pick planner (slot 10 back-to-back turns; renderWheel) -->
       <div class="panel wheel-panel" id="wheelPanel" style="display:none">
         <div class="panel-h">⟲ THE WHEEL · TWO-PICK PLAN
@@ -1812,6 +1839,42 @@ function renderFused(d,r){
     ${_footHTML(top.name||r.nm)}`;
   _recButtons(top.name||r.nm, topPlayer);
 }
+/* ===== ASK COACH — free-form mid-draft Q&A (/api/ai/chat) =====
+   Sends the SAME live state as the verdict card (roster, picks, engine view) plus the
+   question and bounded chat history, so follow-ups ("ok but what about at 90?") work. */
+const CHAT={hist:[],busy:false};
+function chatEsc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+async function coachChatAsk(q){
+  q=(q||'').trim(); if(!q||CHAT.busy) return;
+  const log=document.getElementById('chatLog'); log.classList.add('live');
+  log.insertAdjacentHTML('beforeend',`<div class="chat-msg u"><span class="who">jray&gt;</span>${chatEsc(q)}</div>`);
+  const pend=document.createElement('div'); pend.className='chat-msg c';
+  pend.innerHTML='<span class="who">coach&gt;</span>reading the board…<span class="cursor cursor--amber"></span>';
+  log.appendChild(pend); log.scrollTop=log.scrollHeight;
+  CHAT.busy=true; document.getElementById('chatSend').disabled=true;
+  try{
+    const picks=Object.entries(PICKS).map(([ov,p])=>({overall:+ov,team:TEAMS[slotForPick(+ov)-1],name:p.full||p.nm,pos:p.pos}));
+    const res=await fetch('/api/ai/chat',{method:'POST',headers:{'content-type':'application/json'},
+      body:JSON.stringify({question:q,history:CHAT.hist.slice(-8),
+        mySlot:MY_SLOT,myRoster:rosterForApi(),bench:BENCH.map(b=>({name:b.nm,position:b.pos})),
+        drafted:Object.values(PICKS).map(p=>p.full||p.nm),picks,teamOrder:TEAMS,
+        meta:{pickNumber:CURRENT_PICK,teams:NT,rounds:ROUNDS}})});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const d=await res.json(); if(d.error) throw new Error(d.error);
+    pend.innerHTML='<span class="who">coach&gt;</span>'+chatEsc(d.answer).replace(/\n+/g,'<br>');
+    CHAT.hist.push({role:'user',content:q},{role:'assistant',content:d.answer});
+    if(CHAT.hist.length>16) CHAT.hist=CHAT.hist.slice(-16);
+  }catch(e){
+    pend.innerHTML='<span class="who">coach&gt;</span><span style="color:var(--red)">coach offline — '+chatEsc(e.message)+'</span>';
+  }
+  CHAT.busy=false; document.getElementById('chatSend').disabled=false;
+  log.scrollTop=log.scrollHeight;
+}
+document.getElementById('chatSend').onclick=()=>{const i=document.getElementById('chatInput');coachChatAsk(i.value);i.value='';};
+document.getElementById('chatInput').addEventListener('keydown',e=>{
+  if(e.key==='Enter'){e.preventDefault();const i=e.target;coachChatAsk(i.value);i.value='';}
+  e.stopPropagation();   // don't let draft hotkeys fire while typing a question
+});
 function renderModelVerdict(r,note){
   const vt=valueTag(r.mkt!==undefined?r.mkt:r.adp), streamable=r.pos==='IDP'||r.pos==='K'||r.pos==='DST';
   const draft=!streamable&&(vt.t.startsWith('+')||r.tier<=3);
@@ -3843,7 +3906,19 @@ function runCmd(v){
   const say=t=>flashStatus('` '+t);
   if(C==='help'){cmdPreview('');return;}
   if(C==='draft'||C==='d'){const p=fuzzyPlayers(arg,1)[0];if(p){draftPlayer(p.nm,p.pos);say('drafted '+p.nm);closePalette();}else say('no match: '+arg);return;}
-  if(C==='ask'||C==='a'){const p=fuzzyPlayers(arg,1)[0];if(p){closePalette();openCoach(p);}else say('no match: '+arg);return;}
+  if(C==='ask'||C==='a'){
+    // short input that matches a player → the per-player deep-dive drawer;
+    // anything question-shaped → the free-form ASK COACH chat.
+    const looksQ=/\?/.test(arg)||arg.trim().split(/\s+/).length>3;
+    const p=looksQ?null:fuzzyPlayers(arg,1)[0];
+    if(p){closePalette();openCoach(p);}
+    else if(arg.trim()){
+      closePalette();
+      document.getElementById('chatPanel').scrollIntoView({behavior:'smooth',block:'center'});
+      coachChatAsk(arg.trim());
+    } else say('usage: ask <player> · ask <any question>');
+    return;
+  }
   if(C==='spy'){const i=TEAMS.findIndex(t=>t.toLowerCase().startsWith(arg.toLowerCase()));
     if(i>=0&&i+1!==MY_SLOT){closePalette();openTeamRoster(i+1);}else say('spy who? '+TEAMS.filter((_,k)=>k+1!==MY_SLOT).join(', '));return;}
   if(C==='find'){showScreen('cmd');const s=document.getElementById('searchInput');s.value=arg;renderAvail(activePos,arg);closePalette();return;}
