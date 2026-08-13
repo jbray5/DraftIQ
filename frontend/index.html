@@ -613,7 +613,7 @@ body.glitch .crt-flicker{opacity:.9;background:rgba(255,85,85,.06)}
 .htile{border:1px solid var(--line);background:#060c08;padding:13px 15px}
 .htile .hv{font-size:30px;font-weight:800;color:var(--amber);line-height:1;letter-spacing:-.5px}
 .htile .hl{font-size:10px;letter-spacing:.1em;color:var(--grey);margin-top:7px}
-.htile .hs{font-size:10px;color:var(--grey-dk);margin-top:3px}
+.htile .hsub{font-size:10px;color:var(--grey-dk);margin-top:3px} /* NOT '.hs' — that's the headshot avatar class; the collision clipped these captions into tiny circles */
 .lab-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
 @media(max-width:1100px){.lab-hero{grid-template-columns:repeat(2,1fr)}.lab-grid{grid-template-columns:1fr}}
 .vlad{display:grid;grid-template-columns:40px 1fr 50px;gap:9px;align-items:center;font-size:11px;padding:4px 0;border-bottom:1px solid #0c140e}
@@ -976,7 +976,7 @@ body.glitch .crt-flicker{opacity:.9;background:rgba(255,85,85,.06)}
   border-radius:var(--r-md);box-shadow:var(--shadow-1)}
 .htile .hv{color:var(--text-1)}
 .htile .hl{color:var(--text-2);text-transform:uppercase}
-.htile .hs{color:var(--text-3)}
+.htile .hsub{color:var(--text-3)}
 .grade-box{background:var(--surface-1);border:1px solid var(--accent);
   border-radius:var(--r-md);box-shadow:var(--shadow-2)}
 .grade-box .label{color:var(--text-3);letter-spacing:.12em}
@@ -2577,10 +2577,10 @@ function renderLab(){
   const SKILLPOS=p=>!['IDP','DST','K'].includes(p.pos);
   const netVal=Math.round(MY_PICKS.filter(SKILLPOS).reduce((s,p)=>s+((p.mkt!=null)?(p.pick-p.mkt):0),0));
   $('labHero').innerHTML=`
-    <div class="htile"><div class="hv">${myTotal||'—'}</div><div class="hl">PROJ STARTING PTS</div><div class="hs">your optimal lineup</div></div>
-    <div class="htile"><div class="hv">${myRank?('#'+myRank):'—'}</div><div class="hl">LEAGUE RANK</div><div class="hs">of ${NT} · ${gap>0?('−'+gap+' vs #1'):'league leader 👑'}</div></div>
-    <div class="htile"><div class="hv" style="color:${netVal>=0?'var(--green)':'var(--red)'}">${netVal>=0?'+':''}${netVal}</div><div class="hl">DRAFT VALUE</div><div class="hs">picks vs market (${MKT_SRC})</div></div>
-    <div class="htile"><div class="hv" style="color:var(--cyan)">${myVorp>=0?'+':''}${myVorp}</div><div class="hl">STARTER VORP</div><div class="hs">value over replacement</div></div>`;
+    <div class="htile"><div class="hv">${myTotal||'—'}</div><div class="hl">PROJ STARTING PTS</div><div class="hsub">your optimal lineup</div></div>
+    <div class="htile"><div class="hv">${myRank?('#'+myRank):'—'}</div><div class="hl">LEAGUE RANK</div><div class="hsub">of ${NT} · ${gap>0?('−'+gap+' vs #1'):'league leader 👑'}</div></div>
+    <div class="htile"><div class="hv" style="color:${netVal>=0?'var(--green)':'var(--red)'}">${netVal>=0?'+':''}${netVal}</div><div class="hl">DRAFT VALUE</div><div class="hsub">picks vs market (${MKT_SRC})</div></div>
+    <div class="htile"><div class="hv" style="color:var(--cyan)">${myVorp>=0?'+':''}${myVorp}</div><div class="hl">STARTER VORP</div><div class="hsub">value over replacement</div></div>`;
 
   // ---- value ladder (your picks, biggest steal -> biggest reach; skill only) ----
   // pick − mkt: positive = fell to you (steal). Picks with no market data sit at 0.
