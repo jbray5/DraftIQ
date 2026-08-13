@@ -555,6 +555,21 @@ body.glitch .crt-flicker{opacity:.9;background:rgba(255,85,85,.06)}
 .take b{color:var(--amber);text-shadow:0 0 10px rgba(255,176,0,.35)}
 .dissent{border:1px dashed var(--amber);background:rgba(255,176,0,.04);padding:8px 11px;margin-top:10px;font-size:11px;line-height:1.45}
 .dissent b{color:var(--amber)}
+/* ===== LEAGUE DNA — what-wins reference ===== */
+.dna-tier{font-size:10px;letter-spacing:.14em;color:var(--amber);border-bottom:1px solid var(--grey-dk);
+  padding-bottom:4px;margin:16px 0 8px;font-weight:800}
+.dna-tier:first-child{margin-top:4px}
+.dna-row{padding:7px 0;border-bottom:1px dotted rgba(127,168,143,.15)}
+.dna-hd{display:flex;align-items:center;gap:10px}
+.dna-nm{flex:0 0 220px;font-size:12px;font-weight:800;color:var(--white)}
+.dna-nm.myth{color:var(--grey);text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:1px}
+.dna-bar{flex:1;height:8px;background:rgba(127,168,143,.08);border:1px solid var(--grey-dk);position:relative}
+.dna-fill{position:absolute;left:0;top:0;bottom:0;background:var(--green);opacity:.75}
+.dna-fill.myth{background:var(--red)}
+.dna-v{flex:0 0 66px;text-align:right;font-size:12px;font-weight:800;color:var(--cyan)}
+.dna-v.myth{color:var(--red)}
+.dna-d{font-size:10.5px;color:var(--grey);line-height:1.45;margin-top:4px}
+.dna-use{font-size:10.5px;color:var(--amber);margin-top:2px}
 /* ===== ASK COACH — free-form mid-draft chat ===== */
 .chat-log{max-height:240px;overflow-y:auto;display:none;margin-bottom:8px}
 .chat-log.live{display:block}
@@ -1543,6 +1558,7 @@ body.glitch .crt-flicker{opacity:.9;background:rgba(255,85,85,.06)}
     <div class="fkey" data-fkey="cmd"><b>F4</b> COMMAND</div>
     <div class="fkey" data-fkey="ghost"><b>F5</b> GHOST</div>
     <div class="fkey" data-fkey="grade"><b>F6</b> GRADE</div>
+    <div class="fkey" data-fkey="dna" title="what statistically wins this league — every measured effect, ranked"><b>◆</b> DNA</div>
     <div class="fkey" data-fkey="undo"><b>⌫</b> UNDO</div>
     <div class="fkey" data-fkey="reset"><b>⎋</b> RESET</div>
     <div class="fkey" data-fkey="preflight"><b>F9</b> PREFLIGHT</div>
@@ -2965,6 +2981,7 @@ function doFkey(action){
   else if(action==='whatif')showScreen('whatif');
   else if(action==='ghost'){cycleGhost();}
   else if(action==='preflight'){runPreflight();}
+  else if(action==='dna'){openDNA();}
   else if(action==='palette'){openPalette();}
   else if(action==='refresh'){flashStatus('↻ BOARD REFRESHED · ESPN SYNC');renderAvail(activePos,'');}
   else if(action==='undo'){undoPick();}
@@ -3973,7 +3990,7 @@ function cmdPreview(v){
     out.innerHTML=hits.length?hits.map((p,i)=>`<div class="cp-hit ${i===0?'sel':''}">${i===0?'▸ ':'  '}${p.nm} <span class="badge bg-${p.pos}">${p.pos}</span> <span style="color:var(--grey-dk)">vorp ${pm(p.vorp)} · mkt ${p.mkt??'—'}</span></div>`).join('')
       :'<div class="cp-hit" style="color:var(--grey-dk)">no available player matches</div>';
   } else if(!v){
-    out.innerHTML='<div class="cp-hit" style="color:var(--grey-dk)">draft &lt;name&gt; · ask &lt;name&gt; · spy &lt;team&gt; · find &lt;txt&gt; · ghost [fast|off] · sync · war · odds · preflight · clock &lt;secs&gt; · mute · undo · reset · goto cheat|lab|grade|whatif|cmd · help</div>';
+    out.innerHTML='<div class="cp-hit" style="color:var(--grey-dk)">draft &lt;name&gt; · ask &lt;name|question&gt; · spy &lt;team&gt; · find &lt;txt&gt; · ghost [fast|off] · sync · war · odds · dna · preflight · clock &lt;secs&gt; · mute · undo · reset · goto cheat|lab|grade|whatif|cmd · help</div>';
   } else out.innerHTML='';
 }
 function runCmd(v){
@@ -4003,6 +4020,7 @@ function runCmd(v){
   if(C==='war'){closePalette();showScreen('lab');runWarGames();return;}
   if(C==='odds'){closePalette();renderOddsModal();ensureOddsModal().classList.add('open');document.getElementById('scrim').classList.add('show');return;}
   if(C==='preflight'){closePalette();runPreflight();return;}
+  if(C==='dna'||C==='wins'){closePalette();openDNA();return;}
   if(C==='clock'){const s=parseInt(arg,10);if(s>=10&&s<=600){CLOCK.secs=s;CLOCK.left=s;localStorage.setItem('draftiq_clock',String(s));say('pick clock set to '+s+'s');}else say('clock 10..600');return;}
   if(C==='mute'){SND.on=!SND.on;localStorage.setItem('draftiq_snd',SND.on?'on':'off');const b=document.getElementById('sndToggle');if(b){b.textContent=SND.on?'🔊':'🔇';b.classList.toggle('mute',!SND.on);}say(SND.on?'audio on':'muted');return;}
   if(C==='undo'){undoPick();return;}
@@ -4025,6 +4043,88 @@ function paintClock(secs){
   const el=document.getElementById('timer'); if(!el)return;
   el.textContent=String(Math.floor(secs/60)).padStart(2,'0')+':'+String(secs%60).padStart(2,'0');
   el.classList.toggle('warn',secs<=15&&!draftDone());
+}
+
+/* ---------- LEAGUE DNA — what statistically wins this league ----------
+   Every effect MEASURED on this league's own history (ESPN 2012-2025, 170
+   team-seasons; dart backtest on 2023/24 projections-vs-actuals), ranked by
+   strength. Static by design: these are offline research results, hardcoded so
+   draft night needs no backend. Provenance + full derivations live in CLAUDE.md. */
+const DNA=[
+ {tier:'THE BIG THREE · what actually decides it',rows:[
+  {n:'Score points → win games',v:'−0.55',w:100,
+   d:'Points-for → finish, corr −0.55 in BOTH eras (170 team-seasons). The league has one character: outscore people.',
+   use:'Every pick = max projected points for this roster. No cute theories.'},
+  {n:'Draft VORP, not raw points',v:'+0.56',w:100,
+   d:'Total draft VORP → season points-for (+0.56). Raw projected points only +0.26. Value over replacement is the currency.',
+   use:'The confidence bars rank by this. When in doubt, top bar.'},
+  {n:'Front-load rounds 1–5',v:'−0.43',w:80,
+   d:'Early-round VORP (rds 1–5) carries the draft signal (corr −0.43 w/ finish). Champions drafted at the 92nd percentile of value in their year.',
+   use:'Rounds 1–5 ARE the draft. Late rounds are lottery tickets.'},
+ ]},
+ {tier:'TIMING RULES · when, not who',rows:[
+  {n:'QB waits',v:'rd 6.1',w:70,
+   d:"Champions' first QB averages round 6.1 across ALL 14 seasons — every era. QB replacement is flat (waiting a round costs ~1-3 season pts).",
+   use:'No QB before rd 5 unless the room goes insane.'},
+  {n:'IDP window: pick ~90',v:'0/14',w:65,
+   d:'ZERO of 14 champions took an IDP by rd 8. First IDP off the board ~rd 9 (recent era mean pick 123); elite tier ~5 deep; weekly persistence ≈ TE — an elite IDP is a HOLD, not a stream.',
+   use:'Top LB at the 90/91 wheel pair. Then never churn the slot.'},
+  {n:'Stream D/ST by matchup',v:'+55/yr',w:60,
+   d:'D/ST identity is nearly irrelevant (week-to-week persistence +0.001). Implied opponent total predicts weekly points (r −0.294, monotone 9.6→4.1 pts/wk by quintile); streaming it beats a coin flip by +55 pts/season (ceiling +196).',
+   use:'ONE defense, late, best week-1 matchup (board pre-sorts it). Re-stream weekly all season.'},
+  {n:'TE never flexes here',v:'1.4%',w:55,
+   d:'1,151 real FLEX starts 2019-2025: 58.6% WR · 40.1% RB · 1.4% TE. TE4 (11.4/wk) loses to the RB20/WR20 alternative (12.6/12.2).',
+   use:'One TE, period. A 2nd TE "for FLEX" is a dead pick — the engine caps it.'},
+  {n:'K = last round, any good one',v:'+6/yr',w:30,
+   d:'The best kicker signal that exists (implied own total) is r +0.114 — worth ~6 pts/season. There is nothing to know about kickers.',
+   use:'Final round. Zero thought before that.'},
+ ]},
+ {tier:'DART SCIENCE · the bench rounds',rows:[
+  {n:'Rank darts by projection',v:'35-50%',w:50,
+   d:'Top-20 darts ordered by projection hit startable 35-50% (2023+2024 backtest); ordered by market hype instead: 25%. Projection is the primary ranker even at the tail.',
+   use:'Bench picks: best projection first, always.'},
+  {n:'Market premium breaks ties',v:'+12pts',w:35,
+   d:'WITHIN a comparable-projection band, the high-market-premium half hit 33% vs 21% pooled (42% vs 19% in 2024 — the McConkey/Worthy half).',
+   use:'The UPS column. Only between darts you already like.'},
+ ]},
+ {tier:'MYTHS · measured ≈ zero — ignore anyone citing these',rows:[
+  {n:'RB-early / WR-early templates',v:'~0',w:4,myth:true,
+   d:'No positional draft template predicts finish in this league. None ever has.',
+   use:'Take the value. Position is an output, not a plan.'},
+  {n:'Draft slot matters',v:'−0.02',w:4,myth:true,
+   d:'Draft position has no measurable effect on finish in the modern era.',
+   use:'The wheel is not a handicap — play the pairs.'},
+  {n:'D/ST home-field',v:'t=1.61',w:4,myth:true,
+   d:'+0.57 pts/wk at home — statistically indistinguishable from nothing.',
+   use:'Matchup total is the ONLY D/ST signal.'},
+  {n:'"Good drafter" is a repeatable skill',v:'no repeat',w:4,myth:true,
+   d:'Draft outcomes do NOT repeat year-to-year. The repeatable owner skills are IN-SEASON: streaming volume and waiver production.',
+   use:'Draft well Saturday, then win the season on waivers + streams.'},
+ ]},
+];
+function openDNA(){
+  const m=ensureOddsModal();                      // borrow the modal chrome
+  m.querySelector('#oddsTitle').textContent='◆ WHAT WINS THIS LEAGUE — MEASURED, RANKED';
+  const body=m.querySelector('#oddsBody');
+  let html='<div style="padding:6px 14px 14px">';
+  DNA.forEach(sec=>{
+    html+=`<div class="dna-tier">${sec.tier}</div>`;
+    sec.rows.forEach(r=>{
+      html+=`<div class="dna-row">
+        <div class="dna-hd"><span class="dna-nm ${r.myth?'myth':''}">${r.n}</span>
+          <span class="dna-bar"><span class="dna-fill ${r.myth?'myth':''}" style="width:${r.w}%"></span></span>
+          <span class="dna-v ${r.myth?'myth':''}">${r.v}</span></div>
+        <div class="dna-d">${r.d}</div>
+        <div class="dna-use">▸ ${r.use}</div>
+      </div>`;
+    });
+  });
+  html+=`<div style="margin-top:12px;font-size:9.5px;color:var(--grey-dk);line-height:1.5">
+    Context for humility: weekly scoring σ in this league is <b>21.7 pts</b> — one week of noise dwarfs any single draft edge,
+    which is why even a perfect draft caps out near ~15-20% title odds. Measured on this league's ESPN history 2012-2025
+    (170 team-seasons) + 2023/24 projections-vs-actuals backtests. Derivations: CLAUDE.md.</div></div>`;
+  body.innerHTML=html;
+  m.classList.add('open');document.getElementById('scrim').classList.add('show');
 }
 
 /* ---------- 5. PREFLIGHT — draft-readiness diagnostics ---------- */
