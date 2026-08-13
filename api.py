@@ -949,8 +949,12 @@ def ai_best_pick():
             "justifies overriding it; if you override, explain in synthesis. When meta.flat is true, "
             "VORP is noise (everyone ~replacement) — decide on ceiling, role/opportunity, tier cliffs "
             "among startable players, runs, and which shortlist players the intervening managers take "
-            "before nextPick. Give a crisp one-line why for each, a waitSignal naming a player you can "
-            "safely wait on, and a 1-2 sentence synthesis. Context JSON:\n" + json.dumps(user_payload)
+            "before nextPick. Give a crisp one-line why for each — every oneLineWhy (including for "
+            "players you would NOT pick yourself) must state the AFFIRMATIVE case: the one factual "
+            "reason to take that player now. Never write a why that argues against its own player; "
+            "your disagreement with the ranking belongs ONLY in synthesis, where it is shown as a "
+            "labeled dissent. Also give a waitSignal naming a player you can safely wait on, and a "
+            "1-2 sentence synthesis. Context JSON:\n" + json.dumps(user_payload)
         )
         output_config = {"format": best_pick_format}
         if COACH_EFFORT:
