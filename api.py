@@ -854,6 +854,8 @@ def ai_best_pick():
         names = {c["name"] for c in shortlist}
         by_name = {c["name"]: c for c in shortlist}
         umeta = {"nextPick": sl["meta"]["nextPick"], "picksUntilNext": sl["meta"]["picksUntilNext"],
+                 "nextTurnPick": sl["meta"].get("nextTurnPick"),
+                 "backToBack": sl["meta"].get("backToBack"),
                  "flat": sl["flat"], "round": sl["meta"]["round"]}
 
         def _card(name, why):
@@ -917,7 +919,9 @@ def ai_best_pick():
         user_payload = {
             "meta": {"pickNumber": overall_pick, "round": sl["meta"]["round"], "teams": teams,
                      "mySlot": my_slot, "picksUntilNext": sl["meta"]["picksUntilNext"],
-                     "nextPick": sl["meta"]["nextPick"], "flat": sl["flat"]},
+                     "nextPick": sl["meta"]["nextPick"],
+                     "nextTurnPick": sl["meta"].get("nextTurnPick"),
+                     "backToBack": sl["meta"].get("backToBack"), "flat": sl["flat"]},
             "myOpenStarters": sl["meta"].get("openStarters", []),
             "anchor": anchor,
             "whoPicksBeforeMe": [{"team": t["team"], "needs": t["needs"], "tendency": t.get("profile")}
@@ -928,7 +932,14 @@ def ai_best_pick():
                           "ecr", "sos")} for c in shortlist],
         }
         instruction = (
-            "Note: shortlist[].ecr = FantasyPros expert-consensus OVERALL rank (independent of our "
+            "Note: shortlist[].survival = the probability the player is still available at your "
+            "NEXT TURN (meta.nextTurnPick), NOT the literal next pick. When meta.backToBack is "
+            "true you hold THIS pick and the next one right now — nobody can draft between your "
+            "paired picks, so never claim a player 'won't survive' to the paired pick; urgency is "
+            "entirely about who survives the wait to meta.nextTurnPick. myOpenStarters is the "
+            "AUTHORITATIVE list of your open starting slots — never claim a slot is open or "
+            "filled contrary to it. "
+            "shortlist[].ecr = FantasyPros expert-consensus OVERALL rank (independent of our "
             "model — a big ecr-vs-our-ranking gap means experts see role/news our projections miss); "
             "sos = season strength-of-schedule, 1=brutal..5=easy. "
             "Pick my OPTIMAL player to draft right now. Choose optimalPick.name and EVERY "
@@ -1045,6 +1056,8 @@ def ai_chat():
                 "flatMode": sl["flat"],
                 "nextPick": sl["meta"]["nextPick"],
                 "picksUntilNext": sl["meta"]["picksUntilNext"],
+                "nextTurnPick": sl["meta"].get("nextTurnPick"),
+                "backToBack": sl["meta"].get("backToBack"),
                 "openStarters": sl["meta"].get("openStarters", []),
                 "activeRuns": sl["meta"].get("runs", []),
                 "whoPicksBeforeMe": [{"team": t["team"], "needs": t["needs"],
@@ -1083,14 +1096,20 @@ def ai_chat():
         import re as _re
         qtext = " ".join([question] + [str(m.get("content") or "")
                                        for m in (body.get("history") or [])]).lower()
+        qnorm = " ".join(_re.sub(r"[^a-z0-9 ]", " ", qtext).split())
+        _SUFFIX = {"jr", "sr", "ii", "iii", "iv", "v"}
         mentioned = []
         for r in rows:
             nm = str(r.get("name") or "")
-            ln = nm.lower()
-            if not ln:
+            toks = _re.sub(r"[^a-z0-9 ]", " ", nm.lower()).split()
+            if not toks:
                 continue
-            last = ln.split()[-1]
-            if ln in qtext or (len(last) >= 5 and _re.search(r"\b" + _re.escape(last) + r"\b", qtext)):
+            full = " ".join(toks)                                   # 'marvin harrison jr'
+            core = [t for t in toks if t not in _SUFFIX] or toks
+            core_full = " ".join(core)                              # 'marvin harrison'
+            last = core[-1]                                         # real surname, not 'jr'
+            if (full in qnorm or core_full in qnorm
+                    or (len(last) >= 5 and _re.search(r"\b" + _re.escape(last) + r"\b", qnorm))):
                 row = {"name": nm, "pos": r.get("pos"), "team": r.get("team"),
                        "alreadyDrafted": norm_name(nm) in gone}
                 for k in ("league_pts", "vorp", "rank", "adp", "ecr", "fp_adp",
@@ -1130,7 +1149,12 @@ def ai_chat():
             "tier, projections) that drive your answer, and never invent players or stats not in "
             "the data. `engine` is the DraftIQ pick engine's live view: `anchor` is the model's "
             "current #1, `shortlist[].survival` is each player's probability of still being "
-            "available at the user's next pick, and `flatMode` means VORP is currently noise. "
+            "available at the user's NEXT TURN (engine.nextTurnPick — NOT the literal next pick: "
+            "when engine.backToBack is true the user holds this pick AND the next one right now, "
+            "so nobody can take a player between them; never say a player is 'gone by' a paired "
+            "pick — urgency is only about surviving the wait to nextTurnPick), and `flatMode` "
+            "means VORP is currently noise. `engine.openStarters` is the authoritative list of "
+            "open starting slots — never contradict it. "
             "If the question is about why the model/coach recommends something, explain using "
             "those fields. `mentionedPlayers` carries the full board row (our rank/vorp + market "
             "fp_adp/ecr + expert spread fp_best/fp_std when available) for every player named in "

@@ -215,7 +215,11 @@ def shortlist(board_rows: list[dict], drafted_names, my_roster: dict, picks_log:
     # at the snake turn you pick back-to-back, then wait — use the gap to the pick AFTER
     # next as the real scarcity horizon so urgency isn't understated at the turn.
     horizon = gap if gap >= 3 else gap + picks_until_next(next_pick, teams)
+    # Survival spans `horizon` picks, which at a back-to-back turn reaches PAST the pair
+    # to the next real turn. Expose that pick explicitly (nextTurnPick) so downstream
+    # prose never claims a player "won't survive" to a paired pick nobody drafts between.
     meta = {"nextPick": next_pick, "picksUntilNext": gap,
+            "nextTurnPick": overall_pick + horizon, "backToBack": gap == 1,
             "round": (overall_pick - 1) // teams + 1}
     if not pool:
         return {"shortlist": [], "anchor": None, "flat": False, "intervening": [], "meta": meta}
