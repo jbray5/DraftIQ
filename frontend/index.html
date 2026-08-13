@@ -1970,9 +1970,11 @@ function renderAvail(filterPos="ALL", search=""){
     }
     const vt=valueTag(p.mkt);
     const zap=(p.ecr&&p.rk&&(p.rk-p.ecr)>=60)?' <span title="experts rank him far above our projections — role/news watch" style="color:var(--amber)">⚡</span>':'';
+    const hurt=(p.wkPrev!=null&&p.wkPrev<=12&&['QB','RB','WR','TE'].includes(p.pos))
+      ?` <span title="durability: played ${Math.round(p.wkPrev)} weeks in 2025 — players who missed 5+ weeks averaged 2.8 fewer weeks + 39 fewer pts the NEXT year (r=+0.22, 795 pairs). Weak signal: TIEBREAKER between similar players only, never a reason to pass on clearly better value." style="color:var(--red)">⚕</span>`:'';
     html+=`<tr data-nm="${p.nm}" ${p.rec?'style="background:rgba(255,176,0,.06)"':''}>
       <td class="l rk">${p.rec?'<span style="color:var(--amber)">▶</span>':p.rk}</td>
-      <td class="l nm"><span class="nmcell">${hsHTML(p,'sm')}<span>${p.nm}${zap}${w1Tag(p)}</span></span></td>
+      <td class="l nm"><span class="nmcell">${hsHTML(p,'sm')}<span>${p.nm}${zap}${hurt}${w1Tag(p)}</span></span></td>
       <td class="l"><span class="badge bg-${p.pos}">${p.pos}</span></td>
       <td class="proj">${p.proj}</td>
       <td class="vorp">${pm(p.vorp)}</td>
@@ -3042,7 +3044,7 @@ function mapBoardToPool(rows){
   rows.forEach(r=>{
     const pos=r.position;
     const p={rk:r.rank,nm:r.name,tm:r.team,pos,ecr:r.ecr||null,sos:r.sos||null,fpAdp:r.fpAdp||null,
-             fpBest:r.fpBest||null,fpWorst:r.fpWorst||null,fpStd:r.fpStd||null,
+             fpBest:r.fpBest||null,fpWorst:r.fpWorst||null,fpStd:r.fpStd||null,wkPrev:r.wkPrev??null,
              proj:Math.round(r.points||0),vorp:Math.round(r.vorp||0),
              adp:(r.adp!=null?Math.max(1,Math.round(r.adp)):null),   // null stays null — a missing ADP is NOT pick 1
              bye:r.bye||0,note:"",headshot:r.headshot||null,rec:false,
@@ -4080,6 +4082,9 @@ const DNA=[
    use:'Final round. Zero thought before that.'},
  ]},
  {tier:'DART SCIENCE · the bench rounds',rows:[
+  {n:'Injury history: weak but real',v:'+0.22',w:25,
+   d:'Weeks played year-to-year persists at r +0.216 (795 pairs, 2019-2025). Players who missed 5+ weeks averaged 2.8 fewer weeks and 39 fewer points the NEXT season (survivor-biased, so truly a bit worse). The ⚕ flag marks 2025-burned players.',
+   use:'Tiebreaker between similar players only. Never pass on clear value for it — the market already prices famous injuries.'},
   {n:'Rank darts by projection',v:'35-50%',w:50,
    d:'Top-20 darts ordered by projection hit startable 35-50% (2023+2024 backtest); ordered by market hype instead: 25%. Projection is the primary ranker even at the tail.',
    use:'Bench picks: best projection first, always.'},

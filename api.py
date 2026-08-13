@@ -773,6 +773,8 @@ def board():
             "fpBest": num(r.get("fp_best")),
             "fpWorst": num(r.get("fp_worst")),
             "fpStd": num(r.get("fp_std")),
+            # weeks played in 2025 (durability flag; None = no league box-score data)
+            "wkPrev": num(r.get("wk25")),
             # week-1 matchup (D/ST + K only; None everywhere else)
             "w1Rank": w1.get("w1Rank") if w1 else None,
             "w1Tier": w1.get("w1Tier") if w1 else None,
@@ -1117,7 +1119,7 @@ def ai_chat():
                 row = {"name": nm, "pos": r.get("pos"), "team": r.get("team"),
                        "alreadyDrafted": norm_name(nm) in gone}
                 for k in ("league_pts", "vorp", "rank", "adp", "ecr", "fp_adp",
-                          "fp_best", "fp_worst", "fp_std"):
+                          "fp_best", "fp_worst", "fp_std", "wk25"):
                     v = r.get(k)
                     if v not in (None, ""):
                         try:

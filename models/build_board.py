@@ -8,6 +8,7 @@ Run: python models/build_board.py
 """
 from __future__ import annotations
 
+import csv
 import json
 import os
 from pathlib import Path
@@ -82,7 +83,7 @@ def _players_from_csv(path: Path) -> list[dict]:
     """Reuse the last good board's rows as the player pool (no upstream fetch)."""
     df = pd.read_csv(path)
     keep = ("sd_pts", "fp_pts", "ecr", "ecr_tier", "sos", "fp_adp",
-            "fp_best", "fp_worst", "fp_std")
+            "fp_best", "fp_worst", "fp_std", "wk25")
     out = []
     for r in df.to_dict("records"):
         if str(r.get("pos")) == "DST":
@@ -145,6 +146,31 @@ def build(season: str = "2026REG", scoring_year: int = 2026,
         n_ecr = fp_blend.annotate_ecr(players)
         if n_ecr:
             print(f"FantasyPros ECR annotated: {n_ecr} players (expert rank / tier / SOS)")
+
+    # Durability: weeks played LAST season (league box scores). Measured 2026-08-12
+    # on 795 pairs 2019-2025: weeks_t -> weeks_t+1 r=+0.216; players who missed 5+
+    # weeks averaged 2.8 fewer weeks + 39 fewer pts the NEXT year. Tiebreaker-grade —
+    # display flag only (the ⚕ marker), never a ranking input (market prices it too).
+    try:
+        from scoring import norm_name as _nn2
+        wk_prev = {}
+        with open(ROOT / "data" / "processed" / "player_seasons.csv",
+                  newline="", encoding="utf-8") as fh:
+            for r in csv.DictReader(fh):
+                if r.get("year") == "2025" and r.get("pos") in ("QB", "RB", "WR", "TE"):
+                    try:
+                        wk_prev[(_nn2(r["name"]), r["pos"])] = float(r["weeks"])
+                    except (ValueError, KeyError):
+                        continue
+        n_wk = 0
+        for p in players:
+            k = (_nn2(str(p.get("name", ""))), str(p.get("position", "")).upper())
+            if k in wk_prev:
+                p["wk25"] = wk_prev[k]
+                n_wk += 1
+        print(f"durability: 2025 weeks-played attached to {n_wk} skill players")
+    except FileNotFoundError:
+        pass
 
     # News overrides (data/manual_overrides.json): feeds lag real news by days —
     # Pearsall was IR'd Aug 1 and SportsData still projected him ~30 pts on Aug 11.
@@ -227,12 +253,12 @@ def build(season: str = "2026REG", scoring_year: int = 2026,
     df = df.sort_values("draft_value", ascending=False).reset_index(drop=True)
     df.insert(0, "rank", range(1, len(df) + 1))
     for c in ("sd_pts", "fp_pts", "ecr", "ecr_tier", "sos", "fp_adp",
-              "fp_best", "fp_worst", "fp_std"):
+              "fp_best", "fp_worst", "fp_std", "wk25"):
         if c not in df.columns:
             df[c] = None
     out = df[["rank", "playerId", "name", "pos", "pos_rank", "team", "points", "vorp",
               "draft_value", "adp", "sd_pts", "fp_pts", "ecr", "ecr_tier", "sos", "fp_adp",
-              "fp_best", "fp_worst", "fp_std"]] \
+              "fp_best", "fp_worst", "fp_std", "wk25"]] \
         .rename(columns={"points": "league_pts"})
     out.to_csv(path, index=False)
     print(f"board -> {path.relative_to(ROOT)} ({len(out)} players)")
