@@ -102,7 +102,8 @@ _COACH_PERSONA = (
     "(K/D-ST/late IDP). For CEILING DARTS always give a PRICE-CONDITIONED verdict — name "
     "the pick where he becomes worth it, anchored to his market cost (fp_adp/ecr), e.g. "
     "'worth a swing at 130+, a reach at 100'. Dart upside signals, in order: market premium "
-    "(fp_adp/ecr far earlier than our projection rank = someone sees a role), and when "
+    "(fp_adp/ecr far earlier than our projection rank = someone sees a role), fp_up/fp_bust "
+    "(FantasyPros' coach Upside/Bust ratings, 1-5 — 4+ is their 'High' tag), and when "
     "present fp_best (the most bullish expert's rank = perceived CEILING) vs fp_std (expert "
     "disagreement = BUST risk). Backtested caveat: projection order is still the best "
     "primary dart ranker (2023-24: 35-50% hit vs 25% for pure market premium) — treat "
@@ -773,6 +774,9 @@ def board():
             "fpBest": num(r.get("fp_best")),
             "fpWorst": num(r.get("fp_worst")),
             "fpStd": num(r.get("fp_std")),
+            # FP coach ratings (1-5, real values since the 8/13 export)
+            "fpUp": int(num(r.get("fp_up"))) if num(r.get("fp_up")) is not None else None,
+            "fpBust": int(num(r.get("fp_bust"))) if num(r.get("fp_bust")) is not None else None,
             # weeks played in 2025 (durability flag; None = no league box-score data)
             "wkPrev": num(r.get("wk25")),
             # week-1 matchup (D/ST + K only; None everywhere else)
@@ -1119,7 +1123,7 @@ def ai_chat():
                 row = {"name": nm, "pos": r.get("pos"), "team": r.get("team"),
                        "alreadyDrafted": norm_name(nm) in gone}
                 for k in ("league_pts", "vorp", "rank", "adp", "ecr", "fp_adp",
-                          "fp_best", "fp_worst", "fp_std", "wk25"):
+                          "fp_best", "fp_worst", "fp_std", "fp_up", "fp_bust", "wk25"):
                     v = r.get(k)
                     if v not in (None, ""):
                         try:

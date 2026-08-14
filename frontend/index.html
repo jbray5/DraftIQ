@@ -1936,8 +1936,11 @@ function setAvailSort(key){
 function upsCell(p){
   if(p.ups==null)return '<span style="color:var(--grey-dk)">—</span>';
   let flags='',tip=`market pays ${p.ups} board slots above our projection rank`;
-  if(p.fpBest!=null&&p.ecr!=null&&(p.ecr-p.fpBest)>=25){flags+='▲';tip+=` · most bullish expert: #${Math.round(p.fpBest)} (ceiling)`;}
-  if(p.fpStd!=null&&p.fpStd>=12){flags+='⚠';tip+=` · expert σ ${p.fpStd} (they disagree — bust risk)`;}
+  if(p.fpUp!=null&&p.fpBust!=null)tip+=` · FP coach rating: upside ${p.fpUp}/5, bust ${p.fpBust}/5`;
+  if(p.fpUp>=4)flags+='▲';                       // FP 'High upside' tag
+  if(p.fpBust>=4)flags+='⚠';                     // FP 'High bust' tag
+  if(!flags&&p.fpBest!=null&&p.ecr!=null&&(p.ecr-p.fpBest)>=25){flags+='▲';tip+=` · most bullish expert: #${Math.round(p.fpBest)} (ceiling)`;}
+  if(p.fpStd!=null&&p.fpStd>=12)tip+=` · expert σ ${p.fpStd} (they disagree)`;
   const hot=p.ups>=100;
   return `<span title="${tip}" style="color:${hot?'var(--amber)':'var(--grey)'}">+${p.ups}${flags?(' '+flags):''}</span>`;
 }
@@ -1969,7 +1972,7 @@ function renderAvail(filterPos="ALL", search=""){
       lastTier=p.tier;
     }
     const vt=valueTag(p.mkt);
-    const zap=(p.ecr&&p.rk&&(p.rk-p.ecr)>=60)?' <span title="experts rank him far above our projections — role/news watch" style="color:var(--amber)">⚡</span>':'';
+    const zap=(p.ecr&&p.rk&&(p.rk-p.ecr)>=60&&['QB','RB','WR','TE'].includes(p.pos))?' <span title="experts rank him far above our projections — role/news watch" style="color:var(--amber)">⚡</span>':'';   // skill only: IDP ecr is IDP-scoped, not comparable to overall rank
     const hurt=(p.wkPrev!=null&&p.wkPrev<=12&&['QB','RB','WR','TE'].includes(p.pos))
       ?` <span title="durability: played ${Math.round(p.wkPrev)} weeks in 2025 — players who missed 5+ weeks averaged 2.8 fewer weeks + 39 fewer pts the NEXT year (r=+0.22, 795 pairs). Weak signal: TIEBREAKER between similar players only, never a reason to pass on clearly better value." style="color:var(--red)">⚕</span>`:'';
     html+=`<tr data-nm="${p.nm}" ${p.rec?'style="background:rgba(255,176,0,.06)"':''}>
@@ -3045,6 +3048,7 @@ function mapBoardToPool(rows){
     const pos=r.position;
     const p={rk:r.rank,nm:r.name,tm:r.team,pos,ecr:r.ecr||null,sos:r.sos||null,fpAdp:r.fpAdp||null,
              fpBest:r.fpBest||null,fpWorst:r.fpWorst||null,fpStd:r.fpStd||null,wkPrev:r.wkPrev??null,
+             fpUp:r.fpUp??null,fpBust:r.fpBust??null,
              proj:Math.round(r.points||0),vorp:Math.round(r.vorp||0),
              adp:(r.adp!=null?Math.max(1,Math.round(r.adp)):null),   // null stays null — a missing ADP is NOT pick 1
              bye:r.bye||0,note:"",headshot:r.headshot||null,rec:false,

@@ -146,43 +146,69 @@ def apply(players: list[dict], scoring: dict, w_fp: float = 0.5) -> tuple[list[d
     return players, matched
 
 
+_IDP_POS = {"LB", "DE", "DT", "CB", "S", "DB", "DL", "EDGE", "IDP"}
+
+
+def _stars(v) -> int | None:
+    """FP coach ratings export as 'N out of 5' -> N (None for '-'/missing)."""
+    m = re.match(r"(\d)", str(v or "").strip())
+    return int(m.group(1)) if m else None
+
+
 def load_ecr() -> dict:
-    """FP overall draft board (FantasyPros_2026_Draft_ALL_Rankings.csv) ->
-    {norm_name: {'ecr', 'ecr_tier', 'sos', 'fp_adp'}}. ECR = consensus of 100+
-    experts' holistic ranks. fp_adp is derived from the 'ECR VS. ADP' delta
-    (ADP = RK − delta) — a true market price, superseded by a dedicated ADP
-    export when one exists (load_fp_adp). (No IDP in FP's board.)"""
+    """FP draft boards (FantasyPros_2026_Draft_ALL_Rankings.csv + the separate
+    Draft_IDP_Rankings export) -> {norm_name: {'ecr','ecr_tier','sos','fp_adp',
+    'fp_up','fp_bust','pos'}}. Header-drift-proof: FP renamed 'SOS SEASON'->'SOS'
+    and 'ECR VS. ADP'->'ECR VS ADP' between July and August 2026 exports, and
+    ships trailing spaces in 'UPSIDE '/'BUST ' — keys are normalized per row.
+    fp_up/fp_bust are FP's coach Upside/Bust ratings (1-5), real values since
+    the 8/13 export (earlier files carried placeholder text -> None).
+    NOTE: the IDP file's RK is IDP-scoped (1..~205), not overall — fine for
+    per-position ordering and coach context; never mix it into overall math."""
     out = {}
-    for f in glob.glob(str(FP_DIR / "*Draft_ALL_Rankings*.csv")):
+    for f in (glob.glob(str(FP_DIR / "*Draft_ALL_Rankings*.csv"))
+              + glob.glob(str(FP_DIR / "*Draft_IDP_Rankings*.csv"))):
         with open(f, newline="", encoding="utf-8-sig") as fh:
-            for r in csv.DictReader(fh):
+            for raw in csv.DictReader(fh):
+                r = {str(k).strip().rstrip("."): v for k, v in raw.items() if k}
                 name = str(r.get("PLAYER NAME", "")).strip()
                 rk = str(r.get("RK", "")).strip().strip('"')
                 if not name or not rk.isdigit():
                     continue
-                sos = re.match(r"(\d)", str(r.get("SOS SEASON", "")))
+                sos = re.match(r"(\d)", str(r.get("SOS SEASON") or r.get("SOS") or ""))
                 mpos = re.match(r"([A-Z]+)", str(r.get("POS", "")))
-                delta = re.match(r"([+-]?\d+)", str(r.get("ECR VS. ADP", "")).strip())
+                delta = re.match(r"([+-]?\d+)",
+                                 str(r.get("ECR VS. ADP") or r.get("ECR VS ADP") or "").strip())
                 out[norm_name(name)] = {
                     "ecr": int(rk),
                     "ecr_tier": int(r["TIERS"]) if str(r.get("TIERS", "")).isdigit() else None,
                     "sos": int(sos.group(1)) if sos else None,
                     "pos": mpos.group(1) if mpos else "",
                     "fp_adp": (int(rk) - int(delta.group(1))) if delta else None,
+                    "fp_up": _stars(r.get("UPSIDE")),
+                    "fp_bust": _stars(r.get("BUST")),
                 }
     return out
 
 
 def load_fp_adp() -> dict:
     """Dedicated FantasyPros ADP export (FantasyPros_2026_Overall_ADP_Rankings.csv,
-    from fantasypros.com/nfl/adp — the consensus 'AVG' across ESPN/Sleeper/etc.)
-    -> {norm_name: {'fp_adp', 'pos'}}. This is the PREFERRED market source when the
-    file exists; the ALL_Rankings delta derivation is the fallback."""
+    from fantasypros.com/nfl/adp — consensus 'AVG' across Yahoo/Sleeper/RTSports)
+    -> {norm_name: {'fp_adp', 'pos'}}. PREFERRED market source when present; the
+    ALL_Rankings delta derivation is the fallback. Real-file quirks handled: the
+    name column is 'Player (Bye)' with team+bye baked into the value
+    ('Jahmyr Gibbs   DET (6)', 'Houston Texans DST   (8)') — stripped here."""
     out = {}
     for f in glob.glob(str(FP_DIR / "*Overall_ADP*Rankings*.csv")):
         with open(f, newline="", encoding="utf-8-sig") as fh:
-            for r in csv.DictReader(fh):
-                name = str(r.get("Player") or r.get("PLAYER NAME") or "").strip()
+            for raw in csv.DictReader(fh):
+                r = {str(k).strip(): v for k, v in raw.items() if k}
+                name = str(r.get("Player") or r.get("Player (Bye)")
+                           or r.get("PLAYER NAME") or "").strip()
+                # strip trailing 'DST', team code, and '(bye)' decorations
+                name = re.sub(r"\s+DST\s*(\([^)]*\))?\s*$", "", name)
+                name = re.sub(r"\s+[A-Z]{2,3}\s*\(\d+\)\s*$", "", name)
+                name = re.sub(r"\s*\(\d+\)\s*$", "", name).strip()
                 avg = str(r.get("AVG") or r.get("Avg") or r.get("ADP") or "").strip()
                 if not name or not avg:
                     continue
@@ -197,20 +223,23 @@ def load_fp_adp() -> dict:
 
 
 def load_expert_spread() -> dict:
-    """FP consensus-rankings export with per-expert spread (BEST / WORST / STD.DEV
-    columns — fantasypros.com/nfl/rankings 'Export' while logged in; drop the file
-    in data/raw/fantasypros/). BEST = the most bullish expert's rank (a CEILING
-    read), STD.DEV = expert disagreement (a RISK read) — the quantitative core of
-    FP's 'High upside / High bust' tags. Auto-detected by header, any filename.
+    """Expert-spread signals from FP rankings exports, two supported shapes:
+    (A) aggregated BEST/WORST/STD.DEV columns;
+    (B) per-expert rank columns (the real 2026 'Overall_Rankings' export ships
+        one column per expert, headers like 'Derek Brown... on X 08/13/26') —
+        best/worst/std are computed here across the experts.
+    BEST = most bullish expert (CEILING read); STD = disagreement (RISK read).
     -> {norm_name: {'best', 'worst', 'std', 'avg', 'pos'}}"""
     out = {}
     for f in glob.glob(str(FP_DIR / "*.csv")):
         try:
             with open(f, newline="", encoding="utf-8-sig") as fh:
                 rdr = csv.DictReader(fh)
-                heads = {str(h).strip().upper().replace(" ", "").rstrip(".")
-                         for h in (rdr.fieldnames or [])}
-                if not ({"BEST", "STD.DEV"} <= heads or {"BEST", "STDDEV"} <= heads):
+                fields = [str(h) for h in (rdr.fieldnames or [])]
+                heads = {h.strip().upper().replace(" ", "").rstrip(".") for h in fields}
+                expert_cols = [h for h in fields if re.search(r"\bon X \d", h)]
+                mode_a = ({"BEST", "STD.DEV"} <= heads or {"BEST", "STDDEV"} <= heads)
+                if not mode_a and len(expert_cols) < 2:
                     continue
                 for r in rdr:
                     rr = {str(k).strip().upper().replace(" ", "").rstrip("."): v
@@ -218,18 +247,32 @@ def load_expert_spread() -> dict:
                     name = str(rr.get("PLAYERNAME") or rr.get("PLAYER") or "").strip()
                     if not name:
                         continue
-                    try:
-                        best = float(str(rr.get("BEST", "")).strip() or 0)
-                        std = float(str(rr.get("STD.DEV") or rr.get("STDDEV") or 0) or 0)
-                    except ValueError:
-                        continue
-                    if best <= 0:
-                        continue
-                    worst = _num(rr.get("WORST"))
-                    avg = _num(rr.get("AVG"))
-                    mpos = re.match(r"([A-Z]+)", str(rr.get("POS", "")))
+                    if mode_a:
+                        try:
+                            best = float(str(rr.get("BEST", "")).strip() or 0)
+                            std = float(str(rr.get("STD.DEV") or rr.get("STDDEV") or 0) or 0)
+                        except ValueError:
+                            continue
+                        if best <= 0:
+                            continue
+                        worst, avg = _num(rr.get("WORST")), _num(rr.get("AVG"))
+                    else:
+                        ranks = []
+                        for c in expert_cols:
+                            try:
+                                v = float(str(r.get(c, "")).strip())
+                                ranks.append(v)
+                            except (TypeError, ValueError):
+                                continue
+                        if len(ranks) < 2:
+                            continue
+                        best, worst = min(ranks), max(ranks)
+                        avg = sum(ranks) / len(ranks)
+                        std = (sum((x - avg) ** 2 for x in ranks) / (len(ranks) - 1)) ** 0.5
+                    mpos = re.match(r"([A-Z]+)", str(rr.get("POSITION") or rr.get("POS") or ""))
                     out[norm_name(name)] = {"best": best, "worst": worst or None,
-                                            "std": std or None, "avg": avg or None,
+                                            "std": round(std, 1) if std else None,
+                                            "avg": round(avg, 1) if avg else None,
                                             "pos": mpos.group(1) if mpos else ""}
         except OSError:
             continue
@@ -249,14 +292,25 @@ def annotate_ecr(players: list[dict]) -> int:
     for p in players:
         key = norm_name(p.get("name", ""))
         hit = ecr.get(key)
-        if hit and hit["pos"] == str(p.get("position", "")).upper():
-            p["ecr"], p["ecr_tier"], p["sos"] = hit["ecr"], hit["ecr_tier"], hit["sos"]
-            a = adp.get(key)
-            p["fp_adp"] = (a["fp_adp"] if a and a["pos"] == hit["pos"] else hit.get("fp_adp"))
-            s = spread.get(key)
-            if s and (not s["pos"] or s["pos"] == hit["pos"]):
-                p["fp_best"], p["fp_worst"], p["fp_std"] = s["best"], s["worst"], s["std"]
-            n += 1
+        if not hit:
+            continue
+        ppos = str(p.get("position", "")).upper()
+        # exact position match for skill; IDP-bucket match for defenders (FP says
+        # 'LB55' where ESPN says DE for edge players — both are the DP slot here)
+        if not (hit["pos"] == ppos or (hit["pos"] in _IDP_POS and ppos in _IDP_POS)):
+            continue
+        p["ecr"], p["ecr_tier"], p["sos"] = hit["ecr"], hit["ecr_tier"], hit["sos"]
+        if hit.get("fp_up") is not None:
+            p["fp_up"] = hit["fp_up"]
+        if hit.get("fp_bust") is not None:
+            p["fp_bust"] = hit["fp_bust"]
+        a = adp.get(key)
+        p["fp_adp"] = (a["fp_adp"] if a and a["pos"] == hit["pos"] else hit.get("fp_adp"))
+        s = spread.get(key)
+        if s and (not s["pos"] or s["pos"] == hit["pos"]
+                  or (s["pos"] in _IDP_POS and ppos in _IDP_POS)):
+            p["fp_best"], p["fp_worst"], p["fp_std"] = s["best"], s["worst"], s["std"]
+        n += 1
     return n
 
 

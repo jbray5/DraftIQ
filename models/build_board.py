@@ -83,7 +83,7 @@ def _players_from_csv(path: Path) -> list[dict]:
     """Reuse the last good board's rows as the player pool (no upstream fetch)."""
     df = pd.read_csv(path)
     keep = ("sd_pts", "fp_pts", "ecr", "ecr_tier", "sos", "fp_adp",
-            "fp_best", "fp_worst", "fp_std", "wk25")
+            "fp_best", "fp_worst", "fp_std", "fp_up", "fp_bust", "wk25")
     out = []
     for r in df.to_dict("records"):
         if str(r.get("pos")) == "DST":
@@ -143,9 +143,7 @@ def build(season: str = "2026REG", scoring_year: int = 2026,
         players, n_fp = fp_blend.apply(players, scoring)
         print(f"FantasyPros blend: {n_fp} skill players blended" if n_fp
               else "FantasyPros blend: no export found — SportsData only")
-        n_ecr = fp_blend.annotate_ecr(players)
-        if n_ecr:
-            print(f"FantasyPros ECR annotated: {n_ecr} players (expert rank / tier / SOS)")
+        # (ECR/expert annotations attach LATER, after the ESPN IDP/K swaps — see below)
 
     # Durability: weeks played LAST season (league box scores). Measured 2026-08-12
     # on 795 pairs 2019-2025: weeks_t -> weeks_t+1 r=+0.216; players who missed 5+
@@ -243,6 +241,15 @@ def build(season: str = "2026REG", scoring_year: int = 2026,
     except Exception as e:                      # never let a D/ST outage block the board
         print(f"D/ST: SKIPPED — {e}")
 
+    # FP expert annotations (ECR / market ADP / coach up-bust / expert spread) attach
+    # HERE — in BOTH build paths and AFTER the ESPN IDP/K swaps. Annotating earlier
+    # (inside the fetch branch) meant --reuse builds silently kept stale July values
+    # and the IDP swap threw away any defender annotations. Idempotent: fresh export
+    # data overwrites whatever the reuse path carried over.
+    n_ecr = fp_blend.annotate_ecr(players)
+    if n_ecr:
+        print(f"FantasyPros annotated: {n_ecr} players (ECR / ADP / up-bust / spread)")
+
     board = rank_board(players, league_from_cfg("2026"), overall_pick=1)
     df = pd.DataFrame(board)
     df = df[df["points"] > 0]  # drop non-projected
@@ -253,12 +260,12 @@ def build(season: str = "2026REG", scoring_year: int = 2026,
     df = df.sort_values("draft_value", ascending=False).reset_index(drop=True)
     df.insert(0, "rank", range(1, len(df) + 1))
     for c in ("sd_pts", "fp_pts", "ecr", "ecr_tier", "sos", "fp_adp",
-              "fp_best", "fp_worst", "fp_std", "wk25"):
+              "fp_best", "fp_worst", "fp_std", "fp_up", "fp_bust", "wk25"):
         if c not in df.columns:
             df[c] = None
     out = df[["rank", "playerId", "name", "pos", "pos_rank", "team", "points", "vorp",
               "draft_value", "adp", "sd_pts", "fp_pts", "ecr", "ecr_tier", "sos", "fp_adp",
-              "fp_best", "fp_worst", "fp_std", "wk25"]] \
+              "fp_best", "fp_worst", "fp_std", "fp_up", "fp_bust", "wk25"]] \
         .rename(columns={"points": "league_pts"})
     out.to_csv(path, index=False)
     print(f"board -> {path.relative_to(ROOT)} ({len(out)} players)")
