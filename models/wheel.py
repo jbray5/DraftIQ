@@ -169,7 +169,7 @@ if __name__ == "__main__":     # python models/wheel.py — self-test at pick 10
     profiles = json.loads((ROOT / "data/processed/manager_profiles.json").read_text(encoding="utf-8"))
     aliases = {k: v for k, v in json.loads((ROOT / "data/team_aliases.json").read_text(
         encoding="utf-8")).items() if not k.startswith("_")}
-    order = ["TGil", "Blake", "Nico", "D-Put", "Lamb", "Flowers", "Spivey", "Will", "Munford", "JRay"]
+    order = ["Gilbert", "Bollinger", "Hubauer", "Putman", "Walker", "Wester", "Spivey", "Street", "Munford", "Ray"]
     gone = ["Bijan Robinson", "Jahmyr Gibbs", "Puka Nacua", "Christian McCaffrey",
             "Ja'Marr Chase", "Jonathan Taylor", "De'Von Achane", "Amon-Ra St. Brown",
             "Jaxon Smith-Njigba"]

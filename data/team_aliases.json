@@ -1,13 +1,13 @@
 {
-  "_comment": "Live UI short name -> ESPN owner handle (keys manager_profiles.json). D-Put=Deston Putman; Blake=Blake Bollinger (new 2025, low-confidence). They troll each other via team names.",
-  "JRay": "jbray5",
-  "Lamb": "espnfan1709357526",
-  "Nico": "cjhubauer",
-  "Blake": "wbbollinger08",
+  "_comment": "Live UI short name (manager last name) -> ESPN owner handle (keys manager_profiles.json). Putman=Deston Putman; Bollinger=Blake Bollinger (new 2025, low-confidence). They troll each other via team names. Walker=Stephen Walker (persona Lamb); Wester=Payton Wester (persona Flowers); Street=Will Street; Gilbert=Taylor Gilbert; Hubauer=CJ Hubauer (persona Nico); Ray=me (JRay).",
+  "Ray": "jbray5",
+  "Walker": "espnfan1709357526",
+  "Hubauer": "cjhubauer",
+  "Bollinger": "wbbollinger08",
   "Spivey": "tcspivey8",
-  "Flowers": "payton9218600",
-  "TGil": "Gtgilbert88",
-  "Will": "wdsx5",
-  "D-Put": "dcputman",
+  "Wester": "payton9218600",
+  "Gilbert": "Gtgilbert88",
+  "Street": "wdsx5",
+  "Putman": "dcputman",
   "Munford": "Henry Munford"
 }

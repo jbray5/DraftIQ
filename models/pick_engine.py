@@ -542,8 +542,8 @@ if __name__ == "__main__":
         "TE": None, "IDP": None, "DST": None, "K": None,
     }
     teams, my_slot = 10, 1
-    pick = 80  # round 8, JRay (slot 1) back on the clock
-    team_order = ["JRay", "Lamb", "Nico", "Blake", "Spivey", "Flowers", "TGil", "Will", "D-Put", "Munford"]
+    pick = 80  # round 8, Ray (slot 1) back on the clock
+    team_order = ["Ray", "Walker", "Hubauer", "Bollinger", "Spivey", "Wester", "Gilbert", "Street", "Putman", "Munford"]
     picks_log = [{"overall": i + 1, "name": rows[i]["name"], "pos": rows[i]["pos"]} for i in range(78)]
 
     res = shortlist(rows, set(drafted), my_roster, picks_log, pick,

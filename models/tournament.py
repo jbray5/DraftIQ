@@ -151,7 +151,7 @@ if __name__ == "__main__":     # python models/tournament.py — self-test
     profiles = _json.loads((ROOT / "data/processed/manager_profiles.json").read_text(encoding="utf-8"))
     aliases = {k: v for k, v in _json.loads((ROOT / "data/team_aliases.json").read_text(
         encoding="utf-8")).items() if not k.startswith("_")}
-    order = ["TGil", "Blake", "Nico", "D-Put", "Lamb", "Flowers", "Spivey", "Will", "Munford", "JRay"]
+    order = ["Gilbert", "Bollinger", "Hubauer", "Putman", "Walker", "Wester", "Spivey", "Street", "Munford", "Ray"]
     t0 = _time.time()
     res = run(rows, [], order, 1, my_slot=10, n=8, profiles=profiles, alias_map=aliases)
     print(f"WAR GAMES ×{res['n']} in {_time.time()-t0:.1f}s")

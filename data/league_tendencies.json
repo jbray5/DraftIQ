@@ -1,7 +1,7 @@
 {
   "scoring": { "half_ppr": true, "qb_premium": false },
   "my_preferences": {
-    "team_name": "JRay🏆🏆🏆",
+    "team_name": "Ray🏆🏆🏆",
     "biases": [
       "Loves high-upside rookies, especially QBs and TEs in middle rounds",
       "Favors stacks with strong passing teams",
@@ -12,7 +12,7 @@
   "teams": {
     "Wester🏆": { "biases": ["unpredictable"], "stacking": ["None"] },
     "Spivey🏆🏆🏆": { "biases": ["Adheres closely to FantasyPros recommendations."] },
-    "JRay🏆🏆🏆": { "biases": ["See my_preferences"], "stacking": ["None"] }
+    "Ray🏆🏆🏆": { "biases": ["See my_preferences"], "stacking": ["None"] }
   },
   "global_habits": [
     "QBs can go early in this room, and they go in waves. Once one goes, more to follow soon."

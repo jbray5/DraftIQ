@@ -11,8 +11,8 @@ Behavior model (evolved from scripts/mock_sim.py's opponent_pick, plus fixes it
 lacked — need-injection for ADP-less IDPs, endgame must-fill, bench-shopping):
 ADP-realistic candidate window with rank-decayed weights, roster-need awareness,
 streamer timing (never a 2nd K/DST/IDP, never early), endgame force-fill, and
-per-manager priors read from data/processed/manager_profiles.json — Will reaches
-for QBs, Munford hammers RBs, Nico/TGil wait on QB — weighted by profile
+per-manager priors read from data/processed/manager_profiles.json — Street reaches
+for QBs, Munford hammers RBs, Hubauer/Gilbert wait on QB — weighted by profile
 confidence exactly like the live pick engine does.
 
 Deterministic per seed. No LLM, no network.
@@ -294,7 +294,7 @@ if __name__ == "__main__":     # python models/opponent_ai.py — quick self-tes
     aliases = {k: v for k, v in json.loads(
         (ROOT / "data/team_aliases.json").read_text(encoding="utf-8")).items()
         if not k.startswith("_")}
-    order = ["TGil", "Blake", "Nico", "D-Put", "Lamb", "Flowers", "Spivey", "Will", "Munford", "JRay"]
+    order = ["Gilbert", "Bollinger", "Hubauer", "Putman", "Walker", "Wester", "Spivey", "Street", "Munford", "Ray"]
 
     res = simulate(rows, [], order, 1, my_slot=10, seed=42,
                    profiles=profiles, alias_map=aliases)

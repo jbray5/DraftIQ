@@ -211,7 +211,7 @@ if __name__ == "__main__":     # python models/season_sim.py — self-test
 
     print(f"calibrated weekly sd from league history: {weekly_sd():.1f} pts")
 
-    teams = ["TGil", "Blake", "Nico", "D-Put", "Lamb", "Flowers", "Spivey", "Will", "Munford", "JRay"]
+    teams = ["Gilbert", "Bollinger", "Hubauer", "Putman", "Walker", "Wester", "Spivey", "Street", "Munford", "Ray"]
     # empty draft: everyone should be ~10% title, ~60% playoffs
     empty = {t: [] for t in teams}
     t0 = time.time()
@@ -220,13 +220,13 @@ if __name__ == "__main__":     # python models/season_sim.py — self-test
           f" title range {min(o['title'] for o in odds.values()):.3f}"
           f"-{max(o['title'] for o in odds.values()):.3f} (expect ~0.10 each)")
 
-    # give JRay the top 2 RBs + top WR; opponents get nothing yet
+    # give Ray the top 2 RBs + top WR; opponents get nothing yet
     stacked = {t: [] for t in teams}
-    stacked["JRay"] = [{"name": "Bijan Robinson", "position": "RB"},
+    stacked["Ray"] = [{"name": "Bijan Robinson", "position": "RB"},
                        {"name": "Jahmyr Gibbs", "position": "RB"},
                        {"name": "Puka Nacua", "position": "WR"}]
     odds2 = title_odds(stacked, rows, lookup, n_sims=1000)
-    print(f"JRay with Bijan+Gibbs+Nacua vs empty league: title {odds2['JRay']['title']:.1%} "
-          f"(was {odds['JRay']['title']:.1%}), expWins {odds2['JRay']['expWins']}")
-    assert odds2["JRay"]["title"] > odds["JRay"]["title"] + 0.02, "stacked roster must move the needle"
+    print(f"Ray with Bijan+Gibbs+Nacua vs empty league: title {odds2['Ray']['title']:.1%} "
+          f"(was {odds['Ray']['title']:.1%}), expWins {odds2['Ray']['expWins']}")
+    assert odds2["Ray"]["title"] > odds["Ray"]["title"] + 0.02, "stacked roster must move the needle"
     print("sanity PASSED: elite roster lifts title odds")

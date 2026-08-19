@@ -2,13 +2,13 @@
 
 Simulates full 18-round, 10-team snake drafts of the 2026 board:
   * Opponents pick ADP-realistically with noise + their REAL tendencies
-    (Will reaches QB ~rd3, Munford RB-heavy, Nico/TGil wait on QB) and sane
+    (Street reaches QB ~rd3, Munford RB-heavy, Hubauer/Gilbert wait on QB) and sane
     roster rules (fill starters, stream K/DST/IDP late, never 2 streamers).
-  * JRay is driven by a POLICY:
+  * Ray is driven by a POLICY:
       - "model": models/pick_engine.shortlist anchor (the live engine, no LLM)
       - "fp":    need-aware best-available by FantasyPros ECR (their board;
                  IDP is invisible to ECR so it back-fills IDP from ours late)
-  * In every model run, at each JRay pick BOTH advisors are consulted on the
+  * In every model run, at each Ray pick BOTH advisors are consulted on the
     IDENTICAL board state — divergences are logged with the engine's reasoning.
 
 Output: data/processed/mock_sim_report.md + console summary.
@@ -26,15 +26,15 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "models"))
 import pick_engine as pe  # noqa: E402
 
-TEAMS = ["TGil", "Blake", "Nico", "D-Put", "Lamb", "Flowers", "Spivey", "Will", "Munford", "JRay"]
+TEAMS = ["Gilbert", "Bollinger", "Hubauer", "Putman", "Walker", "Wester", "Spivey", "Street", "Munford", "Ray"]
 MY_SLOT = 10   # the wheel — real 2026 draft order
 NT, ROUNDS = 10, 18
 SLOTS = ["QB", "RB1", "RB2", "WR1", "WR2", "TE", "FLEX", "FLEX2", "IDP", "DST", "K"]
 FLEX_ELIG = ("RB", "WR", "TE")
 STREAM = {"IDP", "DST", "K"}
 # manager priors (mirrors data/processed/manager_profiles.json)
-QB_EARLY = {"Will"}
-QB_LATE = {"Nico", "TGil"}
+QB_EARLY = {"Street"}
+QB_LATE = {"Hubauer", "Gilbert"}
 RB_HEAVY = {"Munford"}
 
 DSTS = [("Ravens D/ST", "BAL"), ("Broncos D/ST", "DEN"), ("Texans D/ST", "HOU"),
@@ -249,7 +249,7 @@ def evaluate(team: Team):
 def main():
     seeds = [7, 21, 42]
     lines = ["# Mock-draft simulations — DraftIQ model vs FantasyPros ECR",
-             "", f"{len(seeds)} paired simulations · 10-team snake · 18 rounds · JRay at slot 10 "
+             "", f"{len(seeds)} paired simulations · 10-team snake · 18 rounds · Ray at slot 10 "
              "(THE WHEEL — real 2026 order) · opponents ADP-realistic with real manager tendencies", ""]
     agg_div, agg_res = [], []
     for seed in seeds:
@@ -286,7 +286,7 @@ def main():
         lines.append("")
     # aggregate
     n_picks = len(seeds) * ROUNDS
-    lines.insert(3, f"**Agreement: {n_picks - len(agg_div)}/{n_picks} of JRay's picks; "
+    lines.insert(3, f"**Agreement: {n_picks - len(agg_div)}/{n_picks} of Ray's picks; "
                  f"{len(agg_div)} divergences.** Model roster beat the FP-follower roster in "
                  f"{sum(1 for _, a, b in agg_res if a['vorp'] > b['vorp'])}/{len(seeds)} sims on starter VORP.")
     out = ROOT / "data/processed/mock_sim_report.md"
