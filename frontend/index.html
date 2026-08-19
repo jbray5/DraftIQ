@@ -1313,7 +1313,7 @@ body.glitch .crt-flicker{opacity:.9;background:rgba(255,85,85,.06)}
 
         <!-- my roster -->
         <div class="panel roster">
-          <div class="panel-h">MY ROSTER <span class="tag">// JRay</span>
+          <div class="panel-h">MY ROSTER <span class="tag">// Ray</span>
             <span class="right" id="rosterCount">4/16</span></div>
           <div class="panel-body">
             <div class="needs" id="needsLine">NEED: <b>RB2</b>, <b>TE</b> · QB unfilled (cliff incoming)</div>
@@ -1463,7 +1463,7 @@ body.glitch .crt-flicker{opacity:.9;background:rgba(255,85,85,.06)}
       <div class="panel coach-close">
         <div class="panel-h">AI COACH · CLOSING LOG <span class="right">how you win from here</span></div>
         <div class="panel-body" id="closingBody">
-          <p><b>[ 08:51 ] coach&gt;</b> Good draft, JRay. You're built to win now, not to gamble.
+          <p><b>[ 08:51 ] coach&gt;</b> Good draft, Ray. You're built to win now, not to gamble.
           The path to the title runs through three moves:</p>
           <p><b>1 · Stream the QB cliff.</b> Don't chase a trade for a QB1 yet — your WR surplus is
           the most valuable currency in the league. Hold Nix, ride favorable matchups Weeks 1–4,
@@ -1559,6 +1559,7 @@ body.glitch .crt-flicker{opacity:.9;background:rgba(255,85,85,.06)}
     <div class="fkey" data-fkey="ghost"><b>F5</b> GHOST</div>
     <div class="fkey" data-fkey="grade"><b>F6</b> GRADE</div>
     <div class="fkey" data-fkey="dna" title="what statistically wins this league — every measured effect, ranked"><b>◆</b> DNA</div>
+    <div class="fkey" data-fkey="wire" title="in-season waiver wire: live upgrades, drops, D/ST stream, room activity"><b>⇄</b> WIRE</div>
     <div class="fkey" data-fkey="undo"><b>⌫</b> UNDO</div>
     <div class="fkey" data-fkey="reset"><b>⎋</b> RESET</div>
     <div class="fkey" data-fkey="preflight"><b>F9</b> PREFLIGHT</div>
@@ -1591,12 +1592,13 @@ body.glitch .crt-flicker{opacity:.9;background:rgba(255,85,85,.06)}
 /* =====================================================================
    DATA
 ===================================================================== */
-// REAL 2026 draft order (announced): TGil, Blake, Nico, D-Put, Lamb(Stephen Walker),
-// Flowers(Payton Wester), Spivey, Will, Munford, JRay. You pick from THE WHEEL (slot 10).
-const TEAMS = ["TGil","Blake","Nico","D-Put","Lamb","Flowers","Spivey","Will","Munford","JRay"];
+// REAL 2026 draft order (announced), by manager last name: Gilbert, Bollinger, Hubauer,
+// Putman, Walker(Stephen Walker/Lamb), Wester(Payton Wester/Flowers), Spivey, Street(Will),
+// Munford, Ray. You pick from THE WHEEL (slot 10).
+const TEAMS = ["Gilbert","Bollinger","Hubauer","Putman","Walker","Wester","Spivey","Street","Munford","Ray"];
 const NT = TEAMS.length;          // 10 teams
 const ROUNDS = 18;                // total draft rounds (11 starters + 7 bench — confirmed from live 2026 ESPN settings)
-let MY_SLOT = 10;                 // JRay — slot 10, back-to-back picks at every turn
+let MY_SLOT = 10;                 // Ray — slot 10, back-to-back picks at every turn
 
 // available player pool at pick 53 (live board state)
 let POOL = [
@@ -1821,7 +1823,7 @@ async function fuseBestPick(r){
     else{
       const picks=Object.entries(PICKS).map(([ov,p])=>({overall:+ov,team:TEAMS[slotForPick(+ov)-1],name:p.full||p.nm,pos:p.pos}));
       const res=await fetch('/api/ai/best-pick',{method:'POST',headers:{'content-type':'application/json'},
-        body:JSON.stringify({myTeamName:TEAMS[MY_SLOT-1]||'JRay',mySlot:MY_SLOT,myRoster:rosterForApi(),
+        body:JSON.stringify({myTeamName:TEAMS[MY_SLOT-1]||'Ray',mySlot:MY_SLOT,myRoster:rosterForApi(),
           bench:BENCH.map(b=>({name:b.nm,position:b.pos})),
           drafted,picks,teamOrder:TEAMS,meta:{pickNumber:CURRENT_PICK,teams:NT,rounds:ROUNDS}})});
       if(!res.ok) throw new Error('HTTP '+res.status);
@@ -2228,7 +2230,7 @@ async function openCoach(p){
   try{
     const res=await fetch('/api/ai/opinion',{method:'POST',headers:{'content-type':'application/json'},
       body:JSON.stringify({player:{name:t.nm,position:t.pos,team:t.tm,points:t.proj,adp:t.adp,vorp:t.vorp},
-        myTeamName:(TEAMS[MY_SLOT-1]||"JRay"),myRoster:rosterForApi(),board:{},meta:{pickNumber:CURRENT_PICK,teams:NT}})});
+        myTeamName:(TEAMS[MY_SLOT-1]||"Ray"),myRoster:rosterForApi(),board:{},meta:{pickNumber:CURRENT_PICK,teams:NT}})});
     if(!res.ok) throw new Error('HTTP '+res.status);
     const o=(await res.json()).opinion;
     const vt=valueTag(t.mkt);
@@ -2747,7 +2749,7 @@ function renderLineup(){
 }
 const STANDINGS=[
   {tm:"Mahomies",pts:1842},
-  {tm:"JRay",pts:1818,me:true},
+  {tm:"Ray",pts:1818,me:true},
   {tm:"Gronk Mob",pts:1796},
   {tm:"Trust Process",pts:1771},
   {tm:"Purdy Good",pts:1755},
@@ -2987,6 +2989,7 @@ function doFkey(action){
   else if(action==='ghost'){cycleGhost();}
   else if(action==='preflight'){runPreflight();}
   else if(action==='dna'){openDNA();}
+  else if(action==='wire'){openWire();}
   else if(action==='palette'){openPalette();}
   else if(action==='refresh'){flashStatus('↻ BOARD REFRESHED · ESPN SYNC');renderAvail(activePos,'');}
   else if(action==='undo'){undoPick();}
@@ -3561,7 +3564,7 @@ function bootSequence(){
     ()=>`MONTE CARLO CORE .................. <span class="ok">σ=21.7 · 1000 SEASONS/TICK</span>`,
     ()=>`DRAFT BOARD ....................... ${POOL.length?`<span class="ok">${POOL.length} PLAYERS LIVE</span>`:'<span class="warn">STREAMING…</span>'}`,
     ()=>`MISSION ........................... <span class="warn">WIN DEREK JETER'S TACO HOLE</span>`,
-    ()=>`<span class="dim">seat 10 · THE WHEEL · good hunting, JRay</span>`,
+    ()=>`<span class="dim">seat 10 · THE WHEEL · good hunting, Ray</span>`,
   ];
   const box=el.querySelector('#bsLines');
   let i=0, dead=false;
@@ -3996,7 +3999,7 @@ function cmdPreview(v){
     out.innerHTML=hits.length?hits.map((p,i)=>`<div class="cp-hit ${i===0?'sel':''}">${i===0?'▸ ':'  '}${p.nm} <span class="badge bg-${p.pos}">${p.pos}</span> <span style="color:var(--grey-dk)">vorp ${pm(p.vorp)} · mkt ${p.mkt??'—'}</span></div>`).join('')
       :'<div class="cp-hit" style="color:var(--grey-dk)">no available player matches</div>';
   } else if(!v){
-    out.innerHTML='<div class="cp-hit" style="color:var(--grey-dk)">draft &lt;name&gt; · ask &lt;name|question&gt; · spy &lt;team&gt; · find &lt;txt&gt; · ghost [fast|off] · sync · war · odds · dna · preflight · clock &lt;secs&gt; · mute · undo · reset · goto cheat|lab|grade|whatif|cmd · help</div>';
+    out.innerHTML='<div class="cp-hit" style="color:var(--grey-dk)">draft &lt;name&gt; · ask &lt;name|question&gt; · spy &lt;team&gt; · find &lt;txt&gt; · ghost [fast|off] · sync · war · odds · dna · wire · preflight · clock &lt;secs&gt; · mute · undo · reset · goto cheat|lab|grade|whatif|cmd · help</div>';
   } else out.innerHTML='';
 }
 function runCmd(v){
@@ -4027,6 +4030,7 @@ function runCmd(v){
   if(C==='odds'){closePalette();renderOddsModal();ensureOddsModal().classList.add('open');document.getElementById('scrim').classList.add('show');return;}
   if(C==='preflight'){closePalette();runPreflight();return;}
   if(C==='dna'||C==='wins'){closePalette();openDNA();return;}
+  if(C==='wire'||C==='waivers'){closePalette();openWire();return;}
   if(C==='clock'){const s=parseInt(arg,10);if(s>=10&&s<=600){CLOCK.secs=s;CLOCK.left=s;localStorage.setItem('draftiq_clock',String(s));say('pick clock set to '+s+'s');}else say('clock 10..600');return;}
   if(C==='mute'){SND.on=!SND.on;localStorage.setItem('draftiq_snd',SND.on?'on':'off');const b=document.getElementById('sndToggle');if(b){b.textContent=SND.on?'🔊':'🔇';b.classList.toggle('mute',!SND.on);}say(SND.on?'audio on':'muted');return;}
   if(C==='undo'){undoPick();return;}
@@ -4049,6 +4053,51 @@ function paintClock(secs){
   const el=document.getElementById('timer'); if(!el)return;
   el.textContent=String(Math.floor(secs/60)).padStart(2,'0')+':'+String(secs%60).padStart(2,'0');
   el.classList.toggle('warn',secs<=15&&!draftDone());
+}
+
+/* ---------- WAIVER WIRE — in-season upgrades from live ESPN state ---------- */
+async function openWire(){
+  const m=ensureOddsModal();
+  m.querySelector('#oddsTitle').textContent='⇄ WAIVER WIRE · LIVE';
+  const body=m.querySelector('#oddsBody');
+  body.innerHTML='<div style="padding:14px;color:var(--grey)">pulling live rosters + free agents…<span class="cursor"></span></div>';
+  m.classList.add('open');document.getElementById('scrim').classList.add('show');
+  try{
+    const res=await fetch('/api/waivers');
+    const d=await res.json(); if(d.error)throw new Error(d.error);
+    const sec=t=>`<div class="dna-tier">${t}</div>`;
+    let html=`<div style="padding:6px 14px 14px">
+      <div style="font-size:11px;color:var(--grey);margin-bottom:4px">${d.myTeam} · week ${d.week} · lineup ROS proj <b style="color:var(--white)">${d.myLineupProj}</b></div>`;
+    html+=sec('UPGRADES · crack your starting lineup');
+    html+=(d.upgrades&&d.upgrades.length)?d.upgrades.map(u=>`<div class="dna-row">
+        <div class="dna-hd"><span class="dna-nm">+ ${u.add.name} <span class="badge bg-${u.add.pos}">${u.add.pos}</span></span>
+        <span style="flex:1"></span><span class="dna-v">+${u.lineupGain}</span></div>
+        <div class="dna-d">proj ${u.add.proj} · beats the wire by ${u.vsWire}${u.drop?(' · <b style="color:var(--red)">drop '+u.drop.name+'</b> ('+u.drop.pos+' '+u.drop.proj+')'):''}</div>
+      </div>`).join('')
+      :'<div class="dna-d" style="padding:6px 0">none — the wire has nothing that beats your starters. That is a good draft.</div>';
+    html+=sec('DEPTH ADDS · beat the wire, bench for now');
+    html+=(d.depthAdds||[]).map(t=>`<div class="dna-row"><div class="dna-hd">
+        <span class="dna-nm">+ ${t.name} <span class="badge bg-${t.pos}">${t.pos}</span></span>
+        <span style="flex:1"></span><span class="dna-v">+${t.vsWire}</span></div>
+        <div class="dna-d">proj ${t.proj} vs wire replacement</div></div>`).join('')||'<div class="dna-d" style="padding:6px 0">nothing meaningful</div>';
+    const st=d.stream||{};
+    html+=sec(`D/ST STREAM · week ${st.week||d.week} · by implied opponent total (the +55/yr play)`);
+    html+=`<div class="dna-use" style="margin:4px 0 6px">▸ ${st.verdict||st.error||'—'}</div>`;
+    (st.myDst||[]).forEach(x=>{html+=`<div class="dna-d">mine: <b>${x.name}</b> — matchup #${x.w1Rank??'—'}${x.opp?(' vs '+x.opp):''}</div>`;});
+    (st.bestAvailable||[]).slice(0,3).forEach(x=>{html+=`<div class="dna-d">wire: ${x.name} — matchup #${x.w1Rank??'—'}${x.opp?(' vs '+x.opp):''}</div>`;});
+    if(d.injuryFlags&&d.injuryFlags.length){
+      html+=sec('INJURY FLAGS · your roster');
+      d.injuryFlags.forEach(f=>{html+=`<div class="dna-d" style="color:var(--red)">⚕ ${f.name} (${f.pos}) — ${f.injury}</div>`;});
+    }
+    if(d.roomActivity&&d.roomActivity.length){
+      html+=sec('ROOM ACTIVITY · recent moves');
+      d.roomActivity.slice(0,12).forEach(mv=>{html+=`<div class="dna-d">${mv.team||'?'} <b style="color:${/ADD/i.test(mv.action)?'var(--green)':'var(--red)'}">${mv.action}</b> ${mv.player}${mv.bid?(' ($'+mv.bid+')'):''}</div>`;});
+    }
+    html+='</div>';
+    body.innerHTML=html;
+  }catch(e){
+    body.innerHTML='<div style="padding:14px;color:var(--red)">wire pull failed — '+e.message+'<br><span style="color:var(--grey-dk)">is python api.py running with the ESPN cookies in .env?</span></div>';
+  }
 }
 
 /* ---------- LEAGUE DNA — what statistically wins this league ----------

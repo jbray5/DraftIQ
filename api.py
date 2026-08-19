@@ -1014,6 +1014,32 @@ def ai_best_pick():
         return jsonify({"error": str(e)}), 500
 
 
+_WAIVER_CACHE: dict = {}
+
+
+@app.route("/api/waivers", methods=["GET"])
+def api_waivers():
+    """In-season WAIVER WIRE report: live ESPN rosters + free agents valued on
+    league-scored ROS projections, lineup-crack upgrades w/ drop suggestions,
+    this week's D/ST stream by implied opponent total, injury flags, and the
+    room's recent moves. Cached 5 min (?force=1 busts; ?week=N overrides)."""
+    try:
+        from models import waivers as wv
+        week = request.args.get("week", type=int)
+        force = request.args.get("force") == "1"
+        key = f"w{week or 'auto'}"
+        hit = _WAIVER_CACHE.get(key)
+        if hit and not force and time.time() - hit["at"] < 300:
+            return jsonify(hit["data"])
+        rep = wv.report(2026, week)
+        if not rep.get("error"):
+            _WAIVER_CACHE[key] = {"at": time.time(), "data": rep}
+        return jsonify(rep)
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({"error": str(e)}), 500
+
+
 @app.route("/api/ai/chat", methods=["POST"])
 def ai_chat():
     """Free-form mid-draft Q&A. The user asks anything ('why LaPorta over Pitts?',

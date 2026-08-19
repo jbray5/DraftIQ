@@ -42,3 +42,5 @@ data/processed/*.buffed_idp.csv
 data/processed/*.pre_idpfix.csv
 data/processed/*.pre2012.json
 data/processed/*.prev_refresh.csv
+
+.claude/*.out.log.err
