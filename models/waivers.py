@@ -116,30 +116,39 @@ def report(season: int = 2026, week: int | None = None) -> dict:
         by_pos.setdefault(r["pos"], []).append(r["proj"])
     repl = {pos: (lst[4] if len(lst) > 4 else lst[-1]) for pos, lst in by_pos.items()}
 
-    # ---- UPGRADES: who cracks my lineup, and who to cut for him ----
+    # ---- UPGRADES + DEPTH ADDS, each priced as a full MOVE ----
+    # The currency is in-season VORP: value over the wire. A move's net value is
+    #   netVorp = (add.proj − wire[add.pos]) − (drop.proj − wire[drop.pos])
+    # i.e. what your roster gains in value-over-replacement after BOTH halves of
+    # the transaction. lineupGain is the separate, immediate starter-points bump.
     lineup = optimal_lineup(my, spec)
-    starter_ids = {id(p) for _, p in lineup["starters"]}
-    targets = waiver_targets(my, fas[:120], repl, spec, top=25)
-    upgrades = []
-    for t in targets:
-        if t["lineup_gain"] <= 0.1:
-            continue
-        after = optimal_lineup(my + [{k: t[k] for k in ("name", "pos", "proj")}], spec)
-        new_starters = {p["name"] for _, p in after["starters"]}
-        drops = sorted((p for p in my if p["name"] not in new_starters),
-                       key=lambda p: p["proj"])
-        drop = drops[0] if drops else None
-        upgrades.append({
-            "add": {k: t[k] for k in ("name", "pos", "team", "proj")},
-            "lineupGain": t["lineup_gain"], "vsWire": t["vorp"],
-            "drop": ({k: drop[k] for k in ("name", "pos", "team", "proj")} if drop else None),
-        })
-        if len(upgrades) >= 8:
-            break
 
-    # ---- DEPTH ADDS: best bench value even if they don't start today ----
-    depth = [{**{k: t[k] for k in ("name", "pos", "team", "proj")}, "vsWire": t["vorp"]}
-             for t in targets if t["lineup_gain"] <= 0.1 and t["vorp"] > 0][:6]
+    def _vorp(p) -> float:
+        return round((p["proj"] or 0) - repl.get(p["pos"], 0), 1)
+
+    def _best_drop(add_row):
+        """Cheapest cut: the bench player (never a current starter — protects the
+        single K/DST/IDP) worth the least over the wire once the add is rostered."""
+        after = optimal_lineup(my + [add_row], spec)
+        keep = {p["name"] for _, p in after["starters"]}
+        bench = [p for p in my if p["name"] not in keep]
+        return min(bench, key=_vorp) if bench else None
+
+    def _move(t):
+        add = {k: t[k] for k in ("name", "pos", "team", "proj")}
+        drop = _best_drop({k: t[k] for k in ("name", "pos", "proj")})
+        net = round(_vorp(add) - (_vorp(drop) if drop else 0), 1)
+        return {"add": add, "lineupGain": t["lineup_gain"], "vsWire": t["vorp"],
+                "drop": ({**{k: drop[k] for k in ("name", "pos", "team", "proj")},
+                          "vsWire": _vorp(drop)} if drop else None),
+                "netVorp": net}
+
+    targets = waiver_targets(my, fas[:120], repl, spec, top=25)
+    upgrades = [_move(t) for t in targets if t["lineup_gain"] > 0.1][:8]
+    depth = sorted((_move(t) for t in targets
+                    if t["lineup_gain"] <= 0.1 and t["vorp"] > 0),
+                   key=lambda m: -m["netVorp"])[:6]
+    depth = [m for m in depth if m["netVorp"] > 0]
 
     # ---- STREAMS: this week's D/ST by implied opponent total ----
     stream: dict = {"week": week}
@@ -205,12 +214,15 @@ if __name__ == "__main__":
         print("  none — the wire has nothing that beats your starters")
     for u in rep["upgrades"]:
         d = u["drop"]
-        print(f"  + {u['add']['name']:<24}{u['add']['pos']:<4} proj {u['add']['proj']:>6}"
-              f"  lineup +{u['lineupGain']:<5}"
-              + (f" | drop {d['name']} ({d['pos']} {d['proj']})" if d else ""))
+        print(f"  + {u['add']['name']:<24}{u['add']['pos']:<4} lineup +{u['lineupGain']:<6}"
+              + (f" drop {d['name']} ({d['pos']})" if d else "")
+              + f"  NET {'+' if u['netVorp'] >= 0 else ''}{u['netVorp']} VORP")
     print("\nDEPTH ADDS (beat the wire, don't start yet):")
-    for t in rep["depthAdds"]:
-        print(f"  + {t['name']:<24}{t['pos']:<4} proj {t['proj']:>6}  vs wire +{t['vsWire']}")
+    for m in rep["depthAdds"]:
+        d = m["drop"]
+        print(f"  + {m['add']['name']:<24}{m['add']['pos']:<4} proj {m['add']['proj']:>6}"
+              + (f"  drop {d['name']} ({d['pos']} {d['proj']})" if d else "")
+              + f"  NET +{m['netVorp']} VORP")
     st = rep["stream"]
     print(f"\nD/ST STREAM (week {st.get('week')}):  {st.get('verdict', st.get('error'))}")
     for m in (st.get("myDst") or []):

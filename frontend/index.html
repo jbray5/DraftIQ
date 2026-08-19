@@ -4068,18 +4068,17 @@ async function openWire(){
     const sec=t=>`<div class="dna-tier">${t}</div>`;
     let html=`<div style="padding:6px 14px 14px">
       <div style="font-size:11px;color:var(--grey);margin-bottom:4px">${d.myTeam} · week ${d.week} · lineup ROS proj <b style="color:var(--white)">${d.myLineupProj}</b></div>`;
-    html+=sec('UPGRADES · crack your starting lineup');
-    html+=(d.upgrades&&d.upgrades.length)?d.upgrades.map(u=>`<div class="dna-row">
-        <div class="dna-hd"><span class="dna-nm">+ ${u.add.name} <span class="badge bg-${u.add.pos}">${u.add.pos}</span></span>
-        <span style="flex:1"></span><span class="dna-v">+${u.lineupGain}</span></div>
-        <div class="dna-d">proj ${u.add.proj} · beats the wire by ${u.vsWire}${u.drop?(' · <b style="color:var(--red)">drop '+u.drop.name+'</b> ('+u.drop.pos+' '+u.drop.proj+')'):''}</div>
-      </div>`).join('')
+    const move=(m,gainLabel)=>`<div class="dna-row">
+        <div class="dna-hd"><span class="dna-nm">+ ${m.add.name} <span class="badge bg-${m.add.pos}">${m.add.pos}</span>
+          ${m.drop?('<span style="color:var(--grey-dk)"> → </span><span style="color:var(--red)">− '+m.drop.name+'</span> <span class="badge bg-'+m.drop.pos+'">'+m.drop.pos+'</span>'):''}</span>
+        <span style="flex:1"></span><span class="dna-v" title="net value-over-the-wire of the full move: (add proj − wire at his position) − (drop proj − wire at his position). This is the number we chase.">NET ${m.netVorp>=0?'+':''}${m.netVorp}</span></div>
+        <div class="dna-d">${gainLabel}: +${m.lineupGain} · add proj ${m.add.proj} (wire +${m.vsWire})${m.drop?(' · drop proj '+m.drop.proj+' (wire '+(m.drop.vsWire>=0?'+':'')+m.drop.vsWire+')'):''}</div>
+      </div>`;
+    html+=sec('UPGRADES · crack your starting lineup · NET = move VORP vs the wire');
+    html+=(d.upgrades&&d.upgrades.length)?d.upgrades.map(u=>move(u,'starter pts')).join('')
       :'<div class="dna-d" style="padding:6px 0">none — the wire has nothing that beats your starters. That is a good draft.</div>';
-    html+=sec('DEPTH ADDS · beat the wire, bench for now');
-    html+=(d.depthAdds||[]).map(t=>`<div class="dna-row"><div class="dna-hd">
-        <span class="dna-nm">+ ${t.name} <span class="badge bg-${t.pos}">${t.pos}</span></span>
-        <span style="flex:1"></span><span class="dna-v">+${t.vsWire}</span></div>
-        <div class="dna-d">proj ${t.proj} vs wire replacement</div></div>`).join('')||'<div class="dna-d" style="padding:6px 0">nothing meaningful</div>';
+    html+=sec('DEPTH ADDS · bench value now, starters later');
+    html+=(d.depthAdds||[]).map(m=>move(m,'starter pts')).join('')||'<div class="dna-d" style="padding:6px 0">nothing meaningful</div>';
     const st=d.stream||{};
     html+=sec(`D/ST STREAM · week ${st.week||d.week} · by implied opponent total (the +55/yr play)`);
     html+=`<div class="dna-use" style="margin:4px 0 6px">▸ ${st.verdict||st.error||'—'}</div>`;
