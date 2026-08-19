@@ -4068,25 +4068,30 @@ async function openWire(){
     const sec=t=>`<div class="dna-tier">${t}</div>`;
     let html=`<div style="padding:6px 14px 14px">
       <div style="font-size:11px;color:var(--grey);margin-bottom:4px">${d.myTeam} · week ${d.week} · lineup ROS proj <b style="color:var(--white)">${d.myLineupProj}</b></div>`;
-    const move=(m,gainLabel)=>`<div class="dna-row">
-        <div class="dna-hd"><span class="dna-nm">+ ${m.add.name} <span class="badge bg-${m.add.pos}">${m.add.pos}</span>
-          ${m.drop?('<span style="color:var(--grey-dk)"> → </span><span style="color:var(--red)">− '+m.drop.name+'</span> <span class="badge bg-'+m.drop.pos+'">'+m.drop.pos+'</span>'):''}</span>
-        <span style="flex:1"></span><span class="dna-v" title="net value-over-the-wire of the full move: (add proj − wire at his position) − (drop proj − wire at his position). This is the number we chase.">NET ${m.netVorp>=0?'+':''}${m.netVorp}</span></div>
-        <div class="dna-d">${gainLabel}: +${m.lineupGain} · add proj ${m.add.proj} (wire +${m.vsWire})${m.drop?(' · drop proj '+m.drop.proj+' (wire '+(m.drop.vsWire>=0?'+':'')+m.drop.vsWire+')'):''}</div>
-      </div>`;
-    html+=sec('UPGRADES · crack your starting lineup · NET = move VORP vs the wire');
-    html+=(d.upgrades&&d.upgrades.length)?d.upgrades.map(u=>move(u,'starter pts')).join('')
-      :'<div class="dna-d" style="padding:6px 0">none — the wire has nothing that beats your starters. That is a good draft.</div>';
-    html+=sec('DEPTH ADDS · bench value now, starters later');
-    html+=(d.depthAdds||[]).map(m=>move(m,'starter pts')).join('')||'<div class="dna-d" style="padding:6px 0">nothing meaningful</div>';
+    const move=m=>`${m.add.name} <span class="badge bg-${m.add.pos}">${m.add.pos}</span>
+          ${m.drop?('<span style="color:var(--grey-dk)"> → drop </span><span style="color:var(--red)">'+m.drop.name+'</span> <span class="badge bg-'+m.drop.pos+'">'+m.drop.pos+'</span>'):''}`;
+    if(d.allClear){
+      html+=`<div style="border:1px solid var(--green);background:rgba(51,255,102,.05);padding:12px 14px;margin:8px 0;color:var(--green);font-weight:800;letter-spacing:.06em">✓ ALL CLEAR — nothing on the wire needs action. Best move: no move.</div>`;
+    } else {
+      html+=sec('ACTIONS · do these');
+      (d.actions||[]).forEach(a=>{html+=`<div class="dna-row" style="border-left:2px solid var(--amber);padding-left:8px">
+        <div class="dna-hd"><span class="dna-nm" style="color:var(--amber)">▶ ${a.type}: ${move(a)}</span>
+        <span style="flex:1"></span><span class="dna-v" title="net value-over-the-wire of the full move — the number we chase">NET ${a.netVorp>=0?'+':''}${a.netVorp}</span></div>
+        <div class="dna-d">${a.why}</div>
+        <div class="dna-use">▸ ${a.urgency}</div></div>`;});
+    }
     const st=d.stream||{};
-    html+=sec(`D/ST STREAM · week ${st.week||d.week} · by implied opponent total (the +55/yr play)`);
-    html+=`<div class="dna-use" style="margin:4px 0 6px">▸ ${st.verdict||st.error||'—'}</div>`;
-    (st.myDst||[]).forEach(x=>{html+=`<div class="dna-d">mine: <b>${x.name}</b> — matchup #${x.w1Rank??'—'}${x.opp?(' vs '+x.opp):''}</div>`;});
-    (st.bestAvailable||[]).slice(0,3).forEach(x=>{html+=`<div class="dna-d">wire: ${x.name} — matchup #${x.w1Rank??'—'}${x.opp?(' vs '+x.opp):''}</div>`;});
+    html+=`<div class="dna-d" style="margin:10px 0 0;color:${st.hold?'var(--grey)':'var(--amber)'}">${st.line||''}</div>`;
+    if(d.watchlist&&d.watchlist.length){
+      html+=sec('WATCHLIST · same-slot dart swaps, zero urgency');
+      d.watchlist.forEach(m=>{html+=`<div class="dna-row"><div class="dna-hd"><span class="dna-nm">${move(m)}</span>
+        <span style="flex:1"></span><span class="dna-v">+${m.netVorp}</span></div>
+        <div class="dna-d">${m.why}</div></div>`;});
+    }
     if(d.injuryFlags&&d.injuryFlags.length){
-      html+=sec('INJURY FLAGS · your roster');
-      d.injuryFlags.forEach(f=>{html+=`<div class="dna-d" style="color:var(--red)">⚕ ${f.name} (${f.pos}) — ${f.injury}</div>`;});
+      html+=sec('INJURY NOTES · auto-fetched, no research needed');
+      d.injuryFlags.forEach(f=>{html+=`<div class="dna-row"><div class="dna-d" style="color:var(--red)">⚕ <b>${f.name}</b> (${f.pos}) — ${f.injury}${f.newsDate?(' <span style="color:var(--grey-dk)">['+f.newsDate+']</span>'):''}</div>
+        ${f.news?('<div class="dna-d">'+f.news+'</div>'):''}</div>`;});
     }
     if(d.roomActivity&&d.roomActivity.length){
       html+=sec('ROOM ACTIVITY · recent moves');
