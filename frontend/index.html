@@ -1560,6 +1560,7 @@ body.glitch .crt-flicker{opacity:.9;background:rgba(255,85,85,.06)}
     <div class="fkey" data-fkey="grade"><b>F6</b> GRADE</div>
     <div class="fkey" data-fkey="dna" title="what statistically wins this league — every measured effect, ranked"><b>◆</b> DNA</div>
     <div class="fkey" data-fkey="wire" title="in-season waiver wire: live upgrades, drops, D/ST stream, room activity"><b>⇄</b> WIRE</div>
+    <div class="fkey amber" data-fkey="season" title="SeasonIQ — the in-season portal: matchup, start/sit, standings, wire"><b>▶</b> SEASON</div>
     <div class="fkey" data-fkey="undo"><b>⌫</b> UNDO</div>
     <div class="fkey" data-fkey="reset"><b>⎋</b> RESET</div>
     <div class="fkey" data-fkey="preflight"><b>F9</b> PREFLIGHT</div>
@@ -2990,6 +2991,7 @@ function doFkey(action){
   else if(action==='preflight'){runPreflight();}
   else if(action==='dna'){openDNA();}
   else if(action==='wire'){openWire();}
+  else if(action==='season'){location.href='/season.html';}
   else if(action==='palette'){openPalette();}
   else if(action==='refresh'){flashStatus('↻ BOARD REFRESHED · ESPN SYNC');renderAvail(activePos,'');}
   else if(action==='undo'){undoPick();}

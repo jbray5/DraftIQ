@@ -294,6 +294,94 @@ def report(season: int = 2026, week: int | None = None) -> dict:
             "injuryFlags": flags, "roomActivity": moves[:20]}
 
 
+# --------------------------------------------------------------------------- #
+# In-season portal: MY MATCHUP + START/SIT + PROJECTED STANDINGS
+# --------------------------------------------------------------------------- #
+def startsit(season: int = 2026, week: int | None = None) -> dict:
+    """This week's matchup from live ESPN box scores: my lineup vs the optimal
+    lineup on ESPN's league-scored weekly projections, concrete swaps, and a
+    win probability vs my opponent (weekly sigma from league history)."""
+    try:
+        from inseason import optimal_lineup as _opt, slot_spec as _spec, bucket as _b
+        import season_sim
+    except ImportError:
+        from models.inseason import optimal_lineup as _opt, slot_spec as _spec, bucket as _b
+        from models import season_sim
+    import math
+    lg = _league(season)
+    week = week or max(1, int(getattr(lg, "current_week", 1) or 1))
+    _, my_owner = _my_ui_and_owner()
+
+    def _owners(t):
+        return [str(o.get("displayName") or "").lower()
+                for o in (getattr(t, "owners", None) or []) if isinstance(o, dict)]
+
+    def _lineup_rows(lineup):
+        return [{"name": p.name, "pos": _b(getattr(p, "position", "") or ""),
+                 "slot": getattr(p, "slot_position", None),
+                 "proj": round(float(getattr(p, "projected_points", 0) or 0), 1),
+                 "injury": (str(getattr(p, "injuryStatus", "") or "").upper() or None)}
+                for p in (lineup or [])]
+
+    for m in lg.box_scores(week):
+        for side, opp in (("home", "away"), ("away", "home")):
+            team = getattr(m, f"{side}_team", None)
+            if team is None or (my_owner not in _owners(team)
+                                and "sclsu" not in str(getattr(team, "team_name", "")).lower()):
+                continue
+            mine = _lineup_rows(getattr(m, f"{side}_lineup", []))
+            theirs = _lineup_rows(getattr(m, f"{opp}_lineup", []))
+            opp_team = getattr(m, f"{opp}_team", None)
+            spec = _spec(CFG["2026"])
+            started = [p for p in mine if p["slot"] not in ("BE", "IR")]
+            my_total = round(sum(p["proj"] for p in started), 1)
+            opt = _opt(mine, spec)
+            opt_names = {p["name"] for _, p in opt["starters"]}
+            cur_names = {p["name"] for p in started}
+            swaps = [{"start": n} for n in sorted(opt_names - cur_names)] and \
+                    [{"start": i, "sit": o} for i, o in
+                     zip(sorted(opt_names - cur_names), sorted(cur_names - opt_names))]
+            opp_total = round(sum(p["proj"] for p in theirs if p["slot"] not in ("BE", "IR")), 1)
+            sd = season_sim.weekly_sd()
+            win = 0.5 * (1 + math.erf((opt["total"] - opp_total) / (sd * math.sqrt(2) * math.sqrt(2))))
+            return {"week": week,
+                    "me": {"team": getattr(team, "team_name", None), "current": started,
+                           "bench": [p for p in mine if p["slot"] in ("BE", "IR")],
+                           "currentTotal": my_total, "optimalTotal": opt["total"],
+                           "optimalNames": sorted(opt_names)},
+                    "swaps": swaps, "benchLeak": round(opt["total"] - my_total, 1),
+                    "opponent": {"team": getattr(opp_team, "team_name", None),
+                                 "projTotal": opp_total},
+                    "winProb": round(win, 3)}
+    return {"error": f"no matchup found for you in week {week}"}
+
+
+def season_odds(season: int = 2026) -> dict:
+    """PROJECTED STANDINGS from live rosters: the draft-night Monte Carlo,
+    re-run on today's actual rosters + wire. {team: {title, playoff, expWins,
+    weeklyMean}} — updates as rosters churn."""
+    try:
+        import season_sim
+    except ImportError:
+        from models import season_sim
+    snap = snapshot(season)
+    rosters, lookup_tbl = {}, {}
+    for t in snap["teams"]:
+        nm = t["teamName"]
+        rosters[nm] = [{"name": p["name"], "position": p["pos"]} for p in t["roster"]]
+        for p in t["roster"]:
+            lookup_tbl[(p["name"], p["pos"])] = p["proj"]
+
+    def lookup(name, pos):
+        return lookup_tbl.get((name, pos), 0.0)
+
+    avail = [{"name": r["name"], "pos": r["pos"], "league_pts": r["proj"]}
+             for r in snap["freeAgents"]]
+    odds = season_sim.title_odds(rosters, avail, lookup, n_sims=1000)
+    return {"week": snap["week"], "odds": odds,
+            "myTeam": snap["myTeam"]["teamName"] if snap["myTeam"] else None}
+
+
 if __name__ == "__main__":
     rep = report()
     if rep.get("error"):

@@ -1040,6 +1040,40 @@ def api_waivers():
         return jsonify({"error": str(e)}), 500
 
 
+@app.route("/api/startsit", methods=["GET"])
+def api_startsit():
+    """This week's matchup + start/sit swaps from live ESPN weekly projections."""
+    try:
+        from models import waivers as wv
+        key = "startsit" + str(request.args.get("week") or "")
+        hit = _WAIVER_CACHE.get(key)
+        if hit and request.args.get("force") != "1" and time.time() - hit["at"] < 300:
+            return jsonify(hit["data"])
+        rep = wv.startsit(2026, request.args.get("week", type=int))
+        if not rep.get("error"):
+            _WAIVER_CACHE[key] = {"at": time.time(), "data": rep}
+        return jsonify(rep)
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/api/season-odds", methods=["GET"])
+def api_season_odds():
+    """Projected standings: the Monte Carlo re-run on today's LIVE rosters."""
+    try:
+        from models import waivers as wv
+        hit = _WAIVER_CACHE.get("odds")
+        if hit and request.args.get("force") != "1" and time.time() - hit["at"] < 600:
+            return jsonify(hit["data"])
+        rep = wv.season_odds(2026)
+        _WAIVER_CACHE["odds"] = {"at": time.time(), "data": rep}
+        return jsonify(rep)
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({"error": str(e)}), 500
+
+
 @app.route("/api/ai/chat", methods=["POST"])
 def ai_chat():
     """Free-form mid-draft Q&A. The user asks anything ('why LaPorta over Pitts?',
