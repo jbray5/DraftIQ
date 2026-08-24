@@ -96,15 +96,31 @@ async function loadMatchup(force){
 async function loadOdds(force){
   try{
     const d=await j('/api/season-odds'+(force?'?force=1':''));
-    const rows=Object.entries(d.odds).sort((a,b)=>b[1].title-a[1].title);
-    let html='<table><tr><th>#</th><th>team</th><th class="num">title</th><th class="num">playoff</th><th class="num">xW</th></tr>';
-    rows.forEach(([nm,o],i)=>{
-      const me=nm===d.myTeam;
-      html+=`<tr class="${me?'me':''}"><td>${String(i+1).padStart(2,'0')}</td><td>${esc(nm)}${me?' ◄':''}</td>
-        <td class="num">${(o.title*100).toFixed(1)}%</td><td class="num">${Math.round(o.playoff*100)}%</td><td class="num">${o.expWins}</td></tr>`;
+    const avg=nm=>(((d.odds[nm]||{}).title||0)+((d.oddsOurs[nm]||{}).title||0))/2;
+    const rows=Object.keys(d.odds).sort((a,b)=>avg(b)-avg(a));
+    const pct=v=>(v*100).toFixed(1);
+    let html='<table><tr><th>team</th><th class="num" title="judged by ESPN rest-of-season projections">title% ESPN</th><th class="num" title="judged by OUR draft-board blend (SportsData+FP, league-scored)">title% OURS</th><th class="num">playoff</th><th class="num">xW</th></tr>';
+    rows.forEach(nm=>{
+      const me=nm===d.myTeam, e=d.odds[nm]||{}, o=d.oddsOurs[nm]||{};
+      const disagree=Math.abs((e.title||0)-(o.title||0))>=0.03;
+      html+=`<tr class="${me?'me':''}"><td>${esc(nm)}${me?' ◄':''}</td>
+        <td class="num">${pct(e.title||0)}%</td>
+        <td class="num" style="${disagree?'color:var(--cyan)':''}">${pct(o.title||0)}%</td>
+        <td class="num dim">${Math.round(((e.playoff||0)+(o.playoff||0))/2*100)}%</td>
+        <td class="num dim">${(((e.expWins||0)+(o.expWins||0))/2).toFixed(1)}</td></tr>`;
     });
-    $('pOdds').innerHTML='<h2>PROJECTED STANDINGS <span class="r">1,000-season Monte Carlo · live rosters</span></h2>'+html+'</table>'
-      +'<div class="dim" style="margin-top:6px">field = 10% title. Re-runs on every roster move in the league.</div>';
+    html+='</table><div class="dim" style="margin-top:6px">two judges, same sim: ESPN\'s projections vs our draft model. field = 10%. '
+      +esc(d.noiseNote||'')+'</div>';
+    if(d.tradeMap&&d.tradeMap.length){
+      html+='<h2 style="margin-top:14px">TRADE MAP <span class="r">where the judges disagree = where value moves</span></h2>';
+      d.tradeMap.forEach(t=>{
+        html+=`<div class="rowline"><b class="${t.delta>0?'good':'bad'}">${t.delta>0?'BUY':'SELL'}</b>
+          ${esc(t.name)} <span class="dim">(${t.pos}${t.mine?' · YOURS':' · '+esc(t.owner)})</span>
+          <span class="dim">ESPN ${t.pos}${t.espnRank} vs ours ${t.pos}${t.ourRank}</span>
+          <div class="dim">${esc(t.read)}</div></div>`;
+      });
+    }
+    $('pOdds').innerHTML='<h2>PROJECTED STANDINGS <span class="r">1,000-season Monte Carlo · two judges</span></h2>'+html;
   }catch(e){$('pOdds').innerHTML='<h2>PROJECTED STANDINGS</h2><div class="err">'+esc(e.message)+'</div>';}
 }
 

@@ -357,29 +357,98 @@ def startsit(season: int = 2026, week: int | None = None) -> dict:
 
 
 def season_odds(season: int = 2026) -> dict:
-    """PROJECTED STANDINGS from live rosters: the draft-night Monte Carlo,
-    re-run on today's actual rosters + wire. {team: {title, playoff, expWins,
-    weeklyMean}} — updates as rosters churn."""
+    """PROJECTED STANDINGS from live rosters — judged TWICE: once by ESPN's ROS
+    projections, once by OUR draft-board blend. Same Monte Carlo both times;
+    only the projection source changes. Where the two judges disagree about a
+    player is the TRADE MAP: sell what ESPN overrates (the room drafts and
+    trades off ESPN's numbers), buy what it underrates. Title% carries ~±1pt of
+    MC noise at 1000 sims — ordinal ranks inside a tight cluster are ties."""
     try:
         import season_sim
+        from scoring import norm_name
     except ImportError:
         from models import season_sim
+        from models.scoring import norm_name
+    import csv as _csv
     snap = snapshot(season)
-    rosters, lookup_tbl = {}, {}
+
+    board = {}
+    try:
+        with open(ROOT / "data" / "processed" / "board_2026.csv",
+                  newline="", encoding="utf-8") as fh:
+            for r in _csv.DictReader(fh):
+                try:
+                    board[(norm_name(r["name"]), r["pos"])] = float(r["league_pts"])
+                except (ValueError, KeyError):
+                    continue
+    except OSError:
+        pass
+
+    rosters, espn_tbl = {}, {}
+    all_rostered = []
     for t in snap["teams"]:
-        nm = t["teamName"]
-        rosters[nm] = [{"name": p["name"], "position": p["pos"]} for p in t["roster"]]
+        rosters[t["teamName"]] = [{"name": p["name"], "position": p["pos"]}
+                                  for p in t["roster"]]
         for p in t["roster"]:
-            lookup_tbl[(p["name"], p["pos"])] = p["proj"]
+            espn_tbl[(p["name"], p["pos"])] = p["proj"]
+            all_rostered.append({**p, "owner": t["teamName"]})
 
-    def lookup(name, pos):
-        return lookup_tbl.get((name, pos), 0.0)
+    # our-board lookup, with a scale-consistent fallback for anyone not on the
+    # board (the blend runs ~55% of ESPN's scale — mixing raw scales would hand
+    # unmatched players a phantom 2x boost)
+    matched = [(espn_tbl[(p["name"], p["pos"])], board[(norm_name(p["name"]), p["pos"])])
+               for p in all_rostered if (norm_name(p["name"]), p["pos"]) in board
+               and espn_tbl[(p["name"], p["pos"])] > 0]
+    scale = (sum(b for _, b in matched) / max(1.0, sum(e for e, _ in matched))) if matched else 0.55
 
-    avail = [{"name": r["name"], "pos": r["pos"], "league_pts": r["proj"]}
-             for r in snap["freeAgents"]]
-    odds = season_sim.title_odds(rosters, avail, lookup, n_sims=1000)
-    return {"week": snap["week"], "odds": odds,
-            "myTeam": snap["myTeam"]["teamName"] if snap["myTeam"] else None}
+    def lookup_espn(name, pos):
+        return espn_tbl.get((name, pos), 0.0)
+
+    def lookup_ours(name, pos):
+        v = board.get((norm_name(str(name or "")), pos))
+        return v if v is not None else lookup_espn(name, pos) * scale
+
+    avail_espn = [{"name": r["name"], "pos": r["pos"], "league_pts": r["proj"]}
+                  for r in snap["freeAgents"]]
+    avail_ours = [{"name": r["name"], "pos": r["pos"],
+                   "league_pts": lookup_ours(r["name"], r["pos"])}
+                  for r in snap["freeAgents"]]
+    odds_espn = season_sim.title_odds(rosters, avail_espn, lookup_espn, n_sims=1000)
+    odds_ours = season_sim.title_odds(rosters, avail_ours, lookup_ours, n_sims=1000, seed=99)
+
+    # TRADE MAP: rostered players the judges rank differently (position-scoped
+    # posrank within the rostered pool; positive delta = ESPN likes him LESS)
+    def ranks(key):
+        out = {}
+        for pos in {p["pos"] for p in all_rostered}:
+            grp = sorted((p for p in all_rostered if p["pos"] == pos),
+                         key=key, reverse=True)
+            for i, p in enumerate(grp, 1):
+                out[(p["name"], pos)] = i
+        return out
+
+    r_espn = ranks(lambda p: p["proj"])
+    r_ours = ranks(lambda p: lookup_ours(p["name"], p["pos"]))
+    my_team = snap["myTeam"]["teamName"] if snap["myTeam"] else None
+    trade_map = []
+    for p in all_rostered:
+        if p["pos"] in ("K", "DST") or p["proj"] <= 40:
+            continue
+        d = r_espn[(p["name"], p["pos"])] - r_ours[(p["name"], p["pos"])]
+        if abs(d) >= 5:
+            trade_map.append({"name": p["name"], "pos": p["pos"], "owner": p["owner"],
+                              "mine": p["owner"] == my_team,
+                              "espnRank": r_espn[(p["name"], p["pos"])],
+                              "ourRank": r_ours[(p["name"], p["pos"])], "delta": d,
+                              "read": ("ESPN underrates him — BUY low from an ESPN-brained owner"
+                                       if d > 0 else
+                                       "ESPN overrates him — SELL high to an ESPN-brained owner")})
+    trade_map.sort(key=lambda x: -abs(x["delta"]))
+
+    return {"week": snap["week"], "myTeam": my_team,
+            "odds": odds_espn, "oddsOurs": odds_ours,
+            "noiseNote": "title% carries ~±1pt of Monte-Carlo noise — ranks within a tight cluster are ties",
+            "tradeMap": trade_map[:12]}
 
 
 if __name__ == "__main__":
