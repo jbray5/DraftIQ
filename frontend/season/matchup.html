@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>SeasonIQ · Matchup</title><link rel="stylesheet" href="season.css"/></head>
+<body>
+<div class="panel" id="hero"><h2>MY MATCHUP <span class="r" id="wk"></span></h2><div class="dim">loading…</div></div>
+<div class="grid">
+  <div class="panel"><h2>MY LINEUP <span class="r">vs the optimal — projections are league-scored</span></h2><div id="mine" class="dim">…</div></div>
+  <div class="panel"><h2 id="oppHd">OPPONENT</h2><div id="theirs" class="dim">…</div></div>
+</div>
+<script src="season.js"></script>
+<script>
+seasonNav('matchup');
+const rowsOf=(list,optNames)=>`<table><tr><th>slot</th><th>player</th><th class="num">proj</th></tr>`
+  +list.map(p=>{
+    const flag=p.injury&&!['ACTIVE','NORMAL'].includes(p.injury)?` <span class="bad">⚕${p.injury}</span>`:'';
+    const opt=optNames&&!optNames.includes(p.name)?' <span class="bad">▼ sit</span>':'';
+    return `<tr><td class="dim">${esc(p.slot)}</td><td>${esc(p.name)}${flag}${opt}</td><td class="num">${p.proj}</td></tr>`;
+  }).join('')+'</table>';
+(async()=>{
+  try{
+    const d=await j('/api/startsit');
+    setHdr(d.me.team,d.week); $('wk').textContent='week '+d.week;
+    const w=Math.round(d.winProb*100);
+    $('hero').innerHTML=`<h2>MY MATCHUP <span class="r">week ${d.week}</span></h2>
+      <div class="vs">
+        <div><div class="t">${esc(d.me.team)}</div><div class="n">${d.me.currentTotal}</div><div class="dim">current · optimal ${d.me.optimalTotal}</div></div>
+        <div class="at">vs</div>
+        <div><div class="t muted">${esc(d.opponent.team)}</div><div class="n" style="color:var(--ink2)">${d.opponent.projTotal}</div><div class="dim">projected</div></div></div>
+      <div class="bar"><i style="width:${w}%"></i></div>
+      <div class="dim">win probability <b class="good">${w}%</b> · σ from 7 yrs of league weekly scores</div>`
+      +(d.swaps&&d.swaps.length
+        ?`<div class="action" style="margin-top:10px"><div class="hd">▶ START/SIT — +${d.benchLeak} projected pts</div>`
+          +d.swaps.map(s=>`<div class="rowline">START <b class="good">${esc(s.start)}</b> · SIT <b class="bad">${esc(s.sit)}</b></div>`).join('')+'</div>'
+        :`<div class="allclear" style="margin-top:10px">✓ LINEUP OPTIMAL — bench leak ${d.benchLeak} pts</div>`);
+    $('mine').innerHTML=rowsOf(d.me.current,d.me.optimalNames)
+      +'<div class="dim" style="margin:8px 0 4px">bench</div>'+rowsOf(d.me.bench.map(p=>({...p,slot:'BE'})));
+    $('oppHd').innerHTML=`OPPONENT · ${esc(d.opponent.team)} <span class="r">their projected starters</span>`;
+    $('theirs').innerHTML=rowsOf(d.opponent.lineup||[])
+      +((d.opponent.bench||[]).length?'<div class="dim" style="margin:8px 0 4px">their bench</div>'+rowsOf(d.opponent.bench.map(p=>({...p,slot:'BE'}))):'');
+  }catch(e){$('hero').innerHTML='<h2>MY MATCHUP</h2><div class="err">'+esc(e.message)+'</div>';}
+})();
+</script>
+</body></html>

@@ -1074,6 +1074,22 @@ def api_season_odds():
         return jsonify({"error": str(e)}), 500
 
 
+@app.route("/api/season-history", methods=["GET"])
+def api_season_history():
+    """Daily title%/expWins snapshots (both judges) for the trajectory chart."""
+    try:
+        p = os.path.join(os.path.dirname(__file__), "data", "processed",
+                         "season_history.jsonl")
+        rows = []
+        if os.path.exists(p):
+            with open(p, encoding="utf-8") as fh:
+                rows = [json.loads(ln) for ln in fh if ln.strip()]
+        return jsonify({"history": rows})
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({"error": str(e)}), 500
+
+
 @app.route("/api/ai/chat", methods=["POST"])
 def ai_chat():
     """Free-form mid-draft Q&A. The user asks anything ('why LaPorta over Pitts?',

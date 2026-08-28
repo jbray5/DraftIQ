@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>SeasonIQ · Dashboard</title><link rel="stylesheet" href="season.css"/></head>
+<body>
+<div class="grid3" id="cards">
+  <div class="card"><div class="k">this week</div><div class="v dim" id="cMatch">…</div><div class="dim" id="cMatchSub"></div></div>
+  <div class="card"><div class="k">waiver wire</div><div class="v dim" id="cWire">…</div><div class="dim" id="cWireSub"></div></div>
+  <div class="card"><div class="k">title odds (ESPN / ours)</div><div class="v dim" id="cOdds">…</div><div class="dim" id="cOddsSub"></div></div>
+</div>
+<div class="panel" style="margin-top:14px"><h2>TODAY'S VERDICTS <span class="r">one glance, then go live your life</span></h2><div id="verdicts" class="dim">loading…</div></div>
+<script src="season.js"></script>
+<script>
+seasonNav('index');
+(async()=>{
+  const V=$('verdicts'); let lines=[];
+  try{
+    const m=await j('/api/startsit');
+    setHdr(m.me.team,m.week);
+    $('cMatch').textContent=Math.round(m.winProb*100)+'% win';
+    $('cMatch').className='v '+(m.winProb>=0.5?'good':'bad');
+    $('cMatchSub').textContent=`${m.me.currentTotal} proj vs ${m.opponent.team} ${m.opponent.projTotal}`;
+    lines.push(m.swaps&&m.swaps.length
+      ?`<div class="action"><b class="hd">▶ START/SIT:</b> ${m.swaps.map(s=>`start ${esc(s.start)} / sit ${esc(s.sit)}`).join(' · ')} (+${m.benchLeak} pts) — <a href="matchup.html">matchup →</a></div>`
+      :`<div class="rowline good">✓ lineup optimal (bench leak ${m.benchLeak})</div>`);
+  }catch(e){lines.push('<div class="err">matchup: '+esc(e.message)+'</div>');}
+  try{
+    const w=await j('/api/waivers');
+    $('cWire').textContent=w.allClear?'ALL CLEAR':(w.actions.length+' action'+(w.actions.length>1?'s':''));
+    $('cWire').className='v '+(w.allClear?'good':'bad');
+    $('cWireSub').textContent=(w.stream||{}).line||'';
+    if(w.allClear)lines.push('<div class="rowline good">✓ wire: no moves needed</div>');
+    else w.actions.forEach(a=>lines.push(`<div class="action"><b class="hd">▶ ${a.type}:</b> ${esc(a.add.name)}${a.drop?(' for '+esc(a.drop.name)):''} (NET ${a.netVorp>=0?'+':''}${a.netVorp}) — <a href="wire.html">wire →</a></div>`));
+    (w.injuryFlags||[]).forEach(f=>lines.push(`<div class="rowline">⚕ <span class="bad">${esc(f.name)} ${f.injury}</span> <span class="dim">${esc((f.news||'').slice(0,110))}</span></div>`));
+  }catch(e){lines.push('<div class="err">wire: '+esc(e.message)+'</div>');}
+  try{
+    const o=await j('/api/season-odds');
+    const me=o.myTeam, e=(o.odds[me]||{}).title||0, u=(o.oddsOurs[me]||{}).title||0;
+    $('cOdds').textContent=`${(e*100).toFixed(1)}% / ${(u*100).toFixed(1)}%`;
+    $('cOdds').className='v '+((e+u)/2>=0.1?'good':'muted');
+    $('cOddsSub').textContent='field = 10% · two judges';
+  }catch(e){}
+  V.innerHTML=lines.join('');
+})();
+</script>
+</body></html>

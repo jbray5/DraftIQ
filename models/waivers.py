@@ -351,7 +351,9 @@ def startsit(season: int = 2026, week: int | None = None) -> dict:
                            "optimalNames": sorted(opt_names)},
                     "swaps": swaps, "benchLeak": round(opt["total"] - my_total, 1),
                     "opponent": {"team": getattr(opp_team, "team_name", None),
-                                 "projTotal": opp_total},
+                                 "projTotal": opp_total,
+                                 "lineup": [p for p in theirs if p["slot"] not in ("BE", "IR")],
+                                 "bench": [p for p in theirs if p["slot"] in ("BE", "IR")]},
                     "winProb": round(win, 3)}
     return {"error": f"no matchup found for you in week {week}"}
 
@@ -445,10 +447,33 @@ def season_odds(season: int = 2026) -> dict:
                                        "ESPN overrates him — SELL high to an ESPN-brained owner")})
     trade_map.sort(key=lambda x: -abs(x["delta"]))
 
-    return {"week": snap["week"], "myTeam": my_team,
-            "odds": odds_espn, "oddsOurs": odds_ours,
-            "noiseNote": "title% carries ~±1pt of Monte-Carlo noise — ranks within a tight cluster are ties",
-            "tradeMap": trade_map[:12]}
+    out = {"week": snap["week"], "myTeam": my_team,
+           "odds": odds_espn, "oddsOurs": odds_ours,
+           "noiseNote": "title% carries ~±1pt of Monte-Carlo noise — ranks within a tight cluster are ties",
+           "tradeMap": trade_map[:12]}
+
+    # SEASON HISTORY: persist at most one snapshot per day so the standings page
+    # can chart every team's title% trajectory across the season. The archive
+    # has to start before you need it (the waiver-log lesson).
+    try:
+        hist = ROOT / "data" / "processed" / "season_history.jsonl"
+        today = time.strftime("%Y-%m-%d")
+        last = None
+        if hist.exists():
+            lines = hist.read_text(encoding="utf-8").strip().splitlines()
+            if lines:
+                last = json.loads(lines[-1]).get("date")
+        if last != today:
+            with open(hist, "a", encoding="utf-8") as fh:
+                fh.write(json.dumps({
+                    "date": today, "week": snap["week"],
+                    "espn": {t: {"title": o["title"], "expWins": o["expWins"]}
+                             for t, o in odds_espn.items()},
+                    "ours": {t: {"title": o["title"], "expWins": o["expWins"]}
+                             for t, o in odds_ours.items()}}) + "\n")
+    except OSError:
+        pass
+    return out
 
 
 if __name__ == "__main__":

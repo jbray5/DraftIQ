@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>SeasonIQ · Wire</title><link rel="stylesheet" href="season.css"/></head>
+<body>
+<div class="grid">
+  <div class="panel"><h2>WAIVER WIRE <span class="r">decision-grade — actions or all clear</span></h2><div id="wire" class="dim">loading…</div></div>
+  <div class="panel"><h2>ROOM ACTIVITY <span class="r">tendency log accumulating → waiver_log.jsonl</span></h2><div id="act" class="dim">loading…</div></div>
+</div>
+<script src="season.js"></script>
+<script>
+seasonNav('wire');
+(async()=>{
+  try{
+    const d=await j('/api/waivers');
+    setHdr(d.myTeam,d.week);
+    renderWire(d,$('wire'),false);
+    $('act').innerHTML=(d.roomActivity||[]).map(m=>`<div class="rowline"><span class="muted">${esc(m.team)}</span>
+      <b class="${/ADD/i.test(m.action)?'good':'bad'}">${esc(m.action)}</b> ${esc(m.player)}${m.bid?' <span class="dim">($'+m.bid+')</span>':''}</div>`).join('')
+      ||'<div class="dim">quiet room</div>';
+  }catch(e){$('wire').innerHTML='<div class="err">'+esc(e.message)+'</div>';}
+})();
+</script>
+</body></html>
