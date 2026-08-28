@@ -476,6 +476,167 @@ def season_odds(season: int = 2026) -> dict:
     return out
 
 
+def _board_lookup():
+    try:
+        from scoring import norm_name
+    except ImportError:
+        from models.scoring import norm_name
+    import csv as _csv
+    board = {}
+    try:
+        with open(ROOT / "data" / "processed" / "board_2026.csv",
+                  newline="", encoding="utf-8") as fh:
+            for r in _csv.DictReader(fh):
+                try:
+                    board[(norm_name(r["name"]), r["pos"])] = float(r["league_pts"])
+                except (ValueError, KeyError):
+                    continue
+    except OSError:
+        pass
+    return board, norm_name
+
+
+def rosters_report(season: int = 2026) -> dict:
+    """Every team's roster valued under BOTH judges + the counterparty dossier:
+    draft-era manager profile (titles, tendencies, confidence) and in-season
+    activity counts from waiver_log.jsonl. The trades page runs on this."""
+    snap = snapshot(season)
+    board, norm_name = _board_lookup()
+    profiles = {}
+    try:
+        profiles = json.loads((ROOT / "data" / "processed" / "manager_profiles.json")
+                              .read_text(encoding="utf-8"))
+    except OSError:
+        pass
+    activity: dict[str, int] = {}
+    try:
+        if LOG.exists():
+            for ln in LOG.read_text(encoding="utf-8").splitlines():
+                try:
+                    activity[json.loads(ln).get("team")] = \
+                        activity.get(json.loads(ln).get("team"), 0) + 1
+                except json.JSONDecodeError:
+                    continue
+    except OSError:
+        pass
+    teams = []
+    for t in snap["teams"]:
+        prof = next((profiles[o] for o in t["owners"] if o in profiles), None)
+        teams.append({
+            "teamName": t["teamName"], "owners": t["owners"],
+            "mine": snap["myTeam"] and t["teamName"] == snap["myTeam"]["teamName"],
+            "moves": activity.get(t["teamName"], 0),
+            "profile": ({k: prof.get(k) for k in
+                         ("titles", "avg_finish", "confidence", "qb_first_round_avg",
+                          "rb_in_first4", "wr_in_first4", "summary")} if prof else None),
+            "roster": [{**p, "ours": round(board.get((norm_name(p["name"]), p["pos"]),
+                                                     0.0), 1)} for p in t["roster"]],
+        })
+    return {"week": snap["week"], "myTeam": snap["myTeam"]["teamName"],
+            "teams": teams}
+
+
+def trade_eval2(give: list[str], get: list[str], counterparty: str,
+                season: int = 2026) -> dict:
+    """Evaluate a trade under BOTH judges, BOTH sides. Lineup delta = change in
+    best-starting-lineup season points. Negotiation gold: a deal that helps you
+    under OUR numbers while helping them under ESPN's (the numbers THEY see) is
+    the deal that actually closes."""
+    try:
+        from inseason import optimal_lineup as _opt, slot_spec as _spec
+    except ImportError:
+        from models.inseason import optimal_lineup as _opt, slot_spec as _spec
+    snap = snapshot(season)
+    board, norm_name = _board_lookup()
+    spec = _spec(CFG["2026"])
+    me = snap["myTeam"]
+    them = next((t for t in snap["teams"] if t["teamName"] == counterparty), None)
+    if not me or not them:
+        return {"error": f"team '{counterparty}' not found"}
+    gv, gt = set(give), set(get)
+
+    def val(p, judge):
+        if judge == "espn":
+            return p["proj"]
+        return board.get((norm_name(p["name"]), p["pos"]), p["proj"] * 0.55)
+
+    def lineup(roster, judge):
+        return _opt([{"name": p["name"], "pos": p["pos"], "proj": val(p, judge)}
+                     for p in roster], spec)["total"]
+
+    out = {"give": sorted(gv), "get": sorted(gt), "with": counterparty}
+    for judge in ("espn", "ours"):
+        my_after = [p for p in me["roster"] if p["name"] not in gv] \
+            + [p for p in them["roster"] if p["name"] in gt]
+        their_after = [p for p in them["roster"] if p["name"] not in gt] \
+            + [p for p in me["roster"] if p["name"] in gv]
+        out[judge] = {
+            "myDelta": round(lineup(my_after, judge) - lineup(me["roster"], judge), 1),
+            "theirDelta": round(lineup(their_after, judge) - lineup(them["roster"], judge), 1)}
+    mine, theirs = out["ours"]["myDelta"], out["espn"]["theirDelta"]
+    out["verdict"] = ("PROPOSE IT — helps you by OUR numbers AND looks good to them on ESPN's"
+                      if mine >= 3 and theirs >= 0 else
+                      "GOOD FOR YOU, hard sell — they lose by their own numbers"
+                      if mine >= 3 else
+                      "PASS — doesn't move your lineup" if abs(mine) < 3 else
+                      "DECLINE — you lose by our numbers")
+    return out
+
+
+def performance(season: int = 2026) -> dict:
+    """Completed-week results: W/L, actual vs projected, hindsight bench leak.
+    Empty before week 1 — the page lights up on its own once games exist."""
+    try:
+        from inseason import optimal_lineup as _opt, slot_spec as _spec, bucket as _b
+    except ImportError:
+        from models.inseason import optimal_lineup as _opt, slot_spec as _spec, bucket as _b
+    lg = _league(season)
+    cur = max(1, int(getattr(lg, "current_week", 1) or 1))
+    _, my_owner = _my_ui_and_owner()
+
+    def _owners(t):
+        return [str(o.get("displayName") or "").lower()
+                for o in (getattr(t, "owners", None) or []) if isinstance(o, dict)]
+
+    weeks = []
+    spec = _spec(CFG["2026"])
+    for wk in range(1, cur):
+        try:
+            for m in lg.box_scores(wk):
+                for side, opp in (("home", "away"), ("away", "home")):
+                    team = getattr(m, f"{side}_team", None)
+                    if team is None or (my_owner not in _owners(team)
+                                        and "sclsu" not in str(getattr(team, "team_name", "")).lower()):
+                        continue
+                    mine = getattr(m, f"{side}_lineup", []) or []
+                    rows = [{"name": p.name, "pos": _b(getattr(p, "position", "") or ""),
+                             "slot": getattr(p, "slot_position", None),
+                             "proj": float(getattr(p, "projected_points", 0) or 0),
+                             "pts": float(getattr(p, "points", 0) or 0)} for p in mine]
+                    started = [r for r in rows if r["slot"] not in ("BE", "IR")]
+                    actual = round(sum(r["pts"] for r in started), 1)
+                    projected = round(sum(r["proj"] for r in started), 1)
+                    hind = _opt([{"name": r["name"], "pos": r["pos"], "proj": r["pts"]}
+                                 for r in rows], spec)["total"]
+                    opp_score = round(float(getattr(m, f"{opp}_score", 0) or 0), 1)
+                    weeks.append({"week": wk, "actual": actual, "projected": projected,
+                                  "optimalHindsight": round(hind, 1),
+                                  "benchLeak": round(hind - actual, 1),
+                                  "opponent": getattr(getattr(m, f"{opp}_team", None),
+                                                      "team_name", None),
+                                  "oppScore": opp_score,
+                                  "result": "W" if actual > opp_score else
+                                            ("L" if actual < opp_score else "T")})
+        except Exception:
+            continue
+    standings = [{"team": getattr(t, "team_name", None),
+                  "wins": getattr(t, "wins", 0), "losses": getattr(t, "losses", 0),
+                  "pf": round(float(getattr(t, "points_for", 0) or 0), 1)}
+                 for t in lg.teams]
+    standings.sort(key=lambda r: (-r["wins"], -r["pf"]))
+    return {"currentWeek": cur, "weeks": weeks, "standings": standings}
+
+
 if __name__ == "__main__":
     rep = report()
     if rep.get("error"):

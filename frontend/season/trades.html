@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>SeasonIQ · Trades</title><link rel="stylesheet" href="season.css"/></head>
+<body>
+<div class="panel"><h2>TRADE BUILDER <span class="r">dual-judge: our numbers for you, ESPN's for the sell</span></h2>
+  <div class="rowline">counterparty: <select id="who" style="background:var(--bg);color:var(--ink);border:1px solid var(--line);font:inherit;padding:3px 8px;border-radius:4px"></select>
+  <button id="evalBtn" style="margin-left:10px">EVALUATE TRADE</button></div>
+  <div id="verdict"></div>
+</div>
+<div class="grid">
+  <div class="panel"><h2>MY ROSTER <span class="r">check = GIVE</span></h2><div id="mine" class="dim">loading…</div></div>
+  <div>
+    <div class="panel"><h2 id="theirHd">THEIR ROSTER <span class="r">check = GET</span></h2><div id="theirs" class="dim">pick a counterparty</div></div>
+    <div class="panel"><h2>COUNTERPARTY DOSSIER <span class="r">draft tendencies + in-season behavior</span></h2><div id="dossier" class="dim">—</div></div>
+  </div>
+</div>
+<div class="panel"><h2>TRADE MAP SEEDS <span class="r">judge disagreements — start conversations here</span></h2><div id="seeds" class="dim">loading…</div></div>
+<script src="season.js"></script>
+<script>
+seasonNav('trades');
+let DATA=null, MY=null;
+const rosterTable=(t,side)=>'<table><tr><th></th><th>player</th><th class="num" title="ESPN rest-of-season projection — the numbers THEY see">espn</th><th class="num" title="our draft-board blend — the numbers WE trust">ours</th></tr>'
+  +t.roster.slice().sort((a,b)=>b.proj-a.proj).map(p=>
+    `<tr><td><input type="checkbox" data-side="${side}" value="${esc(p.name)}"></td>
+     <td>${esc(p.name)} <span class="dim">${p.pos}</span>${p.injury&&!['ACTIVE','NORMAL'].includes(p.injury)?' <span class="bad">⚕</span>':''}</td>
+     <td class="num dim">${p.proj}</td><td class="num">${p.ours}</td></tr>`).join('')+'</table>';
+function renderThem(){
+  const t=DATA.teams.find(x=>x.teamName===$('who').value);
+  $('theirHd').innerHTML=`THEIR ROSTER · ${esc(t.teamName)} <span class="r">check = GET</span>`;
+  $('theirs').innerHTML=rosterTable(t,'get');
+  const p=t.profile||{};
+  $('dossier').innerHTML=[
+    p.summary?`<div class="rowline">${esc(p.summary)}</div>`:'',
+    `<div class="rowline">titles: <b>${p.titles??'?'}</b> · avg finish: <b>${p.avg_finish??'?'}</b> · profile confidence: ${esc(p.confidence||'unknown')}</div>`,
+    `<div class="rowline dim">draft habits: 1st QB rd ${p.qb_first_round_avg??'?'} · RB in first 4: ${p.rb_in_first4??'?'} · WR in first 4: ${p.wr_in_first4??'?'}</div>`,
+    `<div class="rowline dim">in-season moves logged so far: ${t.moves}</div>`,
+    `<div class="dim" style="margin-top:6px">negotiation note: the room prices players off ESPN's numbers — pitch deals with the ESPN column, judge them with ours. (League is waiver-PRIORITY, not FAAB — roster spots are the only acquisition currency.)</div>`
+  ].join('');
+}
+(async()=>{
+  DATA=await j('/api/rosters');
+  setHdr(DATA.myTeam,DATA.week);
+  MY=DATA.teams.find(t=>t.mine);
+  $('mine').innerHTML=rosterTable(MY,'give');
+  const opps=DATA.teams.filter(t=>!t.mine);
+  $('who').innerHTML=opps.map(t=>`<option>${esc(t.teamName)}</option>`).join('');
+  $('who').onchange=renderThem; renderThem();
+  try{
+    const o=await j('/api/season-odds');
+    $('seeds').innerHTML=(o.tradeMap||[]).map(t=>`<div class="rowline">
+      <b class="${t.delta>0?'good':'bad'}">${t.delta>0?'BUY':'SELL'}</b> ${esc(t.name)}
+      <span class="dim">(${t.pos}${t.mine?' · YOURS':' · '+esc(t.owner)}) ESPN ${t.pos}${t.espnRank} vs ours ${t.pos}${t.ourRank}</span>
+      <div class="dim">${esc(t.read)}</div></div>`).join('')||'<div class="dim">judges agree on everyone</div>';
+  }catch(e){}
+  $('evalBtn').onclick=async()=>{
+    const give=[...document.querySelectorAll('input[data-side=give]:checked')].map(c=>c.value);
+    const get=[...document.querySelectorAll('input[data-side=get]:checked')].map(c=>c.value);
+    if(!give.length&&!get.length){$('verdict').innerHTML='<div class="dim" style="padding:8px 0">check players on both sides first</div>';return;}
+    $('verdict').innerHTML='<div class="dim" style="padding:8px 0">evaluating…</div>';
+    try{
+      const d=await fetch('/api/trade2',{method:'POST',headers:{'content-type':'application/json'},
+        body:JSON.stringify({give,get,with:$('who').value})}).then(r=>r.json());
+      if(d.error)throw new Error(d.error);
+      const f=v=>`<b class="${v>=0?'good':'bad'}">${v>=0?'+':''}${v}</b>`;
+      $('verdict').innerHTML=`<div class="action" style="margin-top:10px">
+        <div class="hd">${esc(d.verdict)}</div>
+        <div class="rowline">YOUR lineup — our judge: ${f(d.ours.myDelta)} pts · ESPN judge: ${f(d.espn.myDelta)}</div>
+        <div class="rowline">THEIR lineup — ESPN judge (what they see): ${f(d.espn.theirDelta)} · our judge: ${f(d.ours.theirDelta)}</div>
+        <div class="dim">give: ${d.give.map(esc).join(', ')||'—'} · get: ${d.get.map(esc).join(', ')||'—'}</div></div>`;
+    }catch(e){$('verdict').innerHTML='<div class="err" style="padding:8px 0">'+esc(e.message)+'</div>';}
+  };
+})();
+</script>
+</body></html>

@@ -1074,6 +1074,51 @@ def api_season_odds():
         return jsonify({"error": str(e)}), 500
 
 
+@app.route("/api/rosters", methods=["GET"])
+def api_rosters():
+    """All rosters valued under both judges + counterparty dossiers (trades page)."""
+    try:
+        from models import waivers as wv
+        hit = _WAIVER_CACHE.get("rosters")
+        if hit and request.args.get("force") != "1" and time.time() - hit["at"] < 300:
+            return jsonify(hit["data"])
+        rep = wv.rosters_report(2026)
+        _WAIVER_CACHE["rosters"] = {"at": time.time(), "data": rep}
+        return jsonify(rep)
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/api/trade2", methods=["POST"])
+def api_trade2():
+    """Dual-judge, both-sides trade evaluation."""
+    try:
+        from models import waivers as wv
+        b = request.get_json(force=True)
+        return jsonify(wv.trade_eval2(b.get("give") or [], b.get("get") or [],
+                                      b.get("with") or ""))
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/api/performance", methods=["GET"])
+def api_performance():
+    """Completed-week results + live records (empty until week 1 finishes)."""
+    try:
+        from models import waivers as wv
+        hit = _WAIVER_CACHE.get("perf")
+        if hit and request.args.get("force") != "1" and time.time() - hit["at"] < 600:
+            return jsonify(hit["data"])
+        rep = wv.performance(2026)
+        _WAIVER_CACHE["perf"] = {"at": time.time(), "data": rep}
+        return jsonify(rep)
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({"error": str(e)}), 500
+
+
 @app.route("/api/season-history", methods=["GET"])
 def api_season_history():
     """Daily title%/expWins snapshots (both judges) for the trajectory chart."""

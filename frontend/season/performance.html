@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>SeasonIQ · Results</title><link rel="stylesheet" href="season.css"/></head>
+<body>
+<div class="grid">
+  <div class="panel"><h2>MY WEEKS <span class="r">actual vs projected · hindsight bench leak</span></h2><div id="weeks" class="dim">loading…</div></div>
+  <div class="panel"><h2>LEAGUE TABLE <span class="r">record · points for</span></h2><div id="lg" class="dim">loading…</div></div>
+</div>
+<script src="season.js"></script>
+<script>
+seasonNav('performance');
+(async()=>{
+  try{
+    const d=await j('/api/performance');
+    if(!d.weeks.length){
+      $('weeks').innerHTML=`<div class="allclear" style="border-color:var(--line);color:var(--ink2)">
+        Awaiting week 1 — this page fills itself in after each week completes:<br><br>
+        · W/L and score vs your opponent<br>
+        · actual vs what the projections promised<br>
+        · <b>bench leak</b> — points a perfect-hindsight lineup would have added
+          (the league's historical avg is real; keeping yours near zero IS the start/sit edge)</div>`;
+    }else{
+      let w=0,l=0,leak=0;
+      $('weeks').innerHTML='<table><tr><th>wk</th><th>vs</th><th class="num">score</th><th class="num">proj</th><th class="num">leak</th><th></th></tr>'
+        +d.weeks.map(x=>{w+=x.result==='W';l+=x.result==='L';leak+=x.benchLeak;
+          return `<tr><td>${x.week}</td><td class="dim">${esc(x.opponent)}</td>
+          <td class="num">${x.actual}–${x.oppScore}</td><td class="num dim">${x.projected}</td>
+          <td class="num ${x.benchLeak>5?'bad':'dim'}">${x.benchLeak}</td>
+          <td class="${x.result==='W'?'good':'bad'}">${x.result}</td></tr>`;}).join('')
+        +`</table><div class="dim" style="margin-top:6px">record ${w}–${l} · total bench leak ${leak.toFixed(1)} pts</div>`;
+    }
+    $('lg').innerHTML='<table><tr><th>#</th><th>team</th><th class="num">W–L</th><th class="num">PF</th></tr>'
+      +d.standings.map((t,i)=>`<tr class="${/SCLSU/i.test(t.team)?'me':''}"><td>${String(i+1).padStart(2,'0')}</td>
+        <td>${esc(t.team)}</td><td class="num">${t.wins}–${t.losses}</td><td class="num">${t.pf}</td></tr>`).join('')+'</table>';
+  }catch(e){$('weeks').innerHTML='<div class="err">'+esc(e.message)+'</div>';}
+})();
+</script>
+</body></html>

@@ -7,7 +7,7 @@ async function j(u){ const r = await fetch(u); const d = await r.json();
   if (d.error) throw new Error(d.error); return d; }
 
 function seasonNav(active){
-  const pages = [['index','DASHBOARD'],['matchup','MATCHUP'],['wire','WIRE'],['standings','STANDINGS']];
+  const pages = [['index','DASHBOARD'],['matchup','MATCHUP'],['wire','WIRE'],['standings','STANDINGS'],['trades','TRADES'],['performance','RESULTS']];
   document.body.insertAdjacentHTML('afterbegin', `<header>
     <h1><b>SEASON</b>IQ</h1>
     <nav>${pages.map(([p,l])=>`<a href="${p}.html" class="${p===active?'on':''}">${l}</a>`).join('')}</nav>
