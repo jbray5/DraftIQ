@@ -58,7 +58,8 @@ class SyncState:
         sys.path.insert(0, str(ROOT / "scripts"))
         from pull_espn import normalize_cookies, load_league
         s2, swid = normalize_cookies(os.getenv("ESPN_S2"), os.getenv("ESPN_SWID"))
-        lg = load_league(os.getenv("ESPN_LEAGUE_ID"), year, s2, swid)
+        lg = load_league(os.getenv("DRAFTIQ_LEAGUE_ID") or os.getenv("ESPN_LEAGUE_ID"),
+                         year, s2, swid)
         self._league[year] = lg
         self._at[year] = now
         return lg

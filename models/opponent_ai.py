@@ -22,14 +22,17 @@ from __future__ import annotations
 import random
 
 try:
-    from pick_engine import normalize_pos, profile_prior, run_heat
+    from pick_engine import normalize_pos, profile_prior, run_heat, ROSTER_SLOTS, SLOT_BASE
 except ImportError:  # pragma: no cover
-    from models.pick_engine import normalize_pos, profile_prior, run_heat
+    from models.pick_engine import normalize_pos, profile_prior, run_heat, ROSTER_SLOTS, SLOT_BASE
 
-SLOTS = ["QB", "RB1", "RB2", "WR1", "WR2", "TE", "FLEX", "FLEX2", "IDP", "DST", "K"]
-SLOT_OPTS = {"RB": ["RB1", "RB2", "FLEX", "FLEX2"], "WR": ["WR1", "WR2", "FLEX", "FLEX2"],
-             "TE": ["TE", "FLEX", "FLEX2"]}
-STREAM = {"IDP", "DST", "K"}
+# grid comes from pick_engine, which builds it from league_config for the ACTIVE
+# league (DRAFTIQ_LEAGUE) — home league yields the exact lists hardwired here before
+SLOTS = list(ROSTER_SLOTS)
+_FLEX_LABELS = [s for s in SLOTS if SLOT_BASE.get(s) is None]
+SLOT_OPTS = {pos: [s for s in SLOTS if SLOT_BASE.get(s) == pos] + _FLEX_LABELS
+             for pos in ("RB", "WR", "TE")}
+STREAM = {s for s in ("IDP", "DST", "K") if s in SLOTS}
 RANK_W = [4.0, 3.0, 2.2, 1.6, 1.2, 0.9, 0.7, 0.5, 0.4, 0.3, 0.25, 0.2]
 
 
@@ -62,9 +65,7 @@ class TeamState:
         return n + sum(1 for b in self.bench if b["pos"] == pos)
 
     def open_starters(self) -> list[str]:
-        base = {"RB1": "RB", "RB2": "RB", "WR1": "WR", "WR2": "WR",
-                "FLEX": "FLEX", "FLEX2": "FLEX"}
-        return [base.get(s, s) for s, v in self.slots.items() if v is None]
+        return [(SLOT_BASE.get(s) or "FLEX") for s, v in self.slots.items() if v is None]
 
     def n_empty(self) -> int:
         return sum(1 for v in self.slots.values() if v is None)
@@ -144,7 +145,7 @@ def candidates(team: TeamState, avail: list[dict], rnd: int, rounds: int,
     # best available at every empty streamer slot once its window opens, so rosters
     # actually complete: IDP from rd 8 (this room's habit), DST/K when time is short.
     inject: list[dict] = []
-    if team.slots["IDP"] is None and rnd >= 8:
+    if team.slots.get("IDP", False) is None and rnd >= 8:
         inject += _best_at(avail, "IDP")
     for pos in ("DST", "K"):
         if team.slots[pos] is None and picks_left <= empty_stream + 3:

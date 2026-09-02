@@ -37,6 +37,15 @@ CFG = json.loads((ROOT / "data" / "league_config.json").read_text(encoding="utf-
 
 SLOT2POS = {"QB": "QB", "RB": "RB", "WR": "WR", "TE": "TE", "DP": "IDP", "D/ST": "DST", "K": "K"}
 
+# Guest-league support: DRAFTIQ_LEAGUE picks the league_config key ('steak' etc.,
+# default the home league); the launch script pairs it with DRAFTIQ_SETTINGS_DIR /
+# DRAFTIQ_LEAGUE_ID / DRAFTIQ_FP_DIR / DRAFTIQ_BOARD so nothing Taco-Hole touches disk.
+LEAGUE_KEY = os.getenv("DRAFTIQ_LEAGUE", "2026")
+BOARD_OUT = os.getenv("DRAFTIQ_BOARD")  # else the default board_2026.csv path
+LEAGUE_HAS_IDP = bool(json.loads(
+    (ROOT / "data" / "league_config.json").read_text(encoding="utf-8"))
+    [LEAGUE_KEY]["starters"].get("DP", 0))
+
 
 def league_from_cfg(key: str = "2026") -> League:
     c = CFG[key]
@@ -101,7 +110,10 @@ def build(season: str = "2026REG", scoring_year: int = 2026,
           reuse: bool = False, force: bool = False) -> pd.DataFrame:
     # scoring_year 2026: live league settings, position-scoped (see scoring.load_scoring).
     scoring = load_scoring(scoring_year)
-    path = ROOT / "data" / "processed" / "board_2026.csv"
+    path = Path(BOARD_OUT) if BOARD_OUT else (ROOT / "data" / "processed" / "board_2026.csv")
+    if LEAGUE_KEY != "2026":
+        print(f"GUEST LEAGUE MODE: config '{LEAGUE_KEY}' · IDP={'yes' if LEAGUE_HAS_IDP else 'no'} "
+              f"· board -> {path.name}")
 
     if reuse:
         players = _players_from_csv(path)
@@ -109,7 +121,7 @@ def build(season: str = "2026REG", scoring_year: int = 2026,
               f"(no projection fetch)")
     else:
         raw = fetch_projections(season)
-        problems = check_idp_feed(raw)
+        problems = check_idp_feed(raw) if LEAGUE_HAS_IDP else []
         # Broken SportsData IDP is only fatal if we'd actually SHIP it. We now take
         # IDP from ESPN, so probe that first and downgrade the abort to a note.
         espn_idp_ok = False
@@ -202,15 +214,22 @@ def build(season: str = "2026REG", scoring_year: int = 2026,
     # already evaluated under this league's position-scoped IDP scoring — which our
     # own re-derivation had been getting wrong anyway (IDP sacks scored at 1.0
     # instead of 2.0, and the solo/assisted/PD stack zeroed by mistake).
-    try:
-        idp = espn_proj.as_board_rows(season[:4] and int(season[:4]) or 2026)
-        if idp:
-            players = [p for p in players if str(p.get("position") or "").upper() in OFFENSE_POS]
-            players += idp
-            print(f"IDP: {len(idp)} defenders from ESPN "
-                  f"(top: {idp[0]['name']} {idp[0]['points']:.0f} pts) — SportsData IDP discarded")
-    except Exception as e:
-        print(f"IDP: ESPN projections unavailable ({e}) — keeping SportsData IDP")
+    if not LEAGUE_HAS_IDP:
+        # no DP slot in this league: drop every defender row entirely, skip the swap
+        n0 = len(players)
+        players = [p for p in players
+                   if str(p.get("position") or "").upper() in OFFENSE_POS | {"DST", "D/ST"}]
+        print(f"IDP: league has no DP slot — {n0 - len(players)} defender rows dropped")
+    else:
+        try:
+            idp = espn_proj.as_board_rows(season[:4] and int(season[:4]) or 2026)
+            if idp:
+                players = [p for p in players if str(p.get("position") or "").upper() in OFFENSE_POS]
+                players += idp
+                print(f"IDP: {len(idp)} defenders from ESPN "
+                      f"(top: {idp[0]['name']} {idp[0]['points']:.0f} pts) — SportsData IDP discarded")
+        except Exception as e:
+            print(f"IDP: ESPN projections unavailable ({e}) — keeping SportsData IDP")
 
     # Kickers too: SportsData zeroed every FG distance split on 2026-08-10 (the
     # component our scoring ladder consumes), silently collapsing kickers to ~20
@@ -250,7 +269,7 @@ def build(season: str = "2026REG", scoring_year: int = 2026,
     if n_ecr:
         print(f"FantasyPros annotated: {n_ecr} players (ECR / ADP / up-bust / spread)")
 
-    board = rank_board(players, league_from_cfg("2026"), overall_pick=1)
+    board = rank_board(players, league_from_cfg(LEAGUE_KEY), overall_pick=1)
     df = pd.DataFrame(board)
     df = df[df["points"] > 0]  # drop non-projected
     df["pos_rank"] = df.groupby("pos")["points"].rank(ascending=False, method="min").astype(int)

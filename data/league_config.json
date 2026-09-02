@@ -26,6 +26,34 @@
     "scoring": "half-PPR (rec 0.5), passTD 4, rush/recTD 6, includes IDP via DP slot",
     "_flex_share_note": "flex_share MEASURED from 1,151 started FLEX slots 2019-2025: WR .586 / RB .401 / TE .014 (was an assumed .45/.45/.10). TE floored at .03 so an elite TE2 stays flexable in theory."
   },
+  "steak": {
+    "teams": 8,
+    "starters": {
+      "QB": 1,
+      "RB": 2,
+      "WR": 2,
+      "TE": 1,
+      "D/ST": 1,
+      "K": 1
+    },
+    "flex_slots": 1,
+    "flex_eligible": [
+      "RB",
+      "WR",
+      "TE"
+    ],
+    "flex_share": {
+      "RB": 0.35,
+      "WR": 0.55,
+      "TE": 0.1
+    },
+    "bench": 7,
+    "reg_weeks": 13,
+    "playoff_teams": 4,
+    "scoring": "FULL PPR (rec 1.0), no IDP",
+    "note": "Steak and Ales with the Lads (998262196) - guest league, 8 teams, drafted 2026-09-01, JRay slot 2. flex_share is a full-PPR prior (WR-leaning), NOT measured - no history for this league.",
+    "_activate": "launch via scripts/draft_steak.ps1 (sets DRAFTIQ_LEAGUE=steak + data-dir envs)"
+  },
   "2026": {
     "teams": 10,
     "starters": {

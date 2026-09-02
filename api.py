@@ -34,7 +34,11 @@ TTL_SECONDS = 600  # 10 minutes cache
 client = anthropic.Anthropic(api_key=ANTHROPIC_KEY) if ANTHROPIC_KEY else None
 
 TENDENCIES_PATH = os.path.join(os.path.dirname(__file__), "data", "league_tendencies.json")
-BOARD_PATH = os.path.join(os.path.dirname(__file__), "data", "processed", "board_2026.csv")
+# Guest-league mode (see league_config.json 'steak'): the launch script sets
+# DRAFTIQ_LEAGUE + DRAFTIQ_BOARD and the server serves that league's board.
+DRAFTIQ_LEAGUE = os.getenv("DRAFTIQ_LEAGUE", "2026")
+BOARD_PATH = os.getenv("DRAFTIQ_BOARD") or \
+    os.path.join(os.path.dirname(__file__), "data", "processed", "board_2026.csv")
 PROFILES_PATH = os.path.join(os.path.dirname(__file__), "data", "processed", "manager_profiles.json")
 
 
@@ -111,10 +115,35 @@ _COACH_PERSONA = (
 )
 
 
+_STEAK_PERSONA = (
+    "You are DraftIQ Coach for a GUEST league: 'Steak and Ales with the Lads' — 8 teams, "
+    "ESPN, FULL PPR (1.0/reception), snake draft, 16 rounds, 90-second picks. Starters: "
+    "QB, RB, RB, WR, WR, TE, FLEX (RB/WR/TE), D/ST, K + 7 bench. NO IDP in this league. "
+    "The user drafts from SLOT 2 of 8. Reason from value-over-replacement for THIS "
+    "roster shape (8 teams = shallow league: replacement level is HIGH everywhere, "
+    "waiver wire stays rich, so scarcity premiums shrink and elite-tier concentration "
+    "matters more), full-PPR reception volume (pass-catching RBs and target-hog WRs "
+    "gain vs half-PPR intuitions), positional runs, and pick timing. Cross-league "
+    "principles measured in the user's OTHER league that travel well: VORP beats raw "
+    "points; QB/K/DST can wait (even more so at 8 teams); D/ST streams by weekly "
+    "matchup; projection order is the best dart ranker. League-SPECIFIC history "
+    "(manager tendencies, exact timing windows) does NOT exist for this room — say so "
+    "rather than inventing reads. Be decisive and concise — 90-second clock.\n\n")
+
+
 def coach_system_blocks():
     """The shared coach system prompt: persona + validated insights, then the cached
     league-config block. Byte-identical across /api/ai/opinion, /best-pick, and /chat so
-    all three read the same prompt-cache entry."""
+    all three read the same prompt-cache entry. Guest-league mode swaps the persona."""
+    if DRAFTIQ_LEAGUE == "steak":
+        return [
+            {"type": "text", "text": _STEAK_PERSONA},
+            {"type": "text",
+             "text": ("League structure: 8-team full-PPR, QB/2RB/2WR/TE/FLEX/DST/K + 7 bench, "
+                      "13-wk season, 4-team playoff, waiver priority. No opponent tendency "
+                      "data exists for this room."),
+             "cache_control": {"type": "ephemeral"}},
+        ]
     return [
         {"type": "text", "text": _COACH_PERSONA + LEAGUE_INSIGHTS},
         {
@@ -1074,6 +1103,23 @@ def api_season_odds():
         return jsonify({"error": str(e)}), 500
 
 
+@app.route("/api/draft-meta", methods=["GET"])
+def api_draft_meta():
+    """Which league this server instance is drafting for. The frontend boots with
+    the home league's constants and overrides them from this when a guest league
+    is active (teams in slot order, mySlot, rounds, starting slots)."""
+    try:
+        if DRAFTIQ_LEAGUE == "2026":
+            return jsonify({"league": "taco"})
+        p = os.path.join(os.path.dirname(__file__), "data",
+                         f"league_meta_{DRAFTIQ_LEAGUE}.json")
+        with open(p, encoding="utf-8") as f:
+            return jsonify(json.load(f))
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({"error": str(e)}), 500
+
+
 @app.route("/api/rosters", methods=["GET"])
 def api_rosters():
     """All rosters valued under both judges + counterparty dossiers (trades page)."""
@@ -1501,7 +1547,10 @@ def api_health():
         n_dst = sum(1 for r in rows if r.get("pos") == "DST")
         n_idp = sum(1 for r in rows if r.get("pos") == "IDP")
         n_skill = sum(1 for r in rows if r.get("pos") in ("QB", "RB", "WR", "TE"))
-        add("BOARD", len(rows) > 1000 and n_dst >= 30 and n_idp >= 300 and n_skill >= 400,
+        league_has_idp = DRAFTIQ_LEAGUE == "2026"    # guest leagues so far have no DP slot
+        idp_ok = (n_idp >= 300) if league_has_idp else (n_idp == 0)
+        add("BOARD", len(rows) > (1000 if league_has_idp else 400)
+            and n_dst >= 30 and idp_ok and n_skill >= 400,
             f"{len(rows)} rows · {n_skill} skill · {n_idp} IDP · {n_dst} D/ST · built {age_h:.0f}h ago"
             + (" · STALE, rebuild before drafting" if age_h > 96 else ""))
     except Exception as e:
@@ -1518,15 +1567,16 @@ def api_health():
             + ("; its IDP is still broken but we no longer use it" if idp_problems else ""))
     except Exception as e:
         add("SPORTSDATA (skill)", False, f"unreachable: {e}")
-    try:
-        from models import espn_proj
-        idp = espn_proj.get(2026)
-        top = idp[0] if idp else None
-        add("ESPN IDP PROJ", len(idp) > 300,
-            f"{len(idp)} defenders · top {top['name']} {top['points']:.0f} pts" if top
-            else "no IDP projections cached")
-    except Exception as e:
-        add("ESPN IDP PROJ", False, f"unavailable: {str(e)[:70]}")
+    if DRAFTIQ_LEAGUE == "2026":        # guest leagues have no IDP — skip the check
+        try:
+            from models import espn_proj
+            idp = espn_proj.get(2026)
+            top = idp[0] if idp else None
+            add("ESPN IDP PROJ", len(idp) > 300,
+                f"{len(idp)} defenders · top {top['name']} {top['points']:.0f} pts" if top
+                else "no IDP projections cached")
+        except Exception as e:
+            add("ESPN IDP PROJ", False, f"unavailable: {str(e)[:70]}")
     try:
         from models import espn_sync
         lg = espn_sync.STATE.league(2026)

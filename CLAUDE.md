@@ -75,6 +75,33 @@ cd frontend && npm install && npm run dev
 Windows shell is **PowerShell**; a Bash tool is also available. Don't `cd` in compound
 commands (permission prompts) — use absolute paths.
 
+## Guest-league mode (BUILT 2026-09-01 for "Steak and Ales with the Lads")
+
+DraftIQ can run a draft for a DIFFERENT league without touching the home (Taco)
+setup. Five env vars flip the whole stack: `DRAFTIQ_LEAGUE` (league_config.json key),
+`DRAFTIQ_LEAGUE_ID` (ESPN id → espn_proj/espn_sync + per-league proj caches),
+`DRAFTIQ_SETTINGS_DIR` (scoring.load_scoring reads `<dir>/<year>/settings.json`),
+`DRAFTIQ_FP_DIR` (fp_blend exports), `DRAFTIQ_BOARD` (board CSV path — api.py serves
+it, build_board writes it). Config-driven internals: `pick_engine` builds
+ROSTER_SLOTS/SLOT_BASE/DEDICATED_NEED from the config key (opponent_ai imports them);
+`season_sim` rebuilds STARTER_SLOTS + reg_weeks/playoff_teams (4-team bracket
+supported); `build_board` gates ALL IDP machinery on the config having a DP starter;
+`coach_system_blocks()` swaps in a guest persona (generic principles, no Taco intel).
+The frontend fetches **`/api/draft-meta`** at boot — for a guest league it overrides
+TEAMS/NT/ROUNDS/MY_SLOT/SLOT_TEMPLATE (grid incl. FLEX count, no IDP), retitles, and
+saves state under its own localStorage key (home draft state untouched). Live ESPN
+sync needs no alias file — picks apply in overall order, team = slotForPick.
+
+**Steak league** (998262196): 8-team FULL PPR, no IDP, QB/2RB/2WR/TE/FLEX/DST/K+7BE,
+16 rds, 13-wk season, 4-team playoff, waiver priority, 90s clock, JRay = slot 2.
+Launch: `.\scripts\draft_steak.ps1` (add `-Build` to rebuild
+`board_2026_steak.csv`); settings in `data/raw/espn_steak/`, FP full-PPR exports in
+`data/raw/fantasypros_steak/`, slot-order names in `data/league_meta_steak.json`.
+Known degradations (accepted): D/ST scale + weekly σ are Taco-derived; no manager
+profiles for this room (SPY/priors neutral); DNA page + wheel copy are Taco-specific;
+no FP *projections* export (rankings/ADP annotate fine). One server per port — the
+steak server replaces the Taco one on 5001 while it runs.
+
 ## The model (BUILT — calibrated on 7 seasons of league history)
 
 Lives in `models/`. Pipeline (run `python models/<file>.py` from the venv):

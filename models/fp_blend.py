@@ -33,7 +33,9 @@ except ImportError:  # pragma: no cover
     from models.scoring import load_scoring, norm_name, fi_key
 
 ROOT = Path(__file__).resolve().parents[1]
-FP_DIR = ROOT / "data" / "raw" / "fantasypros"
+import os as _os
+# guest league can point at its own export set (e.g. the FULL-PPR variant)
+FP_DIR = Path(_os.getenv("DRAFTIQ_FP_DIR") or (ROOT / "data" / "raw" / "fantasypros"))
 
 # positional column layout per FP export (headers repeat names, so order matters)
 LAYOUT = {

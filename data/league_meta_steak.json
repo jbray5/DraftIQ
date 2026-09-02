@@ -1,0 +1,38 @@
+{
+ "league": "steak",
+ "name": "Steak and Ales with the Lads",
+ "teams": [
+  "Joe",
+  "Justin",
+  "Tommy",
+  "Greyson",
+  "Sean",
+  "LBH",
+  "John",
+  "Brock"
+ ],
+ "mySlot": 2,
+ "rounds": 16,
+ "slots": [
+  "QB",
+  "RB1",
+  "RB2",
+  "WR1",
+  "WR2",
+  "TE",
+  "FLEX",
+  "DST",
+  "K"
+ ],
+ "teamNames": {
+  "2": "Joe's Finest Team",
+  "4": "Justin's Scary Team",
+  "6": "Tommy's Talented Team",
+  "5": "Greyson's Great Team",
+  "3": "Sean's Smart Team",
+  "1": "CeeDeez Nutz",
+  "7": "John's Supreme Team",
+  "8": "Brock's Brilliant Team"
+ },
+ "clockSeconds": 90
+}

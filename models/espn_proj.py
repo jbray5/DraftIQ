@@ -37,7 +37,10 @@ IDP_POS = ("LB", "DE", "DT", "CB", "S")     # ESPN's individual-defender positio
 
 
 def _cache(season: int, kind: str = "idp") -> Path:
-    return ROOT / "data" / "processed" / f"espn_{kind}_proj_{season}.json"
+    # guest league gets its own cache files (its appliedTotals are scored in ITS rules)
+    lid = os.getenv("DRAFTIQ_LEAGUE_ID")
+    suffix = f"_{lid}" if lid else ""
+    return ROOT / "data" / "processed" / f"espn_{kind}_proj_{season}{suffix}.json"
 
 
 def _league(season: int):
@@ -46,7 +49,8 @@ def _league(season: int):
     sys.path.insert(0, str(ROOT / "scripts"))
     from pull_espn import load_league, normalize_cookies
     s2, swid = normalize_cookies(os.getenv("ESPN_S2"), os.getenv("ESPN_SWID"))
-    return load_league(os.getenv("ESPN_LEAGUE_ID"), season, s2, swid)
+    return load_league(os.getenv("DRAFTIQ_LEAGUE_ID") or os.getenv("ESPN_LEAGUE_ID"),
+                       season, s2, swid)
 
 
 def fetch(season: int = 2026, positions: tuple = IDP_POS) -> list[dict]:

@@ -1596,10 +1596,15 @@ body.glitch .crt-flicker{opacity:.9;background:rgba(255,85,85,.06)}
 // REAL 2026 draft order (announced), by manager last name: Gilbert, Bollinger, Hubauer,
 // Putman, Walker(Stephen Walker/Lamb), Wester(Payton Wester/Flowers), Spivey, Street(Will),
 // Munford, Ray. You pick from THE WHEEL (slot 10).
-const TEAMS = ["Gilbert","Bollinger","Hubauer","Putman","Walker","Wester","Spivey","Street","Munford","Ray"];
-const NT = TEAMS.length;          // 10 teams
-const ROUNDS = 18;                // total draft rounds (11 starters + 7 bench — confirmed from live 2026 ESPN settings)
+// GUEST-LEAGUE MODE: these are `let` because /api/draft-meta (served when the backend
+// launches with DRAFTIQ_LEAGUE set — see scripts/draft_steak.ps1) overrides them at boot.
+let LEAGUE = 'taco';
+let TEAMS = ["Gilbert","Bollinger","Hubauer","Putman","Walker","Wester","Spivey","Street","Munford","Ray"];
+let NT = TEAMS.length;            // 10 teams
+let ROUNDS = 18;                  // total draft rounds (11 starters + 7 bench — confirmed from live 2026 ESPN settings)
 let MY_SLOT = 10;                 // Ray — slot 10, back-to-back picks at every turn
+// the starting grid — guest leagues swap this from meta.slots (e.g. no IDP, 1 FLEX)
+let SLOT_TEMPLATE = ["QB","RB1","RB2","WR1","WR2","TE","FLEX","FLEX2","IDP","DST","K"];
 
 // available player pool at pick 53 (live board state)
 let POOL = [
@@ -1631,20 +1636,9 @@ let POOL = [
   {rk:26,nm:"Texans D/ST",       tm:"HOU", pos:"DST",proj:128, vorp:14, adp:135,tier:1, bye:6, note:"pass rush + soft early schedule"},
 ];
 
-// roster slots — fresh pre-draft (fills live as you draft). 2 FLEX in 2026.
-let ROSTER = [
-  {slot:"QB",   player:null, need:false},
-  {slot:"RB1",  player:null, need:true},
-  {slot:"RB2",  player:null, need:true},
-  {slot:"WR1",  player:null, need:true},
-  {slot:"WR2",  player:null, need:true},
-  {slot:"TE",   player:null, need:false},
-  {slot:"FLEX", player:null, need:false},
-  {slot:"FLEX2",player:null, need:false},
-  {slot:"IDP",  player:null, need:false},
-  {slot:"DST",  player:null, need:false},
-  {slot:"K",    player:null, need:false},
-];
+// roster slots — fresh pre-draft (fills live as you draft), built from SLOT_TEMPLATE
+// (freshRoster is a hoisted function declaration, so this works pre-definition)
+let ROSTER = freshRoster();
 let BENCH = [];
 
 // draft board — fills live as picks are made (overall pick -> {nm,pos,mine?})
@@ -2143,11 +2137,9 @@ function undoPick(){
   afterPickChanged();
 }
 let lastPick=null;
-function freshRoster(){return [
-  {slot:"QB",player:null,need:false},{slot:"RB1",player:null,need:true},{slot:"RB2",player:null,need:true},
-  {slot:"WR1",player:null,need:true},{slot:"WR2",player:null,need:true},{slot:"TE",player:null,need:false},
-  {slot:"FLEX",player:null,need:false},{slot:"FLEX2",player:null,need:false},{slot:"IDP",player:null,need:false},
-  {slot:"DST",player:null,need:false},{slot:"K",player:null,need:false}];}
+function freshRoster(){  // need:true = the RB/WR core slots (same flags the old literal had)
+  return SLOT_TEMPLATE.map(s=>({slot:s,player:null,need:/^(RB|WR)\d/.test(s)}));
+}
 function resetDraft(){
   if(!window.confirm('Reset the entire draft? This clears every pick.'))return;
   PICKS={};BENCH=[];MY_PICKS=[];HISTORY=[];CURRENT_PICK=1;ROSTER=freshRoster();
@@ -2308,10 +2300,12 @@ function lineupSlots(players){
   for(const k in byPos)byPos[k].sort((a,b)=>(b.proj||0)-(a.proj||0));
   const used=new Set(), rows=[];
   const take=(label,pos)=>{const l=byPos[pos]||[];for(const p of l){if(!used.has(p)){used.add(p);rows.push({slot:label,p});return;}}rows.push({slot:label,p:null});};
-  take('QB','QB');take('RB1','RB');take('RB2','RB');take('WR1','WR');take('WR2','WR');take('TE','TE');
-  const flex=['RB','WR','TE'].flatMap(pos=>byPos[pos]||[]).filter(p=>!used.has(p)).sort((a,b)=>(b.proj||0)-(a.proj||0));
-  ['FLEX','FLEX2'].forEach((lab,i)=>{const p=flex[i];if(p){used.add(p);rows.push({slot:lab,p});}else rows.push({slot:lab,p:null});});
-  take('IDP','IDP');take('DST','DST');take('K','K');
+  SLOT_TEMPLATE.forEach(sl=>{
+    if(/^FLEX/.test(sl)){
+      const flex=['RB','WR','TE'].flatMap(pos=>byPos[pos]||[]).filter(p=>!used.has(p)).sort((a,b)=>(b.proj||0)-(a.proj||0));
+      const p=flex[0]; if(p){used.add(p);rows.push({slot:sl,p});}else rows.push({slot:sl,p:null});
+    } else take(sl, sl.replace(/\d+$/,''));
+  });
   const bench=(players||[]).filter(p=>!used.has(p)).sort((a,b)=>(b.proj||0)-(a.proj||0));
   return {rows,bench};
 }
@@ -2717,7 +2711,7 @@ const LINEUP=[
 ];
 function renderLineup(){
   const t=document.getElementById('lineupTable');
-  const ORDER=["QB","RB1","RB2","WR1","WR2","TE","FLEX","FLEX2","IDP","DST","K"];
+  const ORDER=SLOT_TEMPLATE;
   const bySlot={}; MY_PICKS.forEach(p=>{ if(p.slot&&p.slot!=='BN')bySlot[p.slot]=p; });
   let html=`<thead><tr><th class="l">SLOT</th><th class="l">PLAYER</th><th class="l">POS</th>
     <th class="l">TM</th><th>ROUND</th><th>OVR</th><th>VALUE</th></tr></thead><tbody>`;
@@ -3159,12 +3153,35 @@ function buildBigBoard(pool){
   return bb;
 }
 /* draft persistence — survive refreshes/crashes on draft night */
-const SKEY='draftiq_2026_draft_v2';   // v2: real draft order (old saves used the placeholder order)
+let SKEY='draftiq_2026_draft_v2';   // v2: real draft order; guest leagues get their own key
 function saveState(){ try{ localStorage.setItem(SKEY, JSON.stringify({v:1,PICKS,ROSTER,BENCH,MY_PICKS,HISTORY,CURRENT_PICK})); }catch(e){} }
 function loadState(){ try{ const s=localStorage.getItem(SKEY); const o=s&&JSON.parse(s); return (o&&o.v===1)?o:null; }catch(e){ return null; } }
 function clearState(){ try{ localStorage.removeItem(SKEY); }catch(e){} }
+/* GUEST-LEAGUE MODE — the backend says which league it's serving (/api/draft-meta).
+   For the home league it answers {league:'taco'} and nothing changes. For a guest
+   league (launched via scripts/draft_<key>.ps1) it carries teams-in-slot-order,
+   mySlot, rounds and the starting grid, and we rebuild the world around them.
+   Guest state saves under its own localStorage key, so the home draft is untouched. */
+async function applyDraftMeta(){
+  try{
+    const r=await fetch('/api/draft-meta'); if(!r.ok)return;
+    const m=await r.json();
+    if(!m||m.error||m.league==='taco'||!Array.isArray(m.teams)||!m.teams.length)return;
+    LEAGUE=m.league;
+    TEAMS=m.teams.slice(); NT=TEAMS.length;
+    if(m.rounds)ROUNDS=m.rounds;
+    if(m.mySlot)MY_SLOT=m.mySlot;
+    if(Array.isArray(m.slots)&&m.slots.length)SLOT_TEMPLATE=m.slots.slice();
+    SKEY='draftiq_'+m.league+'_draft_v2';
+    ROSTER=freshRoster(); BENCH=[];
+    if(m.name)document.title='DraftIQ · '+m.name;
+    if(m.clockSeconds&&!localStorage.getItem('draftiq_clock')&&typeof CLOCK!=='undefined'){CLOCK.secs=m.clockSeconds;CLOCK.left=m.clockSeconds;}
+    console.log('DraftIQ guest league:',m.league,NT+' teams, slot '+MY_SLOT+', '+ROUNDS+' rounds');
+  }catch(e){/* backend down — boot() already retries loudly */}
+}
 async function boot(){
   try{
+    await applyDraftMeta();
     const res=await fetch('/api/board');
     if(!res.ok) throw new Error('board '+res.status);
     const rows=await res.json();

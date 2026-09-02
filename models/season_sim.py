@@ -24,6 +24,8 @@ Pure numpy, ~1000 sims in well under a second. No LLM, no network.
 from __future__ import annotations
 
 import functools
+import json
+import os
 from pathlib import Path
 
 import numpy as np
@@ -42,6 +44,20 @@ SEASON_WEEKS = 17            # projections are full-season totals
 SEASON_SHOCK = 0.08          # sd of the per-season draft-luck shock, as a share of mean
 STARTER_SLOTS = ["QB", "RB", "RB", "WR", "WR", "TE", "FLEX", "FLEX", "IDP", "DST", "K"]
 FLEX_ELIG = ("RB", "WR", "TE")
+
+# Guest-league mode: DRAFTIQ_LEAGUE picks another league_config key and rebuilds the
+# lineup shape / season structure from it (home league "2026" keeps the values above).
+LEAGUE_KEY = os.getenv("DRAFTIQ_LEAGUE", "2026")
+if LEAGUE_KEY != "2026":
+    try:
+        _c = json.loads((ROOT / "data" / "league_config.json").read_text(encoding="utf-8"))[LEAGUE_KEY]
+        _S2P = {"QB": "QB", "RB": "RB", "WR": "WR", "TE": "TE", "DP": "IDP", "D/ST": "DST", "K": "K"}
+        STARTER_SLOTS = [_S2P.get(s, s) for s, n in _c["starters"].items()
+                         for _ in range(int(n))] + ["FLEX"] * int(_c.get("flex_slots", 0))
+        REG_WEEKS = int(_c.get("reg_weeks", REG_WEEKS))
+        PLAYOFF_TEAMS = int(_c.get("playoff_teams", PLAYOFF_TEAMS))
+    except Exception:
+        pass                 # fall back to home-league structure rather than crash
 
 
 @functools.lru_cache(maxsize=1)
@@ -108,8 +124,10 @@ def fill_values(team_rosters: dict, board_avail: list[dict]) -> dict[str, float]
         for p in players or []:
             pos = normalize_pos(p.get("position") or p.get("pos"))
             have[pos] = have.get(pos, 0) + 1
-        for pos, req in (("QB", 1), ("RB", 2), ("WR", 2), ("TE", 1),
-                         ("IDP", 1), ("DST", 1), ("K", 1)):
+        _reqs = [(pos, STARTER_SLOTS.count(pos))
+                 for pos in ("QB", "RB", "WR", "TE", "IDP", "DST", "K")
+                 if STARTER_SLOTS.count(pos)]
+        for pos, req in _reqs:
             if have.get(pos, 0) < req:
                 need_count[pos] = need_count.get(pos, 0) + (req - have.get(pos, 0))
     by_pos: dict[str, list[float]] = {}
@@ -185,10 +203,14 @@ def title_odds(team_rosters: dict[str, list[dict]], board_avail: list[dict],
         def game(x, y):
             return x if rng.normal(m[x], po_sd) > rng.normal(m[y], po_sd) else y
 
-        w45 = game(seeds[3], seeds[4])                            # QF: 4v5, 3v6
-        w36 = game(seeds[2], seeds[5])
-        f1 = game(seeds[0], w45)                                  # SF vs byes
-        f2 = game(seeds[1], w36)
+        if PLAYOFF_TEAMS == 4:                                    # SF 1v4, 2v3 → final
+            f1 = game(seeds[0], seeds[3])
+            f2 = game(seeds[1], seeds[2])
+        else:                                                     # 6-team, top-2 byes
+            w45 = game(seeds[3], seeds[4])                        # QF: 4v5, 3v6
+            w36 = game(seeds[2], seeds[5])
+            f1 = game(seeds[0], w45)                              # SF vs byes
+            f2 = game(seeds[1], w36)
         titles[game(f1, f2)] += 1
 
     return {t: {"title": round(float(titles[i]) / n_sims, 4),

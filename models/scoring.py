@@ -33,7 +33,11 @@ def load_scoring(year: int = 2024, slot: int | None = None) -> dict[int, float]:
     slot=None (default)  -> base values: correct for offense and IDP
     slot=DST_SLOT (16)   -> the D/ST column: tackles/PD zeroed, sacks 1.0, PA/YA tiers
     """
-    s = json.loads((ROOT / "data" / "raw" / "espn" / str(year) / "settings.json").read_text(encoding="utf-8"))
+    # DRAFTIQ_SETTINGS_DIR lets a guest league (its own scoring rules) swap in
+    # without touching the home league's data — see league_config.json 'steak'.
+    import os as _os
+    _base = Path(_os.getenv("DRAFTIQ_SETTINGS_DIR") or (ROOT / "data" / "raw" / "espn"))
+    s = json.loads((_base / str(year) / "settings.json").read_text(encoding="utf-8"))
     raw = s.get("raw_scoring_settings") or {}
     items = raw.get("scoringItems") if isinstance(raw, dict) else None
     if items:

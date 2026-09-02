@@ -27,6 +27,7 @@ from __future__ import annotations
 
 import json
 import math
+import os
 from collections import Counter
 from pathlib import Path
 
@@ -47,18 +48,38 @@ STREAM = {"IDP", "K", "DST"}
 DEPTH_KEEP = {"QB": 1, "TE": 1, "RB": 5, "WR": 5}
 DEPTH_DECAY = {"QB": 0.18, "TE": 0.18, "RB": 0.5, "WR": 0.5}
 TIER_SIZE = {"QB": 3, "RB": 6, "WR": 6, "TE": 3, "IDP": 6, "K": 8, "DST": 8}
-# the live UI starting grid (DP slot == IDP); FLEX slots accept RB/WR/TE
-ROSTER_SLOTS = ["QB", "RB1", "RB2", "WR1", "WR2", "TE", "FLEX", "FLEX2", "IDP", "DST", "K"]
-SLOT_BASE = {"QB": "QB", "RB1": "RB", "RB2": "RB", "WR1": "WR", "WR2": "WR", "TE": "TE",
-             "FLEX": None, "FLEX2": None, "IDP": "IDP", "DST": "DST", "K": "K"}
+# the live UI starting grid, built from league_config for the ACTIVE league
+# (DP slot == IDP; FLEX slots accept RB/WR/TE). DRAFTIQ_LEAGUE picks the config key —
+# home league "2026" yields the exact grid that was hardwired here before.
+LEAGUE_KEY = os.getenv("DRAFTIQ_LEAGUE", "2026")
+
+
+def _grid_from_cfg(key: str):
+    c = _CFG[key]
+    slots, base, need = [], {}, {}
+    for slot_name, n in c["starters"].items():
+        pos = _SLOT2POS.get(slot_name, slot_name)
+        for i in range(int(n)):
+            label = pos if int(n) == 1 else f"{pos}{i + 1}"
+            slots.append(label)
+            base[label] = pos
+        need[pos] = need.get(pos, 0) + int(n)
+    for i in range(int(c.get("flex_slots", 0))):
+        label = "FLEX" if i == 0 else f"FLEX{i + 1}"
+        slots.append(label)
+        base[label] = None
+    return slots, base, need
+
+
+ROSTER_SLOTS, SLOT_BASE, DEDICATED_NEED = _grid_from_cfg(LEAGUE_KEY)
 FLEX_ELIG = ("RB", "WR", "TE")
-DEDICATED_NEED = {"QB": 1, "RB": 2, "WR": 2, "TE": 1, "IDP": 1, "DST": 1, "K": 1}
 # rough league-wide draft share per position, for run detection
 BASE_SHARE = {"RB": 0.27, "WR": 0.31, "QB": 0.10, "TE": 0.10, "IDP": 0.10, "DST": 0.06, "K": 0.06}
 
 
 def league_2026() -> League:
-    c = _CFG["2026"]
+    """The ACTIVE league (name kept for callers; DRAFTIQ_LEAGUE selects the config)."""
+    c = _CFG[LEAGUE_KEY]
     starters: dict[str, int] = {}
     for slot, n in c["starters"].items():
         b = _SLOT2POS.get(slot, slot)
