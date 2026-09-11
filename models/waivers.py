@@ -317,11 +317,20 @@ def startsit(season: int = 2026, week: int | None = None) -> dict:
                 for o in (getattr(t, "owners", None) or []) if isinstance(o, dict)]
 
     def _lineup_rows(lineup):
-        return [{"name": p.name, "pos": _b(getattr(p, "position", "") or ""),
-                 "slot": getattr(p, "slot_position", None),
-                 "proj": round(float(getattr(p, "projected_points", 0) or 0), 1),
-                 "injury": (str(getattr(p, "injuryStatus", "") or "").upper() or None)}
-                for p in (lineup or [])]
+        rows = []
+        for p in (lineup or []):
+            # game_played: 0 = not kicked off, 100 = final (espn_api BoxPlayer).
+            # A played player can legitimately have 0.0 actual points — gate on
+            # game_played, never on the points value.
+            played = int(getattr(p, "game_played", 0) or 0)
+            rows.append({"name": p.name, "pos": _b(getattr(p, "position", "") or ""),
+                         "slot": getattr(p, "slot_position", None),
+                         "proj": round(float(getattr(p, "projected_points", 0) or 0), 1),
+                         "played": played,
+                         "actual": (round(float(getattr(p, "points", 0) or 0), 1)
+                                    if played > 0 else None),
+                         "injury": (str(getattr(p, "injuryStatus", "") or "").upper() or None)})
+        return rows
 
     for m in lg.box_scores(week):
         for side, opp in (("home", "away"), ("away", "home")):
@@ -341,19 +350,48 @@ def startsit(season: int = 2026, week: int | None = None) -> dict:
             swaps = [{"start": n} for n in sorted(opt_names - cur_names)] and \
                     [{"start": i, "sit": o} for i, o in
                      zip(sorted(opt_names - cur_names), sorted(cur_names - opt_names))]
-            opp_total = round(sum(p["proj"] for p in theirs if p["slot"] not in ("BE", "IR")), 1)
+            opp_started = [p for p in theirs if p["slot"] not in ("BE", "IR")]
+            opp_total = round(sum(p["proj"] for p in opp_started), 1)
+
+            # LIVE week state: actual points for starters whose game has kicked off,
+            # projections for the rest. liveExp = what each side finishes with if
+            # the unplayed starters hit projection.
+            def _live(rows):
+                act = round(sum((p["actual"] or 0.0) for p in rows if p["played"]), 1)
+                rem = round(sum(p["proj"] for p in rows if not p["played"]), 1)
+                return act, rem, sum(1 for p in rows if p["played"])
+
+            my_act, my_rem, my_np = _live(started)
+            opp_act, opp_rem, opp_np = _live(opp_started)
+            my_live = round(my_act + my_rem, 1)
+            opp_live = round(opp_act + opp_rem, 1)
             sd = season_sim.weekly_sd()
-            win = 0.5 * (1 + math.erf((opt["total"] - opp_total) / (sd * math.sqrt(2) * math.sqrt(2))))
+            # variance left in the week shrinks as games finish — scale the (2·σ)
+            # two-team spread by √(share of starters still to play); pre-kickoff this
+            # is exactly the old formula.
+            n_all = max(1, len(started) + len(opp_started))
+            frac_rem = (len(started) - my_np + len(opp_started) - opp_np) / n_all
+            if frac_rem > 0:
+                sd_eff = max(1.0, 2 * sd * math.sqrt(frac_rem))
+                win = 0.5 * (1 + math.erf((my_live - opp_live) / sd_eff))
+            else:                       # week complete: it's just the scoreboard
+                win = 1.0 if my_live > opp_live else (0.0 if my_live < opp_live else 0.5)
             return {"week": week,
                     "me": {"team": getattr(team, "team_name", None), "current": started,
                            "bench": [p for p in mine if p["slot"] in ("BE", "IR")],
                            "currentTotal": my_total, "optimalTotal": opt["total"],
-                           "optimalNames": sorted(opt_names)},
+                           "optimalNames": sorted(opt_names),
+                           "actualSoFar": my_act, "remainingProj": my_rem,
+                           "liveExp": my_live, "playedStarters": my_np,
+                           "nStarters": len(started)},
                     "swaps": swaps, "benchLeak": round(opt["total"] - my_total, 1),
                     "opponent": {"team": getattr(opp_team, "team_name", None),
                                  "projTotal": opp_total,
-                                 "lineup": [p for p in theirs if p["slot"] not in ("BE", "IR")],
-                                 "bench": [p for p in theirs if p["slot"] in ("BE", "IR")]},
+                                 "lineup": opp_started,
+                                 "bench": [p for p in theirs if p["slot"] in ("BE", "IR")],
+                                 "actualSoFar": opp_act, "remainingProj": opp_rem,
+                                 "liveExp": opp_live, "playedStarters": opp_np,
+                                 "nStarters": len(opp_started)},
                     "winProb": round(win, 3)}
     return {"error": f"no matchup found for you in week {week}"}
 

@@ -10,24 +10,27 @@
 <script src="season.js"></script>
 <script>
 seasonNav('matchup');
-const rowsOf=(list,optNames)=>`<table><tr><th>slot</th><th>player</th><th class="num">proj</th></tr>`
+const rowsOf=(list,optNames)=>`<table><tr><th>slot</th><th>player</th><th class="num">proj</th><th class="num">act</th></tr>`
   +list.map(p=>{
     const flag=p.injury&&!['ACTIVE','NORMAL'].includes(p.injury)?` <span class="bad">⚕${p.injury}</span>`:'';
     const opt=optNames&&!optNames.includes(p.name)?' <span class="bad">▼ sit</span>':'';
-    return `<tr><td class="dim">${esc(p.slot)}</td><td>${esc(p.name)}${flag}${opt}</td><td class="num">${p.proj}</td></tr>`;
+    const act=p.played?`<b>${p.actual}</b>${p.played<100?' <span class="dim">live</span>':''}`:'<span class="dim">—</span>';
+    return `<tr><td class="dim">${esc(p.slot)}</td><td>${esc(p.name)}${flag}${opt}</td><td class="num">${p.proj}</td><td class="num">${act}</td></tr>`;
   }).join('')+'</table>';
 (async()=>{
   try{
     const d=await j('/api/startsit');
     setHdr(d.me.team,d.week); $('wk').textContent='week '+d.week;
     const w=Math.round(d.winProb*100);
-    $('hero').innerHTML=`<h2>MY MATCHUP <span class="r">week ${d.week}</span></h2>
+    const live=(d.me.playedStarters||0)+(d.opponent.playedStarters||0)>0;
+    const sub=s=>live?`${s.actualSoFar} in · ${s.remainingProj} to come · ${s.playedStarters}/${s.nStarters} played`:null;
+    $('hero').innerHTML=`<h2>MY MATCHUP <span class="r">week ${d.week}${live?' · LIVE':''}</span></h2>
       <div class="vs">
-        <div><div class="t">${esc(d.me.team)}</div><div class="n">${d.me.currentTotal}</div><div class="dim">current · optimal ${d.me.optimalTotal}</div></div>
+        <div><div class="t">${esc(d.me.team)}</div><div class="n">${live?d.me.liveExp:d.me.currentTotal}</div><div class="dim">${sub(d.me)||('current · optimal '+d.me.optimalTotal)}</div></div>
         <div class="at">vs</div>
-        <div><div class="t muted">${esc(d.opponent.team)}</div><div class="n" style="color:var(--ink2)">${d.opponent.projTotal}</div><div class="dim">projected</div></div></div>
+        <div><div class="t muted">${esc(d.opponent.team)}</div><div class="n" style="color:var(--ink2)">${live?d.opponent.liveExp:d.opponent.projTotal}</div><div class="dim">${sub(d.opponent)||'projected'}</div></div></div>
       <div class="bar"><i style="width:${w}%"></i></div>
-      <div class="dim">win probability <b class="good">${w}%</b> · σ from 7 yrs of league weekly scores</div>`
+      <div class="dim">${live?'LIVE ':''}win probability <b class="good">${w}%</b> · actuals + remaining projections · σ from 7 yrs of league weekly scores</div>`
       +(d.swaps&&d.swaps.length
         ?`<div class="action" style="margin-top:10px"><div class="hd">▶ START/SIT — +${d.benchLeak} projected pts</div>`
           +d.swaps.map(s=>`<div class="rowline">START <b class="good">${esc(s.start)}</b> · SIT <b class="bad">${esc(s.sit)}</b></div>`).join('')+'</div>'
