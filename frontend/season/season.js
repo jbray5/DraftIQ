@@ -4,7 +4,10 @@ const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').repl
 const pct = v => (v * 100).toFixed(1) + '%';
 
 async function j(u){ const r = await fetch(u); const d = await r.json();
-  if (d.error) throw new Error(d.error); return d; }
+  if (d.error) throw new Error(d.error);
+  if (d.stale && !$('staleBanner')) document.body.insertAdjacentHTML('afterbegin',
+    `<div id="staleBanner" style="background:#4a3200;color:#ffcf7d;padding:6px 14px;font-size:12px;letter-spacing:.03em">⚠ ESPN unreachable — showing the last good pull (${Math.max(1,Math.round((d.staleAgeSec||60)/60))} min old). Hit ↻ to retry.</div>`);
+  return d; }
 
 function seasonNav(active){
   const pages = [['index','DASHBOARD'],['matchup','MATCHUP'],['wire','WIRE'],['standings','STANDINGS'],['trades','TRADES'],['performance','RESULTS']];
@@ -24,17 +27,24 @@ function setHdr(team, week){
 }
 
 /* shared renderers used by more than one page */
+/* market heat: ESPN-wide roster% + day-over-day move. Display-only tiebreak. */
+function heatTag(p){
+  if (p == null || p.own == null) return '';
+  const d = p.ownDelta;
+  const arrow = d==null ? '' : d > 0.4 ? ` <b class="good">▲${d}</b>` : d < -0.4 ? ` <b class="bad">▼${Math.abs(d)}</b>` : '';
+  return ` <span class="dim">· ${Math.round(p.own)}% rostered${arrow}</span>`;
+}
 function renderWire(d, el, compact){
   let html = '';
   if (d.allClear) html += '<div class="allclear">✓ ALL CLEAR — nothing on the wire needs action.</div>';
   (d.actions || []).forEach(a => {
     const drop = a.drop ? ` · drop <b class="bad">${esc(a.drop.name)}</b>` : '';
-    html += `<div class="action"><div class="hd">▶ ${a.type}: ${esc(a.add.name)} (${a.add.pos})${drop} · NET ${a.netVorp>=0?'+':''}${a.netVorp}</div>
+    html += `<div class="action"><div class="hd">▶ ${a.type}: ${esc(a.add.name)} (${a.add.pos})${drop} · NET ${a.netVorp>=0?'+':''}${a.netVorp}${heatTag(a.add)}</div>
       <div class="muted">${esc(a.why)}</div><div class="dim">▸ ${esc(a.urgency)}</div></div>`;
   });
   html += `<div class="rowline dim">${esc((d.stream||{}).line||'')}</div>`;
   if (!compact){
-    (d.watchlist||[]).forEach(m => { html += `<div class="rowline">watch: ${esc(m.add.name)} over ${esc(m.drop.name)} <span class="dim">(+${m.netVorp})</span></div>`; });
+    (d.watchlist||[]).forEach(m => { html += `<div class="rowline">watch: ${esc(m.add.name)} over ${esc(m.drop.name)} <span class="dim">(+${m.netVorp})</span>${heatTag(m.add)}</div>`; });
     (d.injuryFlags||[]).forEach(f => {
       html += `<div class="rowline">⚕ <b class="bad">${esc(f.name)}</b> (${f.pos}) ${f.injury}${f.newsDate?' <span class="dim">['+f.newsDate+']</span>':''}`
         + (f.news ? `<div class="dim">${esc(f.news)}</div>` : '') + '</div>';

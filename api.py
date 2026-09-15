@@ -1046,6 +1046,18 @@ def ai_best_pick():
 _WAIVER_CACHE: dict = {}
 
 
+def _stale_or_error(key: str, err) -> tuple:
+    """ESPN flakes hard on game days (Sunday: 'read timeout=None' mid-slate). A
+    6-minute-old report beats a 500 every time — serve the expired cache with a
+    stale marker; error only when there's truly nothing to serve."""
+    hit = _WAIVER_CACHE.get(key)
+    if hit:
+        age = int(time.time() - hit["at"])
+        return jsonify({**hit["data"], "stale": True, "staleAgeSec": age,
+                        "staleError": str(err)[:140]}), 200
+    return jsonify({"error": str(err)}), 500
+
+
 @app.route("/api/waivers", methods=["GET"])
 def api_waivers():
     """In-season WAIVER WIRE report: live ESPN rosters + free agents valued on
@@ -1061,12 +1073,13 @@ def api_waivers():
         if hit and not force and time.time() - hit["at"] < 300:
             return jsonify(hit["data"])
         rep = wv.report(2026, week)
-        if not rep.get("error"):
-            _WAIVER_CACHE[key] = {"at": time.time(), "data": rep}
+        if rep.get("error"):
+            return _stale_or_error(key, rep["error"])
+        _WAIVER_CACHE[key] = {"at": time.time(), "data": rep}
         return jsonify(rep)
     except Exception as e:
         traceback.print_exc()
-        return jsonify({"error": str(e)}), 500
+        return _stale_or_error(f"w{request.args.get('week', type=int) or 'auto'}", e)
 
 
 @app.route("/api/startsit", methods=["GET"])
@@ -1079,12 +1092,13 @@ def api_startsit():
         if hit and request.args.get("force") != "1" and time.time() - hit["at"] < 300:
             return jsonify(hit["data"])
         rep = wv.startsit(2026, request.args.get("week", type=int))
-        if not rep.get("error"):
-            _WAIVER_CACHE[key] = {"at": time.time(), "data": rep}
+        if rep.get("error"):
+            return _stale_or_error(key, rep["error"])
+        _WAIVER_CACHE[key] = {"at": time.time(), "data": rep}
         return jsonify(rep)
     except Exception as e:
         traceback.print_exc()
-        return jsonify({"error": str(e)}), 500
+        return _stale_or_error("startsit" + str(request.args.get("week") or ""), e)
 
 
 @app.route("/api/season-odds", methods=["GET"])
@@ -1100,7 +1114,7 @@ def api_season_odds():
         return jsonify(rep)
     except Exception as e:
         traceback.print_exc()
-        return jsonify({"error": str(e)}), 500
+        return _stale_or_error("odds", e)
 
 
 @app.route("/api/draft-meta", methods=["GET"])
@@ -1133,7 +1147,7 @@ def api_rosters():
         return jsonify(rep)
     except Exception as e:
         traceback.print_exc()
-        return jsonify({"error": str(e)}), 500
+        return _stale_or_error("rosters", e)
 
 
 @app.route("/api/trade2", methods=["POST"])
@@ -1162,7 +1176,7 @@ def api_performance():
         return jsonify(rep)
     except Exception as e:
         traceback.print_exc()
-        return jsonify({"error": str(e)}), 500
+        return _stale_or_error("perf", e)
 
 
 @app.route("/api/season-history", methods=["GET"])

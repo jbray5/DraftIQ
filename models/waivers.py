@@ -45,6 +45,7 @@ except ImportError:  # pragma: no cover
 
 CFG = json.loads((ROOT / "data" / "league_config.json").read_text(encoding="utf-8"))
 LOG = ROOT / "data" / "processed" / "waiver_log.jsonl"
+OWN_LOG = ROOT / "data" / "processed" / "ownership_history.jsonl"
 BAD_STATUS = {"OUT", "INJURY_RESERVE", "IR", "SUSPENSION", "PHYSICALLY_UNABLE_TO_PERFORM"}
 FA_POSITIONS = ("QB", "RB", "WR", "TE", "K", "D/ST", "LB", "DE", "DT", "CB", "S")
 ATH = "https://site.web.api.espn.com/apis/common/v3/sports/football/nfl/athletes/{pid}"
@@ -52,6 +53,10 @@ ATH = "https://site.web.api.espn.com/apis/common/v3/sports/football/nfl/athletes
 
 def _row(p) -> dict:
     """espn_api Player -> plain dict on the league-scored ROS scale."""
+    try:
+        own = round(float(getattr(p, "percent_owned", None)), 1)
+    except (TypeError, ValueError):
+        own = None
     return {
         "playerId": getattr(p, "playerId", None),
         "name": getattr(p, "name", None),
@@ -60,7 +65,40 @@ def _row(p) -> dict:
         "team": getattr(p, "proTeam", None),
         "proj": round(float(getattr(p, "projected_total_points", 0) or 0), 1),
         "injury": (str(getattr(p, "injuryStatus", "") or "").upper() or None),
+        "own": own,     # % of ESPN leagues rostering him — the market's opinion
     }
+
+
+def _log_ownership(fas: list[dict]) -> None:
+    """One line per day: {date, own:{playerId: pct}} for the FA pool, so tomorrow's
+    report can show which way the market is running. Cheap in-season analog of the
+    draft-era market-premium signal (validated as a dart TIEBREAK, never a ranker)."""
+    try:
+        today = time.strftime("%Y-%m-%d")
+        if OWN_LOG.exists():
+            lines = OWN_LOG.read_text(encoding="utf-8").splitlines()
+            if lines and json.loads(lines[-1]).get("date") == today:
+                return
+        snap = {str(r["playerId"]): r["own"] for r in fas
+                if r.get("playerId") is not None and r.get("own") is not None}
+        if snap:
+            with open(OWN_LOG, "a", encoding="utf-8") as fh:
+                fh.write(json.dumps({"date": today, "own": snap}) + "\n")
+    except Exception:
+        pass
+
+
+def _own_deltas() -> dict:
+    """{playerId(str): pct} from the most recent snapshot BEFORE today."""
+    try:
+        today = time.strftime("%Y-%m-%d")
+        for line in reversed(OWN_LOG.read_text(encoding="utf-8").splitlines()):
+            d = json.loads(line)
+            if d.get("date") != today:
+                return d.get("own") or {}
+    except Exception:
+        pass
+    return {}
 
 
 def _my_ui_and_owner() -> tuple[str, str]:
@@ -124,6 +162,7 @@ def snapshot(season: int = 2026) -> dict:
         except Exception:
             continue
     fas.sort(key=lambda r: -r["proj"])
+    _log_ownership(fas)          # daily archive so tomorrow's report has a delta
     week = max(1, int(getattr(lg, "current_week", 1) or 1))
     return {"week": week, "myTeam": my_team, "teams": teams, "freeAgents": fas}
 
@@ -175,10 +214,20 @@ def report(season: int = 2026, week: int | None = None) -> dict:
         bench = [p for p in my if p["name"] not in keep]
         return min(bench, key=_vorp) if bench else None
 
+    own_prev = _own_deltas()
+
+    def _heat(row) -> dict:
+        """Market heat: ESPN-wide roster% + day-over-day move. DISPLAY-ONLY tiebreak
+        (the draft-validated role for market signals) — never re-ranks anything."""
+        own = row.get("own")
+        prev = own_prev.get(str(row.get("playerId") or ""))
+        delta = round(own - prev, 1) if (own is not None and prev is not None) else None
+        return {"own": own, "ownDelta": delta}
+
     def _move(add, protect: set[str] = frozenset()):
         drop = _best_drop({k: add[k] for k in ("name", "pos", "proj")}, protect)
         net = round(_vorp(add) - (_vorp(drop) if drop else 0), 1)
-        return {"add": {k: add[k] for k in ("name", "pos", "team", "proj")},
+        return {"add": {**{k: add[k] for k in ("name", "pos", "team", "proj")}, **_heat(add)},
                 "drop": ({**{k: drop[k] for k in ("name", "pos", "team", "proj")},
                           "vsWire": _vorp(drop)} if drop else None),
                 "vsWire": _vorp(add), "netVorp": net}
@@ -235,7 +284,8 @@ def report(season: int = 2026, week: int | None = None) -> dict:
         my_dsts = [p for p in my if p["pos"] == "DST"]
         mine = [{"name": p["name"], **(ranks.get(_tc(p)) or {})} for p in my_dsts]
         fa_dsts = sorted(({"name": r["name"], "pos": "DST", "team": r["team"],
-                           "proj": r["proj"], **(ranks.get(_tc(r)) or {})}
+                           "proj": r["proj"], "playerId": r.get("playerId"),
+                           "own": r.get("own"), **(ranks.get(_tc(r)) or {})}
                           for r in fas if r["pos"] == "DST"),
                          key=lambda x: x.get("w1Rank") or 99)
         my_best = min((m.get("w1Rank") or 99) for m in mine) if mine else 99
