@@ -20,7 +20,7 @@ seasonNav('index');
     $('cMatch').className='v '+(m.winProb>=0.5?'good':'bad');
     $('cMatchSub').textContent=`${m.me.currentTotal} proj vs ${m.opponent.team} ${m.opponent.projTotal}`;
     lines.push(m.swaps&&m.swaps.length
-      ?`<div class="action"><b class="hd">▶ START/SIT:</b> ${m.swaps.map(s=>`start ${esc(s.start)} / sit ${esc(s.sit)}`).join(' · ')} (+${m.benchLeak} pts) — <a href="matchup.html">matchup →</a></div>`
+      ?`<div class="action"><b class="hd">▶ START/SIT:</b> ${m.swaps.map(s=>`${s.slot?'['+esc(s.slot)+'] ':''}start ${esc(s.start)}${s.sit?' / sit '+esc(s.sit):''}`).join(' · ')} (+${m.benchLeak} pts) — <a href="matchup.html">matchup →</a></div>`
       :`<div class="rowline good">✓ lineup optimal (bench leak ${m.benchLeak})</div>`);
   }catch(e){lines.push('<div class="err">matchup: '+esc(e.message)+'</div>');}
   try{

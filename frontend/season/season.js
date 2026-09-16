@@ -21,9 +21,10 @@ function seasonNav(active){
   </header>`);
 }
 
-function setHdr(team, week){
+function setHdr(team, week, fetchedAt){
   const el = $('hdrTag');
-  if (el && team) el.textContent = `Derek Jeter's Taco Hole · ${team} · week ${week}`;
+  if (el && team) el.textContent = `Derek Jeter's Taco Hole · ${team} · week ${week}`
+    + (fetchedAt ? ` · as of ${fetchedAt}` : '');
 }
 
 /* shared renderers used by more than one page */
@@ -39,12 +40,17 @@ function renderWire(d, el, compact){
   if (d.allClear) html += '<div class="allclear">✓ ALL CLEAR — nothing on the wire needs action.</div>';
   (d.actions || []).forEach(a => {
     const drop = a.drop ? ` · drop <b class="bad">${esc(a.drop.name)}</b>` : '';
-    html += `<div class="action"><div class="hd">▶ ${a.type}: ${esc(a.add.name)} (${a.add.pos})${drop} · NET ${a.netVorp>=0?'+':''}${a.netVorp}${heatTag(a.add)}</div>
-      <div class="muted">${esc(a.why)}</div><div class="dim">▸ ${esc(a.urgency)}</div></div>`;
+    const net = a.netVorpWk!=null ? `${a.netVorpWk>=0?'+':''}${a.netVorpWk}/wk <span class="dim">(${a.netVorp>=0?'+':''}${a.netVorp} ROS)</span>`
+                                  : `${a.netVorp>=0?'+':''}${a.netVorp} ROS`;
+    html += `<div class="action"><div class="hd">▶ ${a.type}: ${esc(a.add.name)} (${a.add.pos})${drop} · ${net}${heatTag(a.add)}</div>
+      <div class="muted">${esc(a.why)}</div>`
+      + (a.dropNote?`<div class="dim">⚕ ${esc(a.dropNote)}</div>`:'')
+      + ((a.ladder&&a.ladder.length)?`<div class="dim">if outclaimed: ${a.ladder.map(l=>esc(l.name)+' (#'+l.rank+')').join(' → ')}</div>`:'')
+      + `<div class="dim">▸ ${esc(a.urgency)}</div></div>`;
   });
   html += `<div class="rowline dim">${esc((d.stream||{}).line||'')}</div>`;
   if (!compact){
-    (d.watchlist||[]).forEach(m => { html += `<div class="rowline">watch: ${esc(m.add.name)} over ${esc(m.drop.name)} <span class="dim">(+${m.netVorp})</span>${heatTag(m.add)}</div>`; });
+    (d.watchlist||[]).forEach(m => { html += `<div class="rowline">watch: ${esc(m.add.name)} over ${esc(m.drop.name)} <span class="dim">(+${m.netVorpWk!=null?m.netVorpWk+'/wk':m.netVorp})</span>${heatTag(m.add)}</div>`; });
     (d.injuryFlags||[]).forEach(f => {
       html += `<div class="rowline">⚕ <b class="bad">${esc(f.name)}</b> (${f.pos}) ${f.injury}${f.newsDate?' <span class="dim">['+f.newsDate+']</span>':''}`
         + (f.news ? `<div class="dim">${esc(f.news)}</div>` : '') + '</div>';

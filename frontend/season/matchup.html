@@ -20,7 +20,7 @@ const rowsOf=(list,optNames)=>`<table><tr><th>slot</th><th>player</th><th class=
 (async()=>{
   try{
     const d=await j('/api/startsit');
-    setHdr(d.me.team,d.week); $('wk').textContent='week '+d.week;
+    setHdr(d.me.team,d.week,d.fetchedAt); $('wk').textContent='week '+d.week+(d.liveSource==='espn-live'?' · live':'');
     const w=Math.round(d.winProb*100);
     const live=(d.me.playedStarters||0)+(d.opponent.playedStarters||0)>0;
     const sub=s=>live?`${s.actualSoFar} in · ${s.remainingProj} to come · ${s.playedStarters}/${s.nStarters} played`:null;
@@ -33,7 +33,7 @@ const rowsOf=(list,optNames)=>`<table><tr><th>slot</th><th>player</th><th class=
       <div class="dim">${live?'LIVE ':''}win probability <b class="good">${w}%</b> · actuals + remaining projections · σ from 7 yrs of league weekly scores</div>`
       +(d.swaps&&d.swaps.length
         ?`<div class="action" style="margin-top:10px"><div class="hd">▶ START/SIT — +${d.benchLeak} projected pts</div>`
-          +d.swaps.map(s=>`<div class="rowline">START <b class="good">${esc(s.start)}</b> · SIT <b class="bad">${esc(s.sit)}</b></div>`).join('')+'</div>'
+          +d.swaps.map(s=>`<div class="rowline">${s.slot?'<span class="dim">['+esc(s.slot)+']</span> ':''}START <b class="good">${esc(s.start)}</b>${s.sit?` · SIT <b class="bad">${esc(s.sit)}</b>`:''}</div>`).join('')+'</div>'
         :`<div class="allclear" style="margin-top:10px">✓ LINEUP OPTIMAL — bench leak ${d.benchLeak} pts</div>`);
     $('mine').innerHTML=rowsOf(d.me.current,d.me.optimalNames)
       +'<div class="dim" style="margin:8px 0 4px">bench</div>'+rowsOf(d.me.bench.map(p=>({...p,slot:'BE'})));

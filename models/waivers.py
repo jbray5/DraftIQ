@@ -49,6 +49,11 @@ CFG = json.loads((ROOT / "data" / "league_config.json").read_text(encoding="utf-
 LOG = ROOT / "data" / "processed" / "waiver_log.jsonl"
 OWN_LOG = ROOT / "data" / "processed" / "ownership_history.jsonl"
 BAD_STATUS = {"OUT", "INJURY_RESERVE", "IR", "SUSPENSION", "PHYSICALLY_UNABLE_TO_PERFORM"}
+# Decision thresholds in POINTS PER REMAINING WEEK (multiplied by weeks left at
+# runtime). Fixed ROS constants were noise-permeable in September and unreachable
+# by December — the wire went quiet exactly when churn decides titles.
+LINEUP_CRACK_PW = 0.5    # a claim must add at least this per week to your lineup
+WATCH_PW = 0.7           # a bench dart must beat the incumbent by this per week
 FA_POSITIONS = ("QB", "RB", "WR", "TE", "K", "D/ST", "LB", "DE", "DT", "CB", "S")
 ATH = "https://site.web.api.espn.com/apis/common/v3/sports/football/nfl/athletes/{pid}"
 
@@ -79,6 +84,7 @@ def _row(p) -> dict:
         "banked": round(banked, 1),
         "injury": (str(getattr(p, "injuryStatus", "") or "").upper() or None),
         "own": own,     # % of ESPN leagues rostering him — the market's opinion
+        "lineupSlot": getattr(p, "lineupSlot", None),   # 'IR' matters: not startable
     }
 
 
@@ -207,8 +213,16 @@ def report(season: int = 2026, week: int | None = None) -> dict:
         return {"error": "could not identify your team in the league"}
     week = week or snap["week"]
     my = snap["myTeam"]["roster"]
+    # IR-slotted players can't start and don't occupy a usable roster spot:
+    # exclude them from lineup math and from drop suggestions (they still get
+    # injury flags below). `work` is the running roster — each accepted ACTION
+    # applies its add/drop so the NEXT action's drop suggestion stays coherent
+    # instead of three claims all naming the same victim.
+    my_active = [p for p in my if (p.get("lineupSlot") or "") != "IR"]
+    work = list(my_active)
     spec = slot_spec(CFG["2026"])
     fas = snap["freeAgents"]
+    rem = max(1, 19 - week)      # NFL weeks left (ROS projections span these)
 
     # in-season replacement = 5th-best FA at the position (the wire next week)
     by_pos: dict[str, list[float]] = {}
@@ -216,16 +230,25 @@ def report(season: int = 2026, week: int | None = None) -> dict:
         by_pos.setdefault(r["pos"], []).append(r["proj"])
     repl = {pos: (lst[4] if len(lst) > 4 else lst[-1]) for pos, lst in by_pos.items()}
 
-    lineup = optimal_lineup(my, spec)
+    lineup = optimal_lineup(my_active, spec)
 
     def _vorp(p) -> float:
         return round((p["proj"] or 0) - repl.get(p["pos"], 0), 1)
 
     def _best_drop(add_row, protect: set[str] = frozenset()):
-        after = optimal_lineup(my + [add_row], spec)
+        after = optimal_lineup(work + [add_row], spec)
         keep = {p["name"] for _, p in after["starters"]} | set(protect)
-        bench = [p for p in my if p["name"] not in keep]
+        bench = [p for p in work if p["name"] not in keep]
         return min(bench, key=_vorp) if bench else None
+
+    def _apply(mv) -> None:
+        """Commit an accepted action to the working roster so the next action's
+        drop suggestion is computed against reality, not the original roster."""
+        if mv.get("drop"):
+            work[:] = [p for p in work if p["name"] != mv["drop"]["name"]]
+        a = mv["add"]
+        work.append({"name": a["name"], "pos": a["pos"], "team": a.get("team"),
+                     "proj": a["proj"], "injury": None, "lineupSlot": "BE"})
 
     own_prev = _own_deltas()
 
@@ -240,10 +263,16 @@ def report(season: int = 2026, week: int | None = None) -> dict:
     def _move(add, protect: set[str] = frozenset()):
         drop = _best_drop({k: add[k] for k in ("name", "pos", "proj")}, protect)
         net = round(_vorp(add) - (_vorp(drop) if drop else 0), 1)
+        note = None
+        if drop and drop.get("injury") in BAD_STATUS:
+            note = (f"{drop['name']} is {drop['injury']} — if an IR slot is open, "
+                    "stash him there instead and drop your lowest healthy depth")
         return {"add": {**{k: add[k] for k in ("name", "pos", "team", "proj")}, **_heat(add)},
                 "drop": ({**{k: drop[k] for k in ("name", "pos", "team", "proj")},
                           "vsWire": _vorp(drop)} if drop else None),
-                "vsWire": _vorp(add), "netVorp": net}
+                "dropNote": note,
+                "vsWire": _vorp(add), "netVorp": net,
+                "netVorpWk": round(net / rem, 2)}
 
     actions: list[dict] = []
     claimed: set[str] = set()
@@ -257,7 +286,7 @@ def report(season: int = 2026, week: int | None = None) -> dict:
         flags.append({**{k: p[k] for k in ("name", "pos", "team", "proj", "injury")},
                       "news": news.get("note"), "newsDate": news.get("date")})
         # would his position's best FA start if he can't go? (proj->0 for him)
-        without = [({**q, "proj": 0.0} if q["name"] == p["name"] else q) for q in my]
+        without = [({**q, "proj": 0.0} if q["name"] == p["name"] else q) for q in work]
         cands = [f for f in fas if f["pos"] == p["pos"]][:8]
         best, best_gain = None, 0.0
         base = optimal_lineup(without, spec)["total"]
@@ -265,7 +294,7 @@ def report(season: int = 2026, week: int | None = None) -> dict:
             gain = optimal_lineup(without + [f], spec)["total"] - base
             if gain > best_gain:
                 best, best_gain = f, gain
-        if best and best_gain > 1 and best["name"] not in claimed:
+        if best and best_gain >= LINEUP_CRACK_PW * rem and best["name"] not in claimed:
             mv = _move(best, protect={p["name"]})   # never drop the injured guy blind
             claimed.add(best["name"])
             actions.append({
@@ -274,17 +303,20 @@ def report(season: int = 2026, week: int | None = None) -> dict:
                         + (f" — {news['note']}" if news.get("note") else "")
                         + f". {best['name']} is the best wire {p['pos']} and starts while he's out."),
                 **mv})
+            _apply(mv)
 
     # ---- 2. straight lineup-crackers (healthy roster, FA is just better) ----
-    targets = waiver_targets(my, fas[:120], repl, spec, top=25)
+    targets = waiver_targets(work, fas[:120], repl, spec, top=25)
     for t in targets:
-        if t["lineup_gain"] > 1 and t["name"] not in claimed:
+        if t["lineup_gain"] >= LINEUP_CRACK_PW * rem and t["name"] not in claimed:
             mv = _move(t)
             claimed.add(t["name"])
             actions.append({"type": "CLAIM", "urgency": "clear upgrade",
                             "why": (f"{t['name']} beats your current starter — "
-                                    f"+{t['lineup_gain']} lineup pts before any injury help."),
+                                    f"+{round(t['lineup_gain'] / rem, 1)}/wk "
+                                    f"(+{t['lineup_gain']} ROS) before any injury help."),
                             **mv})
+            _apply(mv)
 
     # ---- 3. D/ST stream switch ----
     stream: dict = {"week": week}
@@ -294,7 +326,7 @@ def report(season: int = 2026, week: int | None = None) -> dict:
         def _tc(r):
             return str(r.get("team") or "").upper()
 
-        my_dsts = [p for p in my if p["pos"] == "DST"]
+        my_dsts = [p for p in work if p["pos"] == "DST"]
         mine = [{"name": p["name"], **(ranks.get(_tc(p)) or {})} for p in my_dsts]
         fa_dsts = sorted(({"name": r["name"], "pos": "DST", "team": r["team"],
                            "proj": r["proj"], "playerId": r.get("playerId"),
@@ -309,31 +341,43 @@ def report(season: int = 2026, week: int | None = None) -> dict:
             stream["hold"] = False
             stream["line"] = (f"STREAM {fa_best['name']} (matchup #{fa_best['w1Rank']}) "
                               f"over yours (#{my_best})")
+            mv = _move(fa_best)
+            # claim ladder: the next-best FA matchups, so a lost claim has
+            # pre-ranked fallbacks instead of hand math
+            mv["ladder"] = [{"name": d["name"], "rank": d.get("w1Rank"),
+                             "own": d.get("own")}
+                            for d in fa_dsts[1:4]]
             actions.append({"type": "STREAM", "urgency": f"before week {week} locks",
                             "why": (f"Implied-total matchup #{fa_best['w1Rank']} vs your #{my_best} "
                                     "— the validated +55 pts/season play."),
-                            **_move(fa_best)})
+                            **mv})
+            _apply(mv)
     except Exception as e:
         stream["line"] = f"stream check unavailable ({e})"
 
     # ---- WATCHLIST: same-position dart swaps with a real job, nothing else ----
     my_pos_count: dict[str, int] = {}
-    for p in my:
+    for p in my_active:
         my_pos_count[p["pos"]] = my_pos_count.get(p["pos"], 0) + 1
     watch = []
     for t in targets:
-        if t["name"] in claimed or t["lineup_gain"] > 1:
+        if t["name"] in claimed or t["lineup_gain"] >= LINEUP_CRACK_PW * rem:
             continue
         pos = t["pos"]
-        if pos in ("K", "DST", "IDP"):
-            continue                      # streamers/hold — never hoard on the bench
+        # K/DST stream, never stash. IDP is deliberately ELIGIBLE: measured weekly
+        # persistence 0.158 ≈ TE — a hold asset, so a better wire IDP is actionable.
+        if pos in ("K", "DST"):
+            continue
         if pos == "QB" and my_pos_count.get("QB", 0) >= 2:
             continue                      # no backup-QB hoarding in a 10-team league
         if pos == "TE" and my_pos_count.get("TE", 0) >= 2:
             continue
+        if pos == "IDP" and my_pos_count.get("IDP", 0) >= 2:
+            continue                      # one starter + one stash max
         mv = _move(t)
-        if mv["netVorp"] >= 12 and mv["drop"] and mv["drop"]["pos"] == pos:
-            watch.append({**mv, "why": f"straight {pos} dart upgrade — same slot, +{mv['netVorp']} value"})
+        if mv["netVorp"] >= WATCH_PW * rem and mv["drop"] and mv["drop"]["pos"] == pos:
+            watch.append({**mv, "why": (f"straight {pos} dart upgrade — same slot, "
+                                        f"+{mv['netVorpWk']}/wk (+{mv['netVorp']} ROS)")})
         if len(watch) >= 5:
             break
 
@@ -353,6 +397,8 @@ def report(season: int = 2026, week: int | None = None) -> dict:
 
     return {"week": week, "myTeam": snap["myTeam"]["teamName"],
             "myLineupProj": lineup["total"], "allClear": not actions,
+            "remainingWeeks": rem,
+            "fetchedAt": time.strftime("%Y-%m-%d %H:%M"),
             "actions": actions, "watchlist": watch, "stream": stream,
             "injuryFlags": flags, "roomActivity": moves[:20]}
 
@@ -407,18 +453,31 @@ def startsit(season: int = 2026, week: int | None = None) -> dict:
             spec = _spec(CFG["2026"])
             started = [p for p in mine if p["slot"] not in ("BE", "IR")]
             my_total = round(sum(p["proj"] for p in started), 1)
-            opt = _opt(mine, spec)
+            # optimal excludes IR-slotted players — ESPN won't let you start them,
+            # so counting them made both the swaps and the bench leak un-actionable
+            opt = _opt([p for p in mine if p["slot"] != "IR"], spec)
             opt_names = {p["name"] for _, p in opt["starters"]}
             cur_names = {p["name"] for p in started}
-            swaps = [{"start": n} for n in sorted(opt_names - cur_names)] and \
-                    [{"start": i, "sit": o} for i, o in
-                     zip(sorted(opt_names - cur_names), sorted(cur_names - opt_names))]
+            # SLOT-CORRECT swaps from the optimizer's own (slot, player) pairs —
+            # the old alphabetical zip could emit illegal instructions
+            to_start = [(slot, p) for slot, p in opt["starters"]
+                        if p["name"] not in cur_names]
+            to_sit = [p for p in started if p["name"] not in opt_names]
+            swaps = []
+            for slot, sp in to_start:
+                pick = next((q for q in to_sit if q["pos"] == sp["pos"]), None) \
+                    or (to_sit[0] if to_sit else None)
+                if pick:
+                    to_sit.remove(pick)
+                swaps.append({"slot": slot, "start": sp["name"], "startPos": sp["pos"],
+                              "sit": (pick or {}).get("name")})
             opp_started = [p for p in theirs if p["slot"] not in ("BE", "IR")]
             opp_total = round(sum(p["proj"] for p in opp_started), 1)
 
-            # LIVE week state: actual points for starters whose game has kicked off,
-            # projections for the rest. liveExp = what each side finishes with if
-            # the unplayed starters hit projection.
+            # LIVE week state. ESPN's own live scoreboard (totalPointsLive /
+            # totalProjectedPointsLive via BoxScore.{side}_score/_projected) counts
+            # in-progress games correctly; our per-player fallback gates on
+            # game_played, a kickoff+3h wall clock that misses live games entirely.
             def _live(rows):
                 act = round(sum((p["actual"] or 0.0) for p in rows if p["played"]), 1)
                 rem = round(sum(p["proj"] for p in rows if not p["played"]), 1)
@@ -428,13 +487,23 @@ def startsit(season: int = 2026, week: int | None = None) -> dict:
             opp_act, opp_rem, opp_np = _live(opp_started)
             my_live = round(my_act + my_rem, 1)
             opp_live = round(opp_act + opp_rem, 1)
+            live_src = "clock"
+            e_act = float(getattr(m, f"{side}_score", 0) or 0)
+            e_proj = float(getattr(m, f"{side}_projected", -1) or -1)
+            o_act = float(getattr(m, f"{opp}_score", 0) or 0)
+            o_proj = float(getattr(m, f"{opp}_projected", -1) or -1)
+            if e_proj > 0 and o_proj > 0:
+                my_act, my_live = round(e_act, 1), round(e_proj, 1)
+                opp_act, opp_live = round(o_act, 1), round(o_proj, 1)
+                my_rem = round(my_live - my_act, 1)
+                opp_rem = round(opp_live - opp_act, 1)
+                live_src = "espn-live"
             sd = season_sim.weekly_sd()
-            # variance left in the week shrinks as games finish — scale the (2·σ)
-            # two-team spread by √(share of starters still to play); pre-kickoff this
-            # is exactly the old formula.
-            n_all = max(1, len(started) + len(opp_started))
-            frac_rem = (len(started) - my_np + len(opp_started) - opp_np) / n_all
-            if frac_rem > 0:
+            # variance left in the week: weight by the share of PROJECTED POINTS
+            # still to score (an unplayed kicker no longer carries QB variance)
+            tot_live = max(1.0, my_live + opp_live)
+            frac_rem = max(0.0, (max(my_rem, 0) + max(opp_rem, 0)) / tot_live)
+            if frac_rem > 0.005:
                 sd_eff = max(1.0, 2 * sd * math.sqrt(frac_rem))
                 win = 0.5 * (1 + math.erf((my_live - opp_live) / sd_eff))
             else:                       # week complete: it's just the scoreboard
@@ -447,6 +516,8 @@ def startsit(season: int = 2026, week: int | None = None) -> dict:
                            "actualSoFar": my_act, "remainingProj": my_rem,
                            "liveExp": my_live, "playedStarters": my_np,
                            "nStarters": len(started)},
+                    "liveSource": live_src,
+                    "fetchedAt": time.strftime("%Y-%m-%d %H:%M"),
                     "swaps": swaps, "benchLeak": round(opt["total"] - my_total, 1),
                     "opponent": {"team": getattr(opp_team, "team_name", None),
                                  "projTotal": opp_total,
@@ -599,6 +670,7 @@ def season_odds(season: int = 2026) -> dict:
 
     out = {"week": snap["week"], "myTeam": my_team,
            "odds": odds_espn, "oddsOurs": odds_ours,
+           "fetchedAt": time.strftime("%Y-%m-%d %H:%M"),
            "seasonAware": bool(st),
            "oursJudgeNote": "'ours' = preseason draft board (frozen at draft day)",
            "noiseNote": ("title% carries ~±1pt of Monte-Carlo noise — ranks within a "
@@ -773,8 +845,10 @@ def performance(season: int = 2026) -> dict:
                     started = [r for r in rows if r["slot"] not in ("BE", "IR")]
                     actual = round(sum(r["pts"] for r in started), 1)
                     projected = round(sum(r["proj"] for r in started), 1)
+                    # hindsight optimal over players you could LEGALLY have started
+                    # (IR-slotted excluded — ESPN won't let them into a lineup)
                     hind = _opt([{"name": r["name"], "pos": r["pos"], "proj": r["pts"]}
-                                 for r in rows], spec)["total"]
+                                 for r in rows if r["slot"] != "IR"], spec)["total"]
                     opp_score = round(float(getattr(m, f"{opp}_score", 0) or 0), 1)
                     weeks.append({"week": wk, "actual": actual, "projected": projected,
                                   "optimalHindsight": round(hind, 1),
@@ -791,7 +865,13 @@ def performance(season: int = 2026) -> dict:
                   "pf": round(float(getattr(t, "points_for", 0) or 0), 1)}
                  for t in lg.teams]
     standings.sort(key=lambda r: (-r["wins"], -r["pf"]))
-    return {"currentWeek": cur, "weeks": weeks, "standings": standings}
+    # PF rank shown alongside the wins-sorted table — a wins-only sort once
+    # hid a 9th-in-points reality behind a 5th-looking row
+    by_pf = sorted(standings, key=lambda r: -r["pf"])
+    for r in standings:
+        r["pfRank"] = next(i for i, x in enumerate(by_pf, 1) if x["team"] == r["team"])
+    return {"currentWeek": cur, "weeks": weeks, "standings": standings,
+            "fetchedAt": time.strftime("%Y-%m-%d %H:%M")}
 
 
 if __name__ == "__main__":

@@ -29,9 +29,10 @@ seasonNav('performance');
           <td class="${x.result==='W'?'good':'bad'}">${x.result}</td></tr>`;}).join('')
         +`</table><div class="dim" style="margin-top:6px">record ${w}–${l} · total bench leak ${leak.toFixed(1)} pts</div>`;
     }
-    $('lg').innerHTML='<table><tr><th>#</th><th>team</th><th class="num">W–L</th><th class="num">PF</th></tr>'
+    $('lg').innerHTML='<table><tr><th>#</th><th>team</th><th class="num">W–L</th><th class="num">PF</th><th class="num">PF rk</th></tr>'
       +d.standings.map((t,i)=>`<tr class="${/SCLSU/i.test(t.team)?'me':''}"><td>${String(i+1).padStart(2,'0')}</td>
-        <td>${esc(t.team)}</td><td class="num">${t.wins}–${t.losses}</td><td class="num">${t.pf}</td></tr>`).join('')+'</table>';
+        <td>${esc(t.team)}</td><td class="num">${t.wins}–${t.losses}</td><td class="num">${t.pf}</td><td class="num dim">${t.pfRank||''}</td></tr>`).join('')
+      +'</table><div class="dim" style="margin-top:4px">sorted by record · PF rk = points-for rank</div>';
   }catch(e){$('weeks').innerHTML='<div class="err">'+esc(e.message)+'</div>';}
 })();
 </script>

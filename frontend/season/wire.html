@@ -12,7 +12,7 @@ seasonNav('wire');
 (async()=>{
   try{
     const d=await j('/api/waivers');
-    setHdr(d.myTeam,d.week);
+    setHdr(d.myTeam,d.week,d.fetchedAt);
     renderWire(d,$('wire'),false);
     $('act').innerHTML=(d.roomActivity||[]).map(m=>`<div class="rowline"><span class="muted">${esc(m.team)}</span>
       <b class="${/ADD/i.test(m.action)?'good':'bad'}">${esc(m.action)}</b> ${esc(m.player)}${m.bid?' <span class="dim">($'+m.bid+')</span>':''}</div>`).join('')
