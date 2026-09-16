@@ -3,26 +3,50 @@
 <title>SeasonIQ · Matchup</title><link rel="stylesheet" href="season.css"/></head>
 <body>
 <div class="panel" id="hero"><h2>MY MATCHUP <span class="r" id="wk"></span></h2><div class="skel" style="height:90px"></div></div>
+<div class="panel"><h2>HEAD TO HEAD <span class="r">slot vs slot · ● = played · proj → act</span></h2><div id="h2h"><div class="skel" style="height:260px"></div></div></div>
 <div class="grid">
-  <div class="panel"><h2>MY LINEUP <span class="r">projections are league-scored · ● = played</span></h2><div id="mine"><div class="skel" style="height:200px"></div></div></div>
-  <div class="panel"><h2 id="oppHd">OPPONENT</h2><div id="theirs"><div class="skel" style="height:200px"></div></div></div>
+  <div class="panel"><h2>MY BENCH</h2><div id="mineB"><div class="skel" style="height:120px"></div></div></div>
+  <div class="panel"><h2 id="oppHd">THEIR BENCH</h2><div id="theirsB"><div class="skel" style="height:120px"></div></div></div>
 </div>
 <script src="season.js"></script>
 <script>
 seasonNav('matchup');
 let AV=new Map();
 const dot=p=>p.played?`<span class="pd ${p.played<100?'live':'done'}" title="${p.played<100?'in game':'final'}"></span>`:'<span class="pd"></span>';
-const rowsOf=(list,optNames)=>`<table><tr><th></th><th>player</th><th class="num">proj</th><th class="num">act</th></tr>`
-  +list.map(p=>{
-    const flag=p.injury&&!['ACTIVE','NORMAL'].includes(p.injury)?` <span class="bad" title="${esc(p.injury)}">⚕</span>`:'';
-    const opt=optNames&&!optNames.includes(p.name)?' <span class="bad">▼ sit</span>':'';
-    const act=p.played?`${dot(p)}<b>${p.actual}</b>`:`${dot(p)}<span class="dim">—</span>`;
-    const d=(p.played&&p.actual!=null)?(p.actual-p.proj):null;
-    const delta=d==null?'':` <span class="${d>=0?'good':'bad'}" style="font-size:10px">${d>=0?'+':''}${d.toFixed(1)}</span>`;
-    return `<tr><td class="dim" style="width:64px"><span class="pos">${esc(p.slot)}</span></td>
-      <td><span class="nm">${avHTML(AV,p.name)}<span>${esc(p.name)}${flag}${opt}</span></span></td>
-      <td class="num dim">${p.proj}</td><td class="num">${act}${delta}</td></tr>`;
-  }).join('')+'</table>';
+const flagOf=p=>p.injury&&!['ACTIVE','NORMAL'].includes(p.injury)?` <span class="bad" title="${esc(p.injury)}">⚕</span>`:'';
+const stat=p=>{
+  if(!p)return '<span class="st dim">— empty —</span>';
+  const act=p.played?`<b>${p.actual}</b>`:'<b class="dim">—</b>';
+  return `<span class="st">${dot(p)}${p.proj} → ${act}</span>`;
+};
+/* pair both lineups by slot, canonical order, duplicates paired in sequence */
+const SLOT_ORDER={QB:0,RB:1,WR:2,TE:3,'RB/WR/TE':4,FLEX:4,DP:5,'D/ST':6,K:7};
+function h2hRows(mine,theirs,optNames){
+  const grp=list=>{const g={};list.forEach(p=>{(g[p.slot]=g[p.slot]||[]).push(p);});return g;};
+  const A=grp(mine),B=grp(theirs);
+  const slots=[...new Set([...mine,...theirs].map(p=>p.slot))]
+    .sort((a,b)=>(SLOT_ORDER[a]??9)-(SLOT_ORDER[b]??9));
+  let html='';
+  slots.forEach(sl=>{
+    const n=Math.max((A[sl]||[]).length,(B[sl]||[]).length);
+    for(let i=0;i<n;i++){
+      const m=(A[sl]||[])[i],t=(B[sl]||[])[i];
+      let mw='',tw='';
+      if(m&&t&&m.played&&t.played){ if(m.actual>t.actual){mw='winner';tw='loser';} else if(t.actual>m.actual){tw='winner';mw='loser';} }
+      const opt=m&&optNames&&!optNames.includes(m.name)?' <span class="bad">▼</span>':'';
+      html+=`<div class="h2hrow">
+        <div class="side me ${mw}">${avHTML(AV,m&&m.name)}<span class="who">${m?esc(m.name)+flagOf(m)+opt:'<span class=dim>—</span>'}</span>${stat(m)}</div>
+        <div class="slotc"><span class="pos">${esc(sl)}</span></div>
+        <div class="side ${tw}">${avHTML(AV,t&&t.name)}<span class="who">${t?esc(t.name)+flagOf(t):'<span class=dim>—</span>'}</span>${stat(t)}</div>
+      </div>`;
+    }
+  });
+  return html;
+}
+const benchTable=list=>`<table><tr><th></th><th>player</th><th class="num">proj</th><th class="num">act</th></tr>`
+  +list.map(p=>`<tr><td class="dim" style="width:50px"><span class="pos">${esc(p.slot||'BE')}</span></td>
+    <td><span class="nm">${avHTML(AV,p.name)}<span>${esc(p.name)}${flagOf(p)}</span></span></td>
+    <td class="num dim">${p.proj}</td><td class="num">${p.played?dot(p)+'<b>'+p.actual+'</b>':dot(p)+'<span class="dim">—</span>'}</td></tr>`).join('')+'</table>';
 (async()=>{
   try{
     const [d,av]=await Promise.all([j('/api/startsit'),HS()]);
@@ -46,11 +70,14 @@ const rowsOf=(list,optNames)=>`<table><tr><th></th><th>player</th><th class="num
         :`<div class="allclear" style="margin-top:12px">✓ LINEUP OPTIMAL — bench leak ${d.benchLeak} pts</div>`);
     countUp($('nMe'), live?d.me.liveExp:d.me.currentTotal,{dec:1});
     countUp($('nOpp'), live?d.opponent.liveExp:d.opponent.projTotal,{dec:1});
-    $('mine').innerHTML=rowsOf(d.me.current,d.me.optimalNames)
-      +'<div class="dim" style="margin:10px 0 4px;letter-spacing:.15em;font-size:10px">BENCH</div>'+rowsOf(d.me.bench.map(p=>({...p,slot:p.slot||'BE'})));
-    $('oppHd').innerHTML=`OPPONENT · ${esc(d.opponent.team)} <span class="r">their starters</span>`;
-    $('theirs').innerHTML=rowsOf(d.opponent.lineup||[])
-      +((d.opponent.bench||[]).length?'<div class="dim" style="margin:10px 0 4px;letter-spacing:.15em;font-size:10px">THEIR BENCH</div>'+rowsOf(d.opponent.bench.map(p=>({...p,slot:p.slot||'BE'}))):'');
+    $('h2h').innerHTML=`<div class="h2hrow" style="border-bottom:1px solid var(--line2)">
+        <div class="side me"><b style="font-family:var(--disp)">${esc(d.me.team)}</b></div>
+        <div class="slotc dim" style="font-size:9px;letter-spacing:.15em">SLOT</div>
+        <div class="side"><b style="font-family:var(--disp);color:var(--ink2)">${esc(d.opponent.team)}</b></div></div>`
+      +h2hRows(d.me.current,d.opponent.lineup||[],d.me.optimalNames);
+    $('mineB').innerHTML=benchTable(d.me.bench||[]);
+    $('oppHd').textContent='THEIR BENCH';
+    $('theirsB').innerHTML=(d.opponent.bench||[]).length?benchTable(d.opponent.bench):'<div class="dim">— no bench data —</div>';
   }catch(e){$('hero').innerHTML='<h2>MY MATCHUP</h2><div class="err">'+esc(e.message)+'</div>';}
 })();
 </script>

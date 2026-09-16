@@ -192,6 +192,20 @@ tr.me td:first-child{border-left:2px solid var(--amber)}
 .pd.live{background:var(--amber);box-shadow:0 0 7px var(--amber);animation:pulse 1.4s infinite}
 @keyframes pulse{50%{opacity:.45}}
 
+/* ---------- head-to-head matchup rows ---------- */
+.h2hrow{display:grid;grid-template-columns:1fr 78px 1fr;align-items:center;gap:10px;
+  padding:8px 6px;border-bottom:1px solid rgba(28,41,64,.55)}
+.h2hrow:last-child{border-bottom:0}
+.h2hrow .slotc{text-align:center}
+.h2hrow .side{display:flex;align-items:center;gap:9px;min-width:0}
+.h2hrow .side.me{flex-direction:row-reverse;text-align:right}
+.h2hrow .who{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.h2hrow .st{font-size:11px;color:var(--dim);font-variant-numeric:tabular-nums;white-space:nowrap}
+.h2hrow .st b{font-size:13px;color:var(--ink)}
+.h2hrow .side.winner .st b{color:var(--good-soft)}
+.h2hrow .side.loser .st b{color:var(--dim)}
+.h2hrow:hover{background:rgba(255,255,255,.02)}
+
 /* ---------- misc ---------- */
 button,select{
   background:var(--panel2);border:1px solid var(--line2);border-radius:9px;color:var(--ink);
