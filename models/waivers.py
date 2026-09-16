@@ -15,9 +15,11 @@ is context. If there is nothing to do, it says ALL CLEAR and means it.
   * ROOM ACTIVITY: every pull appends to data/processed/waiver_log.jsonl so
     opponent add/drop tendencies accumulate for later analysis + trade intel.
 
-Everything is valued on ESPN's rest-of-season projections — league-scored
-(appliedTotal), so skill/IDP/K/DST share one honest scale. In-season
-replacement = the 5th-best free agent at the position (the wire itself).
+Everything is valued on TRUE rest-of-season projections — ESPN's league-scored
+season aggregate MINUS already-banked actuals (see _row: backtested, the raw
+aggregate loses ~6pts of decision accuracy and decays all season). Skill/IDP/
+K/DST share one honest scale. In-season replacement = the 5th-best free agent
+at the position (the wire itself).
 netVorp of a move = (add.proj − wire[add.pos]) − (drop.proj − wire[drop.pos]).
 
 Run `python models/waivers.py` for the CLI report; served at /api/waivers.
@@ -52,18 +54,29 @@ ATH = "https://site.web.api.espn.com/apis/common/v3/sports/football/nfl/athletes
 
 
 def _row(p) -> dict:
-    """espn_api Player -> plain dict on the league-scored ROS scale."""
+    """espn_api Player -> plain dict on the league-scored TRUE rest-of-season scale.
+
+    ESPN's projected_total_points is the season AGGREGATE (scoringPeriod 0) — it
+    carries already-banked production, so used raw it credits players for points
+    you can no longer roster. proj here = aggregate − banked actuals, clamped ≥0.
+    BACKTESTED (2026-09-15, 2024+2025 box_players, wks 3/5/8/11, 23,855 same-pos
+    decision pairs): pure ROS ranks actual remaining points at 90.8% pairwise
+    accuracy vs 84.5% for the aggregate, and the gap WIDENS with each week banked
+    (wk 11: ~89% vs ~78%; Spearman .91 vs .83). Do not revert to the aggregate."""
     try:
         own = round(float(getattr(p, "percent_owned", None)), 1)
     except (TypeError, ValueError):
         own = None
+    proj_total = float(getattr(p, "projected_total_points", 0) or 0)
+    banked = float(getattr(p, "total_points", 0) or 0)
     return {
         "playerId": getattr(p, "playerId", None),
         "name": getattr(p, "name", None),
         "pos": bucket(getattr(p, "position", "") or ""),
         "espnPos": getattr(p, "position", None),
         "team": getattr(p, "proTeam", None),
-        "proj": round(float(getattr(p, "projected_total_points", 0) or 0), 1),
+        "proj": round(max(0.0, proj_total - banked), 1),
+        "banked": round(banked, 1),
         "injury": (str(getattr(p, "injuryStatus", "") or "").upper() or None),
         "own": own,     # % of ESPN leagues rostering him — the market's opinion
     }
