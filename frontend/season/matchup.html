@@ -2,44 +2,55 @@
 <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>SeasonIQ · Matchup</title><link rel="stylesheet" href="season.css"/></head>
 <body>
-<div class="panel" id="hero"><h2>MY MATCHUP <span class="r" id="wk"></span></h2><div class="dim">loading…</div></div>
+<div class="panel" id="hero"><h2>MY MATCHUP <span class="r" id="wk"></span></h2><div class="skel" style="height:90px"></div></div>
 <div class="grid">
-  <div class="panel"><h2>MY LINEUP <span class="r">vs the optimal — projections are league-scored</span></h2><div id="mine" class="dim">…</div></div>
-  <div class="panel"><h2 id="oppHd">OPPONENT</h2><div id="theirs" class="dim">…</div></div>
+  <div class="panel"><h2>MY LINEUP <span class="r">projections are league-scored · ● = played</span></h2><div id="mine"><div class="skel" style="height:200px"></div></div></div>
+  <div class="panel"><h2 id="oppHd">OPPONENT</h2><div id="theirs"><div class="skel" style="height:200px"></div></div></div>
 </div>
 <script src="season.js"></script>
 <script>
 seasonNav('matchup');
-const rowsOf=(list,optNames)=>`<table><tr><th>slot</th><th>player</th><th class="num">proj</th><th class="num">act</th></tr>`
+let AV=new Map();
+const dot=p=>p.played?`<span class="pd ${p.played<100?'live':'done'}" title="${p.played<100?'in game':'final'}"></span>`:'<span class="pd"></span>';
+const rowsOf=(list,optNames)=>`<table><tr><th></th><th>player</th><th class="num">proj</th><th class="num">act</th></tr>`
   +list.map(p=>{
-    const flag=p.injury&&!['ACTIVE','NORMAL'].includes(p.injury)?` <span class="bad">⚕${p.injury}</span>`:'';
+    const flag=p.injury&&!['ACTIVE','NORMAL'].includes(p.injury)?` <span class="bad" title="${esc(p.injury)}">⚕</span>`:'';
     const opt=optNames&&!optNames.includes(p.name)?' <span class="bad">▼ sit</span>':'';
-    const act=p.played?`<b>${p.actual}</b>${p.played<100?' <span class="dim">live</span>':''}`:'<span class="dim">—</span>';
-    return `<tr><td class="dim">${esc(p.slot)}</td><td>${esc(p.name)}${flag}${opt}</td><td class="num">${p.proj}</td><td class="num">${act}</td></tr>`;
+    const act=p.played?`${dot(p)}<b>${p.actual}</b>`:`${dot(p)}<span class="dim">—</span>`;
+    const d=(p.played&&p.actual!=null)?(p.actual-p.proj):null;
+    const delta=d==null?'':` <span class="${d>=0?'good':'bad'}" style="font-size:10px">${d>=0?'+':''}${d.toFixed(1)}</span>`;
+    return `<tr><td class="dim" style="width:64px"><span class="pos">${esc(p.slot)}</span></td>
+      <td><span class="nm">${avHTML(AV,p.name)}<span>${esc(p.name)}${flag}${opt}</span></span></td>
+      <td class="num dim">${p.proj}</td><td class="num">${act}${delta}</td></tr>`;
   }).join('')+'</table>';
 (async()=>{
   try{
-    const d=await j('/api/startsit');
-    setHdr(d.me.team,d.week,d.fetchedAt); $('wk').textContent='week '+d.week+(d.liveSource==='espn-live'?' · live':'');
+    const [d,av]=await Promise.all([j('/api/startsit'),HS()]);
+    AV=av;
+    setHdr(d.me.team,d.week,d.fetchedAt);
+    $('wk').textContent='week '+d.week+(d.liveSource==='espn-live'?' · LIVE':'');
     const w=Math.round(d.winProb*100);
     const live=(d.me.playedStarters||0)+(d.opponent.playedStarters||0)>0;
     const sub=s=>live?`${s.actualSoFar} in · ${s.remainingProj} to come · ${s.playedStarters}/${s.nStarters} played`:null;
-    $('hero').innerHTML=`<h2>MY MATCHUP <span class="r">week ${d.week}${live?' · LIVE':''}</span></h2>
+    $('hero').innerHTML=`<h2>MY MATCHUP <span class="r">week ${d.week}${live?' · <b class="warn">LIVE</b>':''}</span></h2>
       <div class="vs">
-        <div><div class="t">${esc(d.me.team)}</div><div class="n">${live?d.me.liveExp:d.me.currentTotal}</div><div class="dim">${sub(d.me)||('current · optimal '+d.me.optimalTotal)}</div></div>
-        <div class="at">vs</div>
-        <div><div class="t muted">${esc(d.opponent.team)}</div><div class="n" style="color:var(--ink2)">${live?d.opponent.liveExp:d.opponent.projTotal}</div><div class="dim">${sub(d.opponent)||'projected'}</div></div></div>
+        <div><div class="t">${esc(d.me.team)}</div><div class="n" id="nMe">0</div><div class="dim">${sub(d.me)||('current · optimal '+d.me.optimalTotal)}</div></div>
+        <div><div class="donut" style="--p:${w}"><b>${w}%</b><span>WIN</span></div></div>
+        <div style="text-align:right"><div class="t muted">${esc(d.opponent.team)}</div><div class="n" id="nOpp" style="color:var(--ink2)">0</div><div class="dim">${sub(d.opponent)||'projected'}</div></div>
+      </div>
       <div class="bar"><i style="width:${w}%"></i></div>
-      <div class="dim">${live?'LIVE ':''}win probability <b class="good">${w}%</b> · actuals + remaining projections · σ from 7 yrs of league weekly scores</div>`
+      <div class="dim">${live?'LIVE ':''}win probability · actuals + remaining projections · σ from 7 yrs of league weekly scores</div>`
       +(d.swaps&&d.swaps.length
-        ?`<div class="action" style="margin-top:10px"><div class="hd">▶ START/SIT — +${d.benchLeak} projected pts</div>`
-          +d.swaps.map(s=>`<div class="rowline">${s.slot?'<span class="dim">['+esc(s.slot)+']</span> ':''}START <b class="good">${esc(s.start)}</b>${s.sit?` · SIT <b class="bad">${esc(s.sit)}</b>`:''}</div>`).join('')+'</div>'
-        :`<div class="allclear" style="margin-top:10px">✓ LINEUP OPTIMAL — bench leak ${d.benchLeak} pts</div>`);
+        ?`<div class="action" style="margin-top:12px"><div class="hd">▶ START/SIT — +${d.benchLeak} projected pts</div>`
+          +d.swaps.map(s=>`<div class="rowline">${s.slot?'<span class="pos">'+esc(s.slot)+'</span> ':''}START <b class="good">${esc(s.start)}</b>${s.sit?` · SIT <b class="bad">${esc(s.sit)}</b>`:''}</div>`).join('')+'</div>'
+        :`<div class="allclear" style="margin-top:12px">✓ LINEUP OPTIMAL — bench leak ${d.benchLeak} pts</div>`);
+    countUp($('nMe'), live?d.me.liveExp:d.me.currentTotal,{dec:1});
+    countUp($('nOpp'), live?d.opponent.liveExp:d.opponent.projTotal,{dec:1});
     $('mine').innerHTML=rowsOf(d.me.current,d.me.optimalNames)
-      +'<div class="dim" style="margin:8px 0 4px">bench</div>'+rowsOf(d.me.bench.map(p=>({...p,slot:'BE'})));
-    $('oppHd').innerHTML=`OPPONENT · ${esc(d.opponent.team)} <span class="r">their projected starters</span>`;
+      +'<div class="dim" style="margin:10px 0 4px;letter-spacing:.15em;font-size:10px">BENCH</div>'+rowsOf(d.me.bench.map(p=>({...p,slot:p.slot||'BE'})));
+    $('oppHd').innerHTML=`OPPONENT · ${esc(d.opponent.team)} <span class="r">their starters</span>`;
     $('theirs').innerHTML=rowsOf(d.opponent.lineup||[])
-      +((d.opponent.bench||[]).length?'<div class="dim" style="margin:8px 0 4px">their bench</div>'+rowsOf(d.opponent.bench.map(p=>({...p,slot:'BE'}))):'');
+      +((d.opponent.bench||[]).length?'<div class="dim" style="margin:10px 0 4px;letter-spacing:.15em;font-size:10px">THEIR BENCH</div>'+rowsOf(d.opponent.bench.map(p=>({...p,slot:p.slot||'BE'}))):'');
   }catch(e){$('hero').innerHTML='<h2>MY MATCHUP</h2><div class="err">'+esc(e.message)+'</div>';}
 })();
 </script>
