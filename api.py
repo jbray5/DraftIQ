@@ -1180,6 +1180,24 @@ def api_performance():
         return _stale_or_error("perf", e)
 
 
+@app.route("/api/planner", methods=["GET"])
+def api_planner():
+    """Bye-week crunch (next 4 weeks) + playoff-weeks opponent panel."""
+    try:
+        from models import waivers as wv
+        hit = _WAIVER_CACHE.get("planner")
+        if hit and request.args.get("force") != "1" and time.time() - hit["at"] < 21600:
+            return jsonify(hit["data"])
+        rep = wv.planner(2026)
+        if rep.get("error"):
+            return _stale_or_error("planner", rep["error"])
+        _WAIVER_CACHE["planner"] = {"at": time.time(), "data": rep}
+        return jsonify(rep)
+    except Exception as e:
+        traceback.print_exc()
+        return _stale_or_error("planner", e)
+
+
 @app.route("/api/season-history", methods=["GET"])
 def api_season_history():
     """Daily title%/expWins snapshots (both judges) for the trajectory chart."""

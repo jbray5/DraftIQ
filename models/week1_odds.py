@@ -53,8 +53,13 @@ def norm_team(t: str) -> str:
     return ALIASES.get(t, t)
 
 
-def _cache_path(season: int) -> Path:
-    return ROOT / "data" / "processed" / f"week1_odds_{season}.json"
+def _cache_path(season: int, week: int = 1) -> Path:
+    # per-week files: the wire pulls current AND next week now — a single file
+    # would thrash between them and refetch every call. Week 1 keeps the
+    # original name so nothing downstream (or in git) moves.
+    if week == 1:
+        return ROOT / "data" / "processed" / f"week1_odds_{season}.json"
+    return ROOT / "data" / "processed" / f"week1_odds_{season}_wk{week}.json"
 
 
 def _pregame_line(eid: str) -> dict | None:
@@ -129,7 +134,7 @@ def fetch(season: int = 2026, week: int = 1) -> dict:
 
 def get(season: int = 2026, week: int = 1, force: bool = False) -> dict:
     """Cached fetch. Falls back to the stale cache if ESPN is unreachable."""
-    p = _cache_path(season)
+    p = _cache_path(season, week)
     if not force and p.exists():
         try:
             blob = json.loads(p.read_text(encoding="utf-8"))

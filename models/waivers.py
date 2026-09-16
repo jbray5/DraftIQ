@@ -174,7 +174,8 @@ def snapshot(season: int = 2026) -> dict:
         owners = [str(o.get("displayName") or "").lower()
                   for o in (getattr(t, "owners", None) or []) if isinstance(o, dict)]
         roster = [_row(p) for p in (getattr(t, "roster", None) or [])]
-        rec = {"teamName": getattr(t, "team_name", None), "owners": owners, "roster": roster}
+        rec = {"teamName": getattr(t, "team_name", None), "owners": owners,
+               "waiverRank": getattr(t, "waiver_rank", None), "roster": roster}
         teams.append(rec)
         if my_owner in owners or "sclsu" in str(rec["teamName"] or "").lower():
             my_team = rec
@@ -375,6 +376,29 @@ def report(season: int = 2026, week: int | None = None) -> dict:
                                     "— the validated +55 pts/season play."),
                             **mv})
             _apply(mv)
+        # NEXT-WEEK LOOK-AHEAD: a stream costs a roster spot (and maybe waiver
+        # priority), so plan it as a 2-week move. Vegas posts lines ~a week out,
+        # so this is often empty early in the week — the UI says so rather than
+        # guessing. (Switch hysteresis stays the 2-rank heuristic; deriving the
+        # backtest-optimal threshold is an open study.)
+        try:
+            if week + 1 <= 17:
+                nxt = week1_odds.dst_ranks(season, week + 1)
+                fa_next = sorted(({"name": r["name"], **(nxt.get(_tc(r)) or {})}
+                                  for r in fas if r["pos"] == "DST"),
+                                 key=lambda x: x.get("w1Rank") or 99)
+                my_next = min((((nxt.get(_tc(p)) or {}).get("w1Rank")) or 99)
+                              for p in my_dsts) if my_dsts else 99
+                if fa_next and fa_next[0].get("w1Rank"):
+                    b = fa_next[0]
+                    stream["planLine"] = (f"wk{week + 1} look-ahead: best FA "
+                                          f"{b['name']} (#{b['w1Rank']}) vs your best #{my_next}"
+                                          + (" — could cover both weeks" if b.get("w1Rank", 99) <= 5
+                                             and any(d.get("name") == b["name"] for d in fa_dsts[:3]) else ""))
+                else:
+                    stream["planLine"] = f"wk{week + 1} look-ahead: no Vegas lines posted yet"
+        except Exception:
+            pass
     except Exception as e:
         stream["line"] = f"stream check unavailable ({e})"
 
@@ -404,6 +428,43 @@ def report(season: int = 2026, week: int | None = None) -> dict:
         if len(watch) >= 5:
             break
 
+    # ---- WAIVER-PRIORITY ECONOMICS (this league's real currency: priority,
+    # not FAAB). For each action: how many teams AHEAD of us in the order could
+    # start the target — if none, he likely clears to free agency and adding
+    # post-waivers keeps our priority. Would-start is a roster heuristic, not a
+    # mind-reader; clear-to-FA empirics accumulate in waiver_log over time. ----
+    NEED_K = {"QB": 1, "RB": 2, "WR": 2, "TE": 1, "IDP": 1, "DST": 1, "K": 1}
+
+    def _is_me(trec) -> bool:
+        _, my_owner_l = _my_ui_and_owner()
+        return (my_owner_l in (trec.get("owners") or [])
+                or "sclsu" in str(trec.get("teamName") or "").lower())
+
+    def _would_start_for(roster_rows, add) -> bool:
+        pos, k = add["pos"], NEED_K.get(add["pos"], 1)
+        vals = sorted((q["proj"] or 0 for q in roster_rows if q["pos"] == pos),
+                      reverse=True)
+        bar = vals[k - 1] if len(vals) >= k else 0.0
+        return (add["proj"] or 0) > bar
+
+    my_rank = next((t.get("waiverRank") for t in snap["teams"] if _is_me(t)), None)
+    for a in actions:
+        if not my_rank:
+            break
+        ahead = [t for t in snap["teams"]
+                 if not _is_me(t) and (t.get("waiverRank") or 99) < my_rank
+                 and _would_start_for(t["roster"], a["add"])]
+        a["claim"] = {
+            "myPriority": my_rank, "aheadWanting": len(ahead),
+            "verdict": (f"BURN-WORTHY — {len(ahead)} team(s) ahead of you could start him"
+                        if ahead else
+                        "likely clears — nobody ahead starts him; grab post-waivers and keep priority")}
+    # ESPN processes YOUR claim list in order and burns priority on the first
+    # hit — submit in value order, best per-week gain first
+    for i, a in enumerate(sorted(actions, key=lambda x: -(x.get("netVorpWk") or 0)),
+                          start=1):
+        a["submitOrder"] = i
+
     # ---- room activity (display + persistent log for tendency analysis) ----
     moves = []
     try:
@@ -423,7 +484,7 @@ def report(season: int = 2026, week: int | None = None) -> dict:
 
     return {"week": week, "myTeam": snap["myTeam"]["teamName"],
             "myLineupProj": lineup["total"], "allClear": not actions,
-            "remainingWeeks": rem,
+            "remainingWeeks": rem, "waiverPriority": my_rank,
             "fetchedAt": time.strftime("%Y-%m-%d %H:%M"),
             "actions": actions, "watchlist": watch, "stream": stream,
             "injuryFlags": flags, "roomActivity": moves[:20]}
@@ -836,6 +897,45 @@ def trade_eval2(give: list[str], get: list[str], counterparty: str,
                       "PASS — doesn't move your lineup" if abs(mine) < 3 else
                       "DECLINE — you lose by our numbers")
     return out
+
+
+def planner(season: int = 2026) -> dict:
+    """Forward planning: bye-week crunch over the next 4 fantasy weeks (flagging
+    the week you go short BEFORE its waiver deadline) + the weeks-15-17 playoff
+    panel — each held player's NFL opponent in the only weeks that decide the
+    title."""
+    try:
+        import nfl_schedule
+        from inseason import optimal_lineup as _opt, slot_spec as _spec
+    except ImportError:
+        from models import nfl_schedule
+        from models.inseason import optimal_lineup as _opt, slot_spec as _spec
+    snap = snapshot(season)
+    if not snap["myTeam"]:
+        return {"error": "could not identify your team"}
+    week = snap["week"]
+    sched = nfl_schedule.get(season)
+    if not sched:
+        return {"error": "NFL schedule unavailable"}
+    my = [p for p in snap["myTeam"]["roster"] if (p.get("lineupSlot") or "") != "IR"]
+    starters = {p["name"] for _, p in _opt(my, _spec(CFG["2026"]))["starters"]}
+    crunch = []
+    for wk in range(week, min(week + 4, 15)):
+        byes = [p for p in my
+                if p.get("team") and nfl_schedule.opponent(sched, p["team"], wk) is None]
+        n_start = sum(1 for p in byes if p["name"] in starters)
+        crunch.append({"week": wk,
+                       "byes": [{"name": p["name"], "pos": p["pos"], "team": p["team"],
+                                 "starter": p["name"] in starters} for p in byes],
+                       "startersOut": n_start, "alert": n_start >= 3})
+    playoff = [{"name": p["name"], "pos": p["pos"], "team": p.get("team"),
+                **{f"wk{wk}": (nfl_schedule.opponent(sched, p.get("team"), wk) or "BYE")
+                   for wk in (15, 16, 17)}}
+               for p in sorted(my, key=lambda r: -(r.get("proj") or 0))]
+    return {"week": week, "crunch": crunch, "playoff": playoff,
+            "note": ("weeks 15-17 are the fantasy playoffs — opponent-vs-position "
+                     "strength attaches once weekly positional data accumulates"),
+            "fetchedAt": time.strftime("%Y-%m-%d %H:%M")}
 
 
 def performance(season: int = 2026) -> dict:

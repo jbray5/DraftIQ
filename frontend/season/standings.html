@@ -8,7 +8,10 @@
     <div class="panel"><h2>TITLE% TRAJECTORY <span class="r">daily snapshots · solid = our model, faint = ESPN</span></h2>
       <canvas id="traj" style="height:190px"></canvas><div class="dim" id="trajNote"></div></div>
   </div>
-  <div class="panel"><h2>TRADE MAP <span class="r">where the judges disagree, value moves</span></h2><div id="map" class="dim">loading…</div></div>
+  <div>
+    <div class="panel"><h2>TRADE MAP <span class="r">where the judges disagree, value moves</span></h2><div id="map" class="dim">loading…</div></div>
+    <div class="panel"><h2>PLANNER <span class="r">bye crunch ahead · playoff-week opponents (wks 15–17)</span></h2><div id="plan" class="dim">loading…</div></div>
+  </div>
 </div>
 <script src="season.js"></script>
 <script>
@@ -34,6 +37,19 @@ seasonNav('standings');
       +(d.tradeMapNote?'<div class="dim">'+esc(d.tradeMapNote)+'</div>':'')
       +(d.oursJudgeNote?'<div class="dim" style="margin-top:4px">'+esc(d.oursJudgeNote)+'</div>':'');
   }catch(e){$('tbl').innerHTML='<div class="err">'+esc(e.message)+'</div>';}
+  try{
+    const pl=await j('/api/planner');
+    let h='';
+    (pl.crunch||[]).forEach(c=>{
+      if(!c.byes.length)return;
+      h+=`<div class="rowline${c.alert?' bad':''}">wk ${c.week}: ${c.byes.map(b=>`${esc(b.name)}${b.starter?' <b>(starter)</b>':''}`).join(', ')}${c.alert?' — <b class="bad">CRUNCH: plan a pickup the Tuesday before</b>':''}</div>`;
+    });
+    h=h||'<div class="rowline good">✓ no byes hit your roster in the next 4 weeks</div>';
+    h+='<div class="dim" style="margin:8px 0 4px">playoff weeks (15–17) opponents</div><table><tr><th>player</th><th>15</th><th>16</th><th>17</th></tr>'
+      +(pl.playoff||[]).slice(0,12).map(p=>`<tr><td>${esc(p.name)} <span class="dim">${p.pos}</span></td><td class="${p.wk15==='BYE'?'bad':'dim'}">${p.wk15}</td><td class="${p.wk16==='BYE'?'bad':'dim'}">${p.wk16}</td><td class="${p.wk17==='BYE'?'bad':'dim'}">${p.wk17}</td></tr>`).join('')+'</table>'
+      +`<div class="dim" style="margin-top:4px">${esc(pl.note||'')}</div>`;
+    $('plan').innerHTML=h;
+  }catch(e){$('plan').innerHTML='<div class="err">'+esc(e.message)+'</div>';}
   try{
     const h=(await j('/api/season-history')).history||[];
     const c=$('traj'),r=c.getBoundingClientRect(),dpr=window.devicePixelRatio||1;

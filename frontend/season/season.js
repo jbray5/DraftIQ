@@ -42,13 +42,15 @@ function renderWire(d, el, compact){
     const drop = a.drop ? ` · drop <b class="bad">${esc(a.drop.name)}</b>` : '';
     const net = a.netVorpWk!=null ? `${a.netVorpWk>=0?'+':''}${a.netVorpWk}/wk <span class="dim">(${a.netVorp>=0?'+':''}${a.netVorp} ROS)</span>`
                                   : `${a.netVorp>=0?'+':''}${a.netVorp} ROS`;
-    html += `<div class="action"><div class="hd">▶ ${a.type}: ${esc(a.add.name)} (${a.add.pos})${drop} · ${net}${heatTag(a.add)}</div>
+    html += `<div class="action"><div class="hd">▶ ${a.type}${a.submitOrder?' <span class="dim">(claim #'+a.submitOrder+')</span>':''}: ${esc(a.add.name)} (${a.add.pos})${drop} · ${net}${heatTag(a.add)}</div>
       <div class="muted">${esc(a.why)}</div>`
+      + (a.claim?`<div class="${a.claim.aheadWanting?'muted':'dim'}">◈ priority ${a.claim.myPriority}: ${esc(a.claim.verdict)}</div>`:'')
       + (a.dropNote?`<div class="dim">⚕ ${esc(a.dropNote)}</div>`:'')
       + ((a.ladder&&a.ladder.length)?`<div class="dim">if outclaimed: ${a.ladder.map(l=>esc(l.name)+' (#'+l.rank+')').join(' → ')}</div>`:'')
       + `<div class="dim">▸ ${esc(a.urgency)}</div></div>`;
   });
   html += `<div class="rowline dim">${esc((d.stream||{}).line||'')}</div>`;
+  if ((d.stream||{}).planLine) html += `<div class="rowline dim">↳ ${esc(d.stream.planLine)}</div>`;
   if (!compact){
     (d.watchlist||[]).forEach(m => { html += `<div class="rowline">watch: ${esc(m.add.name)} over ${esc(m.drop.name)} <span class="dim">(+${m.netVorpWk!=null?m.netVorpWk+'/wk':m.netVorp})</span>${heatTag(m.add)}</div>`; });
     (d.injuryFlags||[]).forEach(f => {
