@@ -26,10 +26,13 @@ seasonNav('standings');
           <td class="num dim">${Math.round(((e.playoff||0)+(o.playoff||0))/2*100)}%</td>
           <td class="num dim">${(((e.expWins||0)+(o.expWins||0))/2).toFixed(1)}</td></tr>`;}).join('')
       +'</table><div class="dim" style="margin-top:6px">'+esc(d.noiseNote||'')+'</div>';
-    $('map').innerHTML=(d.tradeMap||[]).map(t=>`<div class="rowline">
+    $('map').innerHTML=((d.tradeMap||[]).map(t=>`<div class="rowline">
       <b class="${t.delta>0?'good':'bad'}">${t.delta>0?'BUY':'SELL'}</b> ${esc(t.name)}
       <span class="dim">(${t.pos}${t.mine?' · YOURS':' · '+esc(t.owner)}) · ESPN ${t.pos}${t.espnRank} vs ours ${t.pos}${t.ourRank}</span>
-      <div class="dim">${esc(t.read)}</div></div>`).join('')||'<div class="dim">judges agree on everyone (rare)</div>';
+      <div class="dim">${esc(t.read)}</div></div>`).join('')
+      ||(d.tradeMapNote?'':'<div class="dim">judges agree on everyone (rare)</div>'))
+      +(d.tradeMapNote?'<div class="dim">'+esc(d.tradeMapNote)+'</div>':'')
+      +(d.oursJudgeNote?'<div class="dim" style="margin-top:4px">'+esc(d.oursJudgeNote)+'</div>':'');
   }catch(e){$('tbl').innerHTML='<div class="err">'+esc(e.message)+'</div>';}
   try{
     const h=(await j('/api/season-history')).history||[];

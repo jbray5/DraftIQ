@@ -516,8 +516,47 @@ def season_odds(season: int = 2026) -> dict:
     avail_ours = [{"name": r["name"], "pos": r["pos"],
                    "league_pts": lookup_ours(r["name"], r["pos"])}
                   for r in snap["freeAgents"]]
-    odds_espn = season_sim.title_odds(rosters, avail_espn, lookup_espn, n_sims=1000)
-    odds_ours = season_sim.title_odds(rosters, avail_ours, lookup_ours, n_sims=1000, seed=99)
+
+    # SEASON STATE (validated 2026-09-15 by replaying 2019-2025 at wks 4/8/12):
+    # conditioning the MC on real records + the real remaining schedule beats the
+    # old fresh-season sim on every metric (playoff-field hit 75% vs 70%, champ's
+    # title% 17% vs 12%, champ rank 3.9 vs 4.8; n=21 year-checkpoints). Honesty
+    # note: in that projection-free replay a naive record+PF ranking still edged
+    # the MC at raw field-picking (79%) — the sim's job is probabilities and
+    # roster-aware forecasts, not ordinal standings.
+    st = None
+    try:
+        lg = _league(season)
+        completed = max(0, int(getattr(lg, "current_week", 1) or 1) - 1)
+        recs, obs, name_of = {}, {}, {}
+        for t in lg.teams:
+            nm = str(getattr(t, "team_name", ""))
+            name_of[id(t)] = nm
+            recs[nm] = {"wins": int(getattr(t, "wins", 0) or 0),
+                        "pf": float(getattr(t, "points_for", 0) or 0)}
+            obs[nm] = [float(x or 0) for x in (getattr(t, "scores", None) or [])[:completed]]
+        pairs = []
+        for wk in range(completed, 14):          # 0-based into the 14-game schedule
+            wk_pairs, seen = [], set()
+            for t in lg.teams:
+                sch = getattr(t, "schedule", None) or []
+                if wk < len(sch):
+                    a = name_of[id(t)]
+                    b = str(getattr(sch[wk], "team_name", ""))
+                    key = tuple(sorted((a, b)))
+                    if key not in seen:
+                        seen.add(key)
+                        wk_pairs.append((a, b))
+            pairs.append(wk_pairs)
+        st = {"week": completed + 1, "records": recs, "observed": obs,
+              "schedulePairs": pairs}
+    except Exception:
+        st = None                                # sim still runs, just stateless
+
+    odds_espn = season_sim.title_odds(rosters, avail_espn, lookup_espn, n_sims=1000,
+                                      season_state=st)
+    odds_ours = season_sim.title_odds(rosters, avail_ours, lookup_ours, n_sims=1000,
+                                      seed=99, season_state=st)
 
     # TRADE MAP: rostered players the judges rank differently (position-scoped
     # posrank within the rostered pool; positive delta = ESPN likes him LESS)
@@ -548,10 +587,27 @@ def season_odds(season: int = 2026) -> dict:
                                        "ESPN overrates him — SELL high to an ESPN-brained owner")})
     trade_map.sort(key=lambda x: -abs(x["delta"]))
 
+    # The "ours" judge is the PRESEASON draft board — with no weekly reprice it
+    # inverts into buy-the-busts/sell-the-breakouts as ESPN updates and it
+    # doesn't. Suppress the trade map once real results dominate (wk 5+).
+    trade_note = None
+    if snap["week"] >= 5:
+        trade_map = []
+        trade_note = ("trade map suppressed from week 5 — the 'ours' judge is the "
+                      "preseason board and its disagreements with ESPN now reflect "
+                      "staleness, not edge. Re-enable by repricing the board weekly.")
+
     out = {"week": snap["week"], "myTeam": my_team,
            "odds": odds_espn, "oddsOurs": odds_ours,
-           "noiseNote": "title% carries ~±1pt of Monte-Carlo noise — ranks within a tight cluster are ties",
-           "tradeMap": trade_map[:12]}
+           "seasonAware": bool(st),
+           "oursJudgeNote": "'ours' = preseason draft board (frozen at draft day)",
+           "noiseNote": ("title% carries ~±1pt of Monte-Carlo noise — ranks within a "
+                         "tight cluster are ties. Sim is conditioned on real records + "
+                         "the real remaining schedule."
+                         if st else
+                         "title% carries ~±1pt of Monte-Carlo noise — ranks within a "
+                         "tight cluster are ties"),
+           "tradeMap": trade_map[:12], "tradeMapNote": trade_note}
 
     # SEASON HISTORY: persist at most one snapshot per day so the standings page
     # can chart every team's title% trajectory across the season. The archive

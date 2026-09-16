@@ -161,36 +161,46 @@ def schedule(n_teams: int, weeks: int = REG_WEEKS) -> list[list[tuple[int, int]]
     return [rounds[w % len(rounds)] for w in range(weeks)]
 
 
-def title_odds(team_rosters: dict[str, list[dict]], board_avail: list[dict],
-               pts_lookup, n_sims: int = 1000, seed: int = 2026) -> dict:
-    """{team: {title, playoff, expWins, weeklyMean}} via Monte Carlo.
-    `pts_lookup(name, pos)` -> season league points for a rostered player."""
-    teams = list(team_rosters.keys())
-    n = len(teams)
-    fills = fill_values(team_rosters, board_avail)
-    means = np.zeros(n)
-    for i, t in enumerate(teams):
-        total, empty = lineup_points(team_rosters[t], pts_lookup)
-        total += sum(fills.get(slot, 0.0) for slot in empty)   # expected future picks
-        means[i] = total / SEASON_WEEKS
+OBS_PRIOR_WEEKS = 6      # shrinkage: projections count as this many observed weeks
 
-    sd_w = weekly_sd()
+
+def simulate(means: np.ndarray, sd_w: float, *, rem_weeks: int,
+             sched_pairs: list[list[tuple[int, int]]] | None = None,
+             wins0: np.ndarray | None = None, pf0: np.ndarray | None = None,
+             shock_sd: float = SEASON_SHOCK, n_sims: int = 1000,
+             seed: int = 2026) -> dict:
+    """The Monte Carlo core, season-state aware.
+
+    means: per-team weekly scoring mean for the REMAINING weeks.
+    rem_weeks: regular-season weeks still to play.
+    sched_pairs: real remaining matchups as index pairs per week (synthetic
+      round-robin fills any missing weeks).
+    wins0/pf0: banked record and points-for entering this week.
+    shock_sd: residual season-luck sd (caller decays it as weeks bank).
+    Returns arrays: titles, playoffs, wins_sim (incl. banked), n_sims.
+    """
+    n = len(means)
     rng = np.random.default_rng(seed)
-    shock = rng.normal(1.0, SEASON_SHOCK, size=(n_sims, n))      # draft luck / injuries
+    shock = rng.normal(1.0, max(shock_sd, 1e-6), size=(n_sims, n))
     sim_means = means[None, :] * shock
-    sched = schedule(n)
+    synth = schedule(n, max(rem_weeks, 0))
+    pairs_by_week = [(sched_pairs[w] if sched_pairs and w < len(sched_pairs)
+                      and sched_pairs[w] else synth[w]) for w in range(rem_weeks)]
     weekly = rng.normal(sim_means[:, None, :], sd_w,
-                        size=(n_sims, REG_WEEKS, n))             # sims × weeks × teams
+                        size=(n_sims, max(rem_weeks, 1), n))
 
-    wins = np.zeros((n_sims, n), dtype=np.int16)
-    for w, pairs in enumerate(sched):
+    wins = np.zeros((n_sims, n), dtype=np.float32)
+    if wins0 is not None:
+        wins += np.asarray(wins0, dtype=np.float32)[None, :]
+    for w, pairs in enumerate(pairs_by_week):
         for a, b in pairs:
             a_w = weekly[:, w, a] > weekly[:, w, b]
             wins[:, a] += a_w
             wins[:, b] += ~a_w
-    points_for = weekly.sum(axis=1)
+    points_for = weekly[:, :rem_weeks, :].sum(axis=1) if rem_weeks else np.zeros((n_sims, n))
+    if pf0 is not None:
+        points_for = points_for + np.asarray(pf0, dtype=np.float64)[None, :]
 
-    # seed by record, points-for tiebreak → top-6, byes for 1-2
     order = np.lexsort((-points_for, -wins), axis=1)             # per sim: best first
     titles = np.zeros(n)
     playoffs = np.zeros(n)
@@ -212,10 +222,63 @@ def title_odds(team_rosters: dict[str, list[dict]], board_avail: list[dict],
             f1 = game(seeds[0], w45)                              # SF vs byes
             f2 = game(seeds[1], w36)
         titles[game(f1, f2)] += 1
+    return {"titles": titles, "playoffs": playoffs, "wins": wins, "n_sims": n_sims}
 
-    return {t: {"title": round(float(titles[i]) / n_sims, 4),
-                "playoff": round(float(playoffs[i]) / n_sims, 4),
-                "expWins": round(float(wins[:, i].mean()), 2),
+
+def title_odds(team_rosters: dict[str, list[dict]], board_avail: list[dict],
+               pts_lookup, n_sims: int = 1000, seed: int = 2026,
+               season_state: dict | None = None) -> dict:
+    """{team: {title, playoff, expWins, weeklyMean}} via Monte Carlo.
+    `pts_lookup(name, pos)` -> REMAINING-season league points for a player
+    (waivers._row serves true ROS since 2026-09-15).
+
+    season_state (optional — without it, the legacy preseason behavior):
+      week: next fantasy week to play (1-based)
+      records: {team: {"wins": int, "pf": float}}
+      observed: {team: [weekly actual scores banked so far]}
+      schedulePairs: [[(teamA, teamB), ...] per REMAINING regular week], names
+        matching team_rosters keys
+    Remaining weekly mean = ROS lineup total / remaining NFL weeks, shrunk
+    toward each team's observed scoring (projections count as OBS_PRIOR_WEEKS
+    of evidence); season shock decays with weeks remaining; standings are
+    seeded from the real record and the real remaining schedule."""
+    teams = list(team_rosters.keys())
+    n = len(teams)
+    fills = fill_values(team_rosters, board_avail)
+    completed = max(0, int((season_state or {}).get("week", 1)) - 1)
+    rem_reg = max(1, REG_WEEKS - completed)
+    rem_nfl = max(1, 18 - completed)     # ROS projections span the NFL season
+    means = np.zeros(n)
+    for i, t in enumerate(teams):
+        total, empty = lineup_points(team_rosters[t], pts_lookup)
+        total += sum(fills.get(slot, 0.0) for slot in empty)
+        means[i] = total / (rem_nfl if season_state else SEASON_WEEKS)
+
+    if season_state:
+        obs = season_state.get("observed") or {}
+        for i, t in enumerate(teams):
+            sc = [float(x) for x in (obs.get(t) or []) if x]
+            if sc:
+                w_obs = len(sc) / (len(sc) + OBS_PRIOR_WEEKS)
+                means[i] = w_obs * (sum(sc) / len(sc)) + (1 - w_obs) * means[i]
+        recs = season_state.get("records") or {}
+        wins0 = np.array([float((recs.get(t) or {}).get("wins", 0)) for t in teams])
+        pf0 = np.array([float((recs.get(t) or {}).get("pf", 0.0)) for t in teams])
+        idx = {t: i for i, t in enumerate(teams)}
+        sched_pairs = [[(idx[a], idx[b]) for a, b in wk if a in idx and b in idx]
+                       for wk in (season_state.get("schedulePairs") or [])]
+        shock_sd = SEASON_SHOCK * rem_reg / REG_WEEKS
+        r = simulate(means, weekly_sd(), rem_weeks=rem_reg, sched_pairs=sched_pairs,
+                     wins0=wins0, pf0=pf0, shock_sd=shock_sd,
+                     n_sims=n_sims, seed=seed)
+    else:
+        r = simulate(means, weekly_sd(), rem_weeks=REG_WEEKS,
+                     n_sims=n_sims, seed=seed)
+
+    n_sims = r["n_sims"]
+    return {t: {"title": round(float(r["titles"][i]) / n_sims, 4),
+                "playoff": round(float(r["playoffs"][i]) / n_sims, 4),
+                "expWins": round(float(r["wins"][:, i].mean()), 2),
                 "weeklyMean": round(float(means[i]), 1)}
             for i, t in enumerate(teams)}
 
