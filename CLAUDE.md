@@ -190,6 +190,17 @@ pick_engine window trigger (best-IDP ADP within the horizon → need_mult 1.5). 
 mock drafts take Cashman at the 90/91 wheel pair, right before the window. STREAM_DISCOUNT
 0.35 stays as a *display* rank; timing comes from the market model.
 
+**What wins IN-SEASON (measured 2026-09-16, 84 team-seasons 2019-2025):**
+lineup **capture** (started pts / hindsight-optimal) is the strongest in-season
+signal — Spearman **+0.39 with PF** (partly mechanical: shared numerator),
+**−0.19 with finish** (p=.08); the room clusters 87-91%, so ~3 capture points
+≈ ~45 season pts. Roster **churn**: champs avg 22 adds vs field 17, 5/7 champs
+top-half, two were #1 — but finish corr only −0.14 (ns; the 2020 champ made 16
+adds) → add QUALITY (netVorp) over volume. **D/ST breadth is uncorrelated with
+finish (−0.01)** — everyone streams ~4-5 defenses; the edge is matchup
+selection (+55), not switching often. The portal's design follows: optimizer
+lineups (chases capture), netVorp-priced claims, matchup-priced streams.
+
 **14-season league DNA (2012-2025, 170 team-seasons):** the league's character is
 stable — within-year corr(points-for, finish) is **−0.55 in BOTH eras**; champions'
 first QB is rd **6.1** across all 14 years (QB-wait holds in every era); early-RB mix

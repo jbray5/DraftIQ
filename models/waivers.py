@@ -1,9 +1,18 @@
 """In-season WAIVER WIRE engine — decision-grade, not homework.
 
-The league's own history says the only REPEATABLE owner skills are in-season
-(streaming volume + waiver production). This module turns that into a report
-whose contract is: ACTIONS are things you should actually do — everything else
-is context. If there is nothing to do, it says ALL CLEAR and means it.
+MEASURED (2026-09-16, 84 team-seasons 2019-2025): the in-season edges in this
+league are real but modest, and QUALITY beats volume. Lineup capture (started
+pts / hindsight-optimal) is the clearest signal — Spearman +0.39 with
+points-for (partly mechanical), −0.19 with finish, and the whole room lives
+in an 87-91% band, so a few capture points ≈ tens of season points. Roster
+churn: champions average 22 adds vs the field's 17 and five of seven were
+top-half active, but the correlation with finish is only −0.14 (ns) — the
+2020 champ made 16 adds. Streaming BREADTH is uncorrelated with finish
+(−0.01); the validated D/ST edge is matchup SELECTION (+55/season), not
+changing defenses often. Hence this module's posture: netVorp-priced claims,
+optimizer-driven lineups, matchup-priced streams — never churn for its own
+sake. The contract: ACTIONS are things you should actually do — everything
+else is context. If there is nothing to do, it says ALL CLEAR and means it.
 
   * ACTIONS: injury-driven claims (the engine pulls each flagged player's real
     injury note from ESPN's athlete API and prices the replacement move),
