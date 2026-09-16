@@ -146,10 +146,15 @@ def get(season: int = 2026, week: int = 1, force: bool = False) -> dict:
         if p.exists():
             try:
                 stale = json.loads(p.read_text(encoding="utf-8"))
-                stale["stale"] = True
-                stale["error"] = str(e)
-                print(f"week1_odds: live fetch failed ({e}) — serving cached copy")
-                return stale
+                # the stale fallback must be for the SAME week — serving week
+                # N-1's matchup ranks as week N's is confidently wrong data,
+                # the one kind we never ship
+                if stale.get("week") == week:
+                    stale["stale"] = True
+                    stale["error"] = str(e)
+                    print(f"week1_odds: live fetch failed ({e}) — serving cached copy")
+                    return stale
+                print(f"week1_odds: cache is week {stale.get('week')}, wanted {week} — refusing it")
             except Exception:
                 pass
         print(f"week1_odds: unavailable ({e})")
@@ -170,6 +175,8 @@ def dst_ranks(season: int = 2026, week: int = 1) -> dict:
         t["w1Rank"] = i
         # quintiles mirror the backtest bins: tier 1 = best matchup quintile
         t["w1Tier"] = min(5, 1 + (i - 1) * 5 // n)
+        if blob.get("stale"):
+            t["stale"] = True       # propagate: callers must be able to say so
     return {t["team"]: t for t in order}
 
 

@@ -57,6 +57,19 @@ WATCH_PW = 0.7           # a bench dart must beat the incumbent by this per week
 FA_POSITIONS = ("QB", "RB", "WR", "TE", "K", "D/ST", "LB", "DE", "DT", "CB", "S")
 ATH = "https://site.web.api.espn.com/apis/common/v3/sports/football/nfl/athletes/{pid}"
 
+_LG_CACHE: dict = {}
+
+
+def _lg(season: int):
+    """One espn-api League per season, reused for 120s — report() used to build
+    it TWICE per call, and each construction re-fetches the whole pro player map."""
+    hit = _LG_CACHE.get(season)
+    if hit and time.time() - hit[0] < 120:
+        return hit[1]
+    lg = _league(season)
+    _LG_CACHE[season] = (time.time(), lg)
+    return lg
+
 
 def _row(p) -> dict:
     """espn_api Player -> plain dict on the league-scored TRUE rest-of-season scale.
@@ -154,7 +167,7 @@ def _injury_news(pid) -> dict | None:
 
 def snapshot(season: int = 2026) -> dict:
     """Live league state: my roster, all rosters, deduped free agents."""
-    lg = _league(season)
+    lg = _lg(season)
     ui_name, my_owner = _my_ui_and_owner()
     my_team, teams = None, []
     for t in lg.teams:
@@ -187,21 +200,27 @@ def snapshot(season: int = 2026) -> dict:
 
 
 def _log_activity(moves: list[dict]) -> None:
-    """Accumulate the room's moves for tendency analysis + trade intel."""
+    """Accumulate the room's moves for tendency analysis + trade intel.
+    Keyed by (owner-or-team, action, player, DATE): the dateless key collapsed
+    repeat streams (the exact behavior we're tracking), and owner handles
+    survive this room's troll-renames where team names fragment."""
     try:
         seen = set()
         if LOG.exists():
             for line in LOG.read_text(encoding="utf-8").splitlines():
                 try:
                     d = json.loads(line)
-                    seen.add((d.get("team"), d.get("action"), d.get("player")))
+                    seen.add((d.get("owner") or d.get("team"), d.get("action"),
+                              d.get("player"), d.get("loggedAt")))
                 except json.JSONDecodeError:
                     continue
+        today = time.strftime("%Y-%m-%d")
         with open(LOG, "a", encoding="utf-8") as fh:
             for m in moves:
-                key = (m.get("team"), m.get("action"), m.get("player"))
+                key = (m.get("owner") or m.get("team"), m.get("action"),
+                       m.get("player"), today)
                 if key not in seen:
-                    fh.write(json.dumps({**m, "loggedAt": time.strftime("%Y-%m-%d")}) + "\n")
+                    fh.write(json.dumps({**m, "loggedAt": today}) + "\n")
                     seen.add(key)
     except OSError:
         pass
@@ -322,6 +341,9 @@ def report(season: int = 2026, week: int | None = None) -> dict:
     stream: dict = {"week": week}
     try:
         ranks = week1_odds.dst_ranks(season, week)
+        lines_stale = any(v.get("stale") for v in ranks.values())
+        if lines_stale:
+            stream["linesStale"] = True
 
         def _tc(r):
             return str(r.get("team") or "").upper()
@@ -340,7 +362,8 @@ def report(season: int = 2026, week: int | None = None) -> dict:
         if fa_best and (fa_best.get("w1Rank") or 99) + 2 < my_best:
             stream["hold"] = False
             stream["line"] = (f"STREAM {fa_best['name']} (matchup #{fa_best['w1Rank']}) "
-                              f"over yours (#{my_best})")
+                              f"over yours (#{my_best})"
+                              + (" · ⚠ Vegas lines are a cached copy" if lines_stale else ""))
             mv = _move(fa_best)
             # claim ladder: the next-best FA matchups, so a lost claim has
             # pre-ranked fallbacks instead of hand math
@@ -384,11 +407,14 @@ def report(season: int = 2026, week: int | None = None) -> dict:
     # ---- room activity (display + persistent log for tendency analysis) ----
     moves = []
     try:
-        lg = _league(season)
+        lg = _lg(season)
         for act in lg.recent_activity(size=25):
             for team, action, player, bid in getattr(act, "actions", []):
+                owner = next((str(o.get("displayName")) for o in
+                              (getattr(team, "owners", None) or [])
+                              if isinstance(o, dict) and o.get("displayName")), None)
                 moves.append({"team": getattr(team, "team_name", None),
-                              "action": action,
+                              "owner": owner, "action": action,
                               "player": getattr(player, "name", str(player)),
                               "bid": bid})
     except Exception:
@@ -417,7 +443,7 @@ def startsit(season: int = 2026, week: int | None = None) -> dict:
         from models.inseason import optimal_lineup as _opt, slot_spec as _spec, bucket as _b
         from models import season_sim
     import math
-    lg = _league(season)
+    lg = _lg(season)
     week = week or max(1, int(getattr(lg, "current_week", 1) or 1))
     _, my_owner = _my_ui_and_owner()
 
@@ -597,7 +623,7 @@ def season_odds(season: int = 2026) -> dict:
     # roster-aware forecasts, not ordinal standings.
     st = None
     try:
-        lg = _league(season)
+        lg = _lg(season)
         completed = max(0, int(getattr(lg, "current_week", 1) or 1) - 1)
         recs, obs, name_of = {}, {}, {}
         for t in lg.teams:
@@ -819,7 +845,7 @@ def performance(season: int = 2026) -> dict:
         from inseason import optimal_lineup as _opt, slot_spec as _spec, bucket as _b
     except ImportError:
         from models.inseason import optimal_lineup as _opt, slot_spec as _spec, bucket as _b
-    lg = _league(season)
+    lg = _lg(season)
     cur = max(1, int(getattr(lg, "current_week", 1) or 1))
     _, my_owner = _my_ui_and_owner()
 

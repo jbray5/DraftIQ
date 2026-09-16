@@ -37,8 +37,8 @@ seasonNav('index');
     const me=o.myTeam, e=(o.odds[me]||{}).title||0, u=(o.oddsOurs[me]||{}).title||0;
     $('cOdds').textContent=`${(e*100).toFixed(1)}% / ${(u*100).toFixed(1)}%`;
     $('cOdds').className='v '+((e+u)/2>=0.1?'good':'muted');
-    $('cOddsSub').textContent='field = 10% · two judges';
-  }catch(e){}
+    $('cOddsSub').textContent=(o.seasonAware?'record-aware · ':'')+'field = 10% · two judges';
+  }catch(e){$('cOdds').textContent='—';$('cOddsSub').textContent='odds error: '+String(e.message||e).slice(0,60);}
   V.innerHTML=lines.join('');
 })();
 </script>

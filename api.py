@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import os
+import threading
 import time
 import requests
 import json
@@ -1620,7 +1621,28 @@ def api_health():
 
 
 # ---------------------------
-# Main
+# Daily archive snapshotter — the trajectory/ownership/move archives used to
+# accumulate only when someone opened a page; now they accrue whenever the
+# server is running. Checks hourly, runs once per day after 08:00 local.
 # ---------------------------
+def _daily_snapshotter():
+    import datetime as _dt
+    last_day = None
+    while True:
+        try:
+            now = _dt.datetime.now()
+            if now.hour >= 8 and last_day != now.date() and DRAFTIQ_LEAGUE == "2026":
+                from models import waivers as wv
+                wv.report(2026)        # appends waiver_log + ownership_history
+                wv.season_odds(2026)   # appends season_history (once/day guard)
+                last_day = now.date()
+                print(f"[snapshotter] daily archives written {now:%Y-%m-%d %H:%M}")
+        except Exception as e:
+            print(f"[snapshotter] failed (will retry next hour): {e}")
+        time.sleep(3600)
+
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5001, debug=True)
+    threading.Thread(target=_daily_snapshotter, daemon=True,
+                     name="daily-snapshotter").start()
+    app.run(host="0.0.0.0", port=5001, debug=True, use_reloader=False)
