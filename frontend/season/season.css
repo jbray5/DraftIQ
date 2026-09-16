@@ -31,12 +31,11 @@ body{
     linear-gradient(180deg,var(--bg2),var(--bg) 320px);
   min-height:100vh;padding:0 22px 60px;
 }
-/* whisper of CRT lineage — scanlines + vignette, barely there */
+/* soft vignette only — the scanline layer read as a monitor defect on real
+   displays and was removed 2026-09-16 (user report). Do not re-add. */
 body::after{
   content:"";position:fixed;inset:0;pointer-events:none;z-index:9990;
-  background:
-    repeating-linear-gradient(0deg, rgba(255,255,255,.014) 0 1px, transparent 1px 3px),
-    radial-gradient(120% 90% at 50% 40%, transparent 60%, rgba(0,0,0,.35));
+  background:radial-gradient(130% 100% at 50% 40%, transparent 70%, rgba(0,0,0,.22));
 }
 ::selection{background:rgba(245,166,35,.3)}
 

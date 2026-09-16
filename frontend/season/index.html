@@ -10,62 +10,66 @@
         <div class="sub" id="cMatchSub">loading…</div></div>
     </div></div>
   <div class="card" id="cdWire"><div class="k">waiver wire</div>
-    <div class="v dim" id="cWire">…</div><div class="sub" id="cWireSub"></div></div>
+    <div class="v dim" id="cWire">…</div><div class="sub" id="cWireSub">loading…</div></div>
   <div class="card" id="cdOdds"><div class="k">title odds · ESPN / ours</div>
     <div class="v dim" id="cOdds">…</div>
     <canvas id="cSpark" style="height:34px;margin-top:8px"></canvas>
-    <div class="sub" id="cOddsSub"></div></div>
+    <div class="sub" id="cOddsSub">loading…</div></div>
 </div>
-<div class="panel" style="margin-top:18px"><h2>TODAY'S VERDICTS <span class="r">one glance, then go live your life</span></h2><div id="verdicts"><div class="skel" style="height:44px"></div></div></div>
+<div class="panel" style="margin-top:18px"><h2>TODAY'S VERDICTS <span class="r">one glance, then go live your life</span></h2><div id="verdicts"><div class="skel" id="vSkel" style="height:44px"></div></div></div>
 <script src="season.js"></script>
 <script>
 seasonNav('index');
-(async()=>{
-  const V=$('verdicts'); let lines=[];
-  const [mR,wR,oR,hR,pR]=await Promise.allSettled([
-    j('/api/startsit'), j('/api/waivers'), j('/api/season-odds'),
-    j('/api/season-history'), j('/api/performance')]);
-  if(mR.status==='fulfilled'){
-    const m=mR.value;
-    setHdr(m.me.team,m.week,m.fetchedAt);
-    const w=Math.round(m.winProb*100);
-    $('wpDonut').style.setProperty('--p',w);
-    countUp($('cMatch'),w,{suffix:'%'});
-    const live=(m.me.playedStarters||0)+(m.opponent.playedStarters||0)>0;
-    $('cMatchScore').innerHTML=`${live?m.me.liveExp:m.me.currentTotal} <span class="dim" style="font-size:13px">vs ${live?m.opponent.liveExp:m.opponent.projTotal}</span>`;
-    $('cMatchSub').textContent=`${live?'LIVE · ':''}${m.opponent.team}`;
-    $('cdMatch').className='card '+(m.winProb>=0.5?'ok':'no');
-    lines.push(m.swaps&&m.swaps.length
-      ?`<div class="action"><b class="hd">▶ START/SIT:</b> ${m.swaps.map(s=>`${s.slot?'['+esc(s.slot)+'] ':''}start ${esc(s.start)}${s.sit?' / sit '+esc(s.sit):''}`).join(' · ')} (+${m.benchLeak} pts) — <a href="matchup.html" style="color:var(--amber)">matchup →</a></div>`
-      :`<div class="rowline good">✓ lineup optimal (bench leak ${m.benchLeak})</div>`);
-  } else lines.push('<div class="err">matchup: '+esc(mR.reason.message)+'</div>');
-  if(wR.status==='fulfilled'){
-    const w=wR.value;
-    $('cWire').textContent=w.allClear?'ALL CLEAR':(w.actions.length+' ACTION'+(w.actions.length>1?'S':''));
-    $('cWire').className='v '+(w.allClear?'good':'bad');
-    $('cWireSub').textContent=((w.stream||{}).line||'')+(w.waiverPriority?` · priority ${w.waiverPriority}`:'');
-    $('cdWire').className='card '+(w.allClear?'ok':'mid');
-    if(w.allClear)lines.push('<div class="rowline good">✓ wire: no moves needed</div>');
-    else w.actions.forEach(a=>lines.push(`<div class="action"><b class="hd">▶ ${a.type}:</b> ${esc(a.add.name)}${a.drop?(' for '+esc(a.drop.name)):''} (${a.netVorpWk!=null?(a.netVorpWk>=0?'+':'')+a.netVorpWk+'/wk':'NET '+a.netVorp}) — <a href="wire.html" style="color:var(--amber)">wire →</a></div>`));
-    (w.injuryFlags||[]).forEach(f=>lines.push(`<div class="rowline">⚕ <span class="bad">${esc(f.name)} ${f.injury}</span> <span class="dim">${esc((f.news||'').slice(0,110))}</span></div>`));
-  } else lines.push('<div class="err">wire: '+esc(wR.reason.message)+'</div>');
-  if(oR.status==='fulfilled'){
-    const o=oR.value, me=o.myTeam, e=(o.odds[me]||{}).title||0, u=(o.oddsOurs[me]||{}).title||0;
-    $('cOdds').innerHTML=`<span class="cy">${(e*100).toFixed(1)}%</span> <span class="dim">/</span> ${(u*100).toFixed(1)}%`;
-    $('cOdds').className='v';
-    $('cOddsSub').textContent=(o.seasonAware?'record-aware · ':'')+'field = 10% · two judges';
-    $('cdOdds').className='card '+((e+u)/2>=0.1?'ok':'mid');
-    if(hR.status==='fulfilled'){
-      const h=(hR.value.history||[]);
-      const mine=h.map(x=>((x.ours||{})[me]||{}).title).filter(v=>v!=null);
-      if(mine.length>1)spark($('cSpark'),mine,'#D08004');
-    }
-  } else { $('cOdds').textContent='—'; $('cOddsSub').textContent='odds error: '+esc(String(oR.reason.message||oR.reason).slice(0,60)); }
-  if(pR.status==='fulfilled'){
-    const p=pR.value, me=(p.standings||[]).find(t=>/SCLSU/i.test(t.team));
-    if(me)lines.push(`<div class="rowline dim">ledger: <b class="muted">${me.wins}–${me.losses}</b> · PF ${me.pf} (rank ${me.pfRank}) · ${(p.weeks||[]).length} week${(p.weeks||[]).length===1?'':'s'} banked</div>`);
-  }
-  V.innerHTML=lines.join('');
-})();
+/* Each tile paints the moment ITS data lands — never gated on the slowest
+   endpoint (the wire's cold load can take a minute+; the old all-at-once
+   version left the whole page spinning that long). */
+const SLOTS={match:'',wire:'',ledger:''};
+function paint(){
+  const parts=[SLOTS.match,SLOTS.wire,SLOTS.ledger].filter(Boolean);
+  $('verdicts').innerHTML=parts.join('')||'<div class="skel" style="height:44px"></div>';
+}
+j('/api/startsit').then(m=>{
+  setHdr(m.me.team,m.week,m.fetchedAt);
+  const w=Math.round(m.winProb*100);
+  $('wpDonut').style.setProperty('--p',w);
+  countUp($('cMatch'),w,{suffix:'%'});
+  const live=(m.me.playedStarters||0)+(m.opponent.playedStarters||0)>0;
+  $('cMatchScore').innerHTML=`${live?m.me.liveExp:m.me.currentTotal} <span class="dim" style="font-size:13px">vs ${live?m.opponent.liveExp:m.opponent.projTotal}</span>`;
+  $('cMatchSub').textContent=`${live?'LIVE · ':''}${m.opponent.team}`;
+  $('cdMatch').className='card '+(m.winProb>=0.5?'ok':'no');
+  SLOTS.match=m.swaps&&m.swaps.length
+    ?`<div class="action"><b class="hd">▶ START/SIT:</b> ${m.swaps.map(s=>`${s.slot?'['+esc(s.slot)+'] ':''}start ${esc(s.start)}${s.sit?' / sit '+esc(s.sit):''}`).join(' · ')} (+${m.benchLeak} pts) — <a href="matchup.html" style="color:var(--amber)">matchup →</a></div>`
+    :`<div class="rowline good">✓ lineup optimal (bench leak ${m.benchLeak})</div>`;
+  paint();
+}).catch(e=>{$('cMatchSub').textContent='error: '+String(e.message||e).slice(0,50);
+  SLOTS.match='<div class="err">matchup: '+esc(e.message||e)+'</div>';paint();});
+j('/api/waivers').then(w=>{
+  $('cWire').textContent=w.allClear?'ALL CLEAR':(w.actions.length+' ACTION'+(w.actions.length>1?'S':''));
+  $('cWire').className='v '+(w.allClear?'good':'bad');
+  $('cWireSub').textContent=((w.stream||{}).line||'')+(w.waiverPriority?` · priority ${w.waiverPriority}`:'');
+  $('cdWire').className='card '+(w.allClear?'ok':'mid');
+  let s='';
+  if(w.allClear)s='<div class="rowline good">✓ wire: no moves needed</div>';
+  else w.actions.forEach(a=>{s+=`<div class="action"><b class="hd">▶ ${a.type}:</b> ${esc(a.add.name)}${a.drop?(' for '+esc(a.drop.name)):''} (${a.netVorpWk!=null?(a.netVorpWk>=0?'+':'')+a.netVorpWk+'/wk':'NET '+a.netVorp}) — <a href="wire.html" style="color:var(--amber)">wire →</a></div>`;});
+  (w.injuryFlags||[]).forEach(f=>{s+=`<div class="rowline">⚕ <span class="bad">${esc(f.name)} ${f.injury}</span> <span class="dim">${esc((f.news||'').slice(0,110))}</span></div>`;});
+  SLOTS.wire=s;paint();
+}).catch(e=>{$('cWireSub').textContent='error: '+String(e.message||e).slice(0,50);
+  SLOTS.wire='<div class="err">wire: '+esc(e.message||e)+'</div>';paint();});
+j('/api/season-odds').then(async o=>{
+  const me=o.myTeam, e=(o.odds[me]||{}).title||0, u=(o.oddsOurs[me]||{}).title||0;
+  $('cOdds').innerHTML=`<span class="cy">${(e*100).toFixed(1)}%</span> <span class="dim">/</span> ${(u*100).toFixed(1)}%`;
+  $('cOdds').className='v';
+  $('cOddsSub').textContent=(o.seasonAware?'record-aware · ':'')+'field = 10% · two judges';
+  $('cdOdds').className='card '+((e+u)/2>=0.1?'ok':'mid');
+  try{
+    const h=(await j('/api/season-history')).history||[];
+    const mine=h.map(x=>((x.ours||{})[me]||{}).title).filter(v=>v!=null);
+    if(mine.length>1)spark($('cSpark'),mine,'#D08004');
+  }catch(_){}
+}).catch(e=>{$('cOdds').textContent='—';$('cOddsSub').textContent='odds error: '+esc(String(e.message||e).slice(0,60));});
+j('/api/performance').then(p=>{
+  const me=(p.standings||[]).find(t=>/SCLSU/i.test(t.team));
+  if(me){SLOTS.ledger=`<div class="rowline dim">ledger: <b class="muted">${me.wins}–${me.losses}</b> · PF ${me.pf} (rank ${me.pfRank}) · ${(p.weeks||[]).length} week${(p.weeks||[]).length===1?'':'s'} banked</div>`;paint();}
+}).catch(()=>{});
 </script>
 </body></html>
