@@ -121,22 +121,36 @@ def roster_compare(season: int = 2026) -> dict:
                      "fpPosRank": f["posRank"] if f else None,
                      "fpStd": f["std"] if f else None,
                      "starting": p["slot"] not in ("BE", "IR")})
-    # disagreements: bench player FP ranks better than a same-bucket starter
+    # disagreements. QB/K/DST: direct same-position. Flexables: POOL-level —
+    # within RB/WR/TE a slot shuffle can always rearrange assignments, so the
+    # started SET is what matters. (Slot-for-slot missed FP's Diggs-over-Pollard
+    # lean in wk2 2026 because Pollard occupied the dedicated RB slot.)
     flips = []
     flexable = ("RB", "WR", "TE")
-    for b in [r for r in rows if not r["starting"] and r["fpAvg"] is not None]:
-        for s in [r for r in rows if r["starting"] and r["fpAvg"] is not None]:
-            same = (b["pos"] == s["pos"]) or (b["pos"] in flexable and s["pos"] in flexable
-                                              and s["slot"] in ("RB/WR/TE", "FLEX"))
-            if not same:
-                continue
-            espn_says_start = s["espnProj"] >= b["espnProj"]
-            fp_says_start = s["fpAvg"] <= b["fpAvg"]      # lower rank = better
-            if espn_says_start and not fp_says_start:
-                flips.append({"fpWouldStart": b["name"], "over": s["name"],
-                              "slot": s["slot"],
-                              "espn": f'{s["name"]} {s["espnProj"]} vs {b["name"]} {b["espnProj"]}',
-                              "fp": f'{s["name"]} {s["fpPosRank"]} vs {b["name"]} {b["fpPosRank"]}'})
+    started = [r for r in rows if r["starting"] and r["fpAvg"] is not None]
+    benched = [r for r in rows if not r["starting"] and r["fpAvg"] is not None]
+
+    def _legal_after(out_row, in_row):
+        """Dedicated-slot minimums still met if in_row replaces out_row?"""
+        counts = {p: sum(1 for r in started if r["pos"] == p) for p in flexable}
+        counts[out_row["pos"]] -= 1
+        counts[in_row["pos"]] = counts.get(in_row["pos"], 0) + 1
+        return counts.get("RB", 0) >= 2 and counts.get("WR", 0) >= 2 and counts.get("TE", 0) >= 1
+
+    for b in benched:
+        cands = ([s for s in started if s["pos"] == b["pos"]] if b["pos"] not in flexable
+                 else [s for s in started if s["pos"] in flexable and _legal_after(s, b)])
+        if not cands:
+            continue
+        worst = max(cands, key=lambda s: s["fpAvg"])       # FP's weakest started
+        fp_flip = b["fpAvg"] < worst["fpAvg"]
+        espn_agrees_flip = b["espnProj"] > worst["espnProj"]
+        if fp_flip and not espn_agrees_flip:
+            flips.append({"fpWouldStart": b["name"], "over": worst["name"],
+                          "slot": worst["slot"],
+                          "espn": f'{worst["name"]} {worst["espnProj"]} vs {b["name"]} {b["espnProj"]}',
+                          "fp": f'{worst["name"]} {worst["fpPosRank"]} (avg {worst["fpAvg"]}) vs '
+                                f'{b["name"]} {b["fpPosRank"]} (avg {b["fpAvg"]})'})
     # archive for grading once actuals exist
     try:
         with open(BATTLE, "a", encoding="utf-8") as fh:
