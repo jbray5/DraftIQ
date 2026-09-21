@@ -1,0 +1,355 @@
+{
+ "season": 2026,
+ "divergenceBar": 12,
+ "teams": {
+  "Bollinger": {
+   "lens": "FP-expert",
+   "nDivergent": 5,
+   "ecrFollows": 3,
+   "adpFollows": 2,
+   "confidence": "low",
+   "evidence": [
+    {
+     "name": "Cam Skattebo",
+     "overall": 47,
+     "adp": 37.0,
+     "ecr": 50.0,
+     "took": "ECR"
+    },
+    {
+     "name": "Jayden Higgins",
+     "overall": 114,
+     "adp": 156.3,
+     "ecr": 124.0,
+     "took": "ECR"
+    },
+    {
+     "name": "Germie Bernard",
+     "overall": 127,
+     "adp": 267.5,
+     "ecr": 252.0,
+     "took": "ECR"
+    },
+    {
+     "name": "Will Reichard",
+     "overall": 167,
+     "adp": 217.7,
+     "ecr": 281.0,
+     "took": "ADP"
+    },
+    {
+     "name": "Fernando Mendoza",
+     "overall": 174,
+     "adp": 172.7,
+     "ecr": 233.0,
+     "took": "ADP"
+    }
+   ]
+  },
+  "Street": {
+   "lens": "FP-expert",
+   "nDivergent": 4,
+   "ecrFollows": 3,
+   "adpFollows": 1,
+   "confidence": "low",
+   "evidence": [
+    {
+     "name": "Xavier Worthy",
+     "overall": 84,
+     "adp": 135.3,
+     "ecr": 123.0,
+     "took": "ECR"
+    },
+    {
+     "name": "Ray Davis",
+     "overall": 97,
+     "adp": 213.0,
+     "ecr": 167.0,
+     "took": "ECR"
+    },
+    {
+     "name": "Brandon Aubrey",
+     "overall": 104,
+     "adp": 119.3,
+     "ecr": 212.0,
+     "took": "ADP"
+    },
+    {
+     "name": "Jalen McMillan",
+     "overall": 124,
+     "adp": 180.0,
+     "ecr": 162.0,
+     "took": "ECR"
+    }
+   ]
+  },
+  "Gilbert": {
+   "lens": "FP-expert",
+   "nDivergent": 4,
+   "ecrFollows": 3,
+   "adpFollows": 1,
+   "confidence": "low",
+   "evidence": [
+    {
+     "name": "Josh Downs",
+     "overall": 99,
+     "adp": 111.3,
+     "ecr": 96.0,
+     "took": "ECR"
+    },
+    {
+     "name": "Tyrone Tracy Jr.",
+     "overall": 102,
+     "adp": 143.3,
+     "ecr": 127.0,
+     "took": "ECR"
+    },
+    {
+     "name": "Khalil Shakir",
+     "overall": 119,
+     "adp": 156.3,
+     "ecr": 130.0,
+     "took": "ECR"
+    },
+    {
+     "name": "Jake Bates",
+     "overall": 179,
+     "adp": 195.0,
+     "ecr": 228.0,
+     "took": "ADP"
+    }
+   ]
+  },
+  "Spivey": {
+   "lens": "FP-expert",
+   "nDivergent": 3,
+   "ecrFollows": 2,
+   "adpFollows": 1,
+   "confidence": "low",
+   "evidence": [
+    {
+     "name": "Wan'Dale Robinson",
+     "overall": 111,
+     "adp": 119.7,
+     "ecr": 104.0,
+     "took": "ECR"
+    },
+    {
+     "name": "Isiah Pacheco",
+     "overall": 130,
+     "adp": 154.7,
+     "ecr": 139.0,
+     "took": "ECR"
+    },
+    {
+     "name": "Harrison Mevis",
+     "overall": 151,
+     "adp": 192.7,
+     "ecr": 240.0,
+     "took": "ADP"
+    }
+   ]
+  },
+  "Hubauer": {
+   "lens": "ESPN/market",
+   "nDivergent": 5,
+   "ecrFollows": 1,
+   "adpFollows": 4,
+   "confidence": "medium",
+   "evidence": [
+    {
+     "name": "Quentin Johnston",
+     "overall": 118,
+     "adp": 106.0,
+     "ecr": 93.0,
+     "took": "ADP"
+    },
+    {
+     "name": "Michael Pittman Jr.",
+     "overall": 123,
+     "adp": 109.0,
+     "ecr": 89.0,
+     "took": "ADP"
+    },
+    {
+     "name": "MarShawn Lloyd",
+     "overall": 143,
+     "adp": 195.0,
+     "ecr": 170.0,
+     "took": "ECR"
+    },
+    {
+     "name": "Baker Mayfield",
+     "overall": 158,
+     "adp": 142.0,
+     "ecr": 119.0,
+     "took": "ADP"
+    },
+    {
+     "name": "Eddy Pineiro",
+     "overall": 178,
+     "adp": 208.7,
+     "ecr": 223.0,
+     "took": "ADP"
+    }
+   ]
+  },
+  "Putman": {
+   "lens": "FP-expert",
+   "nDivergent": 4,
+   "ecrFollows": 3,
+   "adpFollows": 1,
+   "confidence": "low",
+   "evidence": [
+    {
+     "name": "Chris Rodriguez Jr.",
+     "overall": 120,
+     "adp": 158.0,
+     "ecr": 134.0,
+     "took": "ECR"
+    },
+    {
+     "name": "KC Concepcion",
+     "overall": 121,
+     "adp": 146.0,
+     "ecr": 131.0,
+     "took": "ECR"
+    },
+    {
+     "name": "Tre Tucker",
+     "overall": 141,
+     "adp": 201.0,
+     "ecr": 171.0,
+     "took": "ECR"
+    },
+    {
+     "name": "Jason Myers",
+     "overall": 180,
+     "adp": 155.3,
+     "ecr": 222.0,
+     "took": "ADP"
+    }
+   ]
+  },
+  "Walker": {
+   "lens": "ESPN/market",
+   "nDivergent": 3,
+   "ecrFollows": 1,
+   "adpFollows": 2,
+   "confidence": "low",
+   "evidence": [
+    {
+     "name": "Romeo Doubs",
+     "overall": 125,
+     "adp": 146.3,
+     "ecr": 129.0,
+     "took": "ECR"
+    },
+    {
+     "name": "Cameron Dicker",
+     "overall": 145,
+     "adp": 146.3,
+     "ecr": 213.0,
+     "took": "ADP"
+    },
+    {
+     "name": "Kyler Murray",
+     "overall": 165,
+     "adp": 134.0,
+     "ecr": 115.0,
+     "took": "ADP"
+    }
+   ]
+  },
+  "Wester": {
+   "lens": "FP-expert",
+   "nDivergent": 3,
+   "ecrFollows": 2,
+   "adpFollows": 1,
+   "confidence": "low",
+   "evidence": [
+    {
+     "name": "Tank Bigsby",
+     "overall": 133,
+     "adp": 170.7,
+     "ecr": 146.0,
+     "took": "ECR"
+    },
+    {
+     "name": "Evan McPherson",
+     "overall": 153,
+     "adp": 234.0,
+     "ecr": 248.0,
+     "took": "ADP"
+    },
+    {
+     "name": "DJ Giddens",
+     "overall": 173,
+     "adp": 304.0,
+     "ecr": 257.0,
+     "took": "ECR"
+    }
+   ]
+  },
+  "Ray": {
+   "lens": "ESPN/market",
+   "nDivergent": 3,
+   "ecrFollows": 1,
+   "adpFollows": 2,
+   "confidence": "low",
+   "evidence": [
+    {
+     "name": "Dylan Sampson",
+     "overall": 146,
+     "adp": 173.7,
+     "ecr": 153.0,
+     "took": "ECR"
+    },
+    {
+     "name": "Ka'imi Fairbairn",
+     "overall": 155,
+     "adp": 147.0,
+     "ecr": 218.0,
+     "took": "ADP"
+    },
+    {
+     "name": "Jordan Love",
+     "overall": 175,
+     "adp": 141.3,
+     "ecr": 121.0,
+     "took": "ADP"
+    }
+   ]
+  },
+  "Munford": {
+   "lens": "ESPN/market",
+   "nDivergent": 3,
+   "ecrFollows": 1,
+   "adpFollows": 2,
+   "confidence": "low",
+   "evidence": [
+    {
+     "name": "Darnell Mooney",
+     "overall": 149,
+     "adp": 253.0,
+     "ecr": 211.0,
+     "took": "ECR"
+    },
+    {
+     "name": "Woody Marks",
+     "overall": 152,
+     "adp": 150.3,
+     "ecr": 135.0,
+     "took": "ADP"
+    },
+    {
+     "name": "Cam Little",
+     "overall": 169,
+     "adp": 162.7,
+     "ecr": 221.0,
+     "took": "ADP"
+    }
+   ]
+  }
+ }
+}

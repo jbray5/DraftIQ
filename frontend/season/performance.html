@@ -36,12 +36,13 @@ seasonNav('performance');
       +`<div class="rowline dim">record <b class="muted">${w}–${l}</b> · total hindsight leak ${leak.toFixed(1)} pts <span class="dim">(luck-inclusive — the honest scorecard is vs the projection-optimal lineup)</span></div>`;
     }
     const maxPf=Math.max(...d.standings.map(t=>t.pf))||1;
-    $('lg').innerHTML='<table><tr><th>#</th><th>team</th><th class="num">W–L</th><th class="num">PF</th><th style="width:24%"></th><th class="num">PF rk</th></tr>'
+    $('lg').innerHTML='<table><tr><th>#</th><th>team</th><th class="num">W–L</th><th class="num">PF</th><th style="width:18%"></th><th class="num">all-play</th><th class="num">luck</th></tr>'
       +d.standings.map((t,i)=>`<tr class="${/SCLSU/i.test(t.team)?'me':''}"><td class="dim">${String(i+1).padStart(2,'0')}</td>
         <td>${esc(t.team)}</td><td class="num">${t.wins}–${t.losses}</td><td class="num">${t.pf}</td>
         <td><span class="cellbar" style="height:12px;display:block;position:relative"><i style="width:${(t.pf/maxPf*100).toFixed(0)}%"></i></span></td>
-        <td class="num dim">${t.pfRank||''}</td></tr>`).join('')
-      +'</table><div class="dim" style="margin-top:6px">sorted by record · PF rk = points-for rank · as of '+esc(d.fetchedAt||'')+'</div>';
+        <td class="num dim">${t.allPlayWins!=null?t.allPlayWins:''}</td>
+        <td class="num ${t.luck>0.7?'warn':t.luck<-0.7?'cy':'dim'}">${t.luck!=null?(t.luck>0?'+':'')+t.luck:''}</td></tr>`).join('')
+      +'</table><div class="dim" style="margin-top:6px">all-play = expected wins on pure scoring · luck = actual − all-play (+ = schedule-gifted; measured: 26% of playoff spots here go to non-top-6 scorers) · as of '+esc(d.fetchedAt||'')+'</div>';
   }catch(e){$('weeks').innerHTML='<div class="err">'+esc(e.message)+'</div>';}
 })();
 </script>

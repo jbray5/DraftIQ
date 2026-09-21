@@ -1151,6 +1151,25 @@ def api_rosters():
         return _stale_or_error("rosters", e)
 
 
+@app.route("/api/trade-finder", methods=["GET"])
+def api_trade_finder():
+    """Proactive trade proposals: helps me by OUR judge, looks fair through the
+    partner's fingerprinted lens (ESPN values vs FP ROS ranks)."""
+    try:
+        from models import waivers as wv
+        hit = _WAIVER_CACHE.get("finder")
+        if hit and request.args.get("force") != "1" and time.time() - hit["at"] < 1800:
+            return jsonify(hit["data"])
+        rep = wv.trade_finder(2026)
+        if rep.get("error"):
+            return _stale_or_error("finder", rep["error"])
+        _WAIVER_CACHE["finder"] = {"at": time.time(), "data": rep}
+        return jsonify(rep)
+    except Exception as e:
+        traceback.print_exc()
+        return _stale_or_error("finder", e)
+
+
 @app.route("/api/trade2", methods=["POST"])
 def api_trade2():
     """Dual-judge, both-sides trade evaluation."""

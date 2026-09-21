@@ -604,6 +604,51 @@ def startsit(season: int = 2026, week: int | None = None) -> dict:
                 win = 0.5 * (1 + math.erf((my_live - opp_live) / sd_eff))
             else:                       # week complete: it's just the scoreboard
                 win = 1.0 if my_live > opp_live else (0.0 if my_live < opp_live else 0.5)
+
+            # VARIANCE ADVISORY (display-only — the mean-based engine stays the
+            # engine). This league is ~2/3 luck (PF↔finish −0.55; 26% of playoff
+            # spots go to non-top-6 scorers), so WHEN to take risk is a lever:
+            # favorites want the floor side of coin flips, underdogs the ceiling
+            # side. A "coin flip" = alternatives within 2 projected pts; the σ
+            # proxy is FP's expert-rank stddev (wider disagreement = wider range).
+            variance_notes = []
+            try:
+                if abs(win - 0.5) >= 0.08 and frac_rem > 0.5:
+                    try:
+                        import fp_weekly as _fpw
+                    except ImportError:
+                        from models import fp_weekly as _fpw
+                    fpw = _fpw.get(week)
+                    flexable = ("RB", "WR", "TE")
+
+                    def _std(nm):
+                        f = fpw.get(_fpw.norm(nm))
+                        return f.get("std") if f else None
+
+                    started_fx = [p for p in started if p["pos"] in flexable]
+                    bench_fx = [p for p in mine if p["slot"] == "BE"
+                                and p["pos"] in flexable and not p["played"]]
+                    dog = win < 0.5
+                    for b in bench_fx:
+                        for s2 in started_fx:
+                            if s2["played"] or abs((b["proj"] or 0) - (s2["proj"] or 0)) > 2:
+                                continue
+                            sb, ss = _std(b["name"]), _std(s2["name"])
+                            if sb is None or ss is None:
+                                continue
+                            if dog and sb > ss + 2:
+                                variance_notes.append(
+                                    f"underdog lever: {b['name']} is the wider-range side of a "
+                                    f"coin flip with {s2['name']} (expert spread σ{sb} vs σ{ss}) "
+                                    "— ceiling plays win from behind")
+                            elif not dog and ss > sb + 2:
+                                variance_notes.append(
+                                    f"favorite lever: {b['name']} is the steadier side of a "
+                                    f"coin flip with {s2['name']} (expert spread σ{sb} vs σ{ss}) "
+                                    "— favorites bank floors")
+                    variance_notes = variance_notes[:2]
+            except Exception:
+                pass
             return {"week": week,
                     "me": {"team": getattr(team, "team_name", None), "current": started,
                            "bench": [p for p in mine if p["slot"] in ("BE", "IR")],
@@ -614,6 +659,7 @@ def startsit(season: int = 2026, week: int | None = None) -> dict:
                            "nStarters": len(started)},
                     "liveSource": live_src,
                     "fetchedAt": time.strftime("%Y-%m-%d %H:%M"),
+                    "varianceNotes": variance_notes,
                     "swaps": swaps, "benchLeak": round(opt["total"] - my_total, 1),
                     "opponent": {"team": getattr(opp_team, "team_name", None),
                                  "projTotal": opp_total,
@@ -844,11 +890,31 @@ def rosters_report(season: int = 2026) -> dict:
                     continue
     except OSError:
         pass
+    try:
+        import manager_lens as _lens
+    except ImportError:
+        from models import manager_lens as _lens
+    lens_map = _lens.get()
+    owner2ui = {}
+    try:
+        aliases = json.loads((ROOT / "data" / "team_aliases.json").read_text(encoding="utf-8"))
+        for ui, owner in aliases.items():
+            if not ui.startswith("_") and owner:
+                for part in str(owner).split(";"):
+                    owner2ui[part.strip().lower()] = ui
+    except OSError:
+        pass
     teams = []
     for t in snap["teams"]:
         prof = next((profiles[o] for o in t["owners"] if o in profiles), None)
+        ui = next((owner2ui.get(o) for o in t["owners"] if o in owner2ui), None)
+        lrec = lens_map.get(ui) or {}
         teams.append({
             "teamName": t["teamName"], "owners": t["owners"],
+            "lens": lrec.get("lens"), "lensConf": lrec.get("confidence"),
+            "lensDetail": (f"{lrec.get('ecrFollows', 0)} expert-side vs "
+                           f"{lrec.get('adpFollows', 0)} market-side divergent draft picks"
+                           if lrec else None),
             "mine": snap["myTeam"] and t["teamName"] == snap["myTeam"]["teamName"],
             "moves": activity.get(t["teamName"], 0),
             "profile": ({k: prof.get(k) for k in
@@ -906,6 +972,141 @@ def trade_eval2(give: list[str], get: list[str], counterparty: str,
                       "PASS — doesn't move your lineup" if abs(mine) < 3 else
                       "DECLINE — you lose by our numbers")
     return out
+
+
+def trade_finder(season: int = 2026) -> dict:
+    """PROACTIVE trade proposals: packages that help MY lineup by OUR judge
+    while looking fair-or-good through the PARTNER'S OWN lens.
+
+    The lens comes from manager_lens.json — fingerprinted from each owner's
+    divergent 2026 draft picks (ADP-vs-ECR disagreements: which side did they
+    take). Low-n, so it steers the FAIRNESS TEST and the pitch wording, never
+    our own valuation: ESPN/market-brained partners are tested on ESPN ROS
+    lineup delta (the number their app shows them); FP-expert partners on FP
+    rest-of-season consensus ranks (the list they trust). We always keep score
+    with OUR board."""
+    try:
+        from inseason import optimal_lineup as _opt, slot_spec as _spec
+        import fp_weekly as _fpw
+        import manager_lens as _lens
+    except ImportError:
+        from models.inseason import optimal_lineup as _opt, slot_spec as _spec
+        from models import fp_weekly as _fpw
+        from models import manager_lens as _lens
+    snap = snapshot(season)
+    me = snap["myTeam"]
+    if not me:
+        return {"error": "no team"}
+    board, norm_name = _board_lookup()
+    fp = _fpw.ros_get(season)
+    lens_map = _lens.get()
+    owner2ui = {}
+    try:
+        aliases = json.loads((ROOT / "data" / "team_aliases.json").read_text(encoding="utf-8"))
+        for ui, owner in aliases.items():
+            if not ui.startswith("_") and owner:
+                for part in str(owner).split(";"):
+                    owner2ui[part.strip().lower()] = ui
+    except OSError:
+        pass
+    spec = _spec(CFG["2026"])
+    rem = max(1, 19 - snap["week"])
+
+    def ours_val(p):
+        return board.get((norm_name(p["name"]), p["pos"]), (p["proj"] or 0) * 0.55)
+
+    def espn_val(p):
+        return p["proj"] or 0
+
+    def fp_info(p):
+        key = (_fpw.norm(str(p["name"]).replace("D/ST", "").strip().split()[-1])
+               if p["pos"] == "DST" else _fpw.norm(p["name"]))
+        return fp.get(key)
+
+    def lineup(roster, val):
+        return _opt([{"name": q["name"], "pos": q["pos"], "proj": val(q)}
+                     for q in roster], spec)["total"]
+
+    my_roster = [p for p in me["roster"] if (p.get("lineupSlot") or "") != "IR"]
+    base_mine = lineup(my_roster, ours_val)
+    proposals = []
+    for t in snap["teams"]:
+        if t["teamName"] == me["teamName"]:
+            continue
+        ui = next((owner2ui.get(o) for o in t["owners"] if o in owner2ui), None)
+        lrec = lens_map.get(ui) or {}
+        lens = lrec.get("lens", "ESPN/market")
+        their = [p for p in t["roster"] if (p.get("lineupSlot") or "") != "IR"]
+        base_their_espn = lineup(their, espn_val)
+        mine_c = [p for p in my_roster if p["pos"] not in ("K", "DST")]
+        their_c = [p for p in their if p["pos"] not in ("K", "DST")]
+        combos = [([a], [b]) for a in mine_c for b in their_c]
+        tm = sorted(mine_c, key=ours_val, reverse=True)
+        tt = sorted(their_c, key=ours_val, reverse=True)[:6]
+        for i in range(len(tm)):                     # 2-for-1 consolidations
+            for k2 in range(i + 1, min(i + 6, len(tm))):
+                for b in tt:
+                    combos.append(([tm[i], tm[k2]], [b]))
+        for give, get in combos:
+            gv = {p["name"] for p in give}
+            gt = {p["name"] for p in get}
+            my_after = [p for p in my_roster if p["name"] not in gv] + get
+            their_after = [p for p in their if p["name"] not in gt] + give
+            d_ours = lineup(my_after, ours_val) - base_mine
+            if d_ours < 0.35 * rem:                  # must be a real win for us
+                continue
+            d_their_espn = round(lineup(their_after, espn_val) - base_their_espn, 1)
+            in_fp = [fp_info(p) for p in give]       # what THEY receive
+            out_fp = [fp_info(p) for p in get]
+            # Fairness through THEIR lens — with two hard rules learned from v1:
+            # (1) FP rank scales differ per page (QB list vs flex list), so rank
+            #     comparisons are only valid SAME-PAGE — a QB17 is not "better"
+            #     than a WR3. No same-page anchor -> fall back to the ESPN test.
+            # (2) Insult floor: nothing that craters their ESPN lineup by 15+,
+            #     whatever the lens says — their app will scream and so will they.
+            if lens == "FP-expert" and all(in_fp) and all(out_fp):
+                best_out = min(out_fp, key=lambda f: f["avg"])
+                same_page = [f for f in in_fp if f["page"] == best_out["page"]]
+                if same_page:
+                    slack = 5 + 8 * (len(give) - 1)
+                    fair = (min(f["avg"] for f in same_page) <= best_out["avg"] + slack
+                            and d_their_espn >= -15)
+                else:
+                    fair = d_their_espn >= -2
+                pitch = ("Pitch with FantasyPros: they'd land "
+                         + "/".join(f'{p["name"]} ({(fp_info(p) or {}).get("posRank", "?")} ROS)' for p in give)
+                         + " for " + "/".join(f'{p["name"]} ({(fp_info(p) or {}).get("posRank", "?")})' for p in get)
+                         + " — the better side of FP's rest-of-season list")
+            else:
+                fair = d_their_espn >= -2
+                pitch = (f"Pitch with ESPN: their projected lineup moves {d_their_espn:+} "
+                         "ROS pts BY ESPN'S OWN NUMBERS — show them the app")
+            if not fair:
+                continue
+            proposals.append({
+                "with": t["teamName"], "lens": lens,
+                "lensConf": lrec.get("confidence", "none"),
+                "give": [{"name": p["name"], "pos": p["pos"]} for p in give],
+                "get": [{"name": p["name"], "pos": p["pos"]} for p in get],
+                "myGainOurs": round(d_ours, 1),
+                "myGainWk": round(d_ours / rem, 2),
+                "theirDeltaEspn": d_their_espn,
+                "pitch": pitch})
+    proposals.sort(key=lambda x: -x["myGainOurs"])
+    top, seen = [], {}
+    for pr in proposals:                             # max 2 per partner, 8 total
+        if seen.get(pr["with"], 0) >= 2:
+            continue
+        seen[pr["with"]] = seen.get(pr["with"], 0) + 1
+        top.append(pr)
+        if len(top) >= 8:
+            break
+    return {"week": snap["week"], "proposals": top,
+            "fetchedAt": time.strftime("%Y-%m-%d %H:%M"),
+            "note": ("lens = which board the owner's DRAFT reaches followed (low-n "
+                     "fingerprint; steers the pitch, never our valuation). Score is "
+                     "kept with OUR board; 'ours' judge is the preseason board — "
+                     "weekly reprice still on the roadmap.")}
 
 
 def planner(season: int = 2026) -> dict:
@@ -999,6 +1200,28 @@ def performance(season: int = 2026) -> dict:
                   "wins": getattr(t, "wins", 0), "losses": getattr(t, "losses", 0),
                   "pf": round(float(getattr(t, "points_for", 0) or 0), 1)}
                  for t in lg.teams]
+    # ALL-PLAY record + luck: your weekly score vs ALL teams — the standings with
+    # schedule luck stripped out. Measured 2019-25: 26% of playoff spots here go
+    # to teams outside the all-play top 6; luck swings ±1.5 wins/season (sd).
+    try:
+        scores_by_team = {str(getattr(t, "team_name", "")):
+                          [float(x or 0) for x in (getattr(t, "scores", None) or [])[:cur - 1]]
+                          for t in lg.teams}
+        n_wk = max((len(v) for v in scores_by_team.values()), default=0)
+        apw = {nm: 0.0 for nm in scores_by_team}
+        for wk in range(n_wk):
+            wk_scores = {nm: v[wk] for nm, v in scores_by_team.items() if len(v) > wk and v[wk] > 0}
+            for nm, sc in wk_scores.items():
+                others = [s for o, s in wk_scores.items() if o != nm]
+                if others:
+                    apw[nm] += (sum(1 for s in others if s < sc)
+                                + 0.5 * sum(1 for s in others if s == sc)) / len(others)
+        for r in standings:
+            ap = apw.get(str(r["team"]), 0.0)
+            r["allPlayWins"] = round(ap, 1)          # expected wins on pure scoring
+            r["luck"] = round(r["wins"] - ap, 1)     # + = schedule-gifted, − = robbed
+    except Exception:
+        pass
     standings.sort(key=lambda r: (-r["wins"], -r["pf"]))
     # PF rank shown alongside the wins-sorted table — a wins-only sort once
     # hid a 9th-in-points reality behind a 5th-looking row

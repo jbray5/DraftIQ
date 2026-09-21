@@ -67,7 +67,9 @@ const benchTable=list=>`<table><tr><th></th><th>player</th><th class="num">proj<
       +(d.swaps&&d.swaps.length
         ?`<div class="action" style="margin-top:12px"><div class="hd">▶ START/SIT — +${d.benchLeak} projected pts</div>`
           +d.swaps.map(s=>`<div class="rowline">${s.slot?'<span class="pos">'+esc(s.slot)+'</span> ':''}START <b class="good">${esc(s.start)}</b>${s.sit?` · SIT <b class="bad">${esc(s.sit)}</b>`:''}</div>`).join('')+'</div>'
-        :`<div class="allclear" style="margin-top:12px">✓ LINEUP OPTIMAL — bench leak ${d.benchLeak} pts</div>`);
+        :`<div class="allclear" style="margin-top:12px">✓ LINEUP OPTIMAL — bench leak ${d.benchLeak} pts</div>`)
+      +((d.varianceNotes||[]).length
+        ?`<div class="rowline dim" style="margin-top:6px">${d.varianceNotes.map(v=>'🎲 '+esc(v)).join('<br>')}</div>`:'');
     countUp($('nMe'), live?d.me.liveExp:d.me.currentTotal,{dec:1});
     countUp($('nOpp'), live?d.opponent.liveExp:d.opponent.projTotal,{dec:1});
     $('h2h').innerHTML=`<div class="h2hrow" style="border-bottom:1px solid var(--line2)">

@@ -35,6 +35,12 @@ PAGES = {
     "K": "https://www.fantasypros.com/nfl/rankings/k.php",
     "DST": "https://www.fantasypros.com/nfl/rankings/dst.php",
 }
+ROS_PAGES = {
+    "QB": "https://www.fantasypros.com/nfl/rankings/ros-qb.php",
+    "FLEX": "https://www.fantasypros.com/nfl/rankings/ros-half-point-ppr-flex.php",
+    "K": "https://www.fantasypros.com/nfl/rankings/ros-k.php",
+    "DST": "https://www.fantasypros.com/nfl/rankings/ros-dst.php",
+}
 _ECR = re.compile(r"var ecrData\s*=\s*(\{.*?\});", re.S)
 _SUFFIX = re.compile(r"\b(jr|sr|ii|iii|iv|v)\b")
 
@@ -47,6 +53,60 @@ def norm(s: str) -> str:
 
 def _cache(season: int, week: int) -> Path:
     return ROOT / "data" / "processed" / f"fp_weekly_ecr_{season}_wk{week}.json"
+
+
+def ros_fetch() -> dict:
+    """FP REST-OF-SEASON expert consensus — the third judge for trades. Same
+    embedded-ecrData source as the weekly pages, no week param."""
+    out: dict = {}
+    for page, url in ROS_PAGES.items():
+        r = requests.get(url, headers=UA, timeout=25)
+        r.raise_for_status()
+        m = _ECR.search(r.text)
+        if not m:
+            raise RuntimeError(f"no ecrData on ROS {page} page")
+        players = json.loads(m.group(1)).get("players") or []
+        if len(players) < 12:
+            raise RuntimeError(f"thin ROS ecrData on {page} ({len(players)})")
+        for p in players:
+            name = p.get("player_name")
+            key = norm(name) if page != "DST" else norm(str(name).split()[-1])
+            rec = {"name": name, "page": page, "posRank": p.get("pos_rank"),
+                   "avg": float(p.get("rank_ave") or p.get("rank_ecr") or 999)}
+            if key not in out or page != "FLEX":
+                out[key] = rec
+        time.sleep(0.6)
+    if len(out) < 200:
+        raise RuntimeError(f"FP ROS ECR looks broken ({len(out)} players)")
+    return out
+
+
+def ros_get(season: int = 2026, force: bool = False) -> dict:
+    p = ROOT / "data" / "processed" / f"fp_ros_ecr_{season}.json"
+    if not force and p.exists():
+        try:
+            blob = json.loads(p.read_text(encoding="utf-8"))
+            if blob.get("players") and time.time() - blob.get("fetchedAt", 0) < 24 * 3600:
+                return blob["players"]
+        except Exception:
+            pass
+    try:
+        players = ros_fetch()
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(json.dumps({"fetchedAt": time.time(), "season": season,
+                                 "players": players}), encoding="utf-8")
+        return players
+    except Exception as e:
+        if p.exists():
+            try:
+                blob = json.loads(p.read_text(encoding="utf-8"))
+                if blob.get("players"):
+                    print(f"fp ROS: live fetch failed ({e}) — cached copy")
+                    return blob["players"]
+            except Exception:
+                pass
+        print(f"fp ROS: unavailable ({e})")
+        return {}
 
 
 def fetch(week: int) -> dict:
