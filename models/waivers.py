@@ -106,6 +106,10 @@ def _row(p) -> dict:
         "banked": round(banked, 1),
         "injury": (str(getattr(p, "injuryStatus", "") or "").upper() or None),
         "own": own,     # % of ESPN leagues rostering him — the market's opinion
+        "posRank": getattr(p, "posRank", None),   # ESPN's LIVE positional rank —
+        # the number every league-mate's app shows. Trustworthy where our
+        # derived ROS (sluggish aggregate minus banked) provably is not: that
+        # subtraction had Josh Allen's remaining season BELOW Drake Maye's.
         "lineupSlot": getattr(p, "lineupSlot", None),   # 'IR' matters: not startable
     }
 
@@ -1058,30 +1062,52 @@ def trade_finder(season: int = 2026) -> dict:
             d_their_espn = round(lineup(their_after, espn_val) - base_their_espn, 1)
             in_fp = [fp_info(p) for p in give]       # what THEY receive
             out_fp = [fp_info(p) for p in get]
-            # Fairness through THEIR lens — with two hard rules learned from v1:
-            # (1) FP rank scales differ per page (QB list vs flex list), so rank
-            #     comparisons are only valid SAME-PAGE — a QB17 is not "better"
-            #     than a WR3. No same-page anchor -> fall back to the ESPN test.
-            # (2) Insult floor: nothing that craters their ESPN lineup by 15+,
-            #     whatever the lens says — their app will scream and so will they.
-            if lens == "FP-expert" and all(in_fp) and all(out_fp):
-                best_out = min(out_fp, key=lambda f: f["avg"])
-                same_page = [f for f in in_fp if f["page"] == best_out["page"]]
-                if same_page:
-                    slack = 5 + 8 * (len(give) - 1)
-                    fair = (min(f["avg"] for f in same_page) <= best_out["avg"] + slack
-                            and d_their_espn >= -15)
-                else:
-                    fair = d_their_espn >= -2
+            # FAIRNESS lives in LIVE RANKS, never in our derived point values
+            # (v2 lesson, caught by the user: sluggish-aggregate-minus-banked
+            # priced Josh Allen's remaining season below Drake Maye's, and the
+            # finder proposed Maye-for-Allen — a laughing-stock offer). Rules:
+            # (1) same-scale only: FP ranks compare within a page, ESPN posRank
+            #     within a position; (2) whatever the lens, the partner must not
+            #     surrender a player who is DRASTICALLY better by the rank list
+            #     every human sees; (3) CONSENSUS filter: we only acquire what
+            #     FP's ROS list also calls the better side — our frozen board
+            #     alone is not enough to justify a proposal.
+            def _same_scale_fair(in_list, out_list, keyf, slack):
+                outs = [f for f in out_list if f and keyf(f) is not None]
+                if not outs:
+                    return None
+                best_out = min(outs, key=keyf)
+                same = [f for f in in_list if f and _page(f) == _page(best_out)
+                        and keyf(f) is not None]
+                if not same:
+                    return None
+                return min(keyf(f) for f in same) <= keyf(best_out) + slack
+
+            def _page(f):
+                return f.get("page") or f.get("pos")
+
+            slack = 5 + 8 * (len(give) - 1)
+            # consensus: the best player WE receive must beat the best we give
+            # on FP's ROS list (same page) — else our board is arguing alone
+            consensus = _same_scale_fair(out_fp, in_fp, lambda f: f["avg"], -1)
+            if consensus is not True:
+                continue
+            if lens == "FP-expert":
+                fair = _same_scale_fair(in_fp, out_fp, lambda f: f["avg"], slack)
                 pitch = ("Pitch with FantasyPros: they'd land "
                          + "/".join(f'{p["name"]} ({(fp_info(p) or {}).get("posRank", "?")} ROS)' for p in give)
                          + " for " + "/".join(f'{p["name"]} ({(fp_info(p) or {}).get("posRank", "?")})' for p in get)
                          + " — the better side of FP's rest-of-season list")
             else:
-                fair = d_their_espn >= -2
-                pitch = (f"Pitch with ESPN: their projected lineup moves {d_their_espn:+} "
-                         "ROS pts BY ESPN'S OWN NUMBERS — show them the app")
-            if not fair:
+                in_pr = [{"pos": p["pos"], "avg": p.get("posRank")} for p in give]
+                out_pr = [{"pos": p["pos"], "avg": p.get("posRank")} for p in get]
+                fair = _same_scale_fair(in_pr, out_pr, lambda f: f["avg"], slack)
+                pr = lambda p: f'{p["pos"]}{p.get("posRank") or "?"}'
+                pitch = ("Pitch with ESPN's own ranks: they'd get "
+                         + "/".join(f'{p["name"]} ({pr(p)})' for p in give)
+                         + " for " + "/".join(f'{p["name"]} ({pr(p)})' for p in get)
+                         + " — check the rank column in the app")
+            if fair is not True:
                 continue
             proposals.append({
                 "with": t["teamName"], "lens": lens,
