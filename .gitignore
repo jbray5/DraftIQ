@@ -44,3 +44,7 @@ data/processed/*.pre2012.json
 data/processed/*.prev_refresh.csv
 
 .claude/*.out.log.err
+
+# Deep-research output: friend dossiers and strategy notes stay local, never pushed
+research_notes/
+reports/
