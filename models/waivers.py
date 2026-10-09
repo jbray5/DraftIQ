@@ -63,6 +63,9 @@ BAD_STATUS = {"OUT", "INJURY_RESERVE", "IR", "SUSPENSION", "PHYSICALLY_UNABLE_TO
 # by December — the wire went quiet exactly when churn decides titles.
 LINEUP_CRACK_PW = 0.5    # a claim must add at least this per week to your lineup
 WATCH_PW = 0.7           # a bench dart must beat the incumbent by this per week
+# Never suggested as a drop: starter-grade by ESPN's LIVE positional rank in a
+# 10-team league (1 QB, 2 RB, 2 WR, 1 TE, 2 FLEX, 1 IDP).
+LIVE_RANK_PROTECT = {"QB": 12, "RB": 24, "WR": 30, "TE": 10, "IDP": 20}
 FA_POSITIONS = ("QB", "RB", "WR", "TE", "K", "D/ST", "LB", "DE", "DT", "CB", "S")
 ATH = "https://site.web.api.espn.com/apis/common/v3/sports/football/nfl/athletes/{pid}"
 
@@ -268,10 +271,36 @@ def report(season: int = 2026, week: int | None = None) -> dict:
     def _vorp(p) -> float:
         return round((p["proj"] or 0) - repl.get(p["pos"], 0), 1)
 
+    # LIVE-RANK GUARDRAILS (2026-10-08). `proj` is ESPN's season aggregate minus
+    # banked points; the aggregate revises sluggishly, so by week 5 every player
+    # who has PRODUCED looks spent while untouched K/IDP/DST aggregates look
+    # fresh. Unguarded, the report proposed dropping Jared Goff (live QB4) for
+    # a linebacker and chained drops through players it had just added. ESPN's
+    # live posRank (what every league-mate's app shows) vetoes both failure modes.
+    rank_of = {r["name"]: r.get("posRank") for r in fas}
+    rank_of.update({p["name"]: p.get("posRank") for p in my})
+    added: set[str] = set()
+
+    def _protected(p) -> bool:
+        cap = LIVE_RANK_PROTECT.get(p["pos"])
+        rk = p.get("posRank")
+        return bool(cap and rk and rk <= cap)
+
+    def _live_upgrade(add) -> bool:
+        """Does ESPN's live rank agree the add beats a same-position starter?"""
+        a_rk = rank_of.get(add["name"])
+        if not a_rk:
+            return True                  # no live rank to argue with
+        starters = [p for _, p in optimal_lineup(work, spec)["starters"]
+                    if p["pos"] == add["pos"]]
+        pool = starters or [p for p in work if p["pos"] == add["pos"]]
+        ranks = [rank_of.get(p["name"]) for p in pool if rank_of.get(p["name"])]
+        return (not ranks) or a_rk < max(ranks)
+
     def _best_drop(add_row, protect: set[str] = frozenset()):
         after = optimal_lineup(work + [add_row], spec)
-        keep = {p["name"] for _, p in after["starters"]} | set(protect)
-        bench = [p for p in work if p["name"] not in keep]
+        keep = {p["name"] for _, p in after["starters"]} | set(protect) | added
+        bench = [p for p in work if p["name"] not in keep and not _protected(p)]
         return min(bench, key=_vorp) if bench else None
 
     def _apply(mv) -> None:
@@ -280,8 +309,10 @@ def report(season: int = 2026, week: int | None = None) -> dict:
         if mv.get("drop"):
             work[:] = [p for p in work if p["name"] != mv["drop"]["name"]]
         a = mv["add"]
+        added.add(a["name"])
         work.append({"name": a["name"], "pos": a["pos"], "team": a.get("team"),
-                     "proj": a["proj"], "injury": None, "lineupSlot": "BE"})
+                     "proj": a["proj"], "injury": None, "lineupSlot": "BE",
+                     "posRank": rank_of.get(a["name"])})
 
     own_prev = _own_deltas()
 
@@ -320,7 +351,8 @@ def report(season: int = 2026, week: int | None = None) -> dict:
                       "news": news.get("note"), "newsDate": news.get("date")})
         # would his position's best FA start if he can't go? (proj->0 for him)
         without = [({**q, "proj": 0.0} if q["name"] == p["name"] else q) for q in work]
-        cands = [f for f in fas if f["pos"] == p["pos"]][:8]
+        cands = [f for f in fas if f["pos"] == p["pos"]
+                 and f.get("injury") not in BAD_STATUS][:8]
         best, best_gain = None, 0.0
         base = optimal_lineup(without, spec)["total"]
         for f in cands:
@@ -329,6 +361,8 @@ def report(season: int = 2026, week: int | None = None) -> dict:
                 best, best_gain = f, gain
         if best and best_gain >= LINEUP_CRACK_PW * rem and best["name"] not in claimed:
             mv = _move(best, protect={p["name"]})   # never drop the injured guy blind
+            if mv["netVorpWk"] <= 0:
+                continue
             claimed.add(best["name"])
             actions.append({
                 "type": "CLAIM", "urgency": "act before waivers clear",
@@ -339,10 +373,19 @@ def report(season: int = 2026, week: int | None = None) -> dict:
             _apply(mv)
 
     # ---- 2. straight lineup-crackers (healthy roster, FA is just better) ----
+    # K and D/ST never enter here: D/ST is priced by matchup in section 3 (the
+    # validated +55/yr edge) and kicker scoring is measured noise (+6/yr).
     targets = waiver_targets(work, fas[:120], repl, spec, top=25)
+    hurt = {r["name"] for r in fas if r.get("injury") in BAD_STATUS}
     for t in targets:
+        if t["pos"] in ("K", "DST") or t["name"] in hurt:
+            continue
         if t["lineup_gain"] >= LINEUP_CRACK_PW * rem and t["name"] not in claimed:
+            if not _live_upgrade(t):
+                continue
             mv = _move(t)
+            if mv["netVorpWk"] <= 0:
+                continue
             claimed.add(t["name"])
             actions.append({"type": "CLAIM", "urgency": "clear upgrade",
                             "why": (f"{t['name']} beats your current starter — "
@@ -379,6 +422,13 @@ def report(season: int = 2026, week: int | None = None) -> dict:
                               f"over yours (#{my_best})"
                               + (" · ⚠ Vegas lines are a cached copy" if lines_stale else ""))
             mv = _move(fa_best)
+            # a stream is a defense-for-defense swap: drop the worst-matchup
+            # D/ST you hold, never a skill player
+            if my_dsts:
+                worst = max(my_dsts, key=lambda p: ((ranks.get(_tc(p)) or {}).get("w1Rank") or 99))
+                mv["drop"] = {**{k: worst[k] for k in ("name", "pos", "team", "proj")},
+                              "vsWire": _vorp(worst)}
+                mv["dropNote"] = None
             # claim ladder: the next-best FA matchups, so a lost claim has
             # pre-ranked fallbacks instead of hand math
             mv["ladder"] = [{"name": d["name"], "rank": d.get("w1Rank"),
@@ -421,7 +471,8 @@ def report(season: int = 2026, week: int | None = None) -> dict:
         my_pos_count[p["pos"]] = my_pos_count.get(p["pos"], 0) + 1
     watch = []
     for t in targets:
-        if t["name"] in claimed or t["lineup_gain"] >= LINEUP_CRACK_PW * rem:
+        if t["name"] in claimed or t["name"] in hurt \
+                or t["lineup_gain"] >= LINEUP_CRACK_PW * rem:
             continue
         pos = t["pos"]
         # K/DST stream, never stash. IDP is deliberately ELIGIBLE: measured weekly

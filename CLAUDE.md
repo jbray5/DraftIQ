@@ -76,6 +76,13 @@ cd frontend && npm install && npm run dev
 Windows shell is **PowerShell**; a Bash tool is also available. Don't `cd` in compound
 commands (permission prompts) — use absolute paths.
 
+⚠ **Run the backend from `C:\Users\justi\.venvs\draftiq` (local venv, pandas pinned
+<3), NOT the repo's `.venv`.** The repo lives in OneDrive, which evicted the in-repo
+`.venv` to cloud-only during a 2-week gap (2026-10-08): imports crawled at ~0.35s per
+file, then failed mid-recall with `OSError: [Errno 22]`, masked by Flask as "cannot
+import name 'waivers' from 'models'". The project folder is now pinned (`attrib +P`),
+but OneDrive was not downloading at all — a venv inside a synced folder is fragile.
+
 ## Guest-league mode (BUILT 2026-09-01 for "Steak and Ales with the Lads")
 
 DraftIQ can run a draft for a DIFFERENT league without touching the home (Taco)
